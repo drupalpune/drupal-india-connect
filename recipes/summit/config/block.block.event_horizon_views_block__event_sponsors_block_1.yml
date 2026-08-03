@@ -1,0 +1,38 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.event_sponsors
+  module:
+    - system
+    - taxonomy
+    - views
+  theme:
+    - event_horizon
+id: event_horizon_views_block__event_sponsors_block_1
+theme: event_horizon
+region: sidebar
+weight: 0
+provider: null
+plugin: 'views_block:event_sponsors-block_1'
+settings:
+  id: 'views_block:event_sponsors-block_1'
+  label: 'Sponsored By'
+  label_display: visible
+  provider: views
+  context_mapping:
+    tid: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+  views_label: 'Sponsored By'
+  items_per_page: null
+visibility:
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+    bundles:
+      event: event
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

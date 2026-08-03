@@ -1,0 +1,11 @@
+uuid: fcc8bed9-1c88-4a10-8446-89f880a6f3f6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: amsMmNVqsPkd8npnaZCZNv0HZBD_3ZoXDiwgyZYvBIY
+name: 'Session Audience'
+vid: session_audience
+description: ''
+weight: 0
+new_revision: false

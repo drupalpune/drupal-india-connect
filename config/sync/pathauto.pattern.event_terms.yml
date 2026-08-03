@@ -1,0 +1,25 @@
+uuid: 456fd373-2723-48e1-9eaa-83738c7e59b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.event
+  module:
+    - taxonomy
+_core:
+  default_config_hash: Z8sHrlfZwDBc_R0eRHAWttCDlvR1p-K1WUOTRyPagqM
+id: event_terms
+label: 'Event Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/events/[term:name]'
+selection_criteria:
+  52d9b0dd-7c2c-4f97-bd2e-4ca8476dc83a:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      event: event
+selection_logic: and
+weight: -5
+relationships: {  }

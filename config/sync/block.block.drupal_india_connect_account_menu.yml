@@ -1,0 +1,27 @@
+uuid: 7bffbfbe-cbda-4d2c-b7a9-ca492d17e9fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: LLQX3wYp6_nob9v1uI7tv-J7bAw7iA3wWL0HizeovA8
+id: drupal_india_connect_account_menu
+theme: drupal_india_connect
+region: primary_menu
+weight: -10
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

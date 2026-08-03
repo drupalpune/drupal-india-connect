@@ -1,0 +1,26 @@
+uuid: 6c349024-830d-44cc-bb30-b3225be5ef12
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: SI2HSTUiK03rF7Iz2Vf-KY9IcSmR2TQvOr-8BsaN_NY
+id: drupal_india_connect_content
+theme: drupal_india_connect
+region: content
+weight: -11
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

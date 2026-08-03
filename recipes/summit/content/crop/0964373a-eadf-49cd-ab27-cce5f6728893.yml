@@ -1,0 +1,30 @@
+_meta:
+  version: '1.0'
+  entity_type: crop
+  uuid: 0964373a-eadf-49cd-ab27-cce5f6728893
+  bundle: focal_point
+  default_langcode: en
+  depends:
+    e30bc8ef-3072-480c-83c6-f7eadcae5963: file
+default:
+  entity_id:
+    -
+      uuid: e30bc8ef-3072-480c-83c6-f7eadcae5963
+  entity_type:
+    -
+      value: file
+  uri:
+    -
+      value: 'public://2026-06/fldc_2025_avatar.png'
+  x:
+    -
+      value: 200
+  'y':
+    -
+      value: 200
+  revision_uid:
+    -
+      target_id: 1
+  revision_translation_affected:
+    -
+      value: true

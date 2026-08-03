@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 74ef239b-bec0-45b8-95b0-688562376b49
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: driyard-logo-black.png.webp
+  uri:
+    -
+      value: 'public://2026-06/driyard-logo-black.png.webp'
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 1080
+  status:
+    -
+      value: true

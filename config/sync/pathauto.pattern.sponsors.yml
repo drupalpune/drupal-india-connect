@@ -1,0 +1,25 @@
+uuid: 70c2f7ac-e42e-414f-bfe6-7cbab099efec
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sponsor
+  module:
+    - node
+_core:
+  default_config_hash: HBCIH8_JQpbYvEHo7dlG8emkRr1t6g3YFWCzzywvrDQ
+id: sponsors
+label: Sponsors
+type: 'canonical_entities:node'
+pattern: '/sponsors/[node:title]'
+selection_criteria:
+  b2826139-8aeb-449a-aeee-f677d1e5e145:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      sponsor: sponsor
+selection_logic: and
+weight: -5
+relationships: {  }

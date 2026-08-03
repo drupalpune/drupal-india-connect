@@ -1,0 +1,15 @@
+uuid: c5917844-7865-4cbf-9f7c-28b4867418e0
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: VYObrTdkl9Sg9eyz_4UkZg13AqMIYJLQuTBCET8yeDw
+id: cta
+label: CTA
+description: ''
+help: ''
+new_revision: true
+revision_expose: false
+revision_log: false
+name_pattern: '[storage:field_link:title]'
+has_canonical: false

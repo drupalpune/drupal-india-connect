@@ -1,0 +1,28 @@
+uuid: be3e7767-cfb7-4e47-b7bc-80e052a6f2b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.concurrent_sessions
+  module:
+    - views
+_core:
+  default_config_hash: 3XL4r3q8sHtjspibEomD_DMqWvf1LuwryasVcsf8llQ
+active_version: eba0d1a57a7b8d4b
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:concurrent_sessions-block_1'
+        label: 'Concurrent Sessions'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Concurrent Sessions'
+id: block.views_block.concurrent_sessions-block_1
+provider: views
+source: block
+source_local_id: 'views_block:concurrent_sessions-block_1'

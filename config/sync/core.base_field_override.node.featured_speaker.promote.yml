@@ -1,0 +1,24 @@
+uuid: f5c1ccd1-d419-4795-9f29-9d75c6feb922
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.featured_speaker
+_core:
+  default_config_hash: J1b_RxHkNTBDZjuyr82Wf0JezT8MIoIxJCGJPZW21Yo
+id: node.featured_speaker.promote
+field_name: promote
+entity_type: node
+bundle: featured_speaker
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: false
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

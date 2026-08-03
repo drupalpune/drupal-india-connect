@@ -1,0 +1,31 @@
+uuid: b7d15c0a-ff01-4039-b1a9-e527d671dacc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company
+    - node.type.job_listing
+    - node.type.sponsor
+_core:
+  default_config_hash: 8llkFlQL5MebWo1BZotVcIlq7O1WGgLzm34nRjvoHOM
+id: node.job_listing.field_company
+field_name: field_company
+entity_type: node
+bundle: job_listing
+label: Organization
+description: 'Sponsor that is posting this job listing. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sponsor: sponsor
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

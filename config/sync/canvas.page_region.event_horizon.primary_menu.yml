@@ -1,0 +1,61 @@
+uuid: 4f410302-2ffa-4d47-858a-f1d0d81e8e07
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.event_platform_header_cta
+    - canvas.component.block.system_branding_block
+    - canvas.component.block.system_menu_block.account
+    - canvas.component.block.system_menu_block.main
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: uHHTYGccDRDGwBryel-GJ_sb8SJQjMI5hwvXeFwWR7Q
+id: event_horizon.primary_menu
+region: primary_menu
+theme: event_horizon
+component_tree:
+  '0:032b3150-7557-468a-ba40-d1c8fdc27f11':
+    uuid: 032b3150-7557-468a-ba40-d1c8fdc27f11
+    component_id: block.system_branding_block
+    component_version: 7d528e00f56b3abf
+    inputs:
+      label: 'Site branding'
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: true
+      use_site_slogan: false
+  '1:6d13ceff-24ca-47d3-9a3b-10bc48480618':
+    uuid: 6d13ceff-24ca-47d3-9a3b-10bc48480618
+    component_id: block.system_menu_block.main
+    component_version: 322535c0078cf59c
+    inputs:
+      label: 'Main navigation'
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false
+  '2:1baae1e1-e60e-411c-9a70-f9fd5994696d':
+    uuid: 1baae1e1-e60e-411c-9a70-f9fd5994696d
+    component_id: block.system_menu_block.account
+    component_version: bc0ea0dab4832c55
+    inputs:
+      label: 'User account menu'
+      label_display: '0'
+      level: 1
+      depth: 1
+      expand_all_items: false
+  '3:ff35e5ea-e256-4105-8c73-4796610149b3':
+    uuid: ff35e5ea-e256-4105-8c73-4796610149b3
+    component_id: block.event_platform_header_cta
+    component_version: 0b50ba6f231d4c8e
+    inputs:
+      label: 'Event Platform Header CTA'
+      label_display: '0'
+      default_state_link: 827a823d-76b8-4b7f-8ab3-09bff9d37b1c
+      date_state_link: a15ca0a4-3539-4f87-b6d3-beae273d4bc6
+      sessions_open_state_link: bc75f574-1d79-40a5-8329-7b4d1af8f239
+      sessions_closed_state_link: ''
+      scheduled_state_link: ''
+      underway_state_link: ''
+      published_state_link: fe903524-9c93-461a-8539-3083e872e19b

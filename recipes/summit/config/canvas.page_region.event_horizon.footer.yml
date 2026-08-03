@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.event_platform_helper_copyright
+    - canvas.component.block.system_menu_block.footer
+  theme:
+    - event_horizon
+id: event_horizon.footer
+region: footer
+theme: event_horizon
+component_tree:
+  c792f1a5-fd27-40de-8d91-12b2ced91e61:
+    uuid: c792f1a5-fd27-40de-8d91-12b2ced91e61
+    component_id: block.system_menu_block.footer
+    component_version: 075503dbc228a45c
+    inputs:
+      label: Footer
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false
+  3fdc56aa-d2f3-40dd-a41f-b711c95c7cb0:
+    uuid: 3fdc56aa-d2f3-40dd-a41f-b711c95c7cb0
+    component_id: block.event_platform_helper_copyright
+    component_version: 9921223e647744bd
+    inputs:
+      label: Copyright
+      label_display: '0'

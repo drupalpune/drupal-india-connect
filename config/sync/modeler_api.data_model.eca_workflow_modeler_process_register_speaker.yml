@@ -1,0 +1,8 @@
+uuid: dfaea4c5-f2d6-435c-9bcc-4499272c1c53
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: eQougdDR_OMXlyPuH0fp8rwdWejden3g3iz6hRcSYEI
+id: eca_workflow_modeler_process_register_speaker
+data: '{"id":"process_register_speaker","version":"1.0.0","metadata":{"label":"Register Speaker","documentation":"","executable":true,"tags":[],"changelog":"","id":"process_register_speaker","version":"1.0.0","storage":"","template":false},"nodes":[{"id":"Event_0vxgplk","componentType":1,"plugin":"content_entity:insert","label":"Create user","position":{"x":400,"y":100},"configuration":{"type":"user _all"},"annotation":""},{"id":"Activity_1q8odga","componentType":4,"plugin":"eca_switch_account","label":"switch to root","position":{"x":400,"y":394},"configuration":{"user_id":"1"},"annotation":""},{"id":"Activity_1vj7gze","componentType":4,"plugin":"eca_preconfigured_action:user_add_role_action.speaker","label":"Add speaker role","position":{"x":400,"y":598},"configuration":{"object":"entity"},"annotation":""}],"edges":[{"id":"Event_0vxgplk_Activity_1q8odga","source":"Event_0vxgplk","target":"Activity_1q8odga","sourceHandle":"output","targetHandle":"input","condition":"eca_current_user_role","conditionId":"Flow_0n757dt","conditionLabel":"","conditionConfiguration":{"role":"administrator","negate":true},"annotation":"","controlOffset":{"x":0,"y":0}},{"id":"Activity_1q8odga_Activity_1vj7gze","source":"Activity_1q8odga","target":"Activity_1vj7gze","sourceHandle":"output","targetHandle":"input","condition":"","conditionId":"","conditionLabel":"","conditionConfiguration":{},"annotation":"","controlOffset":{"x":0,"y":0}}]}'

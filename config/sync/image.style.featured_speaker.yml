@@ -1,0 +1,31 @@
+uuid: ec291ae3-bddf-45b2-9fd5-cdfa8fbec2af
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ILFBiRJYqMtfifr9RsJP818GUzs3_KXOkavWGJYvnJ4
+name: featured_speaker
+label: 'Featured Speaker'
+effects:
+  1ffeca0b-db6f-4dd0-bf02-c0d75770a582:
+    uuid: 1ffeca0b-db6f-4dd0-bf02-c0d75770a582
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: null
+      upscale: false
+  fd338125-1bef-4c36-9e60-0c81e8c4808b:
+    uuid: fd338125-1bef-4c36-9e60-0c81e8c4808b
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 400
+      height: 400
+      anchor: center-center
+  9c568edb-cd8d-497c-be8e-0907317d7980:
+    uuid: 9c568edb-cd8d-497c-be8e-0907317d7980
+    id: image_convert
+    weight: 3
+    data:
+      extension: webp

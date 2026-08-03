@@ -1,0 +1,24 @@
+uuid: afbda2ea-e625-471b-8354-d49718d239af
+langcode: en
+status: false
+dependencies:
+  module:
+    - event_platform_helper
+_core:
+  default_config_hash: z6uTRp7IFhCpGHfmyHHiXOAPSHc9HWzpCfbu4HOpbsU
+active_version: 7ebed0acee95d1e5
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: event_platform_home_hero
+        label: 'Event Platform Homepage Hero'
+        label_display: '0'
+        provider: event_platform_helper
+    fallback_metadata:
+      slot_definitions: null
+label: 'Event Platform Homepage Hero'
+id: block.event_platform_home_hero
+provider: event_platform_helper
+source: block
+source_local_id: event_platform_home_hero

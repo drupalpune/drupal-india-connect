@@ -1,0 +1,34 @@
+uuid: 36460a88-e102-41e4-9dc3-b8c1392fd59a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speakers
+    - node.type.session
+_core:
+  default_config_hash: Q5iNyxhpH018i5FIXOcKAtEJcJyFJuWNJNn1Kzfbw_M
+id: node.session.field_speakers
+field_name: field_speakers
+entity_type: node
+bundle: session
+label: Speaker(s)
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        speaker: speaker
+        administrator: '0'
+    include_anonymous: false
+field_type: entity_reference

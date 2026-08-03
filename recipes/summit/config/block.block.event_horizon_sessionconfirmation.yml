@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - event_platform_helper
+    - moderation_state_condition
+    - node
+  theme:
+    - event_horizon
+id: event_horizon_sessionconfirmation
+theme: event_horizon
+region: content_above
+weight: 0
+provider: null
+plugin: event_platform_helper_confirmation
+settings:
+  id: event_platform_helper_confirmation
+  label: 'Session Confirmation'
+  label_display: visible
+  provider: event_platform_helper
+  message: 'Please confirm whether or not you will be able to deliver this session as proposed.'
+visibility:
+  node_moderation_state_condition_moderation_state:
+    id: node_moderation_state_condition_moderation_state
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    moderation_states:
+      accepted: accepted
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      session: session

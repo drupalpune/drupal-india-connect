@@ -1,0 +1,50 @@
+uuid: 32163909-b2cd-4dc5-b771-004b30a35831
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.storage.sponsorship.field_events
+    - field.field.storage.sponsorship.field_level
+    - field.field.storage.sponsorship.field_sponsor
+    - storage.storage_type.sponsorship
+_core:
+  default_config_hash: jcot16Xue4bJf2blCDpVF1f6iABchD0i-j5SJUlsXBw
+id: storage.sponsorship.default
+targetEntityType: storage
+bundle: sponsorship
+mode: default
+content:
+  field_events:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  field_level:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: -2
+    region: content
+  field_sponsor:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden:
+  user_id: true

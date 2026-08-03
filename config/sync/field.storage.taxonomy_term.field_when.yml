@@ -1,0 +1,25 @@
+uuid: 29d12326-3ab6-4f54-ba4f-f12f6545ec83
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - smart_date
+    - taxonomy
+third_party_settings:
+  field_permissions:
+    permission_type: public
+_core:
+  default_config_hash: 6RvDGPTHk2W_thYvVw1PCy1pkKMg8didgpeOmgIqpbM
+id: taxonomy_term.field_when
+field_name: field_when
+entity_type: taxonomy_term
+type: smartdate
+settings: {  }
+module: smart_date
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,20 @@
+uuid: d4d38034-cebf-4379-9605-1b489447ec8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.featured_speaker
+_core:
+  default_config_hash: 67yJ0GTEIWSli_okFISyoxdkySaGB7-0F9PhMLGLrrM
+id: node.featured_speaker.title
+field_name: title
+entity_type: node
+bundle: featured_speaker
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

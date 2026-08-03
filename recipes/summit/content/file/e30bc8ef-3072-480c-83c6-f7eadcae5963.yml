@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e30bc8ef-3072-480c-83c6-f7eadcae5963
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: fldc_2025_avatar.png
+  uri:
+    -
+      value: 'public://2026-06/fldc_2025_avatar.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 17118
+  status:
+    -
+      value: true

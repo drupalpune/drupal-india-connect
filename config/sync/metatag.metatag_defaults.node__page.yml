@@ -1,0 +1,13 @@
+uuid: 584cbd31-37fb-453c-97d1-78ff0f590a2e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 21tLmeZV0Q0oNwVc14rJWVvtfcrO2R5rytlyek0M1xc
+id: node__page
+label: 'Content: Basic page'
+tags:
+  schema_web_page_description: '[node:summary]'
+  schema_web_page_id: '[node:url:unaliased]'
+  schema_web_page_is_accessible_for_free: 'True'
+  schema_web_page_type: WebPage

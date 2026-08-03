@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: open_graph
+label: 'Open Graph'
+effects:
+  3987968c-0772-4bb8-943b-e15fc75abbca:
+    uuid: 3987968c-0772-4bb8-943b-e15fc75abbca
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      crop_type: focal_point
+  565936ab-d7ec-41f7-a866-67ae6cd6187b:
+    uuid: 565936ab-d7ec-41f7-a866-67ae6cd6187b
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

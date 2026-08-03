@@ -1,0 +1,28 @@
+uuid: 5c4c5d26-25d8-4f43-b579-259d88ca5788
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.session_speakers
+  module:
+    - views
+_core:
+  default_config_hash: fxeDSnMlyw8saGzlwFZ6Ze1VwQ9ItcPyi8kCm2VN-qc
+active_version: 0ca133155c8c8e1e
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:session_speakers-block_1'
+        label: 'Session Speakers'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Session Speakers'
+id: block.views_block.session_speakers-block_1
+provider: views
+source: block
+source_local_id: 'views_block:session_speakers-block_1'

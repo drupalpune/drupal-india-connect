@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.job_listings
+  module:
+    - views
+active_version: 9682e380b25b1e74
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:job_listings-block_1'
+        label: 'Job Listings: Block - Listings by Sponsor'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Job Listings: Block - Listings by Sponsor'
+id: block.views_block.job_listings-block_1
+provider: views
+source: block
+source_local_id: 'views_block:job_listings-block_1'

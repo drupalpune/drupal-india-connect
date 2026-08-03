@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: a15ca0a4-3539-4f87-b6d3-beae273d4bc6
+  bundle: cta
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Newsletter Signup'
+  revision_translation_affected:
+    -
+      value: true
+  field_link:
+    -
+      uri: 'internal:/newsletter'
+      title: 'Newsletter Signup'
+      options: {  }

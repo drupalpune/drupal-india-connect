@@ -1,0 +1,73 @@
+uuid: 7c0d2746-b761-42d0-aa77-7190e6201ed3
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_block.concurrent_sessions-block_1
+    - canvas.component.block.views_block.event_dates-block_1
+    - canvas.component.block.views_block.featured_speakers-block_1
+    - canvas.component.block.views_block.job_listings-block_1
+    - canvas.component.block.views_block.news-block_1
+    - canvas.component.block.views_block.session_speakers-block_1
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: dGUkV3mUeTZiJerugKtHzEe9YoMOFOa0QD17nRyoXBM
+id: event_horizon.content_below
+region: content_below
+theme: event_horizon
+component_tree:
+  '0:dc9126d1-f88c-42c5-a9ea-190d0f99dede':
+    uuid: dc9126d1-f88c-42c5-a9ea-190d0f99dede
+    component_id: block.views_block.concurrent_sessions-block_1
+    component_version: eba0d1a57a7b8d4b
+    inputs:
+      label: ''
+      label_display: '0'
+      views_label: ''
+      items_per_page: null
+  '1:4b770ffc-2b3c-4a03-b1bb-036b35f61424':
+    uuid: 4b770ffc-2b3c-4a03-b1bb-036b35f61424
+    component_id: block.views_block.event_dates-block_1
+    component_version: 247b89ad30d3c94e
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null
+  '2:bd44d7b2-3a78-4c93-8836-ae21d4ae9170':
+    uuid: bd44d7b2-3a78-4c93-8836-ae21d4ae9170
+    component_id: block.views_block.featured_speakers-block_1
+    component_version: ba7bc0424d027d14
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null
+  '3:d10b452f-cfa3-4e56-9829-164b0d78f82f':
+    uuid: d10b452f-cfa3-4e56-9829-164b0d78f82f
+    component_id: block.views_block.job_listings-block_1
+    component_version: 9682e380b25b1e74
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null
+  '4:5a4aae22-cfe9-4e11-9921-0d848c4ccaad':
+    uuid: 5a4aae22-cfe9-4e11-9921-0d848c4ccaad
+    component_id: block.views_block.news-block_1
+    component_version: ebc07ed502301963
+    inputs:
+      label: ''
+      label_display: '0'
+      views_label: ''
+      items_per_page: null
+  '5:97249983-6950-4f96-bff6-ad94a55f5d74':
+    uuid: 97249983-6950-4f96-bff6-ad94a55f5d74
+    component_id: block.views_block.session_speakers-block_1
+    component_version: 0ca133155c8c8e1e
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null

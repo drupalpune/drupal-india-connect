@@ -1,0 +1,5 @@
+langcode: en
+status: true
+dependencies: {  }
+id: eca_workflow_modeler_new_article_set_event
+data: '{"id":"new_article_set_event","version":"1.0.0","metadata":{"label":"New Article Set Event","documentation":"","executable":true,"tags":[],"changelog":"","id":"new_article_set_event","version":"1.0.0","storage":"","template":false},"nodes":[{"id":"Event_1689rkl","componentType":1,"plugin":"content_entity:create","label":"New Article","position":{"x":400,"y":100},"configuration":{"type":"node article"},"annotation":""},{"id":"Activity_17va8ae","componentType":4,"plugin":"eca_set_field_value","label":"Set event","position":{"x":400,"y":304},"configuration":{"field_name":"field_event","field_value":"[config_page:event_details:field_current:target_id]","method":"set:empty","strip_tags":false,"trim":false,"save_entity":false,"object":""},"annotation":""}],"edges":[{"id":"Event_1689rkl_Activity_17va8ae","source":"Event_1689rkl","target":"Activity_17va8ae","sourceHandle":"output","targetHandle":"input","condition":"","conditionId":"","conditionLabel":"","conditionConfiguration":{},"annotation":"","controlOffset":{"x":0,"y":0}}]}'

@@ -1,0 +1,28 @@
+uuid: 65a30ee4-1f92-4c05-96fe-d2a1f611ba55
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.featured_speakers
+  module:
+    - views
+_core:
+  default_config_hash: pFxmGs1KSiM-7Udr1SRQUgAuqTQI4H5R6TbQrGynrPU
+active_version: ca34bfbd067218a1
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:featured_speakers-featured_speakers_homepage'
+        label: 'Featured Speakers: Homepage'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Featured Speakers: Homepage'
+id: block.views_block.featured_speakers-featured_speakers_homepage
+provider: views
+source: block
+source_local_id: 'views_block:featured_speakers-featured_speakers_homepage'

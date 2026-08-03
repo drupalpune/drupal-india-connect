@@ -1,0 +1,11 @@
+uuid: 46fd8658-074f-4cba-b331-c7534b1afc82
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: oZ6DWW7BotBKuQfMJ0-uhJtyqM1OgLmnjnZ3sJBP4N0
+name: 'Session Room'
+vid: room
+description: ''
+weight: 0
+new_revision: false

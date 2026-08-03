@@ -1,0 +1,47 @@
+uuid: 6f6a8ef5-afd8-4375-9367-d7dd47d4d34b
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_block.concurrent_sessions-block_1
+    - canvas.component.block.views_block.event_dates-block_1
+    - canvas.component.block.views_block.event_sponsors-block_1
+    - canvas.component.block.views_block.event_sponsors-block_2
+    - canvas.component.block.views_block.event_sponsors-block_3
+    - canvas.component.block.views_block.featured_speakers-block_1
+    - canvas.component.block.views_block.featured_speakers-featured_speakers_homepage
+    - canvas.component.block.views_block.job_listings-block_1
+    - canvas.component.block.views_block.news-block_1
+    - canvas.component.block.views_block.news-block_2
+    - canvas.component.block.views_block.recent_pages-block_recent_pages
+    - canvas.component.block.views_block.session_evaluation-block_1
+    - canvas.component.block.views_block.session_speakers-block_1
+    - canvas.component.block.views_block.sessions_by_state-accepted
+    - canvas.component.block.views_block.terms_update-close_for_sessions
+    - canvas.component.block.views_block.terms_update-complete
+    - canvas.component.block.views_block.terms_update-open_for_sessions
+    - canvas.component.block.views_block.terms_update-publish_schedule
+    - canvas.component.block.views_block.terms_update-underway
+name: 'Lists (Views)'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.views_block.concurrent_sessions-block_1
+  - block.views_block.event_dates-block_1
+  - block.views_block.event_sponsors-block_1
+  - block.views_block.event_sponsors-block_2
+  - block.views_block.event_sponsors-block_3
+  - block.views_block.featured_speakers-block_1
+  - block.views_block.featured_speakers-featured_speakers_homepage
+  - block.views_block.job_listings-block_1
+  - block.views_block.news-block_1
+  - block.views_block.news-block_2
+  - block.views_block.recent_pages-block_recent_pages
+  - block.views_block.session_evaluation-block_1
+  - block.views_block.session_speakers-block_1
+  - block.views_block.sessions_by_state-accepted
+  - block.views_block.terms_update-close_for_sessions
+  - block.views_block.terms_update-complete
+  - block.views_block.terms_update-open_for_sessions
+  - block.views_block.terms_update-publish_schedule
+  - block.views_block.terms_update-underway

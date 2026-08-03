@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: 95f7dad2-cef8-4e6c-b69d-d6a6535ee58e
+  bundle: sponsorship
+  default_langcode: en
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+    0155f896-0d99-4364-8605-f60594c600fa: taxonomy_term
+    4d94fb68-fc63-4341-a555-60f27f785bc8: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Florida DrupalCamp Gold Sponsors'
+  revision_translation_affected:
+    -
+      value: true
+  field_events:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_level:
+    -
+      entity: 0155f896-0d99-4364-8605-f60594c600fa
+  field_sponsor:
+    -
+      entity: 4d94fb68-fc63-4341-a555-60f27f785bc8

@@ -1,0 +1,45 @@
+uuid: 1bf16df7-e4f6-49f2-aeb7-6a34aa8d20e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.session_speakers
+  module:
+    - moderation_state_condition
+    - node
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: m9C7WDtuR4peK76iwv1dnyHUTm3KO6YuwTwRfI4B2Bk
+id: drupal_india_connect_views_block__session_speakers_block_1
+theme: drupal_india_connect
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'views_block:session_speakers-block_1'
+settings:
+  id: 'views_block:session_speakers-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  node_moderation_state_condition_moderation_state:
+    id: node_moderation_state_condition_moderation_state
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    moderation_states:
+      published: published
+      accepted: accepted
+      declined: declined
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      bof: bof
+      session: session

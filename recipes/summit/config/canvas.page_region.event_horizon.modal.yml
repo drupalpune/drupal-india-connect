@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - event_horizon
+id: event_horizon.modal
+region: modal
+theme: event_horizon
+component_tree: {  }

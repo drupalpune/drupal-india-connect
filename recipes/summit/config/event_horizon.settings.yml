@@ -1,0 +1,29 @@
+favicon:
+  mimetype: image/svg+xml
+  path: 'public://Summit-logo.svg'
+  use_default: false
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: 'public://Summit-logo.svg'
+  use_default: false
+base_primary_color: '#e70077'
+base_secondary_color: '#93e7ff'
+graphic:
+  path: null
+  use_default: true
+texture:
+  path: null
+  use_default: true
+video:
+  path: null
+  use_default: true
+video_poster:
+  path: null
+hero_uses_block: true
+default_graphic: true
+default_texture: true
+default_video: true

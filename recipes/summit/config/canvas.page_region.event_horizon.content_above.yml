@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.event_platform_helper_confirmation
+    - canvas.component.block.page_title_block
+    - canvas.component.block.system_breadcrumb_block
+    - canvas.component.block.views_block.session_evaluation-block_1
+  theme:
+    - event_horizon
+id: event_horizon.content_above
+region: content_above
+theme: event_horizon
+component_tree:
+  6ffb2d8c-08be-4d1f-8b62-c32c4814ec4a:
+    uuid: 6ffb2d8c-08be-4d1f-8b62-c32c4814ec4a
+    component_id: block.system_breadcrumb_block
+    component_version: 0d7e961dd03aa710
+    inputs:
+      label: Breadcrumbs
+      label_display: '0'
+  56056069-05f4-494a-8950-cbef025d2d63:
+    uuid: 56056069-05f4-494a-8950-cbef025d2d63
+    component_id: block.page_title_block
+    component_version: 9eea215a62e33427
+    inputs:
+      label: 'Page title'
+      label_display: '0'
+  a1bbe0b4-d98a-42a4-bb3b-10cef41bd4cb:
+    uuid: a1bbe0b4-d98a-42a4-bb3b-10cef41bd4cb
+    component_id: block.views_block.session_evaluation-block_1
+    component_version: aa2d93bb5180f17c
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null
+  d0d3907f-9893-44fb-834e-fc494229fcd3:
+    uuid: d0d3907f-9893-44fb-834e-fc494229fcd3
+    component_id: block.event_platform_helper_confirmation
+    component_version: aeab5ccb55db44a5
+    inputs:
+      label: 'Session Confirmation'
+      label_display: visible
+      message: 'Please confirm whether or not you will be able to deliver this session as proposed.'

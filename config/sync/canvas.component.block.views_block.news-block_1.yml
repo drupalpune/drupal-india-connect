@@ -1,0 +1,28 @@
+uuid: 31382eef-3e29-4596-9a68-c6f0e3a14321
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - views
+_core:
+  default_config_hash: hZJAw5UAywUBNv-eMc0pQt3Qju5HHiKfNib5OF4s3T4
+active_version: ebc07ed502301963
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:news-block_1'
+        label: News
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: News
+id: block.views_block.news-block_1
+provider: views
+source: block
+source_local_id: 'views_block:news-block_1'

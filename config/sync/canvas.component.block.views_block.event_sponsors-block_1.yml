@@ -1,0 +1,28 @@
+uuid: 6906b59d-f6e2-43b8-9b3b-b729efd3ac71
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.event_sponsors
+  module:
+    - views
+_core:
+  default_config_hash: toqMrE5T-3K5LfJa0Rw7vcbUPv34qZmRbatFDEnfdAs
+active_version: 644e1ad016d9ed33
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:event_sponsors-block_1'
+        label: 'Event Sponsors'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Event Sponsors'
+id: block.views_block.event_sponsors-block_1
+provider: views
+source: block
+source_local_id: 'views_block:event_sponsors-block_1'

@@ -1,0 +1,24 @@
+uuid: f098029a-0551-459e-bbc2-4d8bd0ff3f6e
+langcode: en
+status: false
+dependencies: {  }
+_core:
+  default_config_hash: wA5OjCxE4jpaLGTD0R_rXBkLMlt9zuV9D6jLr_LnoqQ
+active_version: fbd9367ece78bba5
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: local_tasks_block
+        label: Tabs
+        label_display: '0'
+        provider: core
+        primary: true
+        secondary: true
+    fallback_metadata:
+      slot_definitions: null
+label: Tabs
+id: block.local_tasks_block
+provider: core
+source: block
+source_local_id: local_tasks_block

@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: en
+uuid: a34b838b-bdba-4e8e-95db-69e31d6d1072
+name: 'Drupal India Connect 2027'
+mail: admin@example.com
+slogan: ''
+page:
+  403: /user/login
+  404: ''
+  front: /page/1
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: null

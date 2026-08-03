@@ -1,0 +1,43 @@
+_meta:
+  version: '1.0'
+  entity_type: config_pages
+  uuid: 73de0808-f86d-4fa3-944f-1f1d7f6eac72
+  bundle: event_details
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+    f32a1c8a-ebda-4107-873c-5d8f3a33ddb4: storage
+    00dce1e1-01cb-4f0d-b5e0-88c7cc877380: storage
+default:
+  label:
+    -
+      value: 'Event Details'
+  context:
+    -
+      value: 'a:0:{}'
+  field_current:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_event_name:
+    -
+      value: 'Example Drupal Camp'
+  field_homepage_media_cta:
+    -
+      title: 'All the details'
+      options: {  }
+      target_uuid: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_hompage_description_text:
+    -
+      value: '<p>Yada yada yada</p>'
+      format: basic_html
+  field_program:
+    -
+      value: 'Drupal Training'
+    -
+      value: Sessions
+    -
+      value: 'Contribution Day'
+  field_stats:
+    -
+      entity: f32a1c8a-ebda-4107-873c-5d8f3a33ddb4
+    -
+      entity: 00dce1e1-01cb-4f0d-b5e0-88c7cc877380

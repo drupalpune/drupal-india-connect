@@ -1,0 +1,28 @@
+uuid: a8ddbca9-f5fe-4894-b5d5-0fc03df93045
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: 7yd7Ec4A9eC_ahCLDFLeZf87Ks9FsxzLw09X_7cfaHE
+id: event_horizon_primary_local_tasks
+theme: event_horizon
+region: highlighted
+weight: -11
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/canvas/api/v0/layout/canvas_page/1"

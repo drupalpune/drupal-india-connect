@@ -1,0 +1,23 @@
+uuid: 327c043d-4574-435f-9934-416f61faf997
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: MpDGgm8p6VCmGIsd_-cuz3wymx1WGwYq5j-eekeAERU
+id: drupal_india_connect_syndicate
+theme: drupal_india_connect
+region: footer
+weight: -11
+provider: null
+plugin: node_syndicate_block
+settings:
+  id: node_syndicate_block
+  label: 'RSS feed'
+  label_display: '0'
+  provider: node
+  block_count: 10
+visibility: {  }

@@ -1,0 +1,28 @@
+uuid: 640890b6-54da-42c8-8a45-7c3b9787a660
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: Fujb84d2I-j9P4bCNA26z2RZITuYm_kHGsWOOLzCzP0
+id: drupal_india_connect_secondary_local_tasks
+theme: drupal_india_connect
+region: highlighted
+weight: -10
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/canvas/api/v0/layout/canvas_page/1"

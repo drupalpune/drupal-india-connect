@@ -1,0 +1,51 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: fd9e812a-3f9a-4e3c-b0c4-52727d50c736
+  bundle: sponsor
+  default_langcode: en
+  depends:
+    caf927f0-c141-49b8-9bc6-f0106661064d: file
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Acquia
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /sponsors/acquia
+      langcode: en
+  body:
+    -
+      value: 'Acquia empowers ambitious digital innovators to craft the most productive, frictionless digital experiences. Learn more at acquia.com.'
+      format: basic_html
+      summary: ''
+  field_sponsor_logo:
+    -
+      alt: 'Acquia logo'
+      title: ''
+      width: 1667
+      height: 1667
+      entity: caf927f0-c141-49b8-9bc6-f0106661064d
+  field_website_address:
+    -
+      uri: 'https://www.acquia.com/'
+      title: ''
+      options: {  }

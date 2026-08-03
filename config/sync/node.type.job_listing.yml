@@ -1,0 +1,19 @@
+uuid: 319228bf-7aa5-4a6c-bba7-5685292e99f0
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: adTehwmxPq7Yf2QhqyvMgpqSA8tDKrp4rH0apSVhY9Y
+name: 'Job Listing'
+type: job_listing
+description: 'Job listing related to sponsorship.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

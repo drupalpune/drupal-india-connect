@@ -1,0 +1,22 @@
+uuid: 6a9e00aa-254d-48f3-b965-78c64565c510
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - taxonomy
+_core:
+  default_config_hash: S48NXxpP2k11HROjacgVfX8473BNHol79KYQbO_5_zo
+id: taxonomy_term.field_dates
+field_name: field_dates
+entity_type: taxonomy_term
+type: daterange
+settings:
+  datetime_type: date
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

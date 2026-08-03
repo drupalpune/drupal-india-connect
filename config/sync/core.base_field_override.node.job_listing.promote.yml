@@ -1,0 +1,24 @@
+uuid: bd206258-5961-487e-93c6-d979448067d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.job_listing
+_core:
+  default_config_hash: 7KXi-zdX4athgajudKmmldu5gYSWub6o7qCGd79HI-0
+id: node.job_listing.promote
+field_name: promote
+entity_type: node
+bundle: job_listing
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: false
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

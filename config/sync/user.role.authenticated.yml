@@ -1,0 +1,48 @@
+uuid: 9a0b49b4-9af1-4bff-8be4-ee0eca557a61
+langcode: en
+status: true
+dependencies:
+  config:
+    - dashboard.dashboard.welcome
+    - filter.format.webform_default
+    - storage.storage_type.sponsorship
+  module:
+    - captcha
+    - coffee
+    - contextual
+    - dashboard
+    - field_permissions
+    - file
+    - filter
+    - honeypot
+    - klaro
+    - media
+    - navigation
+    - node
+    - storage
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access coffee'
+  - 'access content'
+  - 'access contextual links'
+  - 'access navigation'
+  - 'access user profiles'
+  - 'bypass honeypot protection'
+  - 'delete own files'
+  - 'skip CAPTCHA'
+  - 'use klaro'
+  - 'use text format webform_default'
+  - 'view field_r'
+  - 'view field_time_slot'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view published sponsorship storage entities'
+  - 'view the administration theme'
+  - 'view welcome dashboard'

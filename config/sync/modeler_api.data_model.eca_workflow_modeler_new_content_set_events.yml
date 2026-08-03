@@ -1,0 +1,8 @@
+uuid: 10eb8352-1709-401e-99fc-5565faa8d186
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ttU0bX0yamLS9GJdTZ4XS04smWREUud7yqz_eE22-4w
+id: eca_workflow_modeler_new_content_set_events
+data: '{"id":"new_content_set_events","version":"1.0.0","metadata":{"label":"New Content Set Events","documentation":"","executable":true,"tags":[],"changelog":"","id":"new_content_set_events","version":"1.0.0","storage":"","template":false},"nodes":[{"id":"Event_1jbs4wv","componentType":1,"plugin":"content_entity:create","label":"New Room","position":{"x":400,"y":100},"configuration":{"type":"taxonomy_term room"},"annotation":""},{"id":"Activity_13dscc6","componentType":4,"plugin":"eca_set_field_value","label":"Set events","position":{"x":400,"y":304},"configuration":{"field_name":"field_events","field_value":"[config_page:event_details:field_current:target_id]","method":"set:empty","strip_tags":false,"trim":false,"save_entity":false,"object":""},"annotation":""}],"edges":[{"id":"Event_1jbs4wv_Activity_13dscc6","source":"Event_1jbs4wv","target":"Activity_13dscc6","sourceHandle":"output","targetHandle":"input","condition":"","conditionId":"","conditionLabel":"","conditionConfiguration":{},"annotation":"","controlOffset":{"x":0,"y":0}}]}'

@@ -1,0 +1,19 @@
+uuid: 01459f97-5863-43c6-8f73-5c16349d6529
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: vnsx_ZTgg1ibkxZDSF3yoXO-7GweU2H0AOxpNdUPa9k
+name: 'Featured Speaker'
+type: featured_speaker
+description: 'This block will show on the homepage.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

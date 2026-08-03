@@ -1,0 +1,23 @@
+uuid: 22abbcd6-445d-43d8-a788-ee39e02d9957
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Hx26k8qCwAV-GbyHy7ls5FWN07OvzVIgF6tTK4p5Wag
+name: sponsor_logo
+label: 'Sponsor Logo'
+effects:
+  3ce036ef-350a-44b7-a0ab-26fa4b46b3d8:
+    uuid: 3ce036ef-350a-44b7-a0ab-26fa4b46b3d8
+    id: image_convert
+    weight: -9
+    data:
+      extension: webp
+  a85b7172-eb2e-4aa0-b768-755ecc4eb36e:
+    uuid: a85b7172-eb2e-4aa0-b768-755ecc4eb36e
+    id: image_scale
+    weight: -10
+    data:
+      width: 150
+      height: null
+      upscale: false

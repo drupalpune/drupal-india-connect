@@ -1,0 +1,25 @@
+uuid: f8f9bc84-071e-4dc7-87cf-30a630045422
+langcode: en
+status: false
+dependencies:
+  module:
+    - event_platform_helper
+_core:
+  default_config_hash: 0ia97JnRuTHrshs7QQAF5CMidlNQ_5M2ARzy4RcjPVU
+active_version: aeab5ccb55db44a5
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: event_platform_helper_confirmation
+        label: 'Session Confirmation'
+        label_display: '0'
+        provider: event_platform_helper
+        message: 'Please confirm whether or not you will be able to deliver this session as proposed.'
+    fallback_metadata:
+      slot_definitions: null
+label: 'Session Confirmation'
+id: block.event_platform_helper_confirmation
+provider: event_platform_helper
+source: block
+source_local_id: event_platform_helper_confirmation

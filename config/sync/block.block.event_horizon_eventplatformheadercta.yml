@@ -1,0 +1,29 @@
+uuid: f19461d8-c837-48fe-ba20-738da99b7c67
+langcode: en
+status: true
+dependencies:
+  module:
+    - event_platform_helper
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: epIggW9vZVzPF8ctgn5SBKMtZFxJRFO3XIqkzHLNnBs
+id: event_horizon_eventplatformheadercta
+theme: event_horizon
+region: primary_menu
+weight: -7
+provider: null
+plugin: event_platform_header_cta
+settings:
+  id: event_platform_header_cta
+  label: 'Event Platform Header CTA'
+  label_display: '0'
+  provider: event_platform_helper
+  default_state_link: 827a823d-76b8-4b7f-8ab3-09bff9d37b1c
+  date_state_link: a15ca0a4-3539-4f87-b6d3-beae273d4bc6
+  sessions_open_state_link: bc75f574-1d79-40a5-8329-7b4d1af8f239
+  sessions_closed_state_link: ''
+  scheduled_state_link: ''
+  underway_state_link: ''
+  published_state_link: fe903524-9c93-461a-8539-3083e872e19b
+visibility: {  }

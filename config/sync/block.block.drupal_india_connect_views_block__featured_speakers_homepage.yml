@@ -1,0 +1,31 @@
+uuid: be947210-a147-451b-b696-e81d4fd474eb
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.featured_speakers
+  module:
+    - system
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: AsMMEN_vecr0BhkxcBV_usrudd9Woc4eoXMwzwvAL0c
+id: drupal_india_connect_views_block__featured_speakers_homepage
+theme: drupal_india_connect
+region: sidebar_first
+weight: -6
+provider: null
+plugin: 'views_block:featured_speakers-featured_speakers_homepage'
+settings:
+  id: 'views_block:featured_speakers-featured_speakers_homepage'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

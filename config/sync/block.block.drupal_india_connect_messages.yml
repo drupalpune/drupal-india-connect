@@ -1,0 +1,22 @@
+uuid: 382c18ee-211a-48d4-9af5-af5cf72a822c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: yswVFHkU6zHs-0vrws1fEUpLJJt8Bq6xY9yWL5Qqq8g
+id: drupal_india_connect_messages
+theme: drupal_india_connect
+region: highlighted
+weight: -12
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

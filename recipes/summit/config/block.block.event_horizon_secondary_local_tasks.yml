@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+id: event_horizon_secondary_local_tasks
+theme: event_horizon
+region: highlighted
+weight: -10
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/canvas/api/v0/layout/canvas_page/1"

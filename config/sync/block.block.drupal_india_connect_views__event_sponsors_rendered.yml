@@ -1,0 +1,32 @@
+uuid: 781a994b-512d-494d-8b3c-292a85b37b6a
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.event_sponsors
+  module:
+    - system
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: Se-0BlWktuu1chnjMkDVzKWX6Yej-u9lT0MW15G0xiM
+id: drupal_india_connect_views__event_sponsors_rendered
+theme: drupal_india_connect
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:event_sponsors-block_3'
+settings:
+  id: 'views_block:event_sponsors-block_3'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

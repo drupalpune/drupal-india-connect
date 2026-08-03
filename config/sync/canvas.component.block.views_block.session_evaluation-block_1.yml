@@ -1,0 +1,28 @@
+uuid: d794cb5b-1c59-4573-ac5a-ad2a69662d72
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.session_evaluation
+  module:
+    - views
+_core:
+  default_config_hash: ZCMuOTqOS4lfb7y1CthXdcQi0pHfBMlMpGuY6GIqBoA
+active_version: aa2d93bb5180f17c
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:session_evaluation-block_1'
+        label: 'Session Evaluation'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Session Evaluation'
+id: block.views_block.session_evaluation-block_1
+provider: views
+source: block
+source_local_id: 'views_block:session_evaluation-block_1'

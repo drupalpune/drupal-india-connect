@@ -1,0 +1,22 @@
+uuid: d6797da3-2d46-4a4e-a529-4e3c7eb1071f
+langcode: en
+status: true
+dependencies:
+  module:
+    - event_platform_helper
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: 36vjU6UM5oJRwdCNzwwi1Qoq0JdwhrhYx7p-5F0gm9g
+id: drupal_india_connect_copyright
+theme: drupal_india_connect
+region: footer
+weight: -12
+provider: null
+plugin: event_platform_helper_copyright
+settings:
+  id: event_platform_helper_copyright
+  label: Copyright
+  label_display: '0'
+  provider: event_platform_helper
+visibility: {  }

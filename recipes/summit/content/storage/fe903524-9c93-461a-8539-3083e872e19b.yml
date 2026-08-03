@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: fe903524-9c93-461a-8539-3083e872e19b
+  bundle: cta
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'View the Playlist'
+  revision_translation_affected:
+    -
+      value: true
+  field_link:
+    -
+      uri: 'https://www.youtube.com/watch?v=zHgHQD-mL5s&list=PLpeDXSh4nHjQoxtu956lXtiaqIl_rbUKd'
+      title: 'View the Playlist'
+      options: {  }

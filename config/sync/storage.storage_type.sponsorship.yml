@@ -1,0 +1,15 @@
+uuid: fed39a26-4b9d-408e-94a2-b39946e8803e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: iCDq0AivP-FWylWQ5aQnuMCKISGXNYbeR3fucvfZJxY
+id: sponsorship
+label: Sponsorship
+description: ''
+help: ''
+new_revision: true
+revision_expose: false
+revision_log: false
+name_pattern: '[storage:field_sponsor] [storage:field_level]'
+has_canonical: false

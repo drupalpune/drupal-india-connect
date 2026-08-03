@@ -1,0 +1,20 @@
+uuid: 27cfd25c-bc62-4133-9fda-5c0630dec3f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sponsor
+_core:
+  default_config_hash: 6PVYOhI0eggV32K2sPkpQV03t5DzC5VMhYDKaFExcDc
+id: node.sponsor.title
+field_name: title
+entity_type: node
+bundle: sponsor
+label: 'Sponsor Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

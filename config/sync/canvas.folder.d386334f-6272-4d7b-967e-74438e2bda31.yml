@@ -1,0 +1,11 @@
+uuid: d386334f-6272-4d7b-967e-74438e2bda31
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.config_pages_block
+name: 'Config Pages'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.config_pages_block

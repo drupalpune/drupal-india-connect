@@ -1,0 +1,11 @@
+uuid: cec8f8a3-9c7a-428a-8b05-75544b63c5fc
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Ce1PfdKk9-nGr5M-zreiPow8Or072WNLhTBA9RuqxVU
+name: 'Sponsor Level'
+vid: sponsor_level
+description: ''
+weight: 0
+new_revision: false

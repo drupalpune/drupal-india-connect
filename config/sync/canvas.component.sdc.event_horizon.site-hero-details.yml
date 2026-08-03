@@ -1,0 +1,20 @@
+uuid: 186add0d-4452-409d-bc4a-8623ee7324fe
+langcode: en
+status: false
+dependencies:
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: 2UUNHAKPhNfvctDUzKAgTtvQ_J9UI_RxsUPHT8k0dAk
+active_version: 8fe3be948e0194e1
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Site Hero Details'
+id: sdc.event_horizon.site-hero-details
+provider: event_horizon
+source: sdc
+source_local_id: 'event_horizon:site-hero-details'

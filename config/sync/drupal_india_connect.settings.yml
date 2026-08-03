@@ -1,0 +1,13 @@
+base_primary_color: '#1B4F91'
+base_secondary_color: '#1E9E93'
+graphic:
+  use_default: true
+texture:
+  use_default: true
+video:
+  use_default: true
+favicon:
+  use_default: true
+logo:
+  use_default: true
+hero_uses_block: true

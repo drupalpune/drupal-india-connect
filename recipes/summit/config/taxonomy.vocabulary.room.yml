@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Session Room'
+vid: room
+description: ''
+weight: 0
+new_revision: false

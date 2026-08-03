@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: caf927f0-c141-49b8-9bc6-f0106661064d
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Acquia-800x800.png
+  uri:
+    -
+      value: 'public://2026-06/Acquia-800x800.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 238353
+  status:
+    -
+      value: true

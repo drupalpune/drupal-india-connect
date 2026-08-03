@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: c5f5ead1-dbc9-4d63-bab2-edc3f1ed6d4f
+  bundle: sponsorship
+  default_langcode: en
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+    ac36991b-5cce-4547-8675-5d7148611372: taxonomy_term
+    fd9e812a-3f9a-4e3c-b0c4-52727d50c736: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Acquia Platinum Sponsors'
+  revision_translation_affected:
+    -
+      value: true
+  field_events:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_level:
+    -
+      entity: ac36991b-5cce-4547-8675-5d7148611372
+  field_sponsor:
+    -
+      entity: fd9e812a-3f9a-4e3c-b0c4-52727d50c736

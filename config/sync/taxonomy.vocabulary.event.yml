@@ -1,0 +1,11 @@
+uuid: a1100079-d4c0-406e-9a77-d267fc8e586b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: H3Pz_iaJ_aLVe7xWl38FlHoKnAlANPlrIGQewEzAcKI
+name: Event
+vid: event
+description: null
+weight: 0
+new_revision: false

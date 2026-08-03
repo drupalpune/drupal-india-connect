@@ -1,0 +1,22 @@
+uuid: 2a15f47c-10c0-4f97-a149-c66d75702f0a
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - taxonomy
+_core:
+  default_config_hash: _Sh6lf6v_WMHIaPLyJrl0qPUwSwOpPm3ksSg8XrT33o
+id: taxonomy_term.field_session_deadline
+field_name: field_session_deadline
+entity_type: taxonomy_term
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

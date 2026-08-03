@@ -1,0 +1,11 @@
+uuid: 181eec77-b7e4-4c2b-9700-8ecc479e2fa3
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_exposed_filter_block.training_list-page_1
+name: Views
+configEntityTypeId: component
+weight: 0
+items:
+  - block.views_exposed_filter_block.training_list-page_1

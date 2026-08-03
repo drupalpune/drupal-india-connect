@@ -1,0 +1,5 @@
+langcode: en
+status: true
+dependencies: {  }
+id: eca_workflow_modeler_auth_redirects
+data: '{"id":"auth_redirects","version":"1.0.0","metadata":{"label":"Authentication redirects","documentation":"","executable":true,"tags":[],"changelog":"","id":"auth_redirects","version":"1.0.0","storage":"","template":false},"nodes":[{"id":"user__logout","componentType":1,"plugin":"user:logout","label":"User logout","position":{"x":400,"y":100},"configuration":{},"annotation":""},{"id":"action_goto_action_login","componentType":4,"plugin":"action_goto_action","label":"Back to login after logout","position":{"x":400,"y":304},"configuration":{"url":"/user/login"},"annotation":""}],"edges":[{"id":"user__logout_action_goto_action_login","source":"user__logout","target":"action_goto_action_login","sourceHandle":"output","targetHandle":"input","condition":"","conditionId":"","conditionLabel":"","conditionConfiguration":{},"annotation":"","controlOffset":{"x":0,"y":0}}]}'

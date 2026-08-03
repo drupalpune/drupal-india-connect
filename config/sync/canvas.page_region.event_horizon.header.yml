@@ -1,0 +1,12 @@
+uuid: 65b0e592-09ee-4c7b-8765-138867c19a0d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: h4sD0u30j76_DlAaAKVUkbi8Zj2v5kZsAX1HwNwPeco
+id: event_horizon.header
+region: header
+theme: event_horizon
+component_tree: {  }

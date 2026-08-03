@@ -1,0 +1,51 @@
+uuid: 5b8b236b-f043-43ff-beec-0c6be68cf955
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.session_evaluation
+  module:
+    - moderation_state_condition
+    - node
+    - user
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: 65LRnH9OyK446korCZoJsjbJDbkOEKwWKUJSMInT-qM
+id: drupal_india_connect_views_block__session_evaluation_block_1
+theme: drupal_india_connect
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'views_block:session_evaluation-block_1'
+settings:
+  id: 'views_block:session_evaluation-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      session_moderator: session_moderator
+      administrator: administrator
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      session: session
+  node_moderation_state_condition_moderation_state:
+    id: node_moderation_state_condition_moderation_state
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    moderation_states:
+      proposed: proposed

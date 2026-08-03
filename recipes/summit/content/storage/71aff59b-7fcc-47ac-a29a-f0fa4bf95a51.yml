@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: 71aff59b-7fcc-47ac-a29a-f0fa4bf95a51
+  bundle: sponsorship
+  default_langcode: en
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+    0155f896-0d99-4364-8605-f60594c600fa: taxonomy_term
+    3e8b216b-6034-40f4-ac06-98d4b270b13e: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Dripyard Gold Sponsors'
+  revision_translation_affected:
+    -
+      value: true
+  field_events:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_level:
+    -
+      entity: 0155f896-0d99-4364-8605-f60594c600fa
+  field_sponsor:
+    -
+      entity: 3e8b216b-6034-40f4-ac06-98d4b270b13e

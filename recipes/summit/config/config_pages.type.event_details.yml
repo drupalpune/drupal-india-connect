@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: event_details
+label: 'Event Details'
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: /admin/event-details
+  weight: 0
+  description: 'Event Details'
+token: true

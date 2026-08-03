@@ -1,0 +1,74 @@
+uuid: 879c4f07-2ce1-4c87-b8c6-cae4a3afef8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.anonymous
+  module:
+    - eca_base
+    - eca_misc
+    - eca_user
+    - modeler_api
+third_party_settings:
+  modeler_api:
+    modeler_id: workflow_modeler
+    data: 'hash:7b0daa0ed10131fa805cd5618a9193e1'
+    label: 'Redirect to login on 403'
+    version: 1.0.0
+_core:
+  default_config_hash: XQytGY-MTSADmn7MyOORvz04Huc3bAwGHqQfnpEmZF8
+id: eca_lib_0008
+weight: 0
+template: false
+events:
+  Event_0hoctum:
+    plugin: 'kernel:exception_status_code'
+    label: 'Response created'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_1tyou13
+        condition: Flow_1udoadx
+conditions:
+  Flow_1udoadx:
+    plugin: eca_scalar
+    label: Flow_1udoadx
+    configuration:
+      negate: false
+      left: '[event:code]'
+      right: '403'
+      operator: equal
+      type: value
+      case: false
+  Flow_1j9wjhz:
+    plugin: eca_current_user_role
+    label: Flow_1j9wjhz
+    configuration:
+      negate: false
+      role: anonymous
+  Flow_0pbmd0v:
+    plugin: eca_current_user_id
+    label: Flow_0pbmd0v
+    configuration:
+      negate: false
+      user_id: '0'
+gateways: {  }
+actions:
+  Activity_1tyou13:
+    label: AND
+    plugin: eca_void_and_condition
+    configuration: {  }
+    successors:
+      -
+        id: Activity_00dqmll
+        condition: Flow_1j9wjhz
+      -
+        id: Activity_00dqmll
+        condition: Flow_0pbmd0v
+  Activity_00dqmll:
+    label: Redirect
+    plugin: action_goto_action
+    configuration:
+      url: '/user/login?destination=[event:path]'
+      replace_tokens: true
+    successors: {  }

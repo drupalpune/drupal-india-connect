@@ -1,0 +1,28 @@
+uuid: 912f344a-73d7-48f5-a299-c11152bb95a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.terms_update
+  module:
+    - views
+_core:
+  default_config_hash: o_AW-IOa8ow7VKfrWlMCVJvXDXmo-w519VquF6cJumk
+active_version: d89eb6cb8e7b1752
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:terms_update-close_for_sessions'
+        label: 'Terms Update: Close for Sessions'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Terms Update: Close for Sessions'
+id: block.views_block.terms_update-close_for_sessions
+provider: views
+source: block
+source_local_id: 'views_block:terms_update-close_for_sessions'

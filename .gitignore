@@ -1,0 +1,26 @@
+# Composer-managed dependencies — reinstalled via `composer install`.
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+
+# Drupal file uploads and generated assets.
+/web/sites/*/files/
+
+# Local settings and secrets.
+/web/sites/*/settings.local.php
+
+# DDEV manages its own .ddev/.gitignore for generated files inside .ddev/.
+
+# Claude Code session state — not project source.
+/.claude/
+
+# Editors / OS.
+.DS_Store
+/.vscode/*
+!/.vscode/extensions.json
+
+# Scratch scripts used during development.
+scratch_*.php

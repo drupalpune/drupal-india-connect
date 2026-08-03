@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5de46fdd-2996-4d7c-830b-24a49ac24723
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: balint-kleri-headshot-trimmed-2.png
+  uri:
+    -
+      value: 'public://2026-06/balint-kleri-headshot-trimmed-2.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1407494
+  status:
+    -
+      value: true

@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: cta
+label: CTA
+description: ''
+help: ''
+new_revision: true
+revision_expose: false
+revision_log: false
+name_pattern: '[storage:field_link:title]'
+has_canonical: false

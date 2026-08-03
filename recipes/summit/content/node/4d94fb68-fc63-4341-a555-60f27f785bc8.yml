@@ -1,0 +1,46 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4d94fb68-fc63-4341-a555-60f27f785bc8
+  bundle: sponsor
+  default_langcode: en
+  depends:
+    e30bc8ef-3072-480c-83c6-f7eadcae5963: file
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Florida DrupalCamp'
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /sponsors/florida-drupalcamp
+      langcode: en
+  field_sponsor_logo:
+    -
+      alt: 'Florida DrupalCamp logo'
+      title: ''
+      width: 400
+      height: 400
+      entity: e30bc8ef-3072-480c-83c6-f7eadcae5963
+  field_website_address:
+    -
+      uri: 'https://www.fldrupal.camp/'
+      title: ''
+      options: {  }

@@ -1,0 +1,24 @@
+uuid: 331bcabc-2f97-485a-84dd-4f91282a9822
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.bof
+  module:
+    - text
+_core:
+  default_config_hash: YsXovJ9-KQ6ISQIn8jILnM94ydwRkbxreshU-zg5Ajw
+id: node.bof.field_description
+field_name: field_description
+entity_type: node
+bundle: bof
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

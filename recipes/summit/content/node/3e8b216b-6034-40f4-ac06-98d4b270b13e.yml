@@ -1,0 +1,46 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3e8b216b-6034-40f4-ac06-98d4b270b13e
+  bundle: sponsor
+  default_langcode: en
+  depends:
+    74ef239b-bec0-45b8-95b0-688562376b49: file
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Dripyard
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /sponsors/dripyard
+      langcode: en
+  field_sponsor_logo:
+    -
+      alt: 'Dripyard logo'
+      title: ''
+      width: 150
+      height: 68
+      entity: 74ef239b-bec0-45b8-95b0-688562376b49
+  field_website_address:
+    -
+      uri: 'https://dripyard.com/'
+      title: ''
+      options: {  }

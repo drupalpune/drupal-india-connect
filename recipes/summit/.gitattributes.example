@@ -1,0 +1,12 @@
+#
+# If you want to use this file for your site template, rename it to `.gitattributes`.
+# Otherwise, you can delete it.
+#
+# Exclude the following files and directories from packaged, ready-to-download versions
+# of this site template:
+#
+/.cspell.json     export-ignore
+/GET-STARTED.md   export-ignore
+/.gitlab-ci.yml   export-ignore
+/tests            export-ignore
+/.tugboat         export-ignore

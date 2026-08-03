@@ -1,0 +1,16 @@
+uuid: 5f94ec58-ec52-4a24-8c71-01f2ce8f05a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.session_moderator
+  module:
+    - user
+_core:
+  default_config_hash: pTj6mnMflPKcqafNyzHxzV8fZ2iKwai4SLz3kRXvgzM
+id: user_add_role_action.session_moderator
+label: 'Add the Session moderator role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: session_moderator

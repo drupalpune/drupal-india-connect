@@ -1,0 +1,29 @@
+uuid: d93b0154-6f51-4e26-806d-cded3e2f187b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+_core:
+  default_config_hash: 9BspFTknfEEAbJgn30z0Bq6SeC48uGxMyBNoolyJQFQ
+active_version: 075503dbc228a45c
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:footer'
+        label: Footer
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Footer
+id: block.system_menu_block.footer
+provider: system
+source: block
+source_local_id: 'system_menu_block:footer'

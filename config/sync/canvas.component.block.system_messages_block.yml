@@ -1,0 +1,24 @@
+uuid: f0eb4197-4eaf-4e97-b30e-04c23525a6e0
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+_core:
+  default_config_hash: R2e1R5bCLo0Mt7yJ5jQnojVVaw4RICyLwlhf_Z-KFQc
+active_version: 1609d44df6c8b26a
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: system_messages_block
+        label: Messages
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: Messages
+id: block.system_messages_block
+provider: system
+source: block
+source_local_id: system_messages_block

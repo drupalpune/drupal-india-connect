@@ -1,0 +1,13 @@
+uuid: 1dc8ddbf-b58a-4222-a101-ec05d3a59f28
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: Z8nRNfK7MVK2xCcitCIpbIxKGpF5TIiVMPugVpSScTc
+id: taxonomy_term.dates
+label: Dates
+description: ''
+targetEntityType: taxonomy_term
+cache: true

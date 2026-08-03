@@ -1,0 +1,25 @@
+uuid: ce87dcba-81ef-4917-a97d-c688e9bfc2bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_event_name_display
+    - taxonomy.vocabulary.event
+_core:
+  default_config_hash: CFWs3ukwD02FPYGquYJKrI9s96WyK4cXmpMbFcLYG5k
+id: taxonomy_term.event.field_event_name_display
+field_name: field_event_name_display
+entity_type: taxonomy_term
+bundle: event
+label: 'Event Name Display'
+description: 'Adds the event name after the homepage title—ex, 2025, 2026, Orlando, or other identifiers.'
+required: false
+translatable: false
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: '1'
+  off_label: '0'
+field_type: boolean

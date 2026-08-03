@@ -1,0 +1,111 @@
+{
+    "description": "Default configuration for the spell checker, based on Drupal core's .cspell.json. See https://project.pages.drupalcode.org/gitlab_templates/jobs/cspell for more details. Unknown words you want the spell checker to ignore should be added to the ignoreWords list, below.",
+    "language": "en-US",
+    "allowCompoundWords": false,
+    "globRoot": ".",
+    "minWordLength": 4,
+    "ignorePaths": [
+        "LICENSE.txt",
+        "/var/www/html/web",
+        "vendor",
+        "node_modules",
+        ".git",
+        "recipes",
+        "*.patch",
+        "*.svg",
+        "*_ignore_*",
+        "build.env",
+        "get-file-via-curl.sh",
+        "_cspell_unrecognized_words.txt",
+        "_cspell_updated_project_words.txt",
+        "**/.*.json",
+        "package.json",
+        "yarn.lock",
+        "phpstan*",
+        ".*ignore",
+        "./LICENSE.txt",
+        "./composer.json"
+    ],
+    "ignoreRegExpList": [
+        "\u2139\ufe0e.*"
+    ],
+    "ignoreWords": [
+        "ddev"
+    ],
+    "dictionaries": [
+        "bash",
+        "companies",
+        "core-dictionary",
+        "css",
+        "drupal",
+        "filetypes",
+        "fullstack",
+        "fonts",
+        "html",
+        "misc",
+        "node",
+        "npm",
+        "php",
+        "softwareTerms",
+        "sql",
+        "typescript",
+        "lorem-ipsum",
+        "dictionary"
+    ],
+    "dictionaryDefinitions": [
+        {
+            "name": "drupal",
+            "path": "/var/www/html/web/core/misc/cspell/drupal-dictionary.txt"
+        },
+        {
+            "name": "dictionary",
+            "path": "/var/www/html/web/core/misc/cspell/dictionary.txt"
+        },
+        {
+            "name": "core-dictionary",
+            "path": "https://git.drupalcode.org/project/drupal/-/raw/11.x/core/misc/cspell/dictionary.txt"
+        }
+    ],
+    "flagWords": [
+        "blacklist",
+        "blacklists",
+        "blacklisted",
+        "whitelists",
+        "whitelisted",
+        "e-mail",
+        "grey",
+        "queuing"
+    ],
+    "words": [
+        "event",
+        "platform",
+        "starter",
+        "lando",
+        "ddev",
+        "endapply",
+        "nightwatchjs",
+        "testgroup",
+        "testgroups",
+        "backlinks",
+        "mdhash",
+        "uploaders",
+        "vocabs",
+        "curlopt",
+        "returntransfer",
+        "curle",
+        "customrequest",
+        "failonerror",
+        "postfields",
+        "followlocation",
+        "colourdefinitionsniff",
+        "seletorsingleline",
+        "teamplatespacingaftercomment",
+        "tforvalue",
+        "trhowscommentindentation",
+        "unecessaryfiledeclaration",
+        "blocklisted",
+        "flagwords",
+        "mkdocs",
+        "autorun"
+    ]
+}

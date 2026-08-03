@@ -1,0 +1,24 @@
+uuid: edfdcb92-0e3f-4773-b6b4-4bbc45e4b954
+langcode: en
+status: true
+dependencies:
+  module:
+    - event_platform_helper
+_core:
+  default_config_hash: UC1wSRH8tVnX8C4dKf_tzCEGj_VBwuTMW3Mz9_6bfns
+active_version: 9921223e647744bd
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: event_platform_helper_copyright
+        label: Copyright
+        label_display: '0'
+        provider: event_platform_helper
+    fallback_metadata:
+      slot_definitions: null
+label: Copyright
+id: block.event_platform_helper_copyright
+provider: event_platform_helper
+source: block
+source_local_id: event_platform_helper_copyright

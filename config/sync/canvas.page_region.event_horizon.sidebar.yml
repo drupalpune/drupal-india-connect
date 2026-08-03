@@ -1,0 +1,23 @@
+uuid: 3e462511-86a5-4daa-a790-42cadd64e3dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_block.event_sponsors-block_2
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: JFKgM6NDK8cNnRG3DpMLwcddpijWEpMJsvHzx5O2srU
+id: event_horizon.sidebar
+region: sidebar
+theme: event_horizon
+component_tree:
+  '0:b67e7a6c-288c-420b-a96b-02a821346024':
+    uuid: b67e7a6c-288c-420b-a96b-02a821346024
+    component_id: block.views_block.event_sponsors-block_2
+    component_version: c6b90b9bd899fd31
+    inputs:
+      label: ''
+      label_display: visible
+      views_label: ''
+      items_per_page: null

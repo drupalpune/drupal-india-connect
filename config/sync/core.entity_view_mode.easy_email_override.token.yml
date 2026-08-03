@@ -1,0 +1,11 @@
+uuid: 6d58cf24-92dc-4129-8fdb-36196c973453
+langcode: en
+status: true
+dependencies:
+  module:
+    - easy_email_override
+id: easy_email_override.token
+label: Token
+description: null
+targetEntityType: easy_email_override
+cache: true

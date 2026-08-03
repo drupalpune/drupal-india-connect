@@ -1,0 +1,34 @@
+uuid: 10d3ace5-476b-4b55-abc1-145eaf8f9221
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.job_listings
+  module:
+    - node
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: s6nFNE8PxiI7TqgO1FbbgVbGbuK8CMvjPbF4JCETmsQ
+id: drupal_india_connect_views_block__job_listings_block_1
+theme: drupal_india_connect
+region: sidebar_first
+weight: -12
+provider: null
+plugin: 'views_block:job_listings-block_1'
+settings:
+  id: 'views_block:job_listings-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      sponsor: sponsor

@@ -1,0 +1,12 @@
+uuid: 60423b9a-327e-4f0c-b54d-86e26b0e7095
+langcode: en
+status: true
+dependencies:
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: _jT98xu9NseZ_-GSMwc2iGtvYTMVnu0wOVuAPC5FoSA
+id: event_horizon.modal
+region: modal
+theme: event_horizon
+component_tree: {  }

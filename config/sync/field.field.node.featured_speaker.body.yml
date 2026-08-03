@@ -1,0 +1,26 @@
+uuid: 1cc3a55a-3a25-4380-80ae-2eae1bb6beb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.featured_speaker
+  module:
+    - text
+_core:
+  default_config_hash: RdnbS86Pg2bHCB0lN2ZNIbR9A83rgqbZGNFXpYpZyEg
+id: node.featured_speaker.body
+field_name: body
+entity_type: node
+bundle: featured_speaker
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

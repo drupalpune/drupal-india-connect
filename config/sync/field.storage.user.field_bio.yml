@@ -1,0 +1,25 @@
+uuid: 38aef762-a926-4a97-b755-015d92fd8d8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - text
+    - user
+third_party_settings:
+  field_permissions:
+    permission_type: public
+_core:
+  default_config_hash: DgTFq-NMmh4W8OzdXin02MMzuvSLhWrmodC31AAQQXQ
+id: user.field_bio
+field_name: field_bio
+entity_type: user
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

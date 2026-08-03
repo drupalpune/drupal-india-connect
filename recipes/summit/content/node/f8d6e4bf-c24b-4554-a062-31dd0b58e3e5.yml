@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: f8d6e4bf-c24b-4554-a062-31dd0b58e3e5
+  bundle: article
+  default_langcode: en
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Example Announcement - Call for Session Proposals!'
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /events/2026/news/example-announcement-call-session-proposals
+      langcode: en
+  body:
+    -
+      value: 'Content goes here.'
+      format: filtered_html
+      summary: ''
+  field_event:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3

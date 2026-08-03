@@ -1,0 +1,5 @@
+name: 'Drupal India Connect'
+type: theme
+base theme: event_horizon
+description: 'Site theme for Drupal India Connect, built on Event Horizon.'
+core_version_requirement: ^11

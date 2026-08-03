@@ -1,0 +1,19 @@
+uuid: b9d67ba7-223f-4d63-9e20-c453c111da26
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: gtdV-pLGTWVDEKZZWIfkYSOnsZ6GNDHl1ouG1MQdC5Q
+name: BOF
+type: bof
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

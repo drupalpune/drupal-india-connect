@@ -1,0 +1,39 @@
+uuid: 6f6b2578-8e7c-48aa-a072-3c98ed464103
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - views
+_core:
+  default_config_hash: NaMEp4gZPqOVCBEPbW8Oa5o_6wE9hz9bRPhD7HYUM8M
+active_version: 95daf4e777c544fc
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:news-block_2'
+        label: 'News - Home Block'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  9960551c6c2982c5:
+    settings:
+      default_settings:
+        id: 'views_block:news-block_2'
+        label: 'News: Home Block'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'News - Home Block'
+id: block.views_block.news-block_2
+provider: views
+source: block
+source_local_id: 'views_block:news-block_2'

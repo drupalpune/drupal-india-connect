@@ -1,0 +1,22 @@
+uuid: 2475768f-7ef7-4f2d-a2e2-74cdeba1c82e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: 3cglRwG01iHgPkqwZdoqO313TfW9PEsETcpoGkUU5BA
+id: drupal_india_connect_breadcrumbs
+theme: drupal_india_connect
+region: sidebar_first
+weight: -6
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

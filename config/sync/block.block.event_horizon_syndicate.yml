@@ -1,0 +1,23 @@
+uuid: fd19971c-e37c-41e5-861b-a77b3a15b17e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: MpDGgm8p6VCmGIsd_-cuz3wymx1WGwYq5j-eekeAERU
+id: event_horizon_syndicate
+theme: event_horizon
+region: footer
+weight: -11
+provider: null
+plugin: node_syndicate_block
+settings:
+  id: node_syndicate_block
+  label: 'RSS feed'
+  label_display: '0'
+  provider: node
+  block_count: 10
+visibility: {  }

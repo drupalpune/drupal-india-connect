@@ -1,0 +1,26 @@
+uuid: e89b0818-b9a4-4117-b76f-5e76d7043b07
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: GZ6jQeCwz0QDEzWzztS6lZkelFwT1wJdbxXPtCiHgLI
+id: event_horizon_primary_admin_actions
+theme: event_horizon
+region: highlighted
+weight: -13
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/canvas/api/v0/layout/canvas_page/1"

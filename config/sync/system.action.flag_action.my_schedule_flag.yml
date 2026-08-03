@@ -1,0 +1,15 @@
+uuid: 7ad4afb7-8cf0-4dff-a32b-e92eca18d861
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.my_schedule
+  module:
+    - flag
+id: flag_action.my_schedule_flag
+label: 'Add to my schedule'
+type: node
+plugin: 'flag_action:my_schedule_flag'
+configuration:
+  flag_id: my_schedule
+  flag_action: flag

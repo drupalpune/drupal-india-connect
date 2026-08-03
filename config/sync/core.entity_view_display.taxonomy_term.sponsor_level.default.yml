@@ -1,0 +1,23 @@
+uuid: 0311eaed-9cbb-4579-a2e1-7ed6ddd970fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sponsor_level
+  module:
+    - text
+_core:
+  default_config_hash: rlQOziMOLtBG8YbvISnZeYuxRWvBf50VF1QdZrzLLoU
+id: taxonomy_term.sponsor_level.default
+targetEntityType: taxonomy_term
+bundle: sponsor_level
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

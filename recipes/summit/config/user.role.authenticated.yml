@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'flag my_schedule'
+  - 'unflag my_schedule'

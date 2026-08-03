@@ -1,0 +1,8 @@
+uuid: c4eaf170-6115-4531-82bb-307883efd6e3
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: hatSW7TIY6oKMEKjqdQ4s1HNyid7Hv0DYXJqpNkKU5w
+id: eca_workflow_modeler_process_fbvr7yf
+data: '{"id":"process_fbvr7yf","version":"1.0.0","metadata":{"label":"New Sponsorship Set Event","documentation":"","executable":true,"tags":[],"changelog":"","id":"process_fbvr7yf","version":"1.0.0","storage":"","template":false},"nodes":[{"id":"Event_1jbs4wv","componentType":1,"plugin":"content_entity:create","label":"New Sponsorship","position":{"x":400,"y":100},"configuration":{"type":"storage sponsorship"},"annotation":""},{"id":"Activity_13dscc6","componentType":4,"plugin":"eca_set_field_value","label":"Set events","position":{"x":400,"y":304},"configuration":{"field_name":"field_events","field_value":"[config_page:event_details:field_current:target_id]","method":"set:empty","strip_tags":false,"trim":false,"save_entity":false,"object":""},"annotation":""}],"edges":[{"id":"Event_1jbs4wv_Activity_13dscc6","source":"Event_1jbs4wv","target":"Activity_13dscc6","sourceHandle":"output","targetHandle":"input","condition":"","conditionId":"","conditionLabel":"","conditionConfiguration":{},"annotation":"","controlOffset":{"x":0,"y":0}}]}'

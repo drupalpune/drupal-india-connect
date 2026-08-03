@@ -1,0 +1,11 @@
+uuid: 161cf064-8168-4f13-80a3-d7a20a734511
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mH53ixYjvZHQlVSljQ8S4ke_Je_LGMf9_sQPTC_dUrU
+name: 'Session Time Slot'
+vid: time_slot
+description: ''
+weight: 0
+new_revision: false

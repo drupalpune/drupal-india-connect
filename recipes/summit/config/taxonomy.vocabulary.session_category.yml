@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Session Category'
+vid: session_category
+description: ''
+weight: 0
+new_revision: false

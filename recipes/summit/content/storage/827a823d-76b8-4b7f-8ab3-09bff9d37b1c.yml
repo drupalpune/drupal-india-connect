@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: storage
+  uuid: 827a823d-76b8-4b7f-8ab3-09bff9d37b1c
+  bundle: cta
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  user_id:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Register Today'
+  revision_translation_affected:
+    -
+      value: true
+  field_link:
+    -
+      uri: 'internal:/user/register'
+      title: 'Register Today'
+      options: {  }

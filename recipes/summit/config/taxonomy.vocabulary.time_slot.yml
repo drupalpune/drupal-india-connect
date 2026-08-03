@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Session Time Slot'
+vid: time_slot
+description: ''
+weight: 0
+new_revision: false

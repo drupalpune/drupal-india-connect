@@ -1,0 +1,267 @@
+_meta:
+  version: '1.0'
+  entity_type: canvas_page
+  uuid: bb5bbbb1-4a16-4b86-bbea-b215ab8096cf
+  default_langcode: en
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  owner:
+    -
+      target_id: 1
+  title:
+    -
+      value: Home
+  components:
+    -
+      uuid: 9b21fc02-161c-4fc7-a8da-957dfb820a73
+      component_id: sdc.event_horizon.site-hero-25
+      inputs:
+        media:
+          sourceType: default-relative-url
+          value:
+            src: ../../videos/fldc22-promo.webm
+          jsonSchema:
+            type: object
+            properties:
+              src:
+                type: string
+                contentMediaType: 'video/*'
+                format: uri-reference
+                x-allowed-schemes:
+                  - http
+                  - https
+              poster:
+                type: string
+                contentMediaType: 'image/*'
+                format: uri-reference
+                x-allowed-schemes:
+                  - http
+                  - https
+            required:
+              - src
+          componentId: sdc.event_horizon.site-hero-25
+        poster:
+          sourceType: default-relative-url
+          value:
+            src: ../../videos/fldc22-promo.webp
+            alt: ''
+          jsonSchema:
+            type: object
+            properties:
+              src:
+                type: string
+                contentMediaType: 'image/*'
+                format: uri-reference
+                x-allowed-schemes:
+                  - http
+                  - https
+              alt:
+                type: string
+              width:
+                type: integer
+              height:
+                type: integer
+            required:
+              - src
+          componentId: sdc.event_horizon.site-hero-25
+        graphic:
+          sourceType: default-relative-url
+          value:
+            src: ../site-stats/images/drupal-rocket.svg
+            alt: ''
+          jsonSchema:
+            type: object
+            properties:
+              src:
+                type: string
+                contentMediaType: 'image/*'
+                format: uri-reference
+                x-allowed-schemes:
+                  - http
+                  - https
+              alt:
+                type: string
+              width:
+                type: integer
+              height:
+                type: integer
+            required:
+              - src
+          componentId: sdc.event_horizon.site-hero-25
+        texture:
+          sourceType: default-relative-url
+          value:
+            src: images/roids.webp
+            alt: ''
+          jsonSchema:
+            type: object
+            properties:
+              src:
+                type: string
+                contentMediaType: 'image/*'
+                format: uri-reference
+                x-allowed-schemes:
+                  - http
+                  - https
+              alt:
+                type: string
+              width:
+                type: integer
+              height:
+                type: integer
+            required:
+              - src
+          componentId: sdc.event_horizon.site-hero-25
+    -
+      uuid: 7946b08a-11be-4f9e-9db5-0b99769da7de
+      component_id: sdc.event_horizon.section
+      inputs:
+        width: 100%
+        columns: '100'
+        mobile_columns: '1'
+        margin_block_start: '0'
+        margin_block_end: '48'
+        padding_block_start: '32'
+        padding_block_end: '0'
+        section_header: true
+        section_footer: true
+        background_color: black
+        dark_background: true
+        full_width: true
+    -
+      parent_uuid: 7946b08a-11be-4f9e-9db5-0b99769da7de
+      slot: header_slot
+      uuid: d1895ecd-bf40-42ff-bb9e-1f1584e31631
+      component_id: sdc.event_horizon.section
+      inputs:
+        width: 100%
+        columns: 75-25
+        mobile_columns: '1'
+        margin_block_start: '48'
+        margin_block_end: '0'
+        padding_block_start: '0'
+        padding_block_end: '0'
+        full_width: true
+        dark_background: true
+        section_header: true
+        section_footer: true
+        grid_align: start
+    -
+      parent_uuid: d1895ecd-bf40-42ff-bb9e-1f1584e31631
+      slot: main_slot
+      uuid: 2a45f57c-906a-4dbc-a48f-d402c6c8b5eb
+      component_id: sdc.event_horizon.group
+      inputs:
+        flex_direction: row
+        flex_gap: xl
+        items_align: center
+        flex_align: center
+        padding: sm
+        equal_children: true
+    -
+      parent_uuid: 2a45f57c-906a-4dbc-a48f-d402c6c8b5eb
+      slot: group_slot
+      uuid: c6b9420a-ca3d-4570-a989-6c8d51e266a7
+      component_id: sdc.event_horizon.stat-card
+      inputs:
+        stat: 150+
+        description:
+          value: '<p>amazing people you will meet</p>'
+          format: canvas_html_block
+    -
+      parent_uuid: 2a45f57c-906a-4dbc-a48f-d402c6c8b5eb
+      slot: group_slot
+      uuid: dbc552be-3578-4742-b6bb-3215a38bbc45
+      component_id: sdc.event_horizon.stat-card
+      inputs:
+        stat: 30+
+        description:
+          value: '<p>sessions to up your Drupal Fu</p>'
+          format: canvas_html_block
+    -
+      parent_uuid: 2a45f57c-906a-4dbc-a48f-d402c6c8b5eb
+      slot: group_slot
+      uuid: 4b99820b-c9fa-49d1-9518-fa6f18333b64
+      component_id: sdc.event_horizon.stat-card
+      inputs:
+        stat: 75°F
+        description:
+          value: '<p>average high temp during our camp</p>'
+          format: canvas_html_block
+    -
+      parent_uuid: d1895ecd-bf40-42ff-bb9e-1f1584e31631
+      slot: main_slot
+      uuid: 454099fb-f960-41fb-abe0-d4913f793e70
+      component_id: sdc.event_horizon.heading
+      inputs:
+        heading_text: 'Highlights from Example Drupal Camp'
+        level: 3
+        text_size: heading-responsive-sm
+        text_color: default
+        align: left
+        style: accented
+        margin_top: sm
+    -
+      parent_uuid: 7946b08a-11be-4f9e-9db5-0b99769da7de
+      slot: main_slot
+      uuid: 9c8226e9-0e92-4dc0-9e74-0c772eff5c02
+      component_id: sdc.event_horizon.site-stats
+      inputs: {  }
+    -
+      parent_uuid: 7946b08a-11be-4f9e-9db5-0b99769da7de
+      slot: main_slot
+      uuid: 8088112b-daac-4c21-b29d-63431d03811d
+      component_id: block.views_block.featured_speakers-featured_speakers_homepage
+      inputs:
+        label: 'Featured Speakers: Homepage'
+        label_display: '0'
+        views_label: ''
+        items_per_page: null
+    -
+      uuid: c9e4e0fa-b2c1-41df-bd78-9cb369e69dbe
+      component_id: block.views_block.event_sponsors-block_3
+      inputs:
+        label: 'Event Sponsors: Event Horizon homepage'
+        label_display: '0'
+        views_label: ''
+        items_per_page: null
+    -
+      uuid: ee478a9c-8081-45e5-bb66-9edd7bdd0fd0
+      component_id: sdc.event_horizon.section
+      inputs:
+        width: 100%
+        columns: '100'
+        mobile_columns: '1'
+        margin_block_start: '48'
+        margin_block_end: '48'
+        padding_block_start: '0'
+        padding_block_end: '0'
+        full_width: true
+        dark_background: true
+        section_header: true
+        section_footer: true
+    -
+      parent_uuid: ee478a9c-8081-45e5-bb66-9edd7bdd0fd0
+      slot: main_slot
+      uuid: 4b6d84ec-0c20-4a1c-9555-d4deed241366
+      component_id: block.views_block.news-block_2
+      inputs:
+        label: 'News - Home Block'
+        label_display: '0'
+        views_label: ''
+        items_per_page: null
+  path:
+    -
+      alias: /home
+      langcode: en
+  revision_translation_affected:
+    -
+      value: true
+  metatags:
+    -
+      value: '{"canonical_url":"[canvas_page:url]","description":"[canvas_page:description]","image_src":"[canvas_page:image:entity:field_media_image:entity:url]","title":"[canvas_page:title] | [site:name]"}'

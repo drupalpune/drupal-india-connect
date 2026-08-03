@@ -1,0 +1,19 @@
+uuid: 118f8383-6b89-42d8-9e01-504316c54500
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.event_horizon.site-header
+    - canvas.component.sdc.event_horizon.site-hero
+    - canvas.component.sdc.event_horizon.site-hero-details
+    - canvas.component.sdc.navigation.message
+    - canvas.component.sdc.navigation.title
+name: Other
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.event_horizon.site-header
+  - sdc.event_horizon.site-hero
+  - sdc.event_horizon.site-hero-details
+  - sdc.navigation.message
+  - sdc.navigation.title

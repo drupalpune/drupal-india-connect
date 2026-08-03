@@ -1,0 +1,28 @@
+uuid: 59a5cc4e-b69b-4460-9486-5089fbdc56ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: bQhEllp7cQyau2_uZtoMcwqeD95Eukw8EBMkXqfQikA
+active_version: b5dca6ca0519bf1b
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: webform_block
+        label: Webform
+        label_display: '0'
+        provider: webform
+        webform_id: ''
+        default_data: ''
+        redirect: false
+        lazy: false
+    fallback_metadata:
+      slot_definitions: null
+label: Webform
+id: block.webform_block
+provider: webform
+source: block
+source_local_id: webform_block

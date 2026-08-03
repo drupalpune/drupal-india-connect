@@ -1,0 +1,48 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  bundle: event
+  default_langcode: und
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  name:
+    -
+      value: '2027'
+  weight:
+    -
+      value: 0
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: date
+  path:
+    -
+      alias: /events/2027
+      langcode: und
+  field_dates:
+    -
+      value: '2027-08-13'
+      end_value: '2027-08-15'
+  field_event_name_display:
+    -
+      value: true
+  field_location_short:
+    -
+      value: 'London, Ontario, Canada'
+  field_schedule_published:
+    -
+      value: '2027-06-30'
+  field_sessions_open:
+    -
+      value: '2027-04-01'
+  field_session_deadline:
+    -
+      value: '2027-05-31'

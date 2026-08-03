@@ -1,0 +1,14 @@
+uuid: 7fa2b94f-17c9-43c0-8e60-2b2f4a3725ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - trash
+_core:
+  default_config_hash: iYTvx6ZwQQHIsVeToNgndMFCprSaz8XeieH9z7_psaA
+id: node_restore_action
+label: 'Restore content item from trash'
+type: node
+plugin: 'entity:restore_action:node'
+configuration: {  }

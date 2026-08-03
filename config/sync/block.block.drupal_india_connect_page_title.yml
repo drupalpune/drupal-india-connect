@@ -1,0 +1,26 @@
+uuid: 6054f180-db03-4171-bc6d-b9233ae2b935
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: XO4R_keQA3pbilyiG0iRndf5uakGmBnyLr1I3onz26o
+id: drupal_india_connect_page_title
+theme: drupal_india_connect
+region: sidebar_first
+weight: -11
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/user/*\r\n/canvas/api/v0/layout/canvas_page/1"

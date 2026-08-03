@@ -1,0 +1,22 @@
+uuid: 72326ca1-07d8-4dae-9b4e-fdfd4063099a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gin
+_core:
+  default_config_hash: ZOACAyVqAsweSfQ3uPyiRW1JJA5JZQ1xTo30oqNdOcQ
+id: gin_breadcrumbs
+theme: gin
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

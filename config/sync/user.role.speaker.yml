@@ -1,0 +1,27 @@
+uuid: 8f7c59b1-8a1a-477a-b76f-aa1ddcb20332
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.session
+    - workflows.workflow.session_acceptance
+  module:
+    - content_moderation
+    - field_permissions
+    - node
+_core:
+  default_config_hash: 9TWUoJnCXSDHq-ZAhulUl7ehneCTSW8W217kew2txkE
+id: speaker
+label: Speaker
+weight: 1
+is_admin: null
+permissions:
+  - 'create field_speakers'
+  - 'edit own field_speakers'
+  - 'edit own session content'
+  - 'use session_acceptance transition confirm'
+  - 'use session_acceptance transition decline'
+  - 'use session_acceptance transition edit_confirmed'
+  - 'use session_acceptance transition propose_session'
+  - 'view own field_speakers'
+  - 'view session revisions'

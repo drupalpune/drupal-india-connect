@@ -1,0 +1,61 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 661dcb58-a757-46c2-bf1d-e15731cf0c4b
+  bundle: featured_speaker
+  default_langcode: en
+  depends:
+    118ee2e5-d282-4f85-86ea-fe8283c5b1e3: taxonomy_term
+    5de46fdd-2996-4d7c-830b-24a49ac24723: file
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Bálint Kléri'
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /speakers/balint-kleri
+      langcode: en
+  body:
+    -
+      value: 'Software engineer and full-time contributor to Drupal Canvas, Bálint leads the development of Code Components, made possible by Acquia. His journey spans from Drupal 5 through companies like NodeOne and Commerce Guys. As a former CTO and founder, he now channels that experience into shaping the future of Drupal site building.'
+      format: filtered_html
+      summary: ''
+  field_badge:
+    -
+      value: 'Featured Speaker'
+  field_cta_link:
+    -
+      uri: 'https://www.drupal.org/u/balintbrews'
+      title: ''
+      options: {  }
+  field_events:
+    -
+      entity: 118ee2e5-d282-4f85-86ea-fe8283c5b1e3
+  field_image:
+    -
+      alt: 'Bálint Kléri head shot'
+      title: ''
+      width: 1351
+      height: 1400
+      entity: 5de46fdd-2996-4d7c-830b-24a49ac24723
+  field_weight:
+    -
+      value: 10

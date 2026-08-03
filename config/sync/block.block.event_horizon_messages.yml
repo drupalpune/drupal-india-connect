@@ -1,0 +1,22 @@
+uuid: ad9e947e-b4f1-4276-ac47-a4c8f4a5d4b3
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: yswVFHkU6zHs-0vrws1fEUpLJJt8Bq6xY9yWL5Qqq8g
+id: event_horizon_messages
+theme: event_horizon
+region: highlighted
+weight: -12
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

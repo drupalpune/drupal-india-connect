@@ -1,0 +1,26 @@
+uuid: 206cb8f0-e1a2-4dca-be53-f5a8cf23bb9a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: XO4R_keQA3pbilyiG0iRndf5uakGmBnyLr1I3onz26o
+id: event_horizon_page_title
+theme: event_horizon
+region: content_above
+weight: -11
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "<front>\r\n/user/*\r\n/canvas/api/v0/layout/canvas_page/1"

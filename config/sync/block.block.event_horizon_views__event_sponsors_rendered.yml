@@ -1,0 +1,32 @@
+uuid: 84ead188-9908-4cc2-af77-6fde368872ab
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.event_sponsors
+  module:
+    - system
+    - views
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: Se-0BlWktuu1chnjMkDVzKWX6Yej-u9lT0MW15G0xiM
+id: event_horizon_views__event_sponsors_rendered
+theme: event_horizon
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:event_sponsors-block_3'
+settings:
+  id: 'views_block:event_sponsors-block_3'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

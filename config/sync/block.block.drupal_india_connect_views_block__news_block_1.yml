@@ -1,0 +1,34 @@
+uuid: 44e382e1-9dc2-4ace-96d1-0063408fcac7
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - taxonomy
+    - views
+  theme:
+    - drupal_india_connect
+_core:
+  default_config_hash: gsp0tkecpNyfFAfViDnh9OQ7MxKKNf7Allqw-1ZZi_A
+id: drupal_india_connect_views_block__news_block_1
+theme: drupal_india_connect
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'views_block:news-block_1'
+settings:
+  id: 'views_block:news-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+    bundles:
+      event: event

@@ -1,0 +1,24 @@
+uuid: 80c8edda-2561-4751-90f7-70bfe809722a
+langcode: en
+status: false
+dependencies:
+  module:
+    - dashboard
+_core:
+  default_config_hash: BJ-PWldkh8Kys8q9lhAFIPLV7sdblgds149oyPRof_8
+active_version: 96919a0c9b7ec9ae
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: navigation_dashboard
+        label: 'Navigation Dashboard'
+        label_display: '0'
+        provider: dashboard
+    fallback_metadata:
+      slot_definitions: null
+label: 'Navigation Dashboard'
+id: block.navigation_dashboard
+provider: dashboard
+source: block
+source_local_id: navigation_dashboard

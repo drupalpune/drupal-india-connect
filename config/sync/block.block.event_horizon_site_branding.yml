@@ -1,0 +1,25 @@
+uuid: 73cc93bb-93e8-46da-beec-f90487e42cd7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - event_horizon
+_core:
+  default_config_hash: zMeh-RxSfAy9S_4O3KriipZiZp-l7n8TNtRguS5Ej78
+id: event_horizon_site_branding
+theme: event_horizon
+region: primary_menu
+weight: -12
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

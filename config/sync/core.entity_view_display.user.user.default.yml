@@ -1,0 +1,52 @@
+uuid: f84b6742-6d87-4613-9d1e-31c23e228ef9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_bio
+    - field.field.user.user.field_display_name
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - svg_image
+    - text
+    - user
+_core:
+  default_config_hash: vif6JOyu0f8nme6xYBrBt6UQ1AEWh-JhfU9Q08Ovn5Y
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_bio:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_display_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  user_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: 72
+        height: 72
+      svg_render_as_image: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  member_for: true

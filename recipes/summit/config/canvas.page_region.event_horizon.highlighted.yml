@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.local_actions_block
+    - canvas.component.block.local_tasks_block
+    - canvas.component.block.system_messages_block
+  theme:
+    - event_horizon
+id: event_horizon.highlighted
+region: highlighted
+theme: event_horizon
+component_tree:
+  bc480c0f-19c5-45b0-9c00-01f7a4485e4f:
+    uuid: bc480c0f-19c5-45b0-9c00-01f7a4485e4f
+    component_id: block.system_messages_block
+    component_version: 1609d44df6c8b26a
+    inputs:
+      label: 'Status messages'
+      label_display: '0'
+  1cc852ef-39ce-43c1-9994-5ab578695ecf:
+    uuid: 1cc852ef-39ce-43c1-9994-5ab578695ecf
+    component_id: block.local_actions_block
+    component_version: 8e3ae21ee61ff56d
+    inputs:
+      label: 'Primary admin actions'
+      label_display: '0'
+  ce6c7e32-494f-45f3-aa09-00acb29ce914:
+    uuid: ce6c7e32-494f-45f3-aa09-00acb29ce914
+    component_id: block.local_tasks_block
+    component_version: fbd9367ece78bba5
+    inputs:
+      label: 'Primary tabs'
+      label_display: '0'
+      primary: true
+      secondary: false
+  3700a3de-7bb2-447b-9594-ec1c850db94c:
+    uuid: 3700a3de-7bb2-447b-9594-ec1c850db94c
+    component_id: block.local_tasks_block
+    component_version: fbd9367ece78bba5
+    inputs:
+      label: 'Secondary tabs'
+      label_display: '0'
+      primary: false
+      secondary: true

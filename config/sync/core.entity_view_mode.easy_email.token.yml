@@ -1,0 +1,11 @@
+uuid: d844d0cb-2d92-41f4-be92-6813306fbd55
+langcode: en
+status: true
+dependencies:
+  module:
+    - easy_email
+id: easy_email.token
+label: Token
+description: null
+targetEntityType: easy_email
+cache: true
