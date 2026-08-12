@@ -1,0 +1,57 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Venue & Location'
+description: 'A two-column venue section: name, address, description and a directions button on one side, a map embed or image on the other.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - venue_name
+  properties:
+    label:
+      type: string
+      title: 'Label (pill)'
+      description: 'Optional small pill shown above the venue name.'
+      default: Venue
+      examples:
+        - Venue
+    venue_name:
+      type: string
+      title: 'Venue name'
+      examples:
+        - 'Grand Convention Center'
+    address:
+      type: string
+      title: Address
+      examples:
+        - '123 MG Road, Panaji, Goa 403001'
+    description:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>A short walk from the beach, with easy access from the airport.</p>'
+    map_embed_url:
+      type: string
+      title: 'Map embed URL'
+      description: 'On Google Maps: Share > "Embed a map" tab (not "Send a link") > copy only the URL inside src="...", starting with https://www.google.com/maps/embed. Do not use a maps.app.goo.gl share link or the full <iframe> tag - Google blocks share links from being embedded. Takes priority over the image below when both are set.'
+      format: uri-reference
+      examples:
+        - 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d0!2d0!3d0'
+    image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: 'Venue image'
+      description: 'Used only if no map embed URL is set above.'
+      type: object
+    cta_label:
+      type: string
+      title: 'Button label'
+      examples:
+        - 'Get Directions'
+    cta_url:
+      type: string
+      title: 'Button link'
+      format: uri-reference
+      examples:
+        - 'https://maps.google.com'

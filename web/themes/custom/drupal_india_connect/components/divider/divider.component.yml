@@ -1,0 +1,26 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Divider
+description: 'A horizontal divider with the Drupal logo centered between two lines, with configurable vertical padding.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties:
+    padding:
+      type: string
+      title: Padding
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+      meta:enum:
+        xs: 'Extra Small — 32px'
+        sm: 'Small — 48px'
+        md: 'Medium — 64px'
+        lg: 'Large — 80px'
+        xl: 'Extra Large — 120px'
+      default: md
+      examples:
+        - md

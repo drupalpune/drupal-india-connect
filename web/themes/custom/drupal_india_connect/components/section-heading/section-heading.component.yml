@@ -1,0 +1,82 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Section Heading
+description: 'A heading with configurable text, heading level, bottom margin, an optional pill label, and an optional description.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - text
+    - type
+  properties:
+    label:
+      type: string
+      title: 'Label (pill)'
+      description: 'Optional small pill shown above the heading.'
+      examples:
+        - 'New'
+    text:
+      type: string
+      title: Text
+      examples:
+        - 'Section heading'
+    description:
+      type: string
+      title: Description
+      description: 'Optional supporting text shown below the heading.'
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>Supporting text for this section.</p>'
+    type:
+      type: string
+      title: 'Heading type'
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      meta:enum:
+        h1: H1
+        h2: H2
+        h3: H3
+        h4: H4
+        h5: H5
+        h6: H6
+      default: h2
+      examples:
+        - h2
+    margin_bottom:
+      type: string
+      title: 'Margin bottom'
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+      meta:enum:
+        xs: 'Extra Small — 32px'
+        sm: 'Small — 48px'
+        md: 'Medium — 64px'
+        lg: 'Large — 80px'
+        xl: 'Extra Large — 120px'
+      default: md
+      examples:
+        - md
+    text_align:
+      type: string
+      title: 'Text alignment'
+      enum:
+        - left
+        - center
+        - right
+      meta:enum:
+        left: Left
+        center: Center
+        right: Right
+      default: left
+      examples:
+        - left

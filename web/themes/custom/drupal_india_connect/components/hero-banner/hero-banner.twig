@@ -1,0 +1,74 @@
+{% set variant_key = variant|default('glow') %}
+{% set is_light = light is defined ? light : true %}
+{% set has_meta = date is not empty or location is not empty %}
+{% set has_ctas = cta_primary_label is not empty or cta_secondary_label is not empty %}
+{% set light_class = is_light and variant_key != 'minimal' ? ' hero-banner--light' : '' %}
+
+<section class="hero-banner hero-banner--{{ variant_key }}{{ light_class }}">
+  <div class="hero-banner__glow" aria-hidden="true"></div>
+
+  {% if variant_key in ['split', 'glow'] %}
+    <div class="hero-banner__blob hero-banner__blob--1" aria-hidden="true"></div>
+    <div class="hero-banner__blob hero-banner__blob--2" aria-hidden="true"></div>
+  {% endif %}
+
+  {% if variant_key == 'split' %}
+    <div class="hero-banner__visual" aria-hidden="true">
+      <div class="hero-banner__visual-grid"></div>
+      <div class="hero-banner__visual-badge">
+        {% include 'drupal_india_connect:icon' ignore missing with { icon: 'calendar', icon_size: 'small' } only %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="hero-banner__inner">
+    {% if title is not empty %}
+      <h1 class="hero-banner__title">{{ title }}</h1>
+    {% endif %}
+
+    {% if has_meta %}
+      <div class="hero-banner__meta">
+        {% if date is not empty %}
+          <span class="hero-banner__meta-item">
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'calendar', icon_size: 'extra-small' } only %}
+            {{ date }}
+          </span>
+        {% endif %}
+        {% if date is not empty and location is not empty %}
+          <span class="hero-banner__meta-divider" aria-hidden="true">&bull;</span>
+        {% endif %}
+        {% if location is not empty %}
+          <span class="hero-banner__meta-item">
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'map-pin', icon_size: 'extra-small' } only %}
+            {{ location }}
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if description is not empty %}
+      <div class="hero-banner__description">{{ description }}</div>
+    {% endif %}
+
+    {% if has_ctas %}
+      <div class="hero-banner__actions">
+        {% if cta_primary_label is not empty %}
+          <a href="{{ cta_primary_url|default('#') }}" class="hero-banner__button hero-banner__button--primary">
+            {{ cta_primary_label }}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+          </a>
+        {% endif %}
+        {% if cta_secondary_label is not empty %}
+          <a href="{{ cta_secondary_url|default('#') }}" class="hero-banner__button hero-banner__button--secondary">
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'play-circle', icon_size: 'extra-small' } only %}
+            {{ cta_secondary_label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <span class="hero-banner__scroll-indicator" aria-hidden="true">
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'small' } only %}
+    </span>
+  </div>
+</section>

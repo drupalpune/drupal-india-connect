@@ -1,0 +1,461 @@
+.hero-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100dvh;
+  margin-inline: calc(50% - 50vw);
+  padding-block: var(--sp4);
+  text-align: center;
+  color: var(--color--white);
+  background: var(--color--night-5);
+
+  @container style(--md: true) {
+    padding-block: var(--sp5);
+  }
+}
+
+/*
+ * Variant: glow — centered content. Kept within the page's normal
+ * container width instead of breaking out full-bleed (matches the
+ * earlier decision made for the split variant).
+ */
+.hero-banner--glow {
+  margin-inline: 0;
+}
+
+.hero-banner__glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  width: 40rem;
+  height: 40rem;
+  content: '';
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 25%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-banner__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp1-5);
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: var(--sp1-5);
+
+  @container style(--md: true) {
+    max-width: 56rem;
+    gap: var(--sp2);
+  }
+}
+
+.hero-banner__title {
+  margin: 0;
+  color: var(--color--white);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  @container style(--md: true) {
+    font-size: 3.25rem;
+  }
+
+  @container style(--lg: true) {
+    font-size: 4rem;
+  }
+}
+
+.hero-banner__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp0-75);
+  font-weight: 700;
+}
+
+.hero-banner__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+}
+
+.hero-banner__meta-item svg {
+  flex-shrink: 0;
+  color: var(--secondary);
+}
+
+.hero-banner__meta-divider {
+  color: var(--color--night-50);
+}
+
+.hero-banner__description {
+  max-width: 40rem;
+  color: var(--color--night-70);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hero-banner__description p {
+  margin: 0;
+}
+
+.hero-banner__description p + p {
+  margin-top: var(--sp0-75);
+}
+
+.hero-banner__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp1);
+  width: 100%;
+  margin-top: var(--sp1);
+}
+
+.hero-banner__actions {
+  @container style(--sm: true) {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+  }
+}
+
+.hero-banner__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp0-5);
+  width: 100%;
+  padding: var(--sp0-75) var(--sp1-5);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+  text-decoration: none;
+  border: solid 2px transparent;
+  border-radius: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.25;
+
+  @container style(--sm: true) {
+    width: auto;
+  }
+}
+
+.hero-banner__button:hover {
+  text-decoration: none;
+}
+
+.hero-banner__button:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 3px;
+}
+
+.hero-banner__button--primary {
+  color: var(--color--white);
+  border-color: var(--primary);
+  background-color: var(--primary);
+  box-shadow: 0 0 2.5rem color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+.hero-banner__button--primary:hover {
+  border-color: color-mix(in lab, var(--primary) 80%, black 20%);
+  background-color: color-mix(in lab, var(--primary) 80%, black 20%);
+}
+
+.hero-banner__button--secondary {
+  color: var(--color--white);
+  border-color: var(--color--night-30);
+  background-color: var(--color--night-15);
+}
+
+.hero-banner__button--secondary:hover {
+  border-color: var(--color--night-50);
+}
+
+.hero-banner__scroll-indicator {
+  display: inline-flex;
+  margin-top: var(--sp2);
+  color: var(--color--night-50);
+}
+
+.hero-banner__scroll-indicator svg {
+  transform: rotate(90deg);
+}
+
+/* Variant: aurora — layered, colour-wash glow instead of a single circle. */
+.hero-banner--aurora {
+  background: var(--color--night-5);
+}
+
+.hero-banner--aurora .hero-banner__glow {
+  top: -10%;
+  width: 60rem;
+  height: 60rem;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary) 35%, transparent), transparent 60%),
+    radial-gradient(circle at 70% 60%, color-mix(in srgb, var(--secondary) 30%, transparent), transparent 65%);
+  animation: hero-banner-aurora-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes hero-banner-aurora-drift {
+  from {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  to {
+    transform: translateX(-50%) translateY(2rem) scale(1.08);
+  }
+}
+
+/*
+ * Variant: split — two-column layout with a decorative panel. Unlike the
+ * other variants, this one stays within the page's normal container width
+ * instead of breaking out full-bleed.
+ */
+.hero-banner--split {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: var(--sp3);
+  min-height: 100dvh;
+  margin-inline: 0;
+  padding-block: var(--sp3);
+  text-align: left;
+  background: var(--color--night-5);
+
+  /*
+   * The fixed 22rem side panel needs to wait for --lg (1000px), not --md
+   * (700px): at 700px the text column would only have ~240px left after
+   * the panel + gap, which is too narrow for the title and wraps badly.
+   */
+  @container style(--lg: true) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+    gap: var(--sp4);
+  }
+}
+
+.hero-banner--split .hero-banner__glow {
+  display: none;
+}
+
+.hero-banner--split .hero-banner__inner {
+  grid-column: 1;
+  grid-row: 2;
+  align-items: flex-start;
+  max-width: 34rem;
+  margin-inline: 0;
+  text-align: left;
+
+  @container style(--lg: true) {
+    grid-row: 1;
+  }
+}
+
+.hero-banner--split .hero-banner__meta,
+.hero-banner--split .hero-banner__actions {
+  justify-content: flex-start;
+}
+
+.hero-banner--split .hero-banner__scroll-indicator {
+  display: none;
+}
+
+.hero-banner__blob {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/*
+ * Default (glow variant, centered content) — blob 1 (Orange, primary)
+ * upper-left-of-center behind the title, blob 2 (Blue, secondary)
+ * lower-right-of-center behind the secondary button, which sits to the
+ * right of the primary button in the centered action row. z-index puts
+ * them behind .hero-banner__inner (z-index 1).
+ */
+.hero-banner__blob--1 {
+  top: 15%;
+  left: 30%;
+  width: 20rem;
+  height: 20rem;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 35%, transparent), transparent 70%);
+}
+
+.hero-banner__blob--2 {
+  bottom: 35%;
+  left: 48%;
+  width: 16rem;
+  height: 16rem;
+  background: radial-gradient(circle, color-mix(in srgb, var(--secondary) 32%, transparent), transparent 70%);
+}
+
+/*
+ * Split variant — content is left-aligned instead of centered, so the
+ * blobs are repositioned to still sit behind the title and secondary
+ * button rather than drifting into empty centered-layout space.
+ */
+.hero-banner--split .hero-banner__blob--1 {
+  top: 18%;
+  left: 0%;
+}
+
+.hero-banner--split .hero-banner__blob--2 {
+  bottom: 20%;
+  left: 26%;
+}
+
+.hero-banner--light .hero-banner__blob {
+  opacity: 0.6;
+}
+
+.hero-banner__visual {
+  position: relative;
+  display: none;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: linear-gradient(155deg, var(--primary), var(--secondary));
+
+  @container style(--lg: true) {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+.hero-banner__visual-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color--white) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color--white) 12%, transparent) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+
+.hero-banner__visual-badge {
+  position: absolute;
+  right: var(--sp1-5);
+  bottom: var(--sp1-5);
+  display: inline-flex;
+  padding: var(--sp1);
+  color: var(--color--white);
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--color--night-5) 40%, transparent);
+}
+
+/* Variant: minimal — light, understated, no glow. */
+.hero-banner--minimal {
+  min-height: auto;
+  padding-block: var(--sp4);
+  color: var(--text-on-neutral-white);
+  background: var(--color--night-95);
+
+  @container style(--md: true) {
+    padding-block: var(--sp5);
+  }
+}
+
+.hero-banner--minimal .hero-banner__glow,
+.hero-banner--minimal .hero-banner__scroll-indicator {
+  display: none;
+}
+
+.hero-banner--minimal .hero-banner__title {
+  color: var(--text-on-neutral-white);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.hero-banner--minimal .hero-banner__title::before {
+  display: block;
+  width: 3rem;
+  height: 0.25rem;
+  margin: 0 auto var(--sp1-5);
+  content: '';
+  border-radius: 999px;
+  background-color: var(--primary);
+}
+
+.hero-banner--minimal .hero-banner__meta-item svg {
+  color: var(--primary);
+}
+
+.hero-banner--minimal .hero-banner__meta-divider {
+  color: var(--color--night-50);
+}
+
+.hero-banner--minimal .hero-banner__description {
+  color: var(--color--night-30);
+}
+
+.hero-banner--minimal .hero-banner__button--primary {
+  box-shadow: none;
+}
+
+.hero-banner--minimal .hero-banner__button--secondary {
+  color: var(--text-on-neutral-white);
+  border-color: var(--color--night-80);
+  background-color: transparent;
+}
+
+.hero-banner--minimal .hero-banner__button--secondary:hover {
+  border-color: var(--color--night-50);
+  background-color: var(--color--night-90);
+}
+
+/*
+ * Light color scheme — applies to the glow, aurora, and split variants
+ * (minimal is always light, so this class is never added alongside it).
+ */
+.hero-banner--light {
+  color: var(--text-on-neutral-white);
+  background: var(--color--night-95);
+}
+
+.hero-banner--light .hero-banner__title {
+  color: var(--text-on-neutral-white);
+}
+
+.hero-banner--light .hero-banner__description {
+  color: var(--color--night-30);
+}
+
+.hero-banner--light .hero-banner__meta-divider {
+  color: var(--color--night-50);
+}
+
+.hero-banner--light .hero-banner__button--primary {
+  box-shadow: none;
+}
+
+.hero-banner--light .hero-banner__button--secondary {
+  color: var(--text-on-neutral-white);
+  border-color: var(--color--night-80);
+  background-color: transparent;
+}
+
+.hero-banner--light .hero-banner__button--secondary:hover {
+  border-color: var(--color--night-50);
+  background-color: var(--color--night-90);
+}
+
+.hero-banner--light .hero-banner__scroll-indicator {
+  color: var(--color--night-50);
+}
+
+.hero-banner--light .hero-banner__glow {
+  opacity: 0.6;
+}

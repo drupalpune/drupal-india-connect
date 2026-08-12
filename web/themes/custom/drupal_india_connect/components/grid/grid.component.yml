@@ -1,0 +1,38 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Grid
+description: 'A responsive grid layout with a configurable number of columns and gap between items.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - columns
+  properties:
+    columns:
+      type: number
+      title: 'Number of columns'
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      meta:enum:
+        2: '2 columns'
+        3: '3 columns'
+        4: '4 columns'
+        5: '5 columns'
+        6: '6 columns'
+      default: 3
+      examples:
+        - 3
+    gap:
+      type: string
+      title: 'Spacing (px)'
+      description: 'Gap between grid items, in pixels (e.g. "24"). Defaults to 24px if left blank.'
+      default: '24'
+      examples:
+        - '24'
+slots:
+  grid_slot:
+    title: 'Grid items'

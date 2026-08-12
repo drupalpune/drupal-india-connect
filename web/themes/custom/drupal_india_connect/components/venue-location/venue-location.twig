@@ -1,0 +1,48 @@
+{% set has_cta = cta_label is not empty %}
+
+<div class="venue-location">
+  <div class="venue-location__content">
+    <span class="venue-location__label">{{ label|default('Venue') }}</span>
+
+    {% if venue_name is not empty %}
+      <h3 class="venue-location__name">{{ venue_name }}</h3>
+    {% endif %}
+
+    {% if address is not empty %}
+      <p class="venue-location__address">{{ address }}</p>
+    {% endif %}
+
+    {% if description is not empty %}
+      <div class="venue-location__description">{{ description }}</div>
+    {% endif %}
+
+    {% if has_cta %}
+      <a href="{{ cta_url|default('#') }}" class="venue-location__cta">
+        {{ cta_label }}
+        {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if map_embed_url is not empty %}
+    <div class="venue-location__media">
+      <iframe
+        src="{{ map_embed_url }}"
+        class="venue-location__map"
+        title="{{ 'Map of @venue'|t({ '@venue': venue_name|default('the venue') }) }}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  {% elseif image.src is not empty %}
+    <div class="venue-location__media">
+      {% include 'canvas:image' ignore missing with {
+        src: image.src,
+        alt: image.alt,
+        class: 'venue-location__image',
+        width: image.width,
+        height: image.height,
+      } only %}
+    </div>
+  {% endif %}
+</div>

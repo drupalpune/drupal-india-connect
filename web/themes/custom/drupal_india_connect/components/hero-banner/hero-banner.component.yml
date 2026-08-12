@@ -1,0 +1,77 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Hero Banner
+description: 'A full-height hero banner with a title, date/location meta row, description, and two call-to-action buttons. Comes in four visual variants, each available in a light color scheme.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: Variant
+      description: 'Visual style of the hero banner.'
+      enum:
+        - glow
+        - aurora
+        - split
+        - minimal
+      meta:enum:
+        glow: 'Glow — centered, single radial glow (original)'
+        aurora: 'Aurora — centered, layered color-wash glow'
+        split: 'Split — two-column with a decorative panel'
+        minimal: 'Minimal — centered, understated (always light)'
+      default: glow
+      examples:
+        - glow
+    light:
+      type: boolean
+      title: 'Light color scheme'
+      description: 'Switch the glow, aurora, and split variants to a light background. Has no effect on the minimal variant, which is always light.'
+      default: true
+      examples:
+        - true
+    title:
+      type: string
+      title: Title
+      examples:
+        - 'One Last Time.'
+    date:
+      type: string
+      title: Date
+      examples:
+        - 'Oct 29–31, 2026'
+    location:
+      type: string
+      title: Location
+      examples:
+        - 'Goa, India'
+    description:
+      type: string
+      title: Description
+      description: 'Supporting text shown beneath the date and location.'
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>The future of React, Web, and Developer Experience on the Indian Coast.</p>'
+    cta_primary_label:
+      type: string
+      title: 'Primary button label'
+      examples:
+        - 'Get Your Tickets'
+    cta_primary_url:
+      type: string
+      title: 'Primary button link'
+      format: uri-reference
+      examples:
+        - /tickets
+    cta_secondary_label:
+      type: string
+      title: 'Secondary button label'
+      examples:
+        - 'Watch 2025 Talks'
+    cta_secondary_url:
+      type: string
+      title: 'Secondary button link'
+      format: uri-reference
+      examples:
+        - /talks

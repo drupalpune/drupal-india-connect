@@ -1,0 +1,51 @@
+.component-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp1);
+  /*
+   * Constrained rather than spanning the full container width, and
+   * centered on the page. The 94% keeps it from touching the edges on
+   * screens narrower than the max-width.
+   */
+  width: 94%;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.component-divider--pad-xs {
+  padding-block: 32px;
+}
+
+.component-divider--pad-sm {
+  padding-block: 48px;
+}
+
+.component-divider--pad-md {
+  padding-block: 64px;
+}
+
+.component-divider--pad-lg {
+  padding-block: 80px;
+}
+
+.component-divider--pad-xl {
+  padding-block: 120px;
+}
+
+.component-divider__line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color--night-90, #e5e7e9);
+}
+
+.component-divider__logo {
+  display: inline-flex;
+  flex-shrink: 0;
+  /* Drupal's official brand blue, not a theme token. */
+  color: #0678be;
+}
+
+.component-divider__logo svg {
+  width: 1.5rem;
+  height: 1.9rem;
+}

@@ -1,0 +1,15 @@
+{% set tag = type|default('h2') %}
+{% set margin_key = margin_bottom|default('md') %}
+{% set align_key = text_align|default('left') %}
+
+<div class="section-heading section-heading--mb-{{ margin_key }} section-heading--align-{{ align_key }}">
+  {% if label is not empty %}
+    <span class="section-heading__label">{{ label }}</span>
+  {% endif %}
+
+  <{{ tag }} class="section-heading__title">{{ text }}</{{ tag }}>
+
+  {% if description is not empty %}
+    <div class="section-heading__description">{{ description }}</div>
+  {% endif %}
+</div>

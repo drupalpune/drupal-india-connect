@@ -1,0 +1,72 @@
+/*
+ * Theme-wide overrides of the event_horizon base theme.
+ *
+ * This file is registered in the `theme` asset group (see
+ * drupal_india_connect.libraries.yml), which Drupal weights after the
+ * base theme's `base` group. That ordering is what lets these plain
+ * declarations win the cascade without needing `!important`.
+ */
+
+html {
+  /*
+   * Full-bleed sections use `calc(50% - 50vw)` to break out of the
+   * `.container` wrapper. `vw` includes the scrollbar's own width, which
+   * makes the breakout overshoot the true viewport by that amount and
+   * forces a horizontal scrollbar. This clips that harmless overshoot.
+   */
+  overflow-x: hidden;
+}
+
+/*
+ * event_horizon's site-header ships with margin-bottom 1.25rem (mobile) /
+ * 3.5rem (desktop); this design sits flush against the hero instead.
+ */
+.site-header {
+  margin-bottom: 0;
+}
+
+/*
+ * Brand palette: Orange #F67012, Blue #0562D2, Dark Blue #02194A.
+ *
+ * The primary/secondary hue, saturation and lightness are NOT set here.
+ * event_horizon derives them from the theme settings
+ * (`base_primary_color` / `base_secondary_color`, editable at
+ * /admin/appearance/settings/drupal_india_connect) and writes them as an
+ * inline style attribute on <html> — which outranks any stylesheet rule,
+ * so overriding them in CSS would need `!important`. Setting them as
+ * theme settings instead keeps this file free of specificity hacks and
+ * keeps the colors editable through the UI.
+ *
+ * Everything below only adjusts variables event_horizon defines in its
+ * own stylesheets, so plain declarations are enough to win the cascade.
+ */
+:root {
+  /*
+   * event_horizon points --primary/--secondary at the -60/-50 steps;
+   * aim them at the step that matches the configured brand hex exactly.
+   */
+  --primary: var(--color--primary-50);
+  --secondary: var(--color--secondary-50);
+
+  /* Dark Blue — an explicit extra-dark step below the generated -30. */
+  --color--secondary-20: #02194a;
+
+  /* Light "sky" tints re-hued to match the new Blue instead of the old cyan-blue. */
+  --color--sky-50: hsl(213, 66%, 50%, 1);
+  --color--sky-80: hsl(213, 66%, 80%, 1);
+  --color--sky-86: hsl(213, 54%, 86%, 1);
+  --color--sky-90: hsl(213, 65%, 90%, 1);
+  --color--sky-94: hsl(213, 67%, 94%, 1);
+  --color--sky-97: hsl(213, 86%, 97%, 1);
+
+  /*
+   * Only the darkest neutral steps carry a hue tint (as event_horizon's
+   * own scale already did, just at hue 200); re-tint those toward Dark
+   * Blue's hue. Mid/light steps (30 and up) are already low-saturation
+   * enough to read as true neutral gray, so they're left alone.
+   */
+  --color--night-0: hsl(221, 0%, 0%, 1);
+  --color--night-5: hsl(221, 75%, 5%, 1);
+  --color--night-15: hsl(221, 29%, 13%, 1);
+  --color--night-20: hsl(221, 20%, 21%, 1);
+}
