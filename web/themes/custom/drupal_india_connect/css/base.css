@@ -26,7 +26,183 @@ html {
 }
 
 /*
- * Brand palette: Orange #F67012, Blue #0562D2, Dark Blue #02194A.
+ * event_horizon's site-header uses `justify-content: space-between` across
+ * its 4 direct children (logo, main menu, header CTA, mobile toggle), which
+ * spreads them edge-to-edge instead of grouping nav + CTA together. Switch
+ * to flex-start and push everything from the main menu onward to the right
+ * with an auto margin, so the logo stays left and the nav/CTA/toggle group
+ * stays flush right as a unit.
+ */
+.site-header {
+  justify-content: flex-start;
+}
+
+.site-header .menu--main {
+  margin-inline-start: auto;
+}
+
+/*
+ * The account menu block (My account / Log in / Log out) renders through
+ * Drupal core's generic menu.html.twig rather than event_horizon's
+ * menu--main.html.twig, so its <ul> gets no flex layout and the links
+ * stack vertically by default — lay them out in a row instead.
+ */
+.menu--account .menu {
+  display: flex;
+  align-items: center;
+}
+
+/*
+ * event_horizon sets the top-level nav links to font-weight 700 (Bold) in
+ * the wide-nav container query; General Sans is a variable font (200-700)
+ * so 500 (Medium) renders natively instead of being browser-synthesized.
+ */
+@container style(--wide-nav: true) {
+  .primary-nav__menu-link--level-1 {
+    font-weight: 500;
+  }
+
+  /*
+   * One hover treatment for every nav link — top-level, submenu, and
+   * "My account" (the only link event_horizon's account-menu block leaves
+   * as a plain nav link — Log in / Log out are styled as a button below)
+   * — instead of event_horizon's per-level styles (no hover on level-1, a
+   * solid `--secondary` fill on level-2).
+   */
+  .primary-nav__menu-link:hover,
+  .menu--account a[href="/user"]:hover {
+    color: var(--primary);
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+/*
+ * The account menu (My account / Log in / Log out) is a block separate
+ * from the main menu, so .site-header's 2rem inter-block gap lands
+ * between "Sponsors" and "My account" on top of the divider's own
+ * padding — measured at 25px versus the 8px flex `gap` that separates
+ * every other pair of level-1 links. Cancel the 2rem gap entirely and
+ * let the divider's own (smaller) padding be the only extra space, so
+ * the gap it creates is close to that 8px baseline instead of ~3x it.
+ */
+@container style(--wide-nav: true) {
+  .menu--account {
+    margin-inline-start: calc(-1 * var(--sp2));
+    padding-inline-start: 0.5rem;
+    border-inline-start: 1px solid var(--color--night-90);
+  }
+
+  .menu--account .menu {
+    gap: 0.5rem;
+  }
+
+  /* "My account" — style identically to the level-1 links beside it. */
+  .menu--account a[href='/user'] {
+    display: block;
+    padding: 1.25rem 1rem;
+    font-weight: 500;
+    color: var(--color--night-5);
+    text-decoration: none;
+  }
+
+  /*
+   * Log in (anonymous) / Log out (authenticated) — the account menu only
+   * ever renders one of the two at a time, so this always targets
+   * whichever Drupal's link-visibility rules make visible. Styled as a
+   * CTA button instead of a plain nav link, mirroring event_horizon's
+   * own `.button` component (see button.css) — that class can't be
+   * attached from this generic core menu template, so the same look is
+   * reproduced directly here.
+   */
+  .menu--account a[href='/user/login'],
+  .menu--account a[href^='/user/logout'] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--sp3);
+    padding: 1px var(--sp1-5);
+    color: var(--primary);
+    border: solid 2px var(--primary);
+    border-radius: 0.1875rem;
+    background-color: var(--color--white);
+    font-weight: 700;
+    line-height: 1.125rem;
+    text-decoration: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+
+    &:hover {
+      color: var(--color--white);
+      background-color: var(--primary);
+      text-decoration: none;
+    }
+  }
+}
+
+/*
+ * event_horizon's desktop submenu is a flush black rectangle with sharp
+ * corners, no elevation, and items packed edge-to-edge. Give it the same
+ * floating-panel treatment as the site's cards (rounded corners, soft
+ * shadow — see event-overview-card.css) and turn the item highlight into
+ * an inset rounded pill instead of a full-bleed square block.
+ */
+@container style(--wide-nav: true) {
+  .primary-nav__menu--level-2 {
+    /*
+     * No margin-top here on purpose: event_horizon's hover-to-open relies
+     * on the pointer staying over the level-1 <li> (or this descendant
+     * panel) continuously. A gap between them is empty space the pointer
+     * has to cross, which drops :hover and closes the menu before it's
+     * reached. Keep the panel flush (top: 100%, inherited) instead.
+     */
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    background: var(--color--night-90);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+    opacity: 0;
+    transform: translateY(-0.25rem);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease,
+      visibility 0s linear 0.15s;
+
+    &.is-active-menu-parent,
+    html:not(.js) .primary-nav__menu-item--level-1:focus-within &,
+    html:not(.js) .primary-nav__menu-item--level-1:hover & {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+    }
+  }
+
+  .primary-nav__menu-item--level-2 {
+    margin-bottom: 0;
+  }
+
+  .primary-nav__menu-link--level-2 {
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.375rem;
+    color: var(--color--night-5);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+}
+
+/*
+ * Brand palette: Blue #0562D2 (primary), Orange #F67012 (secondary),
+ * Dark Blue #02194A (an extra-dark primary step — see below).
+ *
+ * Blue and Orange were swapped from event_horizon's original
+ * primary/secondary assignment; Dark Blue moved with Blue since it's a
+ * darker shade of the same brand color, not an independent one.
  *
  * The primary/secondary hue, saturation and lightness are NOT set here.
  * event_horizon derives them from the theme settings
@@ -49,7 +225,7 @@ html {
   --secondary: var(--color--secondary-50);
 
   /* Dark Blue — an explicit extra-dark step below the generated -30. */
-  --color--secondary-20: #02194a;
+  --color--primary-20: #02194a;
 
   /* Light "sky" tints re-hued to match the new Blue instead of the old cyan-blue. */
   --color--sky-50: hsl(213, 66%, 50%, 1);
