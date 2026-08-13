@@ -1,0 +1,36 @@
+/**
+ * DrupalAsia Connect overrides on top of Event Horizon.
+ *
+ * The primary/secondary hues are set in theme settings
+ * (/admin/appearance/settings/drupal_india_connect) so every derived
+ * --color--primary-* / --color--secondary-* token follows the logo.
+ * These are the values matching the event logo:
+ *   primary   #0462D1  (logo blue)
+ *   secondary #F66E0E  (logo orange)
+ *   navy      #0C2152  (--color--primary-20, see base.css)
+ *
+ * Only put things here that theme settings cannot express.
+ */
+:root {
+  /* Tint of the logo blue, used for alternating band sections. */
+  --dac-sky-tint: #eaf4fe;
+}
+
+/* Dark bands (CFP, news, footer) use the logo navy rather than pure black. */
+.eh-section--dark {
+  color: var(--color--white);
+  background-color: var(--color--primary-20);
+}
+
+/* Light bands (why attend, venue) use the blue tint. */
+.eh-section--tint {
+  background-color: var(--dac-sky-tint);
+  border-top: 1px solid color-mix(in srgb, var(--color--primary-50) 12%, white);
+  border-bottom: 1px solid color-mix(in srgb, var(--color--primary-50) 12%, white);
+}
+
+/* The logo is wide; give it room in the header without stretching the bar. */
+.site-branding__logo img {
+  height: 3.25rem;
+  width: auto;
+}

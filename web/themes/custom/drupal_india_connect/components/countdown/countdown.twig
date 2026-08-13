@@ -1,0 +1,37 @@
+{#
+  Countdown to the event start.
+
+  The markup renders complete without JS: the digits are placeholders until
+  countdown.js takes over, and the human readable date is always present.
+#}
+{% set classes = [
+  'eh-countdown',
+  'eh-countdown--' ~ (variant|default('dark')),
+]|filter(v => v) %}
+
+<div{{ attributes.addClass(classes) }} data-eh-countdown data-target="{{ target }}" data-finished-text="{{ finished_text|default('We are underway.'|t) }}">
+  <div class="eh-countdown__intro">
+    {% if eyebrow %}
+      <span class="eh-countdown__eyebrow">{{ eyebrow }}</span>
+    {% endif %}
+    {% if label %}
+      <span class="eh-countdown__label">{{ label }}</span>
+    {% endif %}
+  </div>
+
+  <div class="eh-countdown__units" role="timer" aria-live="off">
+    {% for unit in [
+      { key: 'days', label: 'Days'|t },
+      { key: 'hours', label: 'Hours'|t },
+      { key: 'minutes', label: 'Minutes'|t },
+      { key: 'seconds', label: 'Seconds'|t },
+    ] %}
+      <div class="eh-countdown__unit eh-countdown__unit--{{ unit.key }}">
+        <span class="eh-countdown__value" data-eh-countdown-unit="{{ unit.key }}">--</span>
+        <span class="eh-countdown__unit-label">{{ unit.label }}</span>
+      </div>
+    {% endfor %}
+  </div>
+
+  <p class="eh-countdown__finished" hidden="hidden" data-eh-countdown-finished></p>
+</div>

@@ -1,0 +1,19 @@
+{% set classes = [
+  'eh-announcement-bar',
+  'eh-announcement-bar--' ~ (variant|default('secondary')),
+]|filter(v => v) %}
+
+{% if message %}
+  <div{{ attributes.addClass(classes) }} role="region" aria-label="{{ 'Event announcement'|t }}">
+    <div class="eh-announcement-bar__inner container">
+      <span class="eh-announcement-bar__message">{{ message }}</span>
+      {% if detail %}
+        <span class="eh-announcement-bar__separator" aria-hidden="true">&bull;</span>
+        <span class="eh-announcement-bar__detail">{{ detail }}</span>
+      {% endif %}
+      {% if link_url and link_text %}
+        <a class="eh-announcement-bar__link" href="{{ link_url }}">{{ link_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

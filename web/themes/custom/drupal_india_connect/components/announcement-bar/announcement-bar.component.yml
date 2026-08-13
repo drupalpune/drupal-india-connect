@@ -1,0 +1,40 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Announcement bar'
+description: A single line of site-wide announcement text, optionally with a link. Intended for the header region.
+group: Layout
+props:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      title: Message
+      type: string
+      examples:
+        - 'Save the date — 18–20 January 2027'
+    detail:
+      title: Secondary detail
+      description: Shown after the message in a lighter weight.
+      type: string
+      examples:
+        - 'Host city and venue announcement coming soon'
+    link_url:
+      title: Link URL
+      type: string
+      examples:
+        - '/news/save-the-date'
+    link_text:
+      title: Link text
+      type: string
+      examples:
+        - 'Read the announcement'
+    variant:
+      title: Colour treatment
+      type: string
+      enum:
+        - secondary
+        - primary
+        - dark
+      default: secondary
+      examples:
+        - secondary

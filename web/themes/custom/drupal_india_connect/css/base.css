@@ -197,8 +197,10 @@ html {
 }
 
 /*
- * Brand palette: Blue #0562D2 (primary), Orange #F67012 (secondary),
- * Dark Blue #02194A (an extra-dark primary step — see below).
+ * Brand palette: Blue #0462D1 (primary), Orange #F66E0E (secondary),
+ * Dark Blue #0C2152 (an extra-dark primary step — see below). These are the
+ * exact hues from the DrupalAsia Connect logo (logo.svg); base_primary_color
+ * / base_secondary_color in theme settings must match the first two.
  *
  * Blue and Orange were swapped from event_horizon's original
  * primary/secondary assignment; Dark Blue moved with Blue since it's a
@@ -225,7 +227,7 @@ html {
   --secondary: var(--color--secondary-50);
 
   /* Dark Blue — an explicit extra-dark step below the generated -30. */
-  --color--primary-20: #02194a;
+  --color--primary-20: #0c2152;
 
   /* Light "sky" tints re-hued to match the new Blue instead of the old cyan-blue. */
   --color--sky-50: hsl(213, 66%, 50%, 1);

@@ -1,0 +1,48 @@
+.eh-announcement-bar {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+}
+
+.eh-announcement-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--sp0-75);
+  text-align: center;
+  gap: var(--sp0-75);
+}
+
+.eh-announcement-bar__message {
+  font-weight: 600;
+}
+
+.eh-announcement-bar__detail {
+  font-weight: 500;
+}
+
+.eh-announcement-bar__separator {
+  opacity: 0.6;
+}
+
+.eh-announcement-bar__link {
+  font-weight: 700;
+  text-decoration: underline;
+  color: inherit;
+}
+
+.eh-announcement-bar--secondary {
+  color: var(--color--white);
+  background-color: var(--color--secondary-50);
+}
+
+.eh-announcement-bar--primary {
+  color: var(--color--white);
+  background-color: var(--color--primary-50);
+}
+
+.eh-announcement-bar--dark {
+  color: var(--color--white);
+  background-color: var(--neutral-dark);
+}
