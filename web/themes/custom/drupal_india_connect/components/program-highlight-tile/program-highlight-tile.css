@@ -1,0 +1,49 @@
+/*
+ * --card-accent is set by the ancestor Program Detail Row and cascades
+ * down through the DOM regardless of the SDC boundary in between — no
+ * prop needs to be threaded through for this tile to pick up its parent
+ * row's color. Falls back to --primary so the tile still looks
+ * intentional if ever rendered outside a Program Detail Row.
+ */
+.program-highlight-tile {
+  /*
+   * Mobile-first: full width, one per line — a 12rem min-width floor
+   * would overflow narrow phones once the parent row's marker/line
+   * column and card padding are subtracted from the viewport. Only
+   * switch to the side-by-side wrapping layout once there's room.
+   */
+  flex: 1 1 100%;
+  min-width: 0;
+  padding: var(--sp0-75) var(--sp1);
+  border-radius: 0.5rem;
+  background-color: color-mix(in srgb, var(--card-accent, var(--primary)) 12%, transparent);
+
+  @container style(--sm: true) {
+    flex: 1 1 12rem;
+    min-width: 12rem;
+  }
+}
+
+.program-highlight-tile__label {
+  display: block;
+  margin-bottom: var(--sp0-25);
+  color: var(--card-accent, var(--primary));
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.program-highlight-tile__description {
+  color: var(--color--night-30);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.program-highlight-tile__description p {
+  margin: 0;
+}
+
+.program-highlight-tile__description p + p {
+  margin-top: var(--sp0-5);
+}
