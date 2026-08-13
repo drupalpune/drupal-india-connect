@@ -8,12 +8,8 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.event-overview-card
     - canvas.component.sdc.drupal_india_connect.grid
     - canvas.component.sdc.drupal_india_connect.hero-banner
-    - canvas.component.sdc.drupal_india_connect.hero-banner-2
-    - canvas.component.sdc.drupal_india_connect.key-date-card
-    - canvas.component.sdc.drupal_india_connect.people-card
     - canvas.component.sdc.drupal_india_connect.section-heading
     - canvas.component.sdc.drupal_india_connect.spacer
-    - canvas.component.sdc.drupal_india_connect.text-media
     - canvas.component.sdc.drupal_india_connect.venue-location
 name: 'Drupal Connect'
 configEntityTypeId: component
@@ -24,10 +20,6 @@ items:
   - sdc.drupal_india_connect.event-overview-card
   - sdc.drupal_india_connect.grid
   - sdc.drupal_india_connect.hero-banner
-  - sdc.drupal_india_connect.hero-banner-2
-  - sdc.drupal_india_connect.key-date-card
-  - sdc.drupal_india_connect.people-card
   - sdc.drupal_india_connect.section-heading
   - sdc.drupal_india_connect.spacer
-  - sdc.drupal_india_connect.text-media
   - sdc.drupal_india_connect.venue-location
