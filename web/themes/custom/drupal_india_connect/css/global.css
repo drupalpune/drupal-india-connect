@@ -33,3 +33,43 @@
   height: 3.25rem;
   width: auto;
 }
+
+/*
+ * event_platform_header_cta ("Get updates") ships styled for
+ * event_horizon's older full-bleed site-header, including a `::before`
+ * panel that bleeds a navy block across the viewport corner. Our header is
+ * a plain flex row, so restyle it as a compact filled button instead —
+ * matching the design's other primary buttons (0.75rem 1.375rem padding,
+ * 0.375rem radius, weight 700).
+ */
+.site-header__register {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: auto !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  font-size: 1rem !important;
+}
+
+.site-header__register::before {
+  content: none !important;
+}
+
+.site-header__register-link {
+  padding: 0.75rem 1.375rem !important;
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-50);
+  color: var(--color--white) !important;
+  font-weight: 700;
+  transition: background-color 0.2s ease;
+}
+
+.site-header__register-link:hover {
+  background-color: var(--color--primary-60);
+  color: var(--color--white) !important;
+}
+
+.site-header__register-link svg {
+  display: none;
+}
