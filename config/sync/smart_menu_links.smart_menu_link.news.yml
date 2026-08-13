@@ -10,9 +10,9 @@ link_text: News
 link_suffix: news
 menu_name: main
 parent: ''
-weight: 5
+weight: -44
 expanded: false
-enabled: true
+enabled: false
 target_entity_type: taxonomy_term
 target_bundle: event
 moderation_states: {  }

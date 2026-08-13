@@ -1,9 +1,8 @@
-uuid: 0c5644f1-e4d3-4705-8ac8-e673fb01ee4d
+uuid: 27f8303c-2951-4814-9159-124256694955
 langcode: en
 status: true
 dependencies:
   config:
-    - canvas.component.sdc.drupal_india_connect.icon
     - canvas.component.sdc.event_horizon.badge
     - canvas.component.sdc.event_horizon.blockquote
     - canvas.component.sdc.event_horizon.button
@@ -18,7 +17,6 @@ name: Base
 configEntityTypeId: component
 weight: 0
 items:
-  - sdc.drupal_india_connect.icon
   - sdc.event_horizon.badge
   - sdc.event_horizon.blockquote
   - sdc.event_horizon.button

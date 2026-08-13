@@ -1,0 +1,32 @@
+uuid: 5a143b9b-0cfd-4625-8bd9-b71f5ec99a33
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 6c812dd374d50c08
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        padding:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: md
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Divider
+id: sdc.drupal_india_connect.divider
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:divider'

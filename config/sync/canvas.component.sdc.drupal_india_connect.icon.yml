@@ -1,0 +1,73 @@
+uuid: b142d3aa-bc43-45de-b4fa-c345103f1ea7
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 5710d6cab07992c1
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        icon:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: arrow-right
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        icon_size:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: small
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  514b6b248186dcb2:
+    settings:
+      prop_field_definitions:
+        icon:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: rocket
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        icon_size:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: small
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Icon (Phosphor)'
+id: sdc.drupal_india_connect.icon
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:icon'
