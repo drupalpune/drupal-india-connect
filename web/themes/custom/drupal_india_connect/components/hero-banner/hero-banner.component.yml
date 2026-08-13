@@ -1,77 +1,90 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
-name: Hero Banner
-description: 'A full-height hero banner with a title, date/location meta row, description, and two call-to-action buttons. Comes in four visual variants, each available in a light color scheme.'
+name: 'Hero Banner'
+description: 'A light, editorial-style hero with a small kicker, a three-line two-tone title, a date/location row, two CTA buttons, and a square media panel on the side.'
 group: Drupal Connect
 status: stable
 props:
   type: object
   properties:
-    variant:
+    kicker:
       type: string
-      title: Variant
-      description: 'Visual style of the hero banner.'
-      enum:
-        - glow
-        - aurora
-        - split
-        - minimal
-      meta:enum:
-        glow: 'Glow — centered, single radial glow (original)'
-        aurora: 'Aurora — centered, layered color-wash glow'
-        split: 'Split — two-column with a decorative panel'
-        minimal: 'Minimal — centered, understated (always light)'
-      default: glow
+      title: 'Kicker label'
+      description: 'Small uppercase label shown above the title, e.g. "The first pan-Asia Drupal event".'
       examples:
-        - glow
-    light:
-      type: boolean
-      title: 'Light color scheme'
-      description: 'Switch the glow, aurora, and split variants to a light background. Has no effect on the minimal variant, which is always light.'
-      default: true
-      examples:
-        - true
-    title:
+        - 'The first pan-Asia Drupal event'
+    title_top:
       type: string
-      title: Title
+      title: 'Title — line 1'
+      description: 'First line of the title, shown in the dark color.'
       examples:
-        - 'One Last Time.'
-    date:
+        - DrupalAsia
+    title_highlight:
       type: string
-      title: Date
+      title: 'Title — highlighted line'
+      description: 'Second line of the title, shown in the accent color.'
       examples:
-        - 'Oct 29–31, 2026'
-    location:
+        - Connect
+    title_bottom:
       type: string
-      title: Location
+      title: 'Title — line 3'
+      description: 'Third line of the title, shown in the dark color.'
       examples:
-        - 'Goa, India'
+        - '2027'
     description:
       type: string
       title: Description
-      description: 'Supporting text shown beneath the date and location.'
+      description: 'Supporting text shown beneath the title.'
       contentMediaType: text/html
       x-formatting-context: block
       examples:
-        - '<p>The future of React, Web, and Developer Experience on the Indian Coast.</p>'
+        - '<p>Three days of sessions, workshops, contribution sprints and hallway conversations — bringing together the makers, agencies and organisations building Drupal across Asia.</p>'
+    date:
+      type: string
+      title: Date
+      description: 'Shown under a "Dates" label.'
+      examples:
+        - '18–20 January 2027'
+    location:
+      type: string
+      title: Location
+      description: 'Shown under a "Location" label.'
+      examples:
+        - 'Asia — city to be announced'
     cta_primary_label:
       type: string
       title: 'Primary button label'
       examples:
-        - 'Get Your Tickets'
+        - 'Get event updates'
     cta_primary_url:
       type: string
       title: 'Primary button link'
       format: uri-reference
       examples:
-        - /tickets
+        - /updates
     cta_secondary_label:
       type: string
       title: 'Secondary button label'
       examples:
-        - 'Watch 2025 Talks'
+        - 'Plan to speak'
     cta_secondary_url:
       type: string
       title: 'Secondary button link'
       format: uri-reference
       examples:
-        - /talks
+        - /call-for-sessions
+    video_url:
+      type: string
+      title: 'Video embed URL'
+      description: 'Optional embeddable video URL (e.g. a YouTube/Vimeo embed link) shown in the square media panel. Takes priority over the image below when both are set.'
+      format: uri-reference
+    image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: 'Media image'
+      description: 'Used only if no video embed URL is set above.'
+      type: object
+    media_caption:
+      type: string
+      title: 'Media caption'
+      description: 'Optional small caption tag shown over the bottom-left corner of the media panel, e.g. "Event teaser video".'
+      examples:
+        - 'Event teaser video'

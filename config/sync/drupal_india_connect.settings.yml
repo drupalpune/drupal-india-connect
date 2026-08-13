@@ -1,5 +1,5 @@
-base_primary_color: '#1B4F91'
-base_secondary_color: '#1E9E93'
+base_primary_color: '#0562D2'
+base_secondary_color: '#F67012'
 graphic:
   use_default: true
 texture:
