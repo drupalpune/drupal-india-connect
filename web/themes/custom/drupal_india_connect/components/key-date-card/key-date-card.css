@@ -1,0 +1,95 @@
+.key-date-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp0-5);
+  padding: var(--sp1-5);
+  border: solid 1px var(--color--night-90);
+  border-left-width: 4px;
+  border-radius: 0.75rem;
+  background-color: var(--color--white);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.key-date-card__status {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*
+ * Status colors are conventional (amber/green/gray), independent of the
+ * brand palette — they signal state, not brand, so they shouldn't compete
+ * visually with primary/secondary-colored buttons and accents elsewhere.
+ * The left border reuses the same hue at a stronger saturation/lightness
+ * than the pill background, so it reads as an accent rather than a repeat.
+ */
+.key-date-card--coming_soon {
+  border-left-color: hsl(38, 92%, 50%);
+}
+
+.key-date-card--coming_soon .key-date-card__status {
+  color: hsl(32, 81%, 29%);
+  background-color: hsl(38, 92%, 90%);
+}
+
+.key-date-card--open {
+  border-left-color: hsl(142, 76%, 36%);
+}
+
+.key-date-card--open .key-date-card__status {
+  color: hsl(142, 72%, 25%);
+  background-color: hsl(142, 76%, 90%);
+}
+
+.key-date-card--closed {
+  border-left-color: var(--color--night-50);
+}
+
+.key-date-card--closed .key-date-card__status {
+  color: var(--color--night-50);
+  background-color: var(--color--night-90);
+}
+
+.key-date-card__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.125rem;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.key-date-card__dates {
+  margin: 0;
+  color: var(--color--night-50);
+  font-size: 0.875rem;
+}
+
+.key-date-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-25);
+  margin-top: var(--sp0-25);
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.key-date-card__cta:hover {
+  text-decoration: underline;
+}
+
+.key-date-card__cta:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+}

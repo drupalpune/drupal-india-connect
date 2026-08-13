@@ -1,0 +1,47 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Key Date Card'
+description: 'A single event milestone: title, a color-coded status pill, a date range, and an optional CTA link. Place several inside a Grid to build a key-dates section.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: Title
+      examples:
+        - 'Call for Papers'
+    status:
+      type: string
+      title: Status
+      description: 'Drives the pill''s text and color.'
+      enum:
+        - coming_soon
+        - open
+        - closed
+      meta:enum:
+        coming_soon: 'Coming Soon'
+        open: Open
+        closed: Closed
+      default: coming_soon
+      examples:
+        - coming_soon
+    dates:
+      type: string
+      title: Dates
+      description: 'Free text, e.g. "4 August to 20 October 2026".'
+      examples:
+        - '4 August to 20 October 2026'
+    cta_label:
+      type: string
+      title: 'Button label'
+      examples:
+        - 'Submit a Proposal'
+    cta_url:
+      type: string
+      title: 'Button link'
+      format: uri-reference
+      examples:
+        - /call-for-papers

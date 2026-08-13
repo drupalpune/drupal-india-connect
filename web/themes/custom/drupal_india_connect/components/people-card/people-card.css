@@ -1,0 +1,123 @@
+.people-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp0-75);
+  padding: var(--sp2) var(--sp1-5);
+  text-align: center;
+  border: solid 2px transparent;
+  border-radius: 0.75rem;
+  /*
+   * Gradient border via the two-background trick: an opaque white fill
+   * clipped to the padding box, and the gradient clipped to the border
+   * box underneath it — the border itself becomes the only place the
+   * gradient shows through. Each stop is mixed with white so the border
+   * reads as a faint tint rather than the full-strength brand colors.
+   */
+  background:
+    linear-gradient(var(--color--white), var(--color--white)) padding-box,
+    linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--primary) 45%, var(--color--white)),
+        color-mix(in srgb, var(--secondary) 45%, var(--color--white))
+      )
+      border-box;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.people-card__avatar {
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color--sky-94);
+}
+
+.people-card__avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.people-card__avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.people-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp0-25);
+}
+
+.people-card__name {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.125rem;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.people-card__designation {
+  margin: 0;
+  color: var(--color--night-50);
+  font-size: 0.875rem;
+}
+
+.people-card__links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  margin-top: var(--sp0-5);
+}
+
+.people-card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color--white);
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.people-card__link-icon {
+  width: 0.9rem;
+  height: 1.14rem;
+}
+
+.people-card__link:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Drupal's and LinkedIn's official brand blues — not theme tokens. */
+.people-card__link--drupal {
+  background-color: #0678be;
+}
+
+.people-card__link--drupal:hover {
+  background-color: color-mix(in lab, #0678be 80%, black 20%);
+}
+
+.people-card__link--linkedin {
+  background-color: #0a66c2;
+}
+
+.people-card__link--linkedin:hover {
+  background-color: color-mix(in lab, #0a66c2 80%, black 20%);
+}

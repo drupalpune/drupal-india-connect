@@ -1,0 +1,25 @@
+{% set layout_key = layout|default('media-right') %}
+
+<div class="text-media text-media--{{ layout_key }}">
+  <div class="text-media__content">
+    {% if heading is not empty %}
+      <h2 class="text-media__heading">{{ heading }}</h2>
+    {% endif %}
+
+    {% if body is not empty %}
+      <div class="text-media__body">{{ body }}</div>
+    {% endif %}
+  </div>
+
+  {% if media.src is not empty %}
+    <div class="text-media__media">
+      {% include 'canvas:image' ignore missing with {
+        src: media.src,
+        alt: media.alt,
+        class: 'text-media__image',
+        width: media.width,
+        height: media.height,
+      } only %}
+    </div>
+  {% endif %}
+</div>

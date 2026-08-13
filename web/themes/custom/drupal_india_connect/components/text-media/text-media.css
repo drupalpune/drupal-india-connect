@@ -1,0 +1,124 @@
+.text-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp2);
+}
+
+@container style(--md: true) {
+  .text-media {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--sp3);
+  }
+
+  /*
+   * DOM order is always content-then-media; row-reverse flips which side
+   * media visually lands on without changing reading/tab order.
+   */
+  .text-media--media-left {
+    flex-direction: row-reverse;
+  }
+}
+
+.text-media__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp0-75);
+}
+
+.text-media__heading {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.5rem;
+
+  @container style(--md: true) {
+    font-size: 1.875rem;
+  }
+}
+
+/*
+ * This field is edited through Canvas's WYSIWYG editor using the
+ * canvas_html_block text format, which allows: strong, em, u, a, p
+ * (with text-align-* classes), br, ul, ol, li — nothing else can appear
+ * here, but all of it needs explicit styling or it falls back to
+ * unstyled browser defaults (unstyled list markers/indent, default blue
+ * links, no paragraph rhythm beyond the first tag).
+ */
+.text-media__body {
+  color: var(--color--night-30);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.text-media__body p,
+.text-media__body ul,
+.text-media__body ol {
+  margin: 0;
+}
+
+.text-media__body > * + * {
+  margin-top: var(--sp0-75);
+}
+
+.text-media__body .text-align-left {
+  text-align: left;
+}
+
+.text-media__body .text-align-center {
+  text-align: center;
+}
+
+.text-media__body .text-align-right {
+  text-align: right;
+}
+
+.text-media__body .text-align-justify {
+  text-align: justify;
+}
+
+.text-media__body ul,
+.text-media__body ol {
+  padding-left: 1.25rem;
+}
+
+.text-media__body li + li {
+  margin-top: var(--sp0-25);
+}
+
+.text-media__body a {
+  color: var(--secondary);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+.text-media__body a:hover {
+  text-decoration-color: currentColor;
+}
+
+.text-media__body a:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.text-media__media {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.text-media__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+
+  @container style(--md: true) {
+    aspect-ratio: unset;
+  }
+}

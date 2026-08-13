@@ -1,0 +1,25 @@
+{% set status_key = status|default('coming_soon') %}
+{% set status_labels = {
+  coming_soon: 'Coming Soon'|t,
+  open: 'Open'|t,
+  closed: 'Closed'|t,
+} %}
+
+<div class="key-date-card key-date-card--{{ status_key }}">
+  <span class="key-date-card__status">{{ status_labels[status_key] }}</span>
+
+  {% if title is not empty %}
+    <h3 class="key-date-card__title">{{ title }}</h3>
+  {% endif %}
+
+  {% if dates is not empty %}
+    <p class="key-date-card__dates">{{ dates }}</p>
+  {% endif %}
+
+  {% if cta_label is not empty %}
+    <a href="{{ cta_url|default('#') }}" class="key-date-card__cta">
+      {{ cta_label }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+    </a>
+  {% endif %}
+</div>
