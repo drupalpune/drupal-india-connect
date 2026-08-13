@@ -12,22 +12,21 @@
  * Only put things here that theme settings cannot express.
  */
 :root {
-  /* Tint of the logo blue, used for alternating band sections. */
-  --dac-sky-tint: #eaf4fe;
+  /*
+   * event_horizon's dark bands (section's `background_color: black` variant,
+   * site-header, site-footer, overlays, featured-speaker, site-stats, nav
+   * submenus) all key off --neutral-dark, which defaults to pure black.
+   * Point it at the logo navy instead, everywhere it's used.
+   */
+  --neutral-dark: var(--color--primary-20);
 }
 
-/* Dark bands (CFP, news, footer) use the logo navy rather than pure black. */
-.eh-section--dark {
-  color: var(--color--white);
-  background-color: var(--color--primary-20);
-}
-
-/* Light bands (why attend, venue) use the blue tint. */
-.eh-section--tint {
-  background-color: var(--dac-sky-tint);
-  border-top: 1px solid color-mix(in srgb, var(--color--primary-50) 12%, white);
-  border-bottom: 1px solid color-mix(in srgb, var(--color--primary-50) 12%, white);
-}
+/*
+ * Light-tint bands (Why attend, Venue) use the section component's own
+ * `background_color: accent` variant, which already resolves to
+ * --color--sky-94 — re-hued to the logo blue in base.css, no override
+ * needed here.
+ */
 
 /* The logo is wide; give it room in the header without stretching the bar. */
 .site-branding__logo img {
