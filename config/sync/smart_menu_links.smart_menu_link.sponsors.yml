@@ -10,9 +10,9 @@ link_text: Sponsors
 link_suffix: sponsors
 menu_name: main
 parent: ''
-weight: 0
+weight: -45
 expanded: false
-enabled: true
+enabled: false
 target_entity_type: taxonomy_term
 target_bundle: event
 moderation_states: {  }

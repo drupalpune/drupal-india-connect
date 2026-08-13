@@ -10,9 +10,9 @@ link_text: Schedule
 link_suffix: schedule
 menu_name: main
 parent: ''
-weight: 0
+weight: -47
 expanded: false
-enabled: true
+enabled: false
 target_entity_type: taxonomy_term
 target_bundle: event
 moderation_states:

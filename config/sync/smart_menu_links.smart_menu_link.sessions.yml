@@ -10,9 +10,9 @@ link_text: Sessions
 link_suffix: sessions
 menu_name: main
 parent: ''
-weight: 0
+weight: -46
 expanded: false
-enabled: true
+enabled: false
 target_entity_type: taxonomy_term
 target_bundle: event
 moderation_states:

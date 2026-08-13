@@ -1,0 +1,56 @@
+uuid: 47572f08-6f6b-41c7-a838-084b3138c694
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+  theme:
+    - drupal_india_connect
+active_version: 5bb4ef5da78a7884
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'React India 2026 starts in'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        target_datetime:
+          required: true
+          field_type: datetime
+          field_storage_settings:
+            datetime_type: datetime
+          field_instance_settings: {  }
+          field_widget: datetime_default
+          default_value:
+            -
+              value: '2026-10-29T09:00:00+05:30'
+          expression: ℹ︎datetime␟value
+          derived_schema_metadata: {  }
+        expired_message:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: "We're live!"
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Countdown Timer'
+id: sdc.drupal_india_connect.countdown-timer
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:countdown-timer'
