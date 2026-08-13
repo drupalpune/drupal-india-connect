@@ -1,0 +1,80 @@
+uuid: fb0400c3-29e0-4ef6-9913-321741b177e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 8bfa164a6c5247a9
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        target:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '2027-01-18T09:00:00+05:30'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        eyebrow:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Countdown to day one'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Monday 18 January 2027, 09:00'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        finished_text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'We are underway.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        variant:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: dark
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Countdown
+id: sdc.drupal_india_connect.countdown
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:countdown'
