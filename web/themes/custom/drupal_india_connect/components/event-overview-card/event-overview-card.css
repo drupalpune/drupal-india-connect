@@ -1,0 +1,117 @@
+.event-overview-card {
+  --card-accent: var(--primary);
+  --card-accent-text: var(--color--white);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp1);
+  padding: var(--sp1-5);
+  border: solid 2px transparent;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(var(--color--white), var(--color--white)) padding-box,
+    linear-gradient(
+        135deg,
+        var(--card-accent),
+        color-mix(in srgb, var(--card-accent) 20%, transparent)
+      )
+      border-box;
+  box-shadow:
+    0 4px 6px -1px rgb(0, 0, 0, 0.1),
+    0 2px 4px -2px rgb(0, 0, 0, 0.1);
+
+  @container style(--md: true) {
+    padding: var(--sp2);
+  }
+}
+
+/*
+ * Combo 2 (warm / cool / neutral): AI = Blue, Conference = Orange,
+ * Contribution = neutral charcoal. Keeping one warm, one cool, and one
+ * neutral avoids two cards both reading as "blue".
+ */
+.event-overview-card--ai {
+  --card-accent: var(--secondary);
+  --card-accent-text: var(--color--white);
+}
+
+.event-overview-card--conference {
+  --card-accent: var(--primary);
+  --card-accent-text: var(--color--white);
+}
+
+.event-overview-card--contribution {
+  --card-accent: var(--color--night-30);
+  --card-accent-text: var(--color--white);
+}
+
+.event-overview-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.75rem;
+  color: var(--card-accent);
+  border-radius: 0.5rem;
+  background-color: color-mix(in srgb, var(--card-accent) 12%, transparent);
+}
+
+
+.event-overview-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+}
+
+.event-overview-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp0-75);
+}
+
+.event-overview-card__day {
+  display: inline-flex;
+  padding: 0.125rem 0.625rem;
+  color: var(--card-accent-text);
+  border-radius: 999px;
+  background-color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.event-overview-card__date {
+  color: var(--color--night-50);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.event-overview-card__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+
+  @container style(--md: true) {
+    font-size: 1.5rem;
+  }
+}
+
+.event-overview-card__description {
+  margin: 0;
+  color: var(--color--night-30);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.event-overview-card__description p {
+  margin: 0;
+}
+
+.event-overview-card__description p + p {
+  margin-top: var(--sp0-5);
+}

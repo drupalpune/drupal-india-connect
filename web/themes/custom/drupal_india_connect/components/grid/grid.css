@@ -1,0 +1,47 @@
+.component-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap-px, 1.5rem);
+}
+
+/*
+ * Column count ramps up gradually with viewport width instead of jumping
+ * straight from 1 to the full configured count at a single breakpoint —
+ * a 3+ column grid at ~480-700px would otherwise squeeze each item into
+ * ~150px, too narrow for icon + title + description content.
+ */
+@container style(--sm: true) {
+  .component-grid--columns-2,
+  .component-grid--columns-3,
+  .component-grid--columns-4,
+  .component-grid--columns-5,
+  .component-grid--columns-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container style(--md: true) {
+  .component-grid--columns-3,
+  .component-grid--columns-4,
+  .component-grid--columns-5,
+  .component-grid--columns-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container style(--lg: true) {
+  .component-grid--columns-4,
+  .component-grid--columns-5,
+  .component-grid--columns-6 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@container style(--grid-max: true) {
+  .component-grid--columns-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .component-grid--columns-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}

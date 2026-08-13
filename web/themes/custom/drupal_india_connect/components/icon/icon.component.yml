@@ -1,0 +1,34 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Icon (Phosphor)'
+description: 'Renders a Phosphor Icon (regular weight, MIT licensed) by name. Only the icons actually used by this theme are vendored in icons/phosphor/regular/ (kept deliberately small, not the full 1,512-icon set) — no external requests. To use a new icon, download its SVG from phosphoricons.com (regular weight) into that folder first, then reference its name here.'
+group: Base
+status: stable
+props:
+  type: object
+  required:
+    - icon
+  properties:
+    icon:
+      type: string
+      title: 'Icon name'
+      description: 'Any Phosphor icon name in kebab-case, e.g. "arrow-right", "calendar", "brain" — must already exist as an SVG file in icons/phosphor/regular/. Unknown names render nothing rather than erroring.'
+      examples:
+        - 'arrow-right'
+    icon_size:
+      type: string
+      title: 'Icon size'
+      enum:
+        - extra-small
+        - small
+        - medium
+        - large
+        - extra-large
+      meta:enum:
+        extra-small: 'Extra small — 20px'
+        small: 'Small — 24px'
+        medium: 'Medium — 32px'
+        large: 'Large — 48px'
+        extra-large: 'Extra large — 64px'
+      default: small
+      examples:
+        - small

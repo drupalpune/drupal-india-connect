@@ -1,0 +1,49 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Event Overview Card
+description: 'A single day of the event: day number, date, title, description, and a themed icon.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - day_number
+    - title
+    - icon
+  properties:
+    day_number:
+      type: number
+      title: 'Day number'
+      examples:
+        - 1
+    date:
+      type: string
+      title: Date
+      examples:
+        - 'Date to be announced'
+    title:
+      type: string
+      title: 'Day title'
+      examples:
+        - 'AI Summit'
+    description:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>A focused day of talks, discussions, and activities exploring AI and its impact on the Drupal ecosystem.</p>'
+    icon:
+      type: string
+      title: Icon
+      description: 'The visual theme for this day.'
+      enum:
+        - ai
+        - conference
+        - contribution
+      meta:enum:
+        ai: 'AI / Technology'
+        conference: 'Conference / Talks'
+        contribution: 'Community / Collaboration'
+      default: ai
+      examples:
+        - ai

@@ -1,0 +1,31 @@
+{% set icon_key = icon|default('ai') %}
+
+{# Maps this component's semantic icon dropdown to a real Phosphor icon name. #}
+{% set icon_names = {
+  ai: 'brain',
+  conference: 'microphone',
+  contribution: 'users-three',
+} %}
+
+<div class="event-overview-card event-overview-card--{{ icon_key }}">
+  <div class="event-overview-card__icon">
+    {% include 'drupal_india_connect:icon' ignore missing with { icon: icon_names[icon_key], icon_size: 'medium' } only %}
+  </div>
+
+  <div class="event-overview-card__body">
+    <div class="event-overview-card__meta">
+      <span class="event-overview-card__day">{{ 'Day @number'|t({ '@number': day_number }) }}</span>
+      {% if date is not empty %}
+        <span class="event-overview-card__date">{{ date }}</span>
+      {% endif %}
+    </div>
+
+    {% if title is not empty %}
+      <h3 class="event-overview-card__title">{{ title }}</h3>
+    {% endif %}
+
+    {% if description is not empty %}
+      <div class="event-overview-card__description">{{ description }}</div>
+    {% endif %}
+  </div>
+</div>

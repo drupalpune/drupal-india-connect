@@ -1,0 +1,28 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Spacer
+description: 'Adds fixed vertical space between components.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - size
+  properties:
+    size:
+      type: string
+      title: Space
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+      meta:enum:
+        xs: 'Extra Small — 32px'
+        sm: 'Small — 48px'
+        md: 'Medium — 64px'
+        lg: 'Large — 80px'
+        xl: 'Extra Large — 120px'
+      default: md
+      examples:
+        - md

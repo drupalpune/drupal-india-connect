@@ -1,0 +1,90 @@
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+  margin-top: 0;
+}
+
+/*
+ * The doubled `.section-heading` class is deliberate, not a typo. On the
+ * front page event_horizon's `.path-frontpage .region--content > *` rule
+ * (specificity 0-2-0) forces margin-bottom: 0 on every direct child and
+ * would beat a single-class selector. Matching its specificity lets these
+ * win on source order instead — component CSS loads after layout CSS —
+ * which avoids an `!important` arms race.
+ */
+.section-heading.section-heading--mb-xs {
+  margin-bottom: 32px;
+}
+
+.section-heading.section-heading--mb-sm {
+  margin-bottom: 48px;
+}
+
+.section-heading.section-heading--mb-md {
+  margin-bottom: 64px;
+}
+
+.section-heading.section-heading--mb-lg {
+  margin-bottom: 80px;
+}
+
+.section-heading.section-heading--mb-xl {
+  margin-bottom: 120px;
+}
+
+.section-heading--align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.section-heading--align-center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-heading--align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.section-heading__label {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  color: var(--color--night-5);
+  border-radius: 999px;
+  /*
+   * Both gradient stops stay very light (~80-85% lightness) so the dark
+   * text keeps comfortable contrast across the whole pill, even though
+   * the two brand colors it's mixed from wouldn't individually pair
+   * safely with this text color.
+   */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--secondary) 20%, var(--color--white)),
+    color-mix(in srgb, var(--primary) 18%, var(--color--white))
+  );
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.section-heading__title {
+  margin: 0;
+}
+
+.section-heading__description {
+  max-width: 40rem;
+  color: var(--color--night-30);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.section-heading__description p {
+  margin: 0;
+}
+
+.section-heading__description p + p {
+  margin-top: var(--sp0-5);
+}

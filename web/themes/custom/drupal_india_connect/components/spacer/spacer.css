@@ -1,0 +1,23 @@
+.component-spacer {
+  width: 100%;
+}
+
+.component-spacer--xs {
+  height: 32px;
+}
+
+.component-spacer--sm {
+  height: 48px;
+}
+
+.component-spacer--md {
+  height: 64px;
+}
+
+.component-spacer--lg {
+  height: 80px;
+}
+
+.component-spacer--xl {
+  height: 120px;
+}

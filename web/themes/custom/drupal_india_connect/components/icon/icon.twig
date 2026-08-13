@@ -1,0 +1,8 @@
+{% set icon_key = icon|default('') %}
+{% set size_key = icon_size|default('small') %}
+
+{% if icon_key is not empty %}
+  <span class="ph-icon ph-icon--{{ size_key }}" aria-hidden="true">
+    {{ source('@drupal_india_connect/icons/phosphor/regular/' ~ icon_key ~ '.svg', true) }}
+  </span>
+{% endif %}
