@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: Event Overview Card
-description: 'A single day of the event: day number, date, title, description, and a themed icon.'
+description: 'A single day of the event: day number, date, an optional theme eyebrow, title, description, and a themed icon.'
 group: Drupal Connect
 status: stable
 props:
@@ -15,6 +15,12 @@ props:
       title: 'Day number'
       examples:
         - 1
+    eyebrow:
+      type: string
+      title: 'Eyebrow (theme)'
+      description: 'Optional short theme label shown above the title, e.g. "Imagine".'
+      examples:
+        - Imagine
     date:
       type: string
       title: Date

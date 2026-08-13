@@ -20,6 +20,10 @@
       {% endif %}
     </div>
 
+    {% if eyebrow is not empty %}
+      <span class="event-overview-card__eyebrow">{{ eyebrow }}</span>
+    {% endif %}
+
     {% if title is not empty %}
       <h3 class="event-overview-card__title">{{ title }}</h3>
     {% endif %}

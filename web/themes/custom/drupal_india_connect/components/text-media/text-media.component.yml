@@ -1,0 +1,37 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Text & Media'
+description: 'A two-column section: rich text on one side, an image on the other. Which side the media appears on is configurable.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties:
+    layout:
+      type: string
+      title: Layout
+      description: 'Which side the media appears on.'
+      enum:
+        - media-left
+        - media-right
+      meta:enum:
+        media-left: 'Media on left, text on right'
+        media-right: 'Text on left, media on right'
+      default: media-right
+      examples:
+        - media-right
+    heading:
+      type: string
+      title: Heading
+      examples:
+        - 'Why Mumbai?'
+    body:
+      type: string
+      title: Body
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>India''s largest tech hub, home to a thriving Drupal community and easy to reach from anywhere in Asia.</p>'
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Media
+      type: object

@@ -1,0 +1,37 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'People Card'
+description: 'A person''s photo, name, designation, and optional Drupal.org and LinkedIn profile links.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - name
+  properties:
+    avatar:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Avatar
+      type: object
+    name:
+      type: string
+      title: Name
+      examples:
+        - 'Dries Buytaert'
+    designation:
+      type: string
+      title: Designation
+      description: 'Job title, role, or affiliation.'
+      examples:
+        - 'Founder & Project Lead, Drupal'
+    drupal_url:
+      type: string
+      title: 'Drupal.org profile URL'
+      format: uri-reference
+      examples:
+        - 'https://www.drupal.org/u/dries'
+    linkedin_url:
+      type: string
+      title: 'LinkedIn profile URL'
+      format: uri-reference
+      examples:
+        - 'https://www.linkedin.com/in/dries'
