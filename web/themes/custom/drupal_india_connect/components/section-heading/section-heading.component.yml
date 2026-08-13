@@ -14,12 +14,12 @@ props:
       title: 'Label (pill)'
       description: 'Optional small pill shown above the heading.'
       examples:
-        - 'New'
+        - 'PROGRAM'
     text:
       type: string
       title: Text
       examples:
-        - 'Section heading'
+        - 'Event Overview'
     description:
       type: string
       title: Description
@@ -27,7 +27,7 @@ props:
       contentMediaType: text/html
       x-formatting-context: block
       examples:
-        - '<p>Supporting text for this section.</p>'
+        - '<p>Three focused days spanning AI, Drupal and digital experience, and community contribution.</p>'
     type:
       type: string
       title: 'Heading type'

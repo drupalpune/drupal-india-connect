@@ -49,7 +49,7 @@ props:
       title: Location
       description: 'Shown under a "Location" label.'
       examples:
-        - 'Asia — city to be announced'
+        - 'Mumbai, India'
     cta_primary_label:
       type: string
       title: 'Primary button label'

@@ -19,7 +19,7 @@ props:
       type: string
       title: Date
       examples:
-        - 'Date to be announced'
+        - '18 January 2027'
     title:
       type: string
       title: 'Day title'

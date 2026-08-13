@@ -19,14 +19,14 @@ props:
       type: string
       title: Label
       examples:
-        - 'React India 2026 starts in'
+        - 'DrupalAsia Connect India 2027 starts in'
     target_datetime:
       type: string
       title: 'Target date & time'
       description: 'The date and time to count down to.'
       format: date-time
       examples:
-        - '2026-10-29T09:00:00+05:30'
+        - '2027-01-18T09:00:00+05:30'
     expired_message:
       type: string
       title: 'Expired message'

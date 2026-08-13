@@ -1,6 +1,6 @@
 uuid: 0192b7d1-35bb-4799-b6b9-300b8d70d055
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - event_platform_helper
