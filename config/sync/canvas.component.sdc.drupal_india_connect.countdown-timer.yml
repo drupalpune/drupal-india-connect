@@ -6,50 +6,9 @@ dependencies:
     - datetime
   theme:
     - drupal_india_connect
-active_version: c98f3d5e3a82161e
+active_version: 5bb4ef5da78a7884
 versioned_properties:
   active:
-    settings:
-      prop_field_definitions:
-        label:
-          required: false
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: 'DrupalAsia Connect India 2027 starts in'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        target_datetime:
-          required: true
-          field_type: datetime
-          field_storage_settings:
-            datetime_type: datetime
-          field_instance_settings: {  }
-          field_widget: datetime_default
-          default_value:
-            -
-              value: '2027-01-18T09:00:00+05:30'
-          expression: ℹ︎datetime␟value
-          derived_schema_metadata: {  }
-        expired_message:
-          required: false
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: "We're live!"
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-    fallback_metadata:
-      slot_definitions: {  }
-  5bb4ef5da78a7884:
     settings:
       prop_field_definitions:
         label:
