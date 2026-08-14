@@ -58,7 +58,11 @@
 }
 
 /*
- * Both title lines have to hold without wrapping. "DRUPALASIA" is one
+ * Set in sentence case to match the logo lockup, so the wordmark reads the
+ * same in the header and the hero. This is the one place that opts out of
+ * the system's all-caps display type.
+ *
+ * Both title lines have to hold without wrapping. "DrupalAsia" is one
  * unbreakable word, so if it does not fit it has nowhere to wrap — it
  * overflows the column and slides under the media well.
  *
@@ -68,18 +72,21 @@
  * against .eh-hero__body, which means the fit holds at every width instead
  * of being tuned for the narrowest column and left slack everywhere else.
  *
- * The widest line ("CONNECT 2027") runs about 7.9 characters, so 12cqw
- * fills the column with a little room to spare. The clamp keeps the type
- * sane once the layout goes single-column and the body is the full page.
+ * The rate is set from the widest line, "Connect 2027", which at 12.8cqw
+ * takes about 88% of the column. Measure that line specifically when
+ * changing this: the highlighted span splits it into several client rects,
+ * so measuring the heading as a whole under-reports its true width and
+ * makes an overflowing setting look like it fits.
+ *
+ * Line height opens up a little for the descenders that caps did not have.
  */
 .eh-hero__title {
   margin: 0;
   color: var(--color--primary-20);
-  font-size: clamp(2.75rem, 12cqw, 5.5rem);
+  font-size: clamp(2.75rem, 12.8cqw, 6.5rem);
   font-weight: 700;
   letter-spacing: 0.01em;
-  line-height: 0.9;
-  text-transform: uppercase;
+  line-height: 1;
 }
 
 .eh-hero__title-highlight {
