@@ -4,3 +4,8 @@ global:
     theme:
       css/base.css: {}
       css/global.css: {}
+  js:
+    js/section-anchors.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
