@@ -13,8 +13,13 @@ html {
    * `.container` wrapper. `vw` includes the scrollbar's own width, which
    * makes the breakout overshoot the true viewport by that amount and
    * forces a horizontal scrollbar. This clips that harmless overshoot.
+   *
+   * `clip` rather than `hidden`: `hidden` makes <html> a scroll container,
+   * which silently breaks `position: sticky` on every descendant — the
+   * sticky site header included. `clip` does the same clipping without
+   * creating one.
    */
-  overflow-x: hidden;
+  overflow-x: clip;
 
   /* Smooths in-page anchor jumps, e.g. a Program Day Card's "Details below" link. */
   scroll-behavior: smooth;
@@ -200,8 +205,10 @@ html {
 }
 
 /*
- * Brand palette: Blue #0562D2 (primary), Orange #F67012 (secondary),
- * Dark Blue #02194A (an extra-dark primary step — see below).
+ * Brand palette: Blue #0462D1 (primary), Orange #F66E0E (secondary),
+ * Dark Blue #0C2152 (an extra-dark primary step — see below). These are the
+ * exact hues from the DrupalAsia Connect logo (logo.svg); base_primary_color
+ * / base_secondary_color in theme settings must match the first two.
  *
  * Blue and Orange were swapped from event_horizon's original
  * primary/secondary assignment; Dark Blue moved with Blue since it's a
@@ -307,7 +314,7 @@ html {
   --secondary: var(--color--secondary-50);
 
   /* Dark Blue — an explicit extra-dark step below the generated -30. */
-  --color--primary-20: #02194a;
+  --color--primary-20: #0c2152;
 
   /* Light "sky" tints re-hued to match the new Blue instead of the old cyan-blue. */
   --color--sky-50: hsl(213, 66%, 50%, 1);

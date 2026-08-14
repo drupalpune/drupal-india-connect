@@ -1,0 +1,53 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Fact row'
+description: >
+  A label and a caption behind a 3px accent rule. Stacked for the About
+  fact row, inline for the call-for-sessions timeline. The design switches
+  the rule to the secondary colour on the last item of a group.
+group: 'Event Platform'
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      title: Title
+      description: 'The bold lead — "3 days", or a date like "Jun 2026".'
+      type: string
+      examples:
+        - '3 days'
+    text:
+      title: Caption
+      type: string
+      examples:
+        - 'Sessions, workshops and sprints'
+    accent:
+      title: 'Accent rule'
+      description: 'Secondary on the last item of a group; primary otherwise.'
+      type: string
+      enum:
+        - primary
+        - secondary
+      default: primary
+      examples:
+        - primary
+    layout:
+      title: Layout
+      description: 'stack = title above caption; inline = title beside caption.'
+      type: string
+      enum:
+        - stack
+        - inline
+      default: stack
+      examples:
+        - stack
+    tone:
+      title: Tone
+      description: 'on-dark adds the translucent panel the navy bands use.'
+      type: string
+      enum:
+        - plain
+        - on-dark
+      default: plain
+      examples:
+        - plain

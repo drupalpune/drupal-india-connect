@@ -1,7 +1,8 @@
-name: 'Drupal India Connect'
+name: 'DrupalAsia Connect'
 type: theme
 base theme: event_horizon
-description: 'Site theme for Drupal India Connect, built on Event Horizon.'
+description: 'Site theme for DrupalAsia Connect, built on Event Horizon.'
 core_version_requirement: ^11
 libraries:
   - drupal_india_connect/global
+logo: logo.svg

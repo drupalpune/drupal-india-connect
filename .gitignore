@@ -14,8 +14,10 @@
 
 # DDEV manages its own .ddev/.gitignore for generated files inside .ddev/.
 
-# Claude Code session state — not project source.
-/.claude/
+# Claude Code session state — not project source. Skills are the exception:
+# they are shared project tooling and belong in the repo.
+/.claude/*
+!/.claude/skills/
 
 # Editors / OS.
 .DS_Store

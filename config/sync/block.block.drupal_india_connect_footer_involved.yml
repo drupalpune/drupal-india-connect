@@ -1,0 +1,25 @@
+uuid: 347d044b-d84a-4527-9f0c-24b539aedc0c
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer-involved
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+id: drupal_india_connect_footer_involved
+theme: drupal_india_connect
+region: footer
+weight: 1
+provider: null
+plugin: 'system_menu_block:footer-involved'
+settings:
+  id: 'system_menu_block:footer-involved'
+  label: 'Get involved'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

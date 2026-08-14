@@ -1,0 +1,8 @@
+{% set classes = [
+  'eh-media-placeholder',
+  'eh-media-placeholder--ratio-' ~ (ratio|default('4:3'))|replace({':': '-'}),
+]|filter(v => v) %}
+
+<div{{ attributes.addClass(classes) }}>
+  <span class="eh-media-placeholder__caption">{{ caption }}</span>
+</div>

@@ -1,0 +1,81 @@
+uuid: 288f7415-e4b5-4d09-b0f7-9736b890e994
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 0
+template: false
+archive: false
+id: event_updates
+title: 'Event updates'
+description: 'Save-the-date mailing list for DrupalAsia Connect.'
+categories: {  }
+elements: |-
+  email:
+    '#type': email
+    '#title': 'Email address'
+    '#title_display': invisible
+    '#placeholder': 'you@example.com'
+    '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Keep me posted'
+css: ''
+javascript: ''
+settings:
+  ajax: true
+  confirmation_type: inline
+  confirmation_message: 'Thanks — you are on the list. Watch for the venue announcement.'
+  results_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

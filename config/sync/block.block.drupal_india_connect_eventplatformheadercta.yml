@@ -1,6 +1,6 @@
 uuid: 0192b7d1-35bb-4799-b6b9-300b8d70d055
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - event_platform_helper
@@ -19,7 +19,7 @@ settings:
   label: 'Event Platform Header CTA'
   label_display: '0'
   provider: event_platform_helper
-  default_state_link: 827a823d-76b8-4b7f-8ab3-09bff9d37b1c
+  default_state_link: a15ca0a4-3539-4f87-b6d3-beae273d4bc6
   date_state_link: a15ca0a4-3539-4f87-b6d3-beae273d4bc6
   sessions_open_state_link: bc75f574-1d79-40a5-8329-7b4d1af8f239
   sessions_closed_state_link: ''

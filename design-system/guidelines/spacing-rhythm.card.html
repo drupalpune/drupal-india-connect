@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Band rhythm in use" subtitle="Section padding 5–5.5rem, grid gap 1.5rem" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Rhythm</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 18px 20px; background: var(--surface-page); font-family: var(--font-sans); color: var(--color--night-5); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sw { width: 96px; }
+  .chip { height: 52px; border-radius: 4px; }
+  .name { font-size: 11px; font-weight: 600; margin-top: 6px; }
+  .val { font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); }
+  .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div style="border:1px dashed var(--border-hairline)">
+  <div style="padding:24px 16px;background:#fff"><div class="lbl">White band · pt/pb 5.5rem</div></div>
+  <div style="padding:22px 16px;background:var(--surface-band-tint)"><div class="lbl">Tint band · pt/pb 5rem</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp1-5);margin-top:10px">
+      <div style="height:34px;background:#fff;border-radius:6px"></div><div style="height:34px;background:#fff;border-radius:6px"></div><div style="height:34px;background:#fff;border-radius:6px"></div><div style="height:34px;background:#fff;border-radius:6px"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

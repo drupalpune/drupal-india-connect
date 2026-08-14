@@ -1,0 +1,57 @@
+.eh-card-logo {
+  display: block;
+  overflow: hidden;
+  min-height: 5rem;
+}
+
+.eh-card-logo--bg-primary {
+  background-color: var(--color--primary-50);
+}
+.eh-card-logo--bg-secondary {
+  background-color: var(--color--sky-94);
+}
+.eh-card-logo--bg-accent {
+  background-color: var(--color--sky-90);
+}
+.eh-card-logo--bg-inverted {
+  background-color: var(--color--night-5);
+}
+
+.eh-card-logo--radius-small {
+  border-radius: 0.25rem;
+}
+.eh-card-logo--radius-medium {
+  border-radius: 0.75rem;
+}
+.eh-card-logo--radius-large {
+  border-radius: 1.5rem;
+}
+
+.eh-card-logo--linked {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+.eh-card-logo__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 10%;
+}
+
+.eh-card-logo__link {
+  display: contents;
+}
+
+.eh-card-logo__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

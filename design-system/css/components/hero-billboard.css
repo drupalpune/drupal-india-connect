@@ -1,0 +1,154 @@
+.eh-hero-billboard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /*  Height variants */
+  &.eh-hero-billboard--height-full {
+    /* stylelint-disable-next-line unit-allowed-list */
+    height: 100dvh;
+  }
+  &.eh-hero-billboard--height-large {
+    height: 75vh;
+    min-height: 31.25rem;
+    @container style(--md: true) {
+      max-height: 37.5rem;
+    }
+    @container style(--wide-nav: true) {
+      max-height: 50rem;
+    }
+  }
+  &.eh-hero-billboard--height-ribbon {
+    height: 50vh;
+    @container style(--md: true) {
+      min-height: 25rem;
+      max-height: 28.125rem;
+    }
+    @container style(--wide-nav: true) {
+      max-height: 37.5rem;
+    }
+  }
+
+  /*  Content position variants */
+  &.eh-hero-billboard--pos-top-left {
+    justify-content: flex-start;
+  }
+  &.eh-hero-billboard--pos-center-left {
+    justify-content: center;
+  }
+  &.eh-hero-billboard--pos-bottom-left {
+    justify-content: flex-end;
+  }
+  &.eh-hero-billboard--pos-hero-center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /*  Overlap navbar: pull the hero up behind the navbar */
+  &.eh-hero-billboard--overlap-navbar {
+    margin-top: calc(var(--navbar-height, 5rem) * -1);
+  }
+}
+
+/*  Background image layer */
+.eh-hero-billboard__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.eh-hero-billboard__overlay {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  inset: 0;
+}
+.eh-hero-billboard__overlay--opacity-0 {
+  opacity: 0;
+}
+.eh-hero-billboard__overlay--opacity-20 {
+  opacity: 0.2;
+}
+.eh-hero-billboard__overlay--opacity-40 {
+  opacity: 0.4;
+}
+.eh-hero-billboard__overlay--opacity-60 {
+  opacity: 0.6;
+}
+.eh-hero-billboard__overlay--opacity-75 {
+  opacity: 0.75;
+}
+
+.eh-hero-billboard__bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &.eh-hero-billboard__bg-image--top {
+    object-position: top;
+  }
+  &.eh-hero-billboard__bg-image--center {
+    object-position: center;
+  }
+  &.eh-hero-billboard__bg-image--bottom {
+    object-position: bottom;
+  }
+}
+
+/*  Content wrapper: constrained width, centered */
+.eh-hero-billboard__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--layout--max-width);
+  margin-inline: auto;
+  padding-inline: var(--sp1);
+
+  @container style(--md: true) {
+    padding-inline: var(--sp2);
+  }
+}
+
+.eh-hero-billboard__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+  padding-block: var(--sp3);
+
+  @container style(--md: true) {
+    padding-block: var(--sp4);
+  }
+  @container style(--wide-nav: true) {
+    padding-block: var(--sp5);
+  }
+}
+
+/*  Left-aligned positions: constrain content to 2/3 width on wide screens */
+.eh-hero-billboard--pos-top-left .eh-hero-billboard__content,
+.eh-hero-billboard--pos-center-left .eh-hero-billboard__content,
+.eh-hero-billboard--pos-bottom-left .eh-hero-billboard__content {
+  @container style(--lg: true) {
+    max-width: 66%;
+  }
+}
+
+/*  Center position: center items within the constrained column */
+.eh-hero-billboard--pos-hero-center .eh-hero-billboard__content {
+  align-items: center;
+
+  @container style(--lg: true) {
+    max-width: 66%;
+    margin-inline: auto;
+  }
+}
+
+/*  Overlap navbar: add top padding to clear the navbar */
+.eh-hero-billboard--overlap-navbar .eh-hero-billboard__content {
+  padding-top: calc(var(--navbar-height, 5rem) + var(--sp2));
+
+  @container style(--md: true) {
+    padding-top: calc(var(--navbar-height, 5rem) + var(--sp3));
+  }
+}

@@ -1,0 +1,39 @@
+/**
+ * Missing imagery is shown as a 45-degree striped well with a monospace
+ * label saying what belongs there — never an illustration, never a
+ * stock-photo stand-in.
+ */
+.eh-media-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid var(--color--sky-90);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--color--white) 0 12px,
+    var(--color--sky-97) 12px 24px
+  );
+}
+
+.eh-media-placeholder--ratio-1-1 {
+  aspect-ratio: 1;
+}
+
+.eh-media-placeholder--ratio-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.eh-media-placeholder--ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.eh-media-placeholder__caption {
+  padding: var(--sp0-5) var(--sp0-75);
+  border: 1px solid var(--color--sky-90);
+  background-color: var(--color--white);
+  color: var(--color--night-30);
+  font-family: var(--font-mono, ui-monospace, menlo, monospace);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}

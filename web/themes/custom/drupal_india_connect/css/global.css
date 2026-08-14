@@ -1,0 +1,381 @@
+/**
+ * DrupalAsia Connect overrides on top of Event Horizon.
+ *
+ * The primary/secondary hues are set in theme settings
+ * (/admin/appearance/settings/drupal_india_connect) so every derived
+ * --color--primary-* / --color--secondary-* token follows the logo.
+ * These are the values matching the event logo:
+ *   primary   #0462D1  (logo blue)
+ *   secondary #F66E0E  (logo orange)
+ *   navy      #0C2152  (--color--primary-20, see base.css)
+ *
+ * Only put things here that theme settings cannot express.
+ */
+:root {
+  /*
+   * event_horizon's dark bands (section's `background_color: black` variant,
+   * site-header, site-footer, overlays, featured-speaker, site-stats, nav
+   * submenus) all key off --neutral-dark, which defaults to pure black.
+   * Point it at the logo navy instead, everywhere it's used.
+   */
+  --neutral-dark: var(--color--primary-20);
+}
+
+/*
+ * Light-tint bands (Why attend, Venue) use the section component's own
+ * `background_color: accent` variant, which already resolves to
+ * --color--sky-94 — re-hued to the logo blue in base.css, no override
+ * needed here.
+ */
+
+/*
+ * The logo is a full lockup — drop mark, three lines of wordmark and a
+ * tagline — so it needs real height before the smallest line is legible.
+ * At the shipped 3.25rem it rendered 78x52 with the tagline unreadable.
+ *
+ * The nav beside it is taller than the logo, so growing it up to 5rem
+ * costs no header height at all; the clamp keeps it in proportion once
+ * the bar tightens on small screens.
+ */
+.site-branding__logo img {
+  height: clamp(4rem, 3.25rem + 2.25vw, 6.5rem);
+  width: auto;
+}
+
+/*
+ * event_platform_header_cta ("Get updates") ships styled for
+ * event_horizon's older full-bleed site-header, including a `::before`
+ * panel that bleeds a navy block across the viewport corner. Our header is
+ * a plain flex row, so restyle it as a compact filled button instead —
+ * matching the design's other primary buttons (0.75rem 1.375rem padding,
+ * 0.375rem radius, weight 700).
+ */
+.site-header__register {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: auto !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  font-size: 1rem !important;
+}
+
+.site-header__register::before {
+  content: none !important;
+}
+
+.site-header__register-link {
+  padding: 0.75rem 1.375rem !important;
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-50);
+  color: var(--color--white) !important;
+  font-weight: 700;
+  transition: background-color 0.2s ease;
+}
+
+.site-header__register-link:hover {
+  background-color: var(--color--primary-60);
+  color: var(--color--white) !important;
+}
+
+.site-header__register-link svg {
+  display: none;
+}
+
+/*
+ * Newsletter sign-up, on the orange closing band: the design puts the
+ * field and the button on one wrapping row, with a navy submit.
+ */
+.eh-section--bg-secondary .webform-submission-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--sp0-75);
+}
+
+.eh-section--bg-secondary .webform-submission-form .form-item {
+  flex: 1 1 16rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.eh-section--bg-secondary .webform-submission-form input[type='email'] {
+  width: 100%;
+  padding: var(--sp1) 1.125rem;
+  border: solid 2px var(--color--white);
+  border-radius: 0.375rem;
+  background-color: var(--color--white);
+  font-size: 1.0625rem;
+}
+
+.eh-section--bg-secondary .webform-submission-form .form-actions {
+  margin: 0;
+}
+
+.eh-section--bg-secondary .webform-submission-form .webform-button--submit {
+  padding: var(--sp1) 1.75rem;
+  border: solid 2px var(--color--primary-20);
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-20);
+  color: var(--color--white);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.eh-section--bg-secondary .webform-submission-form .webform-button--submit:hover {
+  opacity: 0.9;
+}
+
+/*  The confirmation replaces the form in place, so keep it on-band. */
+.eh-section--bg-secondary .webform-confirmation__message {
+  color: var(--color--white);
+  font-size: 1.0625rem;
+}
+
+/*
+ * Ticket tiers.
+ *
+ * Group offers no border prop, so the card framing is set here: a hairline
+ * on the standard tiers and a 2px primary edge on the featured one, whose
+ * "Most popular" badge hangs off the top edge as a ribbon.
+ */
+.eh-section__grid--cols-33-33-33 > .eh-group--padding-lg {
+  position: relative;
+  border: 1px solid var(--color--sky-90);
+}
+
+.eh-section__grid--cols-33-33-33 > .eh-group--bg-accent {
+  border: solid 2px var(--color--primary-50);
+  background-color: var(--color--sky-97);
+}
+
+/*
+ * event_horizon's `secondary` badge is a pale sky chip, not the brand
+ * orange, so the ribbon gets the accent treatment here rather than by
+ * changing the badge component for the whole site.
+ */
+.eh-section__grid--cols-33-33-33 .eh-badge {
+  position: absolute;
+  top: -0.875rem;
+  left: 2rem;
+  padding: 0.3125rem 0.75rem;
+  border-color: var(--color--secondary-50);
+  border-radius: 0;
+  background-color: var(--color--secondary-50);
+  color: var(--color--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/*  Inclusion lists sit inside the card's own rhythm. */
+.eh-section__grid--cols-33-33-33 .eh-text ul {
+  margin: 0;
+  padding-left: 1.125rem;
+  line-height: 1.7;
+}
+
+/*  Push the "Notify me" button to the bottom so the cards align. */
+.eh-section__grid--cols-33-33-33 > .eh-group--padding-lg > .eh-button-wrapper:last-child,
+.eh-section__grid--cols-33-33-33 > .eh-group--padding-lg > a:last-child {
+  margin-top: auto;
+}
+
+/*
+ * Cards sitting on a tint band are white in the design. The Group
+ * component's background prop only offers primary/secondary/accent, so
+ * there is no white to pick — set it here for the padded, rounded groups
+ * that act as cards inside a tinted section.
+ */
+.eh-section--bg-accent .eh-group--padding-lg.eh-group--radius-md {
+  background-color: var(--color--white);
+}
+
+/*
+ * Card grids read as a row, so the cards should share a baseline edge
+ * rather than each shrinking to its own copy length. Group defaults to
+ * self-align: start, which leaves them ragged.
+ */
+.eh-section__grid--cols-25-25-25-25 > .eh-group,
+.eh-section__grid--cols-33-33-33 > .eh-group {
+  height: 100%;
+}
+
+/*
+ * Section headings are uppercase in this system — display type is set in
+ * caps by CSS, never typed that way (see the design system's content
+ * fundamentals). Card titles (h3) stay sentence case.
+ */
+h2.eh-heading,
+.site-footer .region--footer .block__title,
+.view-header .block__title {
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/*
+ * Sticky header with a translucent, blurred background, per the design.
+ * Needs `overflow-x: clip` (not `hidden`) on <html> to work — see base.css.
+ */
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  padding-block: var(--sp0-75);
+}
+
+/*
+ * Same-page nav targets (header nav and the footer link columns) have to
+ * clear the sticky header, or the band's heading scrolls in underneath it
+ * and you land looking at body copy with no idea where you are.
+ *
+ * --dac-header-height is measured and published by section-anchors.js,
+ * because the header's height changes as the nav wraps. The fallback
+ * covers the moment before that script runs. The extra space stops the
+ * heading sitting flush against the bar.
+ */
+.dac-anchor-target {
+  scroll-margin-top: calc(var(--dac-header-height, 6rem) + var(--sp1-5));
+}
+
+/*
+ * event_horizon puts `.container` on the header itself, so the bar is
+ * width-constrained. The design's bar bleeds to the viewport edge with
+ * its contents still on the grid — so paint the background on a
+ * full-bleed pseudo-element behind the row rather than restructuring the
+ * header's markup.
+ */
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  border-bottom: 1px solid var(--color--sky-90);
+  background-color: rgb(253, 253, 253, 0.92);
+  backdrop-filter: blur(10px);
+  content: '';
+}
+
+/*
+ * event_horizon sizes the hero title at clamp(4rem, 2.5rem + 10vw, 13rem),
+ * which is roughly double the design's H1 step. "DRUPALASIA" is a long
+ * single word, so at wide viewports it outgrows its grid column and gets
+ * clipped mid-word. Use the design's H1 token instead (see the handoff's
+ * type scale); the component's own gradient/scroll fill is left alone.
+ */
+.site-hero__title[class] {
+  font-size: clamp(3.25rem, 1.5rem + 5.2vw, 7.5rem);
+  letter-spacing: 0.01em;
+  line-height: 0.86;
+  overflow-wrap: break-word;
+}
+
+/*
+ * The hero's CTA ships as a small uppercase text link with an arrow chip.
+ * The design makes it the page's primary action button instead.
+ */
+.site-hero__cta[class] a {
+  padding: 0.9375rem 1.75rem;
+  border: solid 2px var(--color--primary-50);
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-50);
+  color: var(--color--white);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.site-hero__cta[class] a:hover,
+.site-hero__cta[class] a:focus-visible {
+  border-color: var(--color--primary-60);
+  background-color: var(--color--primary-60);
+  color: var(--color--white);
+}
+
+/* The design's hero buttons carry no icon. */
+.site-hero__media-cta-icon {
+  display: none;
+}
+
+/*
+ * Footer: the design lays the link columns out side by side.
+ *
+ * The region already carries event_horizon's `.grid` (6/12/14 columns),
+ * whose `:where(& > *) { grid-column: 1 / -1 }` makes every child span
+ * the full width — which is why the columns stack. That rule has zero
+ * specificity, so placing each block on the existing track set is enough;
+ * no need to redefine the grid.
+ */
+@container style(--grid-md: true) {
+  .site-footer .region--footer > #block-drupal-india-connect-footer-event {
+    grid-column: 1 / 5;
+  }
+
+  .site-footer .region--footer > #block-drupal-india-connect-footer-involved {
+    grid-column: 5 / 9;
+  }
+
+  .site-footer .region--footer > #block-drupal-india-connect-footer-about {
+    grid-column: 9 / 13;
+  }
+}
+
+.site-footer .region--footer > #block-drupal-india-connect-copyright,
+.site-footer .region--footer > .dac-footer__trademark {
+  grid-column: 1 / -1;
+}
+
+.site-footer .region--footer .block__title {
+  margin-block: 0 var(--sp0-75);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color--white);
+}
+
+.site-footer .region--footer .menu--level-1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * event_horizon colours every footer link with the secondary (orange)
+ * ramp. The design uses orange only as a rationed accent, and puts footer
+ * links in the on-navy light blue-grey instead.
+ */
+.site-footer .region--footer .menu__link {
+  color: var(--color--sky-86);
+  text-decoration: none;
+}
+
+.site-footer .region--footer .menu__link:hover,
+.site-footer .region--footer .menu__link:focus {
+  color: var(--color--white);
+  text-decoration: underline;
+}
+
+/* Separate the legal lines from the columns above them. */
+.site-footer .region--footer > #block-drupal-india-connect-copyright {
+  margin-top: var(--sp2);
+  padding-top: var(--sp1-5);
+  border-top: 1px solid rgb(255, 255, 255, 0.15);
+}
+
+.site-footer .dac-footer__trademark {
+  margin: 0;
+  font-size: 0.9375rem;
+}

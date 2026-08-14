@@ -1,0 +1,116 @@
+/*  The eh-heading component overrides the theme's default heading styles to */
+/*  give Canvas page builders explicit control over size, color, and alignment. */
+.eh-heading {
+  align-self: start;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  line-height: 1.15;
+
+  a {
+    transition: opacity 0.2s;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.eh-heading--span {
+    display: block;
+  }
+
+  /*  Responsive size scale (maps to Mercury's heading-responsive-* values) */
+  &.eh-heading--size-8xl {
+    letter-spacing: -0.03em;
+    font-size: clamp(3.75rem, 8vw, 6rem);
+  }
+  &.eh-heading--size-7xl {
+    letter-spacing: -0.025em;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+  &.eh-heading--size-6xl {
+    letter-spacing: -0.02em;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+  }
+  &.eh-heading--size-5xl {
+    letter-spacing: -0.015em;
+    font-size: clamp(1.875rem, 4vw, 3rem);
+  }
+  &.eh-heading--size-4xl {
+    letter-spacing: -0.01em;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  &.eh-heading--size-3xl {
+    letter-spacing: -0.01em;
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  }
+  &.eh-heading--size-2xl {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+  &.eh-heading--size-xl {
+    font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  }
+  &.eh-heading--size-lg {
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+  }
+  &.eh-heading--size-sm {
+    font-size: 0.875rem;
+    line-height: var(--sp1-5);
+  }
+  &.eh-heading--size-xs {
+    font-size: 0.75rem;
+    line-height: var(--sp);
+  }
+
+  /*  Margin top */
+  &.eh-heading--mt-sm {
+    margin-top: var(--sp1);
+  }
+  &.eh-heading--mt-md {
+    margin-top: var(--sp2);
+  }
+  &.eh-heading--mt-lg {
+    margin-top: var(--sp2-5);
+  }
+  &.eh-heading--mt-xl {
+    margin-top: var(--sp4);
+  }
+
+  /*  Text color */
+  &.eh-heading--color-default {
+    color: inherit;
+  }
+  &.eh-heading--color-inverted {
+    color: var(--color--white);
+  }
+  &.eh-heading--color-primary {
+    color: var(--color--primary-50);
+  }
+  &.eh-heading--color-muted {
+    color: var(--color--night-50);
+  }
+  &.eh-heading--color-accent {
+    color: var(--color--sky-50);
+  }
+
+  /*  Text alignment */
+  &.eh-heading--align-left {
+    text-align: left;
+  }
+  &.eh-heading--align-center {
+    text-align: center;
+  }
+  &.eh-heading--align-right {
+    text-align: right;
+  }
+
+  /*  Style variants */
+  &.eh-heading--style-accented {
+    padding-inline-start: 1.25rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-inline-start: solid 4px var(--color--primary-50);
+  }
+}

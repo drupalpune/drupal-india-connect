@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Countdown
+description: Counts down to the start of the event. Reads a target datetime and renders days/hours/minutes/seconds.
+group: 'Event Platform'
+props:
+  type: object
+  required:
+    - target
+  properties:
+    target:
+      title: Target date and time
+      description: 'ISO 8601 datetime, e.g. 2027-01-18T09:00:00+05:30. When placing this in a template you can pass the event term date: current_event.field_dates.0.value.'
+      type: string
+      examples:
+        - '2027-01-18T09:00:00+05:30'
+    eyebrow:
+      title: Eyebrow
+      type: string
+      examples:
+        - 'Countdown to day one'
+    label:
+      title: Human readable date
+      description: 'Shown next to the digits, e.g. Monday 18 January 2027, 09:00.'
+      type: string
+      examples:
+        - 'Monday 18 January 2027, 09:00'
+    finished_text:
+      title: Text shown once the target has passed
+      type: string
+      examples:
+        - 'We are underway.'
+    variant:
+      title: Colour treatment
+      type: string
+      enum:
+        - dark
+        - light
+      default: dark
+      examples:
+        - dark
+
+libraryOverrides:
+  js:
+    countdown.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

@@ -1,0 +1,25 @@
+uuid: d289736d-03bf-4d87-b360-233549e83c04
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.countdown-timer
+    - canvas.component.sdc.drupal_india_connect.divider
+    - canvas.component.sdc.drupal_india_connect.event-overview-card
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.hero-banner
+    - canvas.component.sdc.drupal_india_connect.section-heading
+    - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.drupal_india_connect.venue-location
+name: 'Drupal Connect'
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.drupal_india_connect.countdown-timer
+  - sdc.drupal_india_connect.divider
+  - sdc.drupal_india_connect.event-overview-card
+  - sdc.drupal_india_connect.grid
+  - sdc.drupal_india_connect.hero-banner
+  - sdc.drupal_india_connect.section-heading
+  - sdc.drupal_india_connect.spacer
+  - sdc.drupal_india_connect.venue-location

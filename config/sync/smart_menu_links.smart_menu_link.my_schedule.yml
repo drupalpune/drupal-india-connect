@@ -8,7 +8,7 @@ id: my_schedule
 label: 'My Schedule'
 link_text: 'My Schedule'
 link_suffix: schedule/mine
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: 'smart_menu_links:schedule'
 weight: 0
 expanded: false

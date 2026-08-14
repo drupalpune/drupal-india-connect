@@ -1,0 +1,109 @@
+.eh-footer {
+  border-top: solid 1px var(--color--night-90);
+}
+
+.eh-footer__inner {
+  max-width: var(--layout--max-width);
+  margin-inline: auto;
+  padding-inline: var(--sp1);
+
+  @container style(--md: true) {
+    padding-inline: var(--sp2);
+  }
+}
+
+/*  Top row: branding/social + call to action */
+.eh-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+  padding-block: var(--sp2);
+  border-bottom: solid 1px var(--color--night-90);
+
+  /*  Menu items within the top row use body size */
+  li {
+    font-size: 1.125rem;
+  }
+
+  @container style(--md: true) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--sp2);
+  }
+}
+
+.eh-footer__first {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp1-5);
+
+  /*  Constrain branding logo height */
+  .site-logo img,
+  img {
+    width: auto;
+    height: 2rem;
+  }
+}
+
+.eh-footer__last {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+
+  @container style(--md: true) {
+    min-width: 16rem;
+    margin-inline-start: auto;
+  }
+}
+
+/*  Bottom row: utility links + copyright */
+.eh-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+  padding-block: var(--sp0-75);
+
+  /*  Small text for utility bar */
+  li {
+    font-size: 0.75rem;
+  }
+
+  @container style(--md: true) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--sp2);
+    padding-block: var(--sp1);
+  }
+
+  @container style(--md: true) {
+    li {
+      font-size: 0.875rem;
+    }
+  }
+  @container style(--lg: true) {
+    li {
+      font-size: 1rem;
+    }
+  }
+}
+
+.eh-footer__utility-last {
+  @container style(--md: true) {
+    text-align: end;
+  }
+}
+
+/*  When align=true, render utility links as a horizontal row */
+.eh-footer--horizontal {
+  .eh-footer__utility-first,
+  .eh-footer__utility-last {
+    ul.menu {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      gap: var(--sp0-5) var(--sp1);
+    }
+  }
+}

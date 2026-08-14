@@ -1,0 +1,6 @@
+/*  The accordion-container is a semantic wrapper only. */
+/*  It has no visual styles of its own; the inner eh-accordion items handle */
+/*  borders and layout. This file exists so Gulp picks it up if compiled. */
+.eh-accordion-container {
+  display: block;
+}

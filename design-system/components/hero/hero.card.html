@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Hero & CTA" subtitle="Billboard, side-by-side and closing CTA band" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .pad { padding: 16px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Cta && v.HeroSideBySide) || {};
+  const { Cta, HeroSideBySide, Heading, Text, Button } = NS;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+      <div className="pad">
+        <HeroSideBySide media="../../assets/textures/trees.webp" mediaAlt="" imagePosition="right" imageSize="16:9" imageRadius="large">
+          <Heading text="Host city announcement soon" level={2} size="4xl" />
+          <Text size="sm">Image beside copy; stacks below 700px.</Text>
+        </HeroSideBySide>
+      </div>
+      <Cta headingText="Be first to know" text="Venue, CFP and early-bird tickets, announced to the list first." backgroundColor="secondary"
+        actions={<Button label="Keep me posted" variant="primary-inverted" size="large" />} />
+    </>
+  );
+</script>
+</body>
+</html>

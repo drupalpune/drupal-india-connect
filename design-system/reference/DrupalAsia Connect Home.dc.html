@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:general-sans;src:url('fonts/general-sans/GeneralSans-Variable.woff2') format('woff2');font-weight:200 700;font-display:swap;font-style:normal;}
+@font-face{font-family:general-sans;src:url('fonts/general-sans/GeneralSans-Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:general-sans;src:url('fonts/general-sans/GeneralSans-Medium.woff2') format('woff2');font-weight:500;font-display:swap;}
+@font-face{font-family:general-sans;src:url('fonts/general-sans/GeneralSans-Semibold.woff2') format('woff2');font-weight:600;font-display:swap;}
+@font-face{font-family:general-sans;src:url('fonts/general-sans/GeneralSans-Bold.woff2') format('woff2');font-weight:700;font-display:swap;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;font-family:general-sans,sans-serif;color:#0f1720;background:#FDFDFD;}
+*{box-sizing:border-box;}
+a{color:#0462D1;text-decoration:none;}
+a:hover{color:#0350AB;text-decoration:underline;}
+summary::-webkit-details-marker{display:none;}
+</style>
+</helmet>
+<div style="background:#FDFDFD">
+
+<sc-if value="{{ showAnnouncementBar }}" hint-placeholder-val="{{ true }}">
+<div style="background:#F66E0E;color:#fff;font-size:0.9375rem;font-weight:600;letter-spacing:0.02em">
+  <div style="max-width:87.5rem;margin:0 auto;padding:0.625rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;justify-content:center;text-align:center">
+    <span>Save the date — 18–20 January 2027</span>
+    <span style="opacity:0.6">•</span>
+    <span style="font-weight:500">Host city &amp; venue announcement coming soon</span>
+  </div>
+</div>
+</sc-if>
+
+<header style="position:sticky;top:0;z-index:20;background:rgba(253,253,253,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #E4EAF0">
+  <div style="max-width:87.5rem;margin:0 auto;padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem">
+    <a href="#top" style="display:inline-flex;align-items:center;flex-shrink:0"><img src="logo.svg" alt="DrupalAsia Connect" style="height:3.25rem;width:auto;display:block" /></a>
+    <nav style="display:flex;align-items:center;gap:1.75rem;font-size:1rem;font-weight:500">
+      <a href="#about" style="color:#0f1720;text-decoration:none">About</a>
+      <a href="#cfp" style="color:#0f1720;text-decoration:none">Call for sessions</a>
+      <a href="#tickets" style="color:#0f1720;text-decoration:none">Tickets</a>
+      <a href="#venue" style="color:#0f1720;text-decoration:none">Venue</a>
+      <a href="#sponsors" style="color:#0f1720;text-decoration:none">Sponsors</a>
+      <a href="#news" style="color:#0f1720;text-decoration:none">News</a>
+      <a href="#faq" style="color:#0f1720;text-decoration:none">FAQ</a>
+      <a href="#notify" style="display:inline-flex;align-items:center;padding:0.75rem 1.375rem;border-radius:0.375rem;background:#0462D1;color:#fff;font-weight:700;text-decoration:none;border:2px solid #0462D1">Get updates</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" style="position:relative;overflow:hidden;background:#FDFDFD;border-bottom:1px solid #E4EAF0">
+  <div style="max-width:87.5rem;margin:0 auto;padding:5rem 1.5rem 4rem;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:3.5rem;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:1.75rem;min-width:0">
+      <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">
+        <span style="width:2rem;height:2px;background:#F66E0E;display:block"></span>
+        <span>The first pan-Asia Drupal event</span>
+      </div>
+      <h1 style="margin:0;font-size:clamp(3.25rem,1.5rem + 5.2vw,7.5rem);line-height:0.86;font-weight:700;letter-spacing:0.01em;text-transform:uppercase;color:#0C2152">DrupalAsia<br /><span style="color:#0462D1">Connect</span> 2027</h1>
+      <p style="margin:0;max-width:34rem;font-size:1.3125rem;line-height:1.5;color:#41505F;text-wrap:pretty">Three days of sessions, workshops, contribution sprints and hallway conversations — bringing together the makers, agencies and organisations building Drupal across Asia.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:2.5rem;padding:1.25rem 0;border-top:1px solid #E4EAF0;border-bottom:1px solid #E4EAF0">
+        <div style="display:flex;flex-direction:column;gap:0.25rem">
+          <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7B8794">Dates</span>
+          <span style="font-size:1.375rem;font-weight:600;color:#0C2152">18–20 January 2027</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.25rem">
+          <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7B8794">Location</span>
+          <span style="font-size:1.375rem;font-weight:600;color:#0C2152">Asia — city to be announced</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem">
+        <a href="#notify" style="display:inline-flex;align-items:center;padding:0.9375rem 1.75rem;border-radius:0.375rem;background:#0462D1;border:2px solid #0462D1;color:#fff;font-size:1.125rem;font-weight:700;text-decoration:none">Get event updates</a>
+        <a href="#cfp" style="display:inline-flex;align-items:center;padding:0.9375rem 1.75rem;border-radius:0.375rem;background:transparent;border:2px solid #0462D1;color:#0462D1;font-size:1.125rem;font-weight:700;text-decoration:none">Plan to speak</a>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:1;min-width:0">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#EAF4FE 0 12px,#DCEBFB 12px 24px);display:flex;align-items:flex-end;padding:1.25rem"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(246,110,14,0.28),rgba(4,98,209,0.42));pointer-events:none"></div>
+      <span style="position:absolute;left:1.25rem;bottom:1.25rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8125rem;letter-spacing:0.04em;background:#fff;color:#0C2152;padding:0.5rem 0.75rem">event teaser video / 1:1</span>
+      <div style="position:absolute;right:1.25rem;top:1.25rem;width:3.5rem;height:3.5rem;background:#F66E0E"></div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
+<section style="background:#0C2152;color:#fff">
+  <div style="max-width:87.5rem;margin:0 auto;padding:3rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2.5rem">
+    <div style="display:flex;flex-direction:column;gap:0.5rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#93C6F7">Countdown to day one</span>
+      <span style="font-size:1.5rem;font-weight:600">Monday 18 January 2027, 09:00</span>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <div style="min-width:7rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.07);border-top:3px solid #0462D1;display:flex;flex-direction:column;gap:0.375rem;align-items:center">
+        <span style="font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums">{{ days }}</span>
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A9BBD1">Days</span>
+      </div>
+      <div style="min-width:7rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.07);border-top:3px solid #0462D1;display:flex;flex-direction:column;gap:0.375rem;align-items:center">
+        <span style="font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums">{{ hours }}</span>
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A9BBD1">Hours</span>
+      </div>
+      <div style="min-width:7rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.07);border-top:3px solid #0462D1;display:flex;flex-direction:column;gap:0.375rem;align-items:center">
+        <span style="font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums">{{ mins }}</span>
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A9BBD1">Minutes</span>
+      </div>
+      <div style="min-width:7rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.07);border-top:3px solid #F66E0E;display:flex;flex-direction:column;gap:0.375rem;align-items:center">
+        <span style="font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums">{{ secs }}</span>
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A9BBD1">Seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section id="about" style="max-width:87.5rem;margin:0 auto;padding:5.5rem 1.5rem">
+  <div style="display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:4rem">
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">The event</span>
+      <h2 style="margin:0;font-size:clamp(2.25rem,1.5rem + 2vw,3.5rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">One Drupal community, one continent</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.5rem;font-size:1.1875rem;line-height:1.6;color:#41505F">
+      <p style="margin:0;text-wrap:pretty">DrupalAsia Connect brings the regional camps of Asia into a single shared moment. Instead of a dozen conversations happening in parallel, the region gets one stage — for the agencies scaling Drupal delivery, the teams maintaining modules, the government and university platforms running on it, and the people who want to start.</p>
+      <p style="margin:0;text-wrap:pretty">Expect a programme built from the community: talks and panels, hands-on workshops, contribution sprints, a business track for agency and end-user leadership, and plenty of unstructured time for the conversations that only happen in person.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;padding-top:0.5rem">
+        <div style="display:flex;flex-direction:column;gap:0.375rem;padding-left:1rem;border-left:3px solid #0462D1">
+          <span style="font-size:1.125rem;font-weight:700;color:#0C2152">3 days</span>
+          <span style="font-size:0.9375rem;color:#5B6672;line-height:1.4">Sessions, workshops and sprints</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem;padding-left:1rem;border-left:3px solid #0462D1">
+          <span style="font-size:1.125rem;font-weight:700;color:#0C2152">Multi-track</span>
+          <span style="font-size:0.9375rem;color:#5B6672;line-height:1.4">Development, DevOps, content, business</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem;padding-left:1rem;border-left:3px solid #F66E0E">
+          <span style="font-size:1.125rem;font-weight:700;color:#0C2152">Pan-Asia</span>
+          <span style="font-size:0.9375rem;color:#5B6672;line-height:1.4">Local camps, one regional stage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#EAF4FE;border-top:1px solid #DCEBFB;border-bottom:1px solid #DCEBFB">
+  <div style="max-width:87.5rem;margin:0 auto;padding:5rem 1.5rem;display:flex;flex-direction:column;gap:2.5rem">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem">
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">Why attend</h2>
+      <p style="margin:0;max-width:28rem;font-size:1.0625rem;line-height:1.55;color:#41505F">Whether you build with Drupal every day or decide where the budget goes, there is a reason to be in the room.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem">
+      <div style="background:#fff;padding:2rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;border-radius:0.375rem">
+        <span style="font-size:0.8125rem;font-weight:700;color:#0462D1;letter-spacing:0.14em">01</span>
+        <h3 style="margin:0;font-size:1.25rem;font-weight:700;color:#0C2152">Learn from practitioners</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Real project stories from teams shipping Drupal at scale across the region.</p>
+      </div>
+      <div style="background:#fff;padding:2rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;border-radius:0.375rem">
+        <span style="font-size:0.8125rem;font-weight:700;color:#0462D1;letter-spacing:0.14em">02</span>
+        <h3 style="margin:0;font-size:1.25rem;font-weight:700;color:#0C2152">Hire, partner, be found</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Agencies, end users and freelancers in one place, with a job board on site.</p>
+      </div>
+      <div style="background:#fff;padding:2rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;border-radius:0.375rem">
+        <span style="font-size:0.8125rem;font-weight:700;color:#0462D1;letter-spacing:0.14em">03</span>
+        <h3 style="margin:0;font-size:1.25rem;font-weight:700;color:#0C2152">Contribute together</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Mentored sprints where first-time contributors get their first issue credit.</p>
+      </div>
+      <div style="background:#fff;padding:2rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;border-radius:0.375rem">
+        <span style="font-size:0.8125rem;font-weight:700;color:#F66E0E;letter-spacing:0.14em">04</span>
+        <h3 style="margin:0;font-size:1.25rem;font-weight:700;color:#0C2152">Grow the region</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Help shape what a shared Asian Drupal community looks like from here on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cfp" style="background:#0C2152;color:#fff">
+  <div style="max-width:87.5rem;margin:0 auto;padding:5rem 1.5rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4rem;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F9A96A">Call for sessions</span>
+      <h2 style="margin:0;font-size:clamp(2.25rem,1.5rem + 2vw,3.5rem);line-height:1.05;font-weight:700;text-transform:uppercase;letter-spacing:0.01em">The programme is yours to write</h2>
+      <p style="margin:0;font-size:1.1875rem;line-height:1.6;color:#C3D2E4;max-width:32rem;text-wrap:pretty">Submissions open once the venue is confirmed. First-time speakers are explicitly welcome — we pair every accepted new speaker with a mentor to help shape the talk.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem">
+        <a href="#notify" style="display:inline-flex;align-items:center;padding:0.9375rem 1.75rem;border-radius:0.375rem;background:#fff;border:2px solid #fff;color:#0462D1;font-size:1.125rem;font-weight:700;text-decoration:none">Tell me when the CFP opens</a>
+        <a href="#faq" style="display:inline-flex;align-items:center;padding:0.9375rem 1.75rem;border-radius:0.375rem;border:2px solid rgba(255,255,255,0.4);color:#fff;font-size:1.125rem;font-weight:700;text-decoration:none">What makes a good session?</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div style="display:flex;gap:1.25rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.06);border-left:3px solid #0462D1">
+        <span style="font-size:0.875rem;font-weight:700;color:#93C6F7;min-width:6.5rem">Jun 2026</span>
+        <span style="font-size:1.0625rem;line-height:1.45">Call for sessions opens</span>
+      </div>
+      <div style="display:flex;gap:1.25rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.06);border-left:3px solid #0462D1">
+        <span style="font-size:0.875rem;font-weight:700;color:#93C6F7;min-width:6.5rem">Sep 2026</span>
+        <span style="font-size:1.0625rem;line-height:1.45">Submissions close</span>
+      </div>
+      <div style="display:flex;gap:1.25rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.06);border-left:3px solid #0462D1">
+        <span style="font-size:0.875rem;font-weight:700;color:#93C6F7;min-width:6.5rem">Oct 2026</span>
+        <span style="font-size:1.0625rem;line-height:1.45">Speakers announced, schedule published</span>
+      </div>
+      <div style="display:flex;gap:1.25rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.06);border-left:3px solid #F66E0E">
+        <span style="font-size:0.875rem;font-weight:700;color:#F9A96A;min-width:6.5rem">Jan 2027</span>
+        <span style="font-size:1.0625rem;line-height:1.45">DrupalAsia Connect, 18–20 January</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tickets" style="max-width:87.5rem;margin:0 auto;padding:5.5rem 1.5rem;display:flex;flex-direction:column;gap:2.5rem">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem">
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">Tickets</span>
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">Ticket tiers</h2>
+    </div>
+    <p style="margin:0;max-width:30rem;font-size:1.0625rem;line-height:1.55;color:#41505F">Pricing is set once the venue contract is signed. Join the list and you will get first access to early-bird tickets.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem">
+    <div style="border:1px solid #E4EAF0;border-radius:0.375rem;padding:2rem;display:flex;flex-direction:column;gap:1rem">
+      <h3 style="margin:0;font-size:1.375rem;font-weight:700;color:#0C2152">Early bird</h3>
+      <span style="font-size:1.75rem;font-weight:700;color:#0462D1">Price TBA</span>
+      <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Limited allocation, released first to the mailing list.</p>
+      <ul style="margin:0;padding-left:1.125rem;color:#41505F;font-size:1rem;line-height:1.7">
+        <li>All three days</li>
+        <li>Sessions, sprints and social events</li>
+      </ul>
+      <a href="#notify" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;padding:0.8125rem 1.25rem;border-radius:0.375rem;border:2px solid #0462D1;color:#0462D1;font-weight:700;text-decoration:none">Notify me</a>
+    </div>
+    <div style="border:2px solid #0462D1;border-radius:0.375rem;padding:2rem;display:flex;flex-direction:column;gap:1rem;position:relative;background:#F7FBFF">
+      <span style="position:absolute;top:-0.875rem;left:2rem;background:#F66E0E;color:#fff;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.3125rem 0.75rem">Most popular</span>
+      <h3 style="margin:0;font-size:1.375rem;font-weight:700;color:#0C2152">Standard</h3>
+      <span style="font-size:1.75rem;font-weight:700;color:#0462D1">Price TBA</span>
+      <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">The regular conference pass for individuals and teams.</p>
+      <ul style="margin:0;padding-left:1.125rem;color:#41505F;font-size:1rem;line-height:1.7">
+        <li>All three days</li>
+        <li>Workshops subject to capacity</li>
+        <li>Team discounts for 5+</li>
+      </ul>
+      <a href="#notify" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;padding:0.8125rem 1.25rem;border-radius:0.375rem;background:#0462D1;border:2px solid #0462D1;color:#fff;font-weight:700;text-decoration:none">Notify me</a>
+    </div>
+    <div style="border:1px solid #E4EAF0;border-radius:0.375rem;padding:2rem;display:flex;flex-direction:column;gap:1rem">
+      <h3 style="margin:0;font-size:1.375rem;font-weight:700;color:#0C2152">Student &amp; community</h3>
+      <span style="font-size:1.75rem;font-weight:700;color:#0462D1">Price TBA</span>
+      <p style="margin:0;font-size:1rem;line-height:1.55;color:#5B6672">Concession rate, plus a grant programme for travel support.</p>
+      <ul style="margin:0;padding-left:1.125rem;color:#41505F;font-size:1rem;line-height:1.7">
+        <li>All three days</li>
+        <li>Verification required</li>
+      </ul>
+      <a href="#notify" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;padding:0.8125rem 1.25rem;border-radius:0.375rem;border:2px solid #0462D1;color:#0462D1;font-weight:700;text-decoration:none">Notify me</a>
+    </div>
+  </div>
+</section>
+
+<section id="venue" style="background:#EAF4FE;border-top:1px solid #DCEBFB;border-bottom:1px solid #DCEBFB">
+  <div style="max-width:87.5rem;margin:0 auto;padding:5rem 1.5rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3.5rem;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">Venue &amp; travel</span>
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">Host city announcement soon</h2>
+      <p style="margin:0;font-size:1.1875rem;line-height:1.6;color:#41505F;max-width:32rem;text-wrap:pretty">We are finalising the host city with regional organisers. The shortlist is built around three things: an international airport with direct regional connections, visa access for as much of Asia as possible, and affordable accommodation within walking distance.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem">
+        <div style="display:flex;flex-direction:column;gap:0.375rem"><span style="font-size:1.0625rem;font-weight:700;color:#0C2152">Getting there</span><span style="font-size:1rem;color:#5B6672;line-height:1.5">Airport and rail guidance published with the venue.</span></div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem"><span style="font-size:1.0625rem;font-weight:700;color:#0C2152">Visa letters</span><span style="font-size:1rem;color:#5B6672;line-height:1.5">Invitation letters available to all ticket holders.</span></div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem"><span style="font-size:1.0625rem;font-weight:700;color:#0C2152">Where to stay</span><span style="font-size:1rem;color:#5B6672;line-height:1.5">Partner hotel rates at a range of budgets.</span></div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem"><span style="font-size:1.0625rem;font-weight:700;color:#0C2152">Accessibility</span><span style="font-size:1rem;color:#5B6672;line-height:1.5">Step-free access and quiet rooms on site.</span></div>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#fff 0 12px,#F1F7FE 12px 24px);border:1px solid #DCEBFB;display:flex;align-items:center;justify-content:center">
+      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.8125rem;letter-spacing:0.04em;color:#41505F;background:#fff;padding:0.5rem 0.75rem;border:1px solid #DCEBFB">venue photo or map / 4:3</span>
+    </div>
+  </div>
+</section>
+
+<section id="sponsors" style="max-width:87.5rem;margin:0 auto;padding:5.5rem 1.5rem;display:flex;flex-direction:column;gap:2.5rem">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem">
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">Sponsors</span>
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">Founding sponsors</h2>
+    </div>
+    <a href="#notify" style="display:inline-flex;align-items:center;padding:0.9375rem 1.75rem;border-radius:0.375rem;background:#0462D1;border:2px solid #0462D1;color:#fff;font-size:1.125rem;font-weight:700;text-decoration:none">Become a sponsor</a>
+  </div>
+  <p style="margin:0;max-width:44rem;font-size:1.0625rem;line-height:1.6;color:#41505F">Sponsorship keeps tickets affordable and funds travel grants for community members across the region. The prospectus, with tiers and booth options, is available on request.</p>
+  <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.25rem">
+    <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F7FAFD 0 10px,#EEF4FA 10px 20px);border:1px solid #E4EAF0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;color:#7B8794">sponsor logo</div>
+    <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F7FAFD 0 10px,#EEF4FA 10px 20px);border:1px solid #E4EAF0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;color:#7B8794">sponsor logo</div>
+    <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F7FAFD 0 10px,#EEF4FA 10px 20px);border:1px solid #E4EAF0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;color:#7B8794">sponsor logo</div>
+    <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F7FAFD 0 10px,#EEF4FA 10px 20px);border:1px solid #E4EAF0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;color:#7B8794">sponsor logo</div>
+    <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F7FAFD 0 10px,#EEF4FA 10px 20px);border:1px solid #E4EAF0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.75rem;color:#7B8794">sponsor logo</div>
+  </div>
+</section>
+
+<section id="news" style="background:#0C2152;color:#fff">
+  <div style="max-width:87.5rem;margin:0 auto;padding:5rem 1.5rem;display:flex;flex-direction:column;gap:2.5rem">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem">
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;text-transform:uppercase;letter-spacing:0.01em">News</h2>
+      <a href="#news" style="color:#93C6F7;font-weight:700;font-size:1.0625rem">All announcements</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem">
+      <article style="background:rgba(255,255,255,0.06);padding:2rem;display:flex;flex-direction:column;gap:0.875rem;border-top:3px solid #0462D1">
+        <span style="font-size:0.8125rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#93C6F7">12 Aug 2026</span>
+        <h3 style="margin:0;font-size:1.3125rem;font-weight:700;line-height:1.25">Save the date: 18–20 January 2027</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#C3D2E4">The first pan-Asia Drupal event has its dates. Here is what we are planning and how you can help shape it.</p>
+        <a href="#news" style="margin-top:auto;color:#fff;font-weight:700">Read more</a>
+      </article>
+      <article style="background:rgba(255,255,255,0.06);padding:2rem;display:flex;flex-direction:column;gap:0.875rem;border-top:3px solid #0462D1">
+        <span style="font-size:0.8125rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#93C6F7">28 Jul 2026</span>
+        <h3 style="margin:0;font-size:1.3125rem;font-weight:700;line-height:1.25">How the host city will be chosen</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#C3D2E4">Connectivity, visa access and affordability — the criteria behind the shortlist, and who is deciding.</p>
+        <a href="#news" style="margin-top:auto;color:#fff;font-weight:700">Read more</a>
+      </article>
+      <article style="background:rgba(255,255,255,0.06);padding:2rem;display:flex;flex-direction:column;gap:0.875rem;border-top:3px solid #F66E0E">
+        <span style="font-size:0.8125rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#93C6F7">15 Jul 2026</span>
+        <h3 style="margin:0;font-size:1.3125rem;font-weight:700;line-height:1.25">Call for volunteers and local organisers</h3>
+        <p style="margin:0;font-size:1rem;line-height:1.55;color:#C3D2E4">Programme, sprints, hospitality and outreach teams are forming now. Tell us where you want to help.</p>
+        <a href="#news" style="margin-top:auto;color:#fff;font-weight:700">Read more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="max-width:87.5rem;margin:0 auto;padding:5.5rem 1.5rem;display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:4rem">
+  <div style="display:flex;flex-direction:column;gap:1rem">
+    <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#F66E0E">FAQ</span>
+    <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;color:#0C2152;text-transform:uppercase;letter-spacing:0.01em">Questions</h2>
+    <p style="margin:0;font-size:1.0625rem;line-height:1.55;color:#5B6672">Something not covered here? Write to <a href="mailto:hello@drupalasia.org">hello@drupalasia.org</a>.</p>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <details open="open" style="border-top:1px solid #E4EAF0;padding:1.5rem 0">
+      <summary style="cursor:pointer;list-style:none;font-size:1.25rem;font-weight:600;color:#0C2152">Where will DrupalAsia Connect be held?</summary>
+      <p style="margin:1rem 0 0;font-size:1.0625rem;line-height:1.6;color:#41505F">The host city is being finalised with regional organisers and will be announced along with the venue, hotel partners and travel guidance. Dates are fixed: 18–20 January 2027.</p>
+    </details>
+    <details style="border-top:1px solid #E4EAF0;padding:1.5rem 0">
+      <summary style="cursor:pointer;list-style:none;font-size:1.25rem;font-weight:600;color:#0C2152">When do tickets go on sale?</summary>
+      <p style="margin:1rem 0 0;font-size:1.0625rem;line-height:1.6;color:#41505F">Early-bird tickets are released to the mailing list first, shortly after the venue announcement. Pricing will be published at the same time.</p>
+    </details>
+    <details style="border-top:1px solid #E4EAF0;padding:1.5rem 0">
+      <summary style="cursor:pointer;list-style:none;font-size:1.25rem;font-weight:600;color:#0C2152">Can I speak if I have never presented before?</summary>
+      <p style="margin:1rem 0 0;font-size:1.0625rem;line-height:1.6;color:#41505F">Yes. A share of the programme is reserved for first-time speakers, and every accepted new speaker is paired with a mentor for rehearsal and feedback.</p>
+    </details>
+    <details style="border-top:1px solid #E4EAF0;padding:1.5rem 0">
+      <summary style="cursor:pointer;list-style:none;font-size:1.25rem;font-weight:600;color:#0C2152">Will there be travel or ticket grants?</summary>
+      <p style="margin:1rem 0 0;font-size:1.0625rem;line-height:1.6;color:#41505F">A grant programme funded by sponsors will cover tickets and part of the travel cost for community members who could not otherwise attend. Applications open with the CFP.</p>
+    </details>
+    <details style="border-top:1px solid #E4EAF0;border-bottom:1px solid #E4EAF0;padding:1.5rem 0">
+      <summary style="cursor:pointer;list-style:none;font-size:1.25rem;font-weight:600;color:#0C2152">Is the event in English?</summary>
+      <p style="margin:1rem 0 0;font-size:1.0625rem;line-height:1.6;color:#41505F">The main programme is in English. We are exploring local-language tracks and session recordings with subtitles for the region.</p>
+    </details>
+  </div>
+</section>
+
+<section id="notify" style="background:#F66E0E;color:#fff">
+  <div style="max-width:87.5rem;margin:0 auto;padding:4.5rem 1.5rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3.5rem;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <h2 style="margin:0;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1.05;font-weight:700;text-transform:uppercase;letter-spacing:0.01em">Be first to know</h2>
+      <p style="margin:0;font-size:1.1875rem;line-height:1.55;max-width:30rem">Venue, CFP and early-bird tickets — announced to the list before anywhere else. No more than one email a month.</p>
+    </div>
+    <form onSubmit="{{ onSubscribe }}" style="display:flex;flex-direction:column;gap:0.75rem">
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <input type="email" required="required" placeholder="you@example.com" aria-label="Email address" style="flex:1 1 16rem;min-width:0;padding:1rem 1.125rem;font-family:general-sans,sans-serif;font-size:1.0625rem;border:2px solid #fff;border-radius:0.375rem;background:#fff;color:#0f1720" />
+        <button type="submit" style="padding:1rem 1.75rem;border-radius:0.375rem;border:2px solid #0C2152;background:#0C2152;color:#fff;font-family:general-sans,sans-serif;font-size:1.0625rem;font-weight:700;cursor:pointer">Keep me posted</button>
+      </div>
+      <span style="font-size:0.9375rem;opacity:0.9">{{ subscribeNote }}</span>
+    </form>
+  </div>
+</section>
+
+<footer style="background:#0C2152;color:#C3D2E4">
+  <div style="max-width:87.5rem;margin:0 auto;padding:4rem 1.5rem 2rem;display:grid;grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr));gap:3rem">
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <img src="logo.svg" alt="DrupalAsia Connect" style="height:3.5rem;width:auto;background:#fff;padding:0.5rem;border-radius:0.25rem;align-self:flex-start" />
+      <p style="margin:0;font-size:1rem;line-height:1.55">A community-run event for the Drupal community of Asia. 18–20 January 2027.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff">Event</span>
+      <a href="#about" style="color:#C3D2E4;font-size:1rem">About</a>
+      <a href="#cfp" style="color:#C3D2E4;font-size:1rem">Call for sessions</a>
+      <a href="#tickets" style="color:#C3D2E4;font-size:1rem">Tickets</a>
+      <a href="#venue" style="color:#C3D2E4;font-size:1rem">Venue &amp; travel</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff">Get involved</span>
+      <a href="#sponsors" style="color:#C3D2E4;font-size:1rem">Sponsor the event</a>
+      <a href="#notify" style="color:#C3D2E4;font-size:1rem">Volunteer</a>
+      <a href="#news" style="color:#C3D2E4;font-size:1rem">News</a>
+      <a href="#faq" style="color:#C3D2E4;font-size:1rem">FAQ</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff">Contact</span>
+      <a href="mailto:hello@drupalasia.org" style="color:#C3D2E4;font-size:1rem">hello@drupalasia.org</a>
+      <a href="#faq" style="color:#C3D2E4;font-size:1rem">Code of conduct</a>
+      <a href="#faq" style="color:#C3D2E4;font-size:1rem">Privacy</a>
+    </div>
+  </div>
+  <div style="max-width:87.5rem;margin:0 auto;padding:1.5rem;border-top:1px solid rgba(255,255,255,0.15);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:0.9375rem">
+    <span>© 2026 DrupalAsia Connect. Drupal is a registered trademark of Dries Buytaert.</span>
+    <span>Built with Drupal</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAnnouncementBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { days: '—', hours: '—', mins: '—', secs: '—', note: 'We will only email you about DrupalAsia Connect.' };
+
+  componentDidMount() {
+    this.tick();
+    this.timer = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  tick() {
+    const target = new Date('2027-01-18T09:00:00+05:30').getTime();
+    let left = Math.max(0, target - Date.now());
+    const s = Math.floor(left / 1000);
+    const pad = (n) => String(n).padStart(2, '0');
+    this.setState({
+      days: String(Math.floor(s / 86400)),
+      hours: pad(Math.floor((s % 86400) / 3600)),
+      mins: pad(Math.floor((s % 3600) / 60)),
+      secs: pad(s % 60),
+    });
+  }
+
+  renderVals() {
+    return {
+      days: this.state.days,
+      hours: this.state.hours,
+      mins: this.state.mins,
+      secs: this.state.secs,
+      subscribeNote: this.state.note,
+      showAnnouncementBar: this.props.showAnnouncementBar ?? true,
+      showCountdown: this.props.showCountdown ?? true,
+      onSubscribe: (e) => {
+        e.preventDefault();
+        this.setState({ note: 'Thanks — you are on the list. Watch for the venue announcement.' });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

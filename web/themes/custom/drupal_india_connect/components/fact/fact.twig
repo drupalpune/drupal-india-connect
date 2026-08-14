@@ -1,0 +1,13 @@
+{% set classes = [
+  'eh-fact',
+  'eh-fact--' ~ (layout|default('stack')),
+  'eh-fact--accent-' ~ (accent|default('primary')),
+  'eh-fact--' ~ (tone|default('plain')),
+]|filter(v => v) %}
+
+<div{{ attributes.addClass(classes) }}>
+  <span class="eh-fact__title">{{ title }}</span>
+  {% if text %}
+    <span class="eh-fact__text">{{ text }}</span>
+  {% endif %}
+</div>

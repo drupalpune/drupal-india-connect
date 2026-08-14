@@ -1,0 +1,8 @@
+{% set classes = [
+  'eh-eyebrow',
+  'eh-eyebrow--' ~ (tone|default('accent')),
+]|filter(v => v) %}
+
+{% if text %}
+  <p{{ attributes.addClass(classes) }}>{{ text }}</p>
+{% endif %}

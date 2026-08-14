@@ -1,0 +1,110 @@
+/**
+ * Colors.
+ *
+ * The primary and secondary ramps are DERIVED, exactly as the Event Horizon
+ * theme derives them: a hue/saturation/lightness triple per ramp, with the
+ * 30/40/50/60/80 steps computed from the base lightness. Setting the three
+ * base values is the whole of rebranding — never hand-write a step.
+ *
+ * DrupalAsia Connect base values come from the event logo:
+ *   primary   #0462D1  -> hsl(213, 96%, 42%)
+ *   secondary #F66E0E  -> hsl(25, 93%, 51%)
+ */
+:root {
+  --color-black: black;
+  --color-white: white;
+  --color--white: #fff;
+
+  /*  Primary ramp (logo blue) */
+  --color--primary-hue: 213;
+  --color--primary-saturation: 96%;
+  --color--primary-lightness: 42;
+  --color--primary-30: hsl(var(--color--primary-hue), var(--color--primary-saturation), calc(1% * (var(--color--primary-lightness) - (0.36 * var(--color--primary-lightness)))));
+  --color--primary-40: hsl(var(--color--primary-hue), var(--color--primary-saturation), calc(1% * (var(--color--primary-lightness) - (0.24 * var(--color--primary-lightness)))));
+  --color--primary-50: hsl(var(--color--primary-hue), var(--color--primary-saturation), calc(1% * var(--color--primary-lightness)));
+  --color--primary-60: hsl(var(--color--primary-hue), var(--color--primary-saturation), calc(1% * (var(--color--primary-lightness) + (0.24 * (100 - var(--color--primary-lightness))))));
+  --color--primary-80: hsl(var(--color--primary-hue), var(--color--primary-saturation), calc(1% * (var(--color--primary-lightness) + (0.85 * (100 - var(--color--primary-lightness))))));
+
+  /*  Secondary ramp (logo orange) */
+  --color--secondary-hue: 25;
+  --color--secondary-saturation: 93%;
+  --color--secondary-lightness: 51;
+  --color--secondary-30: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.36 * var(--color--secondary-lightness)))));
+  --color--secondary-40: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.24 * var(--color--secondary-lightness)))));
+  --color--secondary-50: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * var(--color--secondary-lightness)));
+  --color--secondary-60: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.24 * (100 - var(--color--secondary-lightness))))));
+  --color--secondary-80: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.85 * (100 - var(--color--secondary-lightness))))));
+
+  /*  Night — the neutral ramp. Cool, slightly blue-grey, never pure grey. */
+  --color--night-0: hsl(0, 0%, 0%, 1);
+  --color--night-5: hsl(200, 75%, 5%, 1);
+  --color--night-15: hsl(200, 29%, 13%, 1);
+  --color--night-20: hsl(201, 20%, 21%, 1);
+  --color--night-30: hsl(202, 12%, 29%, 1);
+  --color--night-35: hsl(202, 9%, 36%, 1);
+  --color--night-40: hsl(202, 6%, 43%, 1);
+  --color--night-50: hsl(202, 5%, 52%, 1);
+  --color--night-60: hsl(202, 5%, 60%, 1);
+  --color--night-70: hsl(202, 6%, 72%, 1);
+  --color--night-80: hsl(202, 6%, 80%, 1);
+  --color--night-90: hsl(202, 6%, 90%, 1);
+  --color--night-95: hsl(202, 6%, 95%, 1);
+
+  /*  Sky — tints used for accent bands, badges and hover fills. */
+  --color--sky-50: hsl(194, 66%, 50%, 1);
+  --color--sky-80: hsl(194, 66%, 80%, 1);
+  --color--sky-86: hsl(194, 54%, 86%, 1);
+  --color--sky-90: hsl(193, 65%, 90%, 1);
+  --color--sky-94: hsl(195, 67%, 94%, 1);
+  --color--sky-97: hsl(195, 86%, 97%, 1);
+
+  /*  Ocean / Sun — kept from the base theme; contrast ratios noted there. */
+  --color--ocean-10: hsl(200, 59%, 13%, 1);
+  --color--ocean-15: hsl(201, 100%, 16%, 1);
+  --color--ocean-30: hsl(201, 100%, 29%, 1);
+  --color--ocean-35: hsl(201, 100%, 37%, 1);
+  --color--ocean-40: hsl(202, 100%, 42%, 1);
+  --color--ocean-55: hsl(201, 100%, 55%, 1);
+  --color--sun-30: hsl(18, 95%, 30%, 1);
+  --color--sun-40: hsl(18, 95%, 41%, 1);
+  --color--sun-45: hsl(18, 95%, 46%, 1);
+  --color--sun-55: hsl(19, 95%, 55%, 1);
+  --color--sun-70: hsl(18, 95%, 71%, 1);
+  --color--sun-80: hsl(18, 95%, 83%, 1);
+  --color--sun-90: hsl(18, 96%, 91%, 1);
+
+  /*  Event brand extras, from the logo's dark navy. */
+  --dac-navy: #0c2152;
+  --dac-sky-tint: #eaf4fe;
+
+  /*  Semantic aliases — reach for these first. */
+  --neutral-white: var(--color-white);
+  --text-on-neutral-white: var(--color-black);
+  --text-on-neutral-primary: var(--color--primary-50);
+  --neutral-dark: var(--dac-navy);
+  --text-on-neutral-dark: var(--color-white);
+  --text-on-neutral-dark-primary: var(--color--primary-60);
+  --text-on-neutral-dark-secondary: var(--color--secondary-50);
+  --primary: var(--color--primary-60);
+  --text-on-primary: var(--color-white);
+  --secondary: var(--color--secondary-50);
+  --text-on-secondary: var(--color-white);
+
+  --surface-page: #fdfdfd;
+  --surface-card: var(--color--white);
+  --surface-band-tint: var(--dac-sky-tint);
+  --surface-band-dark: var(--dac-navy);
+  --text-body: var(--color--night-30);
+  --text-muted: var(--color--night-40);
+  --text-on-dark-body: hsl(213, 40%, 83%);
+  --text-on-dark-accent: hsl(213, 85%, 77%);
+  --border-hairline: hsl(213, 30%, 92%);
+
+  --form-element-border: var(--color--night-50);
+  --focus-ring-color: currentColor;
+  --jui-dialog-box-shadow: rgb(0, 0, 0, 0.4) 0 1rem 1.5rem;
+
+  ::backdrop {
+    --color-backdrop: hsl(200, 29%, 13%, 1);
+  }
+}

@@ -1,13 +1,28 @@
-base_primary_color: '#0562D2'
-base_secondary_color: '#F67012'
+base_primary_color: '#0462D1'
+base_secondary_color: '#F66E0E'
 graphic:
-  use_default: true
+  use_default: 1
+  path: null
 texture:
-  use_default: true
+  use_default: 1
+  path: null
 video:
-  use_default: true
+  use_default: 1
+  path: null
 favicon:
-  use_default: true
+  use_default: false
+  path: themes/custom/drupal_india_connect/favicon.svg
+  mimetype: image/svg+xml
 logo:
-  use_default: true
-hero_uses_block: true
+  use_default: 1
+hero_uses_block: 1
+video_poster:
+  path: null
+features:
+  node_user_picture: 1
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: 1
+default_graphic: 1
+default_texture: 1
+default_video: 1

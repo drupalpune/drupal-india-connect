@@ -1,0 +1,165 @@
+.eh-group {
+  display: flex;
+
+  /*  Direction */
+  &.eh-group--column {
+    flex-direction: column;
+  }
+  &.eh-group--row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /*  Equal width: each direct child fills an equal share of available space */
+  &.eh-group--equal-children {
+    > * {
+      flex: 1;
+    }
+  }
+
+  /*  Alignment of children within the group */
+  &.eh-group--items-start {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  &.eh-group--items-center {
+    align-items: center;
+    justify-content: center;
+  }
+  &.eh-group--items-end {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  /*  Self-alignment within the parent container */
+  &.eh-group--self-start {
+    align-self: flex-start;
+  }
+  &.eh-group--self-center {
+    align-self: center;
+  }
+  &.eh-group--self-end {
+    align-self: flex-end;
+  }
+
+  /*  Gap between children */
+  &.eh-group--gap-sm {
+    gap: var(--sp0-5);
+  }
+  &.eh-group--gap-md {
+    gap: var(--sp1);
+  }
+  &.eh-group--gap-lg {
+    gap: var(--sp2);
+  }
+  &.eh-group--gap-xl {
+    gap: var(--sp4);
+  }
+  &.eh-group--gap-grid {
+    gap: var(--grid-gap);
+  }
+
+  /*  Border radius */
+  &.eh-group--radius-sm {
+    border-radius: 0.125rem;
+  }
+  &.eh-group--radius-md {
+    border-radius: 0.375rem;
+  }
+  &.eh-group--radius-lg {
+    border-radius: 0.5rem;
+  }
+  &.eh-group--radius-xl {
+    border-radius: 0.75rem;
+  }
+
+  /*  Padding */
+  &.eh-group--padding-sm {
+    padding: var(--sp1);
+  }
+  &.eh-group--padding-md {
+    padding: var(--sp2);
+  }
+  &.eh-group--padding-lg {
+    padding: var(--sp4);
+  }
+  &.eh-group--padding-xl {
+    padding: 8rem;
+  }
+
+  /*  Background colors */
+  &.eh-group--bg-primary {
+    color: var(--text-on-primary);
+    background-color: var(--color--primary-50);
+  }
+  &.eh-group--bg-secondary {
+    color: var(--text-on-secondary);
+    background-color: var(--color--secondary-50);
+  }
+  &.eh-group--bg-accent {
+    color: var(--color--night-5);
+    background-color: var(--color--sky-94);
+  }
+
+  /*  Entrance animations (CSS-driven; respect animation-duration and animation-delay via inline style if needed) */
+  &.eh-group--anim-fade_up {
+    animation: eh-fade-up var(--eh-anim-duration, 0.5s) ease both;
+    animation-delay: var(--eh-anim-delay, 0s);
+  }
+  &.eh-group--anim-fade_down {
+    animation: eh-fade-down var(--eh-anim-duration, 0.5s) ease both;
+    animation-delay: var(--eh-anim-delay, 0s);
+  }
+  &.eh-group--anim-fade_left {
+    animation: eh-fade-left var(--eh-anim-duration, 0.5s) ease both;
+    animation-delay: var(--eh-anim-delay, 0s);
+  }
+  &.eh-group--anim-fade_right {
+    animation: eh-fade-right var(--eh-anim-duration, 0.5s) ease both;
+    animation-delay: var(--eh-anim-delay, 0s);
+  }
+}
+
+@keyframes eh-fade-up {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes eh-fade-down {
+  from {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes eh-fade-left {
+  from {
+    transform: translateX(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes eh-fade-right {
+  from {
+    transform: translateX(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

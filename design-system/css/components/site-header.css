@@ -1,0 +1,137 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: var(--sp2);
+
+  @container style(--grid-md: true) {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.site-header__action {
+  display: flex;
+}
+
+.site-header__register {
+  display: none;
+  padding: 0 var(--sp2);
+  color: var(--text-on-neutral-dark);
+  background-color: var(--neutral-dark);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: var(--sp1-5);
+
+  @container style(--grid-md: true) {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  @container style(--wide-nav: true) {
+    flex-direction: column;
+    align-items: flex-start;
+    width: min-content;
+    padding: var(--sp2);
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: max(
+        calc(100% + 3vw),
+        calc(
+          100% + 50vw - (var(--layout--max-width) + var(--scrollbar-width)) / 2
+        )
+      );
+      height: calc(100% + 6.25rem);
+      content: '';
+      background-color: var(--neutral-dark);
+    }
+  }
+}
+
+.site-header__register-link {
+  display: flex;
+  align-items: center;
+  padding: var(--sp) var(--sp2);
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--text-on-neutral-dark-primary);
+  }
+
+  &:focus {
+    border-radius: 0;
+  }
+
+  svg {
+    margin-left: 0.625rem;
+    fill: currentColor;
+
+    @container style(--wide-nav: true) {
+      order: -1;
+      margin: 0 0 0.9375rem;
+    }
+  }
+
+  @container style(--wide-nav: true) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.site-branding__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-branding__logo img {
+  height: 5rem;
+}
+
+.site-branding__name a {
+  text-decoration: none;
+  color: var(--color--night-5);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+ol.breadcrumb__list {
+  padding-left: 0;
+  list-style: none;
+}
+
+ol.breadcrumb__list li {
+  display: inline-block;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  transform: skewX(-30deg);
+  border-left: 2px solid #ddd;
+}
+
+ol.breadcrumb__list li a,
+ol.breadcrumb__list li span {
+  display: inline-block;
+  transform: skewX(30deg);
+}
+
+ol.breadcrumb__list li:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+ol.breadcrumb__list li:first-child a {
+  position: relative;
+  top: 0.25rem;
+  overflow: hidden;
+  width: 1rem;
+  white-space: nowrap;
+  text-indent: 100%;
+  background: currentColor;
+  mask: url('images/home.svg') no-repeat bottom left / 1rem 1rem;
+}

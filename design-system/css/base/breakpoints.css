@@ -1,0 +1,66 @@
+:root {
+  --sm: false;
+  --md: false;
+  --lg: false;
+
+  /* Navigation related breakpoints */
+  --wide-nav: false;
+  --mobile-nav: false;
+
+  /* Grid related breakpoints */
+  --grid-md: false;
+  --grid-max: false;
+
+  /* Sponsor breakpoints */
+  --grid-1-2: false;
+  --grid-2-3: false;
+  --label-format-switch: false;
+  --hero-break: false;
+
+  @media (min-width: 500px) {
+    --sm: true;
+  }
+
+  @media (min-width: 700px) {
+    --md: true;
+  }
+
+  @media (min-width: 1000px) {
+    --lg: true;
+  }
+
+  /* Navigation related breakpoints */
+  @media (min-width: 1100px) {
+    --wide-nav: true;
+  }
+
+  @media (max-width: 1100px) {
+    --mobile-nav: true;
+  }
+
+  /* Grid related breakpoints */
+  @media (min-width: 600px) {
+    --grid-md: true;
+  }
+
+  @media (min-width: 1300px) {
+    --grid-max: true;
+  }
+
+  /* Sponsor breakpoints */
+  @media (min-width: 600px) {
+    --grid-1-2: true;
+  }
+
+  @media (min-width: 800px) {
+    --grid-2-3: true;
+  }
+
+  @media (min-width: 1000px) {
+    --label-format-switch: true;
+  }
+
+  @media (min-width: 700px) {
+    --hero-break: true;
+  }
+}

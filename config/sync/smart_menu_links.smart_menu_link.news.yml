@@ -8,7 +8,7 @@ id: news
 label: News
 link_text: News
 link_suffix: news
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: ''
 weight: -44
 expanded: false

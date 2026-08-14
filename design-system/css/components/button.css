@@ -1,0 +1,120 @@
+.eh-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  border: solid 2px transparent;
+  border-radius: 0.375rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.25;
+  appearance: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: solid 2px var(--focus-ring-color);
+    outline-offset: 3px;
+  }
+
+  /*  Size variants */
+  &.eh-button--small {
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+  }
+  &.eh-button--medium {
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+  }
+  &.eh-button--large {
+    padding: 0.875rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  /*  Style variants */
+  &.eh-button--primary {
+    color: var(--color--white);
+    border-color: var(--color--primary-50);
+    background-color: var(--color--primary-50);
+
+    &:hover {
+      border-color: var(--color--primary-40);
+      background-color: var(--color--primary-40);
+    }
+  }
+
+  &.eh-button--secondary {
+    color: var(--color--night-5);
+    border-color: var(--color--sky-94);
+    background-color: var(--color--sky-94);
+
+    &:hover {
+      border-color: var(--color--sky-86);
+      background-color: var(--color--sky-86);
+    }
+  }
+
+  &.eh-button--primary-inverted {
+    color: var(--color--primary-50);
+    border-color: var(--color--white);
+    background-color: var(--color--white);
+
+    &:hover {
+      color: var(--color--primary-40);
+    }
+  }
+
+  &.eh-button--secondary-inverted {
+    color: var(--color--primary-50);
+    border-color: var(--color--primary-50);
+    background-color: transparent;
+
+    &:hover {
+      color: var(--color--white);
+      background-color: var(--color--primary-50);
+    }
+  }
+
+  /*  Full width on mobile */
+  &.eh-button--full-width {
+    width: 100%;
+
+    @container style(--sm: true) {
+      width: auto;
+    }
+  }
+
+  /*  Icon */
+  &.eh-button--has-icon {
+    gap: 0.5em;
+  }
+
+  .eh-button__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  /*  Disabled state */
+  &.eh-button--disabled,
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

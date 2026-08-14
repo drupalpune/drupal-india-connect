@@ -1,0 +1,8 @@
+uuid: 0d90e465-8dc6-4fec-808f-d1bbf6dadd12
+langcode: en
+status: true
+dependencies: {  }
+id: footer-involved
+label: 'Get involved'
+description: 'DrupalAsia Connect footer column.'
+locked: false

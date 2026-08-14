@@ -1,0 +1,130 @@
+.eh-card-testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--sp2);
+  border-radius: 0.5rem;
+  gap: var(--sp1-5);
+}
+
+.eh-card-testimonial--style-default {
+  color: var(--color--night-5);
+  background-color: var(--color--night-95, #f0f0f0);
+
+  .eh-card-testimonial__mark {
+    color: rgb(0, 0, 0, 0.08);
+  }
+}
+
+.eh-card-testimonial--style-inverted {
+  color: var(--color--white);
+  background-color: var(--color--night-5);
+
+  .eh-card-testimonial__mark {
+    color: rgb(255, 255, 255, 0.1);
+  }
+}
+
+.eh-card-testimonial--align-center {
+  align-items: center;
+  text-align: center;
+
+  .eh-card-testimonial__footer {
+    justify-content: center;
+  }
+}
+
+.eh-card-testimonial--align-left {
+  align-items: flex-start;
+  text-align: left;
+
+  .eh-card-testimonial__footer {
+    justify-content: flex-start;
+  }
+}
+
+.eh-card-testimonial__mark {
+  position: absolute;
+  inset-inline-start: var(--sp0-5);
+  top: var(--sp0-5);
+  width: 4rem;
+  height: 4rem;
+  pointer-events: none;
+}
+
+.eh-card-testimonial__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  gap: var(--sp1);
+}
+
+.eh-card-testimonial__text {
+  flex: 1;
+  margin: 0;
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.5;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.eh-card-testimonial__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: var(--sp1);
+}
+
+.eh-card-testimonial__avatar {
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.eh-card-testimonial__avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eh-card-testimonial__cite {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.eh-card-testimonial__name {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.eh-card-testimonial__role {
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.eh-card-testimonial__cite-link {
+  transition: opacity 0.2s;
+  text-decoration: underline;
+  color: inherit;
+  text-underline-offset: 2px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

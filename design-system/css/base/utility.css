@@ -1,0 +1,28 @@
+.arrow-right {
+  transition: transform 0.2s;
+
+  .button & {
+    margin: 0.3125rem;
+  }
+
+  .button:hover & {
+    transform: translateX(0.3125rem);
+  }
+}
+
+.highlight-box {
+  padding: var(--sp0-5) var(--sp);
+  background-color: var(--color--sky-94);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @container style(--lg: true) {
+    padding: var(--sp) var(--sp2);
+  }
+}

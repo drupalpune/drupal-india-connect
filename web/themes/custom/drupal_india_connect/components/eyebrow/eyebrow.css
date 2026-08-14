@@ -1,0 +1,26 @@
+/**
+ * Section eyebrow: 12px, 700, wide tracking, uppercase.
+ *
+ * The design system calls this "the cheapest way to make something look
+ * like this brand", and rations the accent orange to it.
+ */
+.eh-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eh-eyebrow--accent {
+  color: var(--color--secondary-50);
+}
+
+.eh-eyebrow--primary {
+  color: var(--color--primary-50);
+}
+
+/*  On navy the full-strength orange is too hot; the design lightens it. */
+.eh-eyebrow--on-dark {
+  color: color-mix(in srgb, var(--color--secondary-50) 65%, white);
+}

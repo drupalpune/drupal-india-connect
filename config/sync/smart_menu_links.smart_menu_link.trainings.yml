@@ -8,7 +8,7 @@ id: trainings
 label: Trainings
 link_text: Trainings
 link_suffix: trainings
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: 'smart_menu_links:schedule'
 weight: 0
 expanded: false

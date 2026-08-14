@@ -2,8 +2,85 @@
 
 /**
  * @file
- * Functions to support theming in the Drupal India Connect theme.
+ * Theme-specific PHP hooks for DrupalAsia Connect.
  */
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ *
+ * Drupal Canvas's page-region editor doesn't support this theme's regions
+ * yet (fatal error on the region entity, see project notes), so the
+ * save-the-date announcement bar is rendered directly here instead of
+ * through Canvas. event_horizon's page.html.twig prints {{ page.header }}
+ * immediately above the site-header include, which is exactly the
+ * "above the header, site-wide" placement the design calls for — so this
+ * appends the same SDC into that existing region's render array.
+ */
+function drupal_india_connect_preprocess_page(array &$variables) {
+  $variables['page']['header']['drupalasia_announcement_bar'] = [
+    '#type' => 'component',
+    '#component' => 'drupal_india_connect:announcement-bar',
+    '#props' => [
+      'message' => 'Save the date — 21–23 January 2027',
+      'detail' => 'IIT Bombay',
+      'variant' => 'secondary',
+    ],
+    '#weight' => -100,
+  ];
+
+  // The design's footer carries the Drupal trademark attribution. The
+  // event_platform_helper copyright block renders a fixed "All rights
+  // reserved" line with no setting for this, so append it separately
+  // rather than forking that block's template.
+  $variables['page']['footer']['drupalasia_trademark'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'p',
+    '#attributes' => ['class' => ['dac-footer__trademark']],
+    '#value' => t('Drupal is a registered trademark of Dries Buytaert.'),
+    '#weight' => 20,
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for event-platform-copyright-block.html.twig.
+ *
+ * The block prints date('Y') alone, so the footer read "DrupalAsia Connect
+ * 2026" next to a hero announcing 2027 — which scans as a different event
+ * rather than a copyright date. Print the span instead: from the year the
+ * site is being published to the year of the event, read from the same term
+ * the hero uses so the two cannot drift apart.
+ *
+ * The two collapse to a single year when they are the same, and are ordered
+ * lowest first so the range still reads correctly after the event.
+ */
+function drupal_india_connect_preprocess_event_platform_copyright_block(array &$variables) {
+  $event_details = \Drupal\config_pages\Entity\ConfigPages::config('event_details');
+  if (!$event_details) {
+    return;
+  }
+
+  $current = $event_details->get('field_current')?->getValue();
+  while (is_array($current)) {
+    $current = array_pop($current);
+  }
+  if (!$current) {
+    return;
+  }
+
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($current);
+  $start = $term?->get('field_dates')?->value;
+  if (!$start) {
+    return;
+  }
+
+  $event_year = (int) date('Y', is_numeric($start) ? (int) $start : strtotime($start));
+  $this_year = (int) date('Y');
+  $from = min($this_year, $event_year);
+  $to = max($this_year, $event_year);
+
+  $variables['year'] = $from === $to ? (string) $from : $from . '–' . $to;
+}
+
 
 /**
  * Implements hook_preprocess_block().
