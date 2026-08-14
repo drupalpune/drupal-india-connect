@@ -1,0 +1,8 @@
+uuid: 7f970a31-2db4-4e5c-bcf5-6abe8255e381
+langcode: en
+status: true
+dependencies: {  }
+id: footer-about
+label: Contact
+description: 'DrupalAsia Connect footer column.'
+locked: false

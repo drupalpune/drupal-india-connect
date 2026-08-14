@@ -1,0 +1,10 @@
+uuid: 28d734b0-1dee-4dfd-b835-16d71e6a1544
+langcode: en
+status: false
+dependencies:
+  theme:
+    - drupal_india_connect
+id: drupal_india_connect.header
+region: header
+theme: drupal_india_connect
+component_tree: {  }

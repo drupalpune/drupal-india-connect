@@ -1,0 +1,27 @@
+uuid: ed935625-bbc1-49d2-adba-568ff03e345d
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer-event
+  module:
+    - system
+active_version: e103188417baa75f
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:footer-event'
+        label: Event
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Event
+id: block.system_menu_block.footer-event
+provider: system
+source: block
+source_local_id: 'system_menu_block:footer-event'

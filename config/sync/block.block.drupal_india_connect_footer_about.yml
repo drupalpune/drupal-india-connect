@@ -1,0 +1,25 @@
+uuid: 13dc7fd7-7956-4ca4-a5d2-aed5d7e57b21
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-about
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+id: drupal_india_connect_footer_about
+theme: drupal_india_connect
+region: footer
+weight: 2
+provider: null
+plugin: 'system_menu_block:footer-about'
+settings:
+  id: 'system_menu_block:footer-about'
+  label: Contact
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

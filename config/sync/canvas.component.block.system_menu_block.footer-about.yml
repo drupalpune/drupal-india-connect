@@ -1,0 +1,27 @@
+uuid: f39a3b45-7fb4-4de8-a30b-42bfaafb0e7f
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer-about
+  module:
+    - system
+active_version: bdc0ff69141e7e0f
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:footer-about'
+        label: Contact
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Contact
+id: block.system_menu_block.footer-about
+provider: system
+source: block
+source_local_id: 'system_menu_block:footer-about'

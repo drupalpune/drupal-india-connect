@@ -1,0 +1,25 @@
+uuid: 87f0925e-793d-4b79-b20c-65cb2a847a1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-event
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+id: drupal_india_connect_footer_event
+theme: drupal_india_connect
+region: footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-event'
+settings:
+  id: 'system_menu_block:footer-event'
+  label: Event
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

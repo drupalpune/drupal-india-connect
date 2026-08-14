@@ -8,7 +8,7 @@ id: schedule
 label: Schedule
 link_text: Schedule
 link_suffix: schedule
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: ''
 weight: -47
 expanded: false

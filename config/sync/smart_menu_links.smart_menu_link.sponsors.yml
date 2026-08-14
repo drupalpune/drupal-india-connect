@@ -8,7 +8,7 @@ id: sponsors
 label: Sponsors
 link_text: Sponsors
 link_suffix: sponsors
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: ''
 weight: -45
 expanded: false

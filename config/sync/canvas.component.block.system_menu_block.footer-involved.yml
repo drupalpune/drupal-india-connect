@@ -1,0 +1,27 @@
+uuid: ff3bf3c7-4398-44e5-93b6-2ca9bf46e4ed
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer-involved
+  module:
+    - system
+active_version: 9187a16510a3fc74
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:footer-involved'
+        label: 'Get involved'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: 'Get involved'
+id: block.system_menu_block.footer-involved
+provider: system
+source: block
+source_local_id: 'system_menu_block:footer-involved'

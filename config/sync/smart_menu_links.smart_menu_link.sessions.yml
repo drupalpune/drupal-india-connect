@@ -8,7 +8,7 @@ id: sessions
 label: Sessions
 link_text: Sessions
 link_suffix: sessions
-menu_name: main
+menu_name: smart-menu-links-inactive
 parent: ''
 weight: -46
 expanded: false

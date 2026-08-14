@@ -1,0 +1,8 @@
+uuid: 813288c8-4334-4936-b935-00006c4c0375
+langcode: en
+status: true
+dependencies: {  }
+id: footer-event
+label: Event
+description: 'DrupalAsia Connect footer column.'
+locked: false

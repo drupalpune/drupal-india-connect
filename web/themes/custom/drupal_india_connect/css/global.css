@@ -38,7 +38,7 @@
  * the bar tightens on small screens.
  */
 .site-branding__logo img {
-  height: clamp(3.5rem, 3rem + 1.5vw, 5rem);
+  height: clamp(4rem, 3.25rem + 2.25vw, 6.5rem);
   width: auto;
 }
 

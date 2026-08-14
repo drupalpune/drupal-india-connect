@@ -11,7 +11,7 @@ _core:
 id: drupal_india_connect_copyright
 theme: drupal_india_connect
 region: footer
-weight: -12
+weight: 10
 provider: null
 plugin: event_platform_helper_copyright
 settings:

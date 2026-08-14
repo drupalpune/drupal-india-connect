@@ -1,0 +1,44 @@
+uuid: b17ee263-d1f1-4407-a2a9-ae4e2accebb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 19a4cf2688997f30
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        caption:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'venue photo or map / 4:3'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        ratio:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: '4:3'
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Media placeholder'
+id: sdc.drupal_india_connect.media-placeholder
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:media-placeholder'
