@@ -221,6 +221,20 @@ h2.eh-heading,
 }
 
 /*
+ * Same-page nav targets (header nav and the footer link columns) have to
+ * clear the sticky header, or the band's heading scrolls in underneath it
+ * and you land looking at body copy with no idea where you are.
+ *
+ * --dac-header-height is measured and published by section-anchors.js,
+ * because the header's height changes as the nav wraps. The fallback
+ * covers the moment before that script runs. The extra space stops the
+ * heading sitting flush against the bar.
+ */
+.dac-anchor-target {
+  scroll-margin-top: calc(var(--dac-header-height, 6rem) + var(--sp1-5));
+}
+
+/*
  * event_horizon puts `.container` on the header itself, so the bar is
  * width-constrained. The design's bar bleeds to the viewport edge with
  * its contents still on the grid — so paint the background on a
