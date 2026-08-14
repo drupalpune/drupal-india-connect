@@ -73,3 +73,77 @@
 .site-header__register-link svg {
   display: none;
 }
+
+/*
+ * Footer: the design lays the link columns out side by side.
+ *
+ * The region already carries event_horizon's `.grid` (6/12/14 columns),
+ * whose `:where(& > *) { grid-column: 1 / -1 }` makes every child span
+ * the full width — which is why the columns stack. That rule has zero
+ * specificity, so placing each block on the existing track set is enough;
+ * no need to redefine the grid.
+ */
+@container style(--grid-md: true) {
+  .site-footer .region--footer > #block-drupal-india-connect-footer-event {
+    grid-column: 1 / 5;
+  }
+
+  .site-footer .region--footer > #block-drupal-india-connect-footer-involved {
+    grid-column: 5 / 9;
+  }
+
+  .site-footer .region--footer > #block-drupal-india-connect-footer-about {
+    grid-column: 9 / 13;
+  }
+}
+
+.site-footer .region--footer > #block-drupal-india-connect-copyright,
+.site-footer .region--footer > .dac-footer__trademark {
+  grid-column: 1 / -1;
+}
+
+.site-footer .region--footer .block__title {
+  margin-block: 0 var(--sp0-75);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color--white);
+}
+
+.site-footer .region--footer .menu--level-1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * event_horizon colours every footer link with the secondary (orange)
+ * ramp. The design uses orange only as a rationed accent, and puts footer
+ * links in the on-navy light blue-grey instead.
+ */
+.site-footer .region--footer .menu__link {
+  color: var(--color--sky-86);
+  text-decoration: none;
+}
+
+.site-footer .region--footer .menu__link:hover,
+.site-footer .region--footer .menu__link:focus {
+  color: var(--color--white);
+  text-decoration: underline;
+}
+
+/* Separate the legal lines from the columns above them. */
+.site-footer .region--footer > #block-drupal-india-connect-copyright {
+  margin-top: var(--sp2);
+  padding-top: var(--sp1-5);
+  border-top: 1px solid rgb(255, 255, 255, 0.15);
+}
+
+.site-footer .dac-footer__trademark {
+  margin: 0;
+  font-size: 0.9375rem;
+}

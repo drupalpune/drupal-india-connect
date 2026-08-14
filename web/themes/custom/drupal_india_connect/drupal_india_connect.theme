@@ -27,4 +27,16 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     ],
     '#weight' => -100,
   ];
+
+  // The design's footer carries the Drupal trademark attribution. The
+  // event_platform_helper copyright block renders a fixed "All rights
+  // reserved" line with no setting for this, so append it separately
+  // rather than forking that block's template.
+  $variables['page']['footer']['drupalasia_trademark'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'p',
+    '#attributes' => ['class' => ['dac-footer__trademark']],
+    '#value' => t('Drupal is a registered trademark of Dries Buytaert.'),
+    '#weight' => 20,
+  ];
 }
