@@ -1,0 +1,28 @@
+{% set theme_key = track_theme|default('imagine') %}
+
+<div class="program-detail-row program-detail-row--{{ theme_key }}"{% if anchor_id is not empty %} id="{{ anchor_id }}"{% endif %}>
+  <div class="program-detail-row__marker">
+    <span class="program-detail-row__badge">{{ day_number }}</span>
+  </div>
+
+  <div class="program-detail-row__card">
+    <div class="program-detail-row__header">
+      <div class="program-detail-row__heading">
+        {% if title is not empty %}
+          <h3 class="program-detail-row__title">{{ title }}</h3>
+        {% endif %}
+        <span class="program-detail-row__tag">{{ theme_key }}</span>
+      </div>
+
+      {% if date is not empty %}
+        <span class="program-detail-row__date">{{ date }}</span>
+      {% endif %}
+    </div>
+
+    <div class="program-detail-row__highlights">
+      {% block highlights %}{% endblock %}
+    </div>
+
+    <div class="program-detail-row__cta">{%- block cta -%}{%- endblock -%}</div>
+  </div>
+</div>

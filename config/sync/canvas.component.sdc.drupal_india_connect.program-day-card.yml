@@ -1,21 +1,22 @@
-uuid: 60f1f586-2221-4495-8ec0-77e45a790103
+uuid: d4ad778e-ab80-49a3-9782-2e1b6d9b8edd
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.canvas_html_block
   module:
+    - link
     - options
     - text
   theme:
     - drupal_india_connect
-active_version: b9d4607d1c4bd7f1
+active_version: b1af7196ddc62f2e
 versioned_properties:
   active:
     settings:
       prop_field_definitions:
         day_number:
-          required: true
+          required: false
           field_type: float
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -25,8 +26,20 @@ versioned_properties:
               value: 1.0
           expression: ℹ︎float␟value
           derived_schema_metadata: {  }
-        eyebrow:
+        date:
           required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Jan 21'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title:
+          required: true
           field_type: string
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -37,20 +50,8 @@ versioned_properties:
           expression: ℹ︎string␟value
           derived_schema_metadata:
             string_shape: {  }
-        date:
+        subtitle:
           required: false
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: '18 January 2027'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        title:
-          required: true
           field_type: string
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -71,14 +72,14 @@ versioned_properties:
           field_widget: text_textarea
           default_value:
             -
-              value: '<p>A focused day of talks, discussions, and activities exploring AI and its impact on the Drupal ecosystem.</p>'
+              value: 'Curated tracks focused on Enterprise, Government, Education, and MLOps.'
               format: canvas_html_block
           expression: ℹ︎text_long␟processed
           derived_schema_metadata:
             string_shape:
               contentMediaType: text/html
               x-formatting-context: block
-        icon:
+        track_theme:
           required: true
           field_type: list_string
           field_storage_settings:
@@ -87,16 +88,44 @@ versioned_properties:
           field_widget: options_select
           default_value:
             -
-              value: ai
+              value: imagine
           expression: ℹ︎list_string␟value
           derived_schema_metadata: {  }
+        details_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Details below'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        details_url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: '#day-1'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
     fallback_metadata:
       slot_definitions: {  }
-  d890359d9210c9fd:
+  0d4a4905e1c36ce0:
     settings:
       prop_field_definitions:
         day_number:
-          required: true
+          required: false
           field_type: float
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -114,138 +143,12 @@ versioned_properties:
           field_widget: string_textfield
           default_value:
             -
-              value: '18 January 2027'
+              value: 'Jan 21'
           expression: ℹ︎string␟value
           derived_schema_metadata:
             string_shape: {  }
         title:
           required: true
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: 'AI Summit'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        description:
-          required: false
-          field_type: text_long
-          field_storage_settings: {  }
-          field_instance_settings:
-            allowed_formats:
-              - canvas_html_block
-          field_widget: text_textarea
-          default_value:
-            -
-              value: '<p>A focused day of talks, discussions, and activities exploring AI and its impact on the Drupal ecosystem.</p>'
-              format: canvas_html_block
-          expression: ℹ︎text_long␟processed
-          derived_schema_metadata:
-            string_shape:
-              contentMediaType: text/html
-              x-formatting-context: block
-        icon:
-          required: true
-          field_type: list_string
-          field_storage_settings:
-            allowed_values_function: canvas_load_allowed_values_for_component_prop
-          field_instance_settings: {  }
-          field_widget: options_select
-          default_value:
-            -
-              value: ai
-          expression: ℹ︎list_string␟value
-          derived_schema_metadata: {  }
-    fallback_metadata:
-      slot_definitions: {  }
-  188328dd16e5a4c7:
-    settings:
-      prop_field_definitions:
-        day_number:
-          required: true
-          field_type: float
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: number
-          default_value:
-            -
-              value: 1.0
-          expression: ℹ︎float␟value
-          derived_schema_metadata: {  }
-        date:
-          required: false
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: 'Date to be announced'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        title:
-          required: true
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: 'AI Summit'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        description:
-          required: false
-          field_type: text_long
-          field_storage_settings: {  }
-          field_instance_settings:
-            allowed_formats:
-              - canvas_html_block
-          field_widget: text_textarea
-          default_value:
-            -
-              value: '<p>A focused day of talks, discussions, and activities exploring AI and its impact on the Drupal ecosystem.</p>'
-              format: canvas_html_block
-          expression: ℹ︎text_long␟processed
-          derived_schema_metadata:
-            string_shape:
-              contentMediaType: text/html
-              x-formatting-context: block
-        icon:
-          required: true
-          field_type: list_string
-          field_storage_settings:
-            allowed_values_function: canvas_load_allowed_values_for_component_prop
-          field_instance_settings: {  }
-          field_widget: options_select
-          default_value:
-            -
-              value: ai
-          expression: ℹ︎list_string␟value
-          derived_schema_metadata: {  }
-    fallback_metadata:
-      slot_definitions: {  }
-  20d35bd481baff99:
-    settings:
-      prop_field_definitions:
-        day_number:
-          required: true
-          field_type: float
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: number
-          default_value:
-            -
-              value: 1.0
-          expression: ℹ︎float␟value
-          derived_schema_metadata: {  }
-        eyebrow:
-          required: false
           field_type: string
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -256,20 +159,8 @@ versioned_properties:
           expression: ℹ︎string␟value
           derived_schema_metadata:
             string_shape: {  }
-        date:
+        subtitle:
           required: false
-          field_type: string
-          field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textfield
-          default_value:
-            -
-              value: 'Date to be announced'
-          expression: ℹ︎string␟value
-          derived_schema_metadata:
-            string_shape: {  }
-        title:
-          required: true
           field_type: string
           field_storage_settings: {  }
           field_instance_settings: {  }
@@ -290,14 +181,14 @@ versioned_properties:
           field_widget: text_textarea
           default_value:
             -
-              value: '<p>A focused day of talks, discussions, and activities exploring AI and its impact on the Drupal ecosystem.</p>'
+              value: 'Curated tracks focused on Enterprise, Government, Education, and MLOps.'
               format: canvas_html_block
           expression: ℹ︎text_long␟processed
           derived_schema_metadata:
             string_shape:
               contentMediaType: text/html
               x-formatting-context: block
-        icon:
+        track_type:
           required: true
           field_type: list_string
           field_storage_settings:
@@ -309,10 +200,38 @@ versioned_properties:
               value: ai
           expression: ℹ︎list_string␟value
           derived_schema_metadata: {  }
+        details_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Details below'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        details_url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: '#day-1'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
     fallback_metadata:
       slot_definitions: {  }
-label: 'Event Overview Card'
-id: sdc.drupal_india_connect.event-overview-card
+label: 'Program Day Card'
+id: sdc.drupal_india_connect.program-day-card
 provider: drupal_india_connect
 source: sdc
-source_local_id: 'drupal_india_connect:event-overview-card'
+source_local_id: 'drupal_india_connect:program-day-card'

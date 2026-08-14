@@ -1,0 +1,171 @@
+/*
+ * Theme colors are keyed to the program's three theme days (Imagine /
+ * Discover / Build), NOT the ai/conference/contribution taxonomy used by
+ * event-overview-card and program-day-card — this is a deliberately
+ * separate convention because the source mockup colors don't line up with
+ * that mapping (see program-detail-row.component.yml description).
+ */
+.program-detail-row {
+  --card-accent: var(--primary);
+
+  display: flex;
+  align-items: stretch;
+  gap: var(--sp0-75);
+  padding-bottom: var(--sp1-5);
+
+  @container style(--sm: true) {
+    gap: var(--sp1-5);
+  }
+}
+
+.program-detail-row:last-child {
+  padding-bottom: 0;
+}
+
+.program-detail-row--imagine {
+  --card-accent: var(--primary);
+}
+
+.program-detail-row--discover {
+  --card-accent: var(--color--primary-20);
+}
+
+.program-detail-row--build {
+  --card-accent: var(--secondary);
+}
+
+.program-detail-row__marker {
+  position: relative;
+  flex: 0 0 2.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+/*
+ * The connecting line. Runs the full height of the row by default so
+ * consecutive rows' lines meet in the gap between them; trimmed at the
+ * first and last row so it starts/ends at the badge center instead of
+ * overshooting past the first/last card. Requires rows to be direct
+ * siblings — see component description.
+ */
+.program-detail-row__marker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--color--night-90);
+  transform: translateX(-50%);
+}
+
+.program-detail-row:first-child .program-detail-row__marker::before {
+  top: 1.125rem;
+}
+
+.program-detail-row:last-child .program-detail-row__marker::before {
+  bottom: auto;
+  height: 1.125rem;
+}
+
+.program-detail-row:only-child .program-detail-row__marker::before {
+  display: none;
+}
+
+.program-detail-row__badge {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--color--white);
+  background-color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.program-detail-row__card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--sp1);
+  min-width: 0;
+  padding: var(--sp1-5);
+  border: solid 1px var(--color--night-90);
+  border-radius: 0.75rem;
+  background-color: var(--color--white);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+
+  @container style(--md: true) {
+    padding: var(--sp2);
+  }
+}
+
+.program-detail-row__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp0-75);
+}
+
+.program-detail-row__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp0-5);
+}
+
+.program-detail-row__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.125rem;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.program-detail-row__tag {
+  color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.program-detail-row__date {
+  color: var(--color--night-50);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.program-detail-row__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp1);
+}
+
+.program-detail-row__cta:empty {
+  display: none;
+}
+
+/*
+ * event_horizon's Badge component only ships a solid-fill style for
+ * "primary" (hardcoded blue) and a light sky-tint for "secondary" —
+ * neither matches this row's own accent. Force a solid pill in the
+ * row's --card-accent regardless of which `style` was picked in Canvas.
+ */
+.program-detail-row__cta .eh-badge {
+  border-radius: 999px;
+  border-color: var(--card-accent);
+  background-color: var(--card-accent);
+  color: var(--color--white);
+  font-weight: 700;
+}

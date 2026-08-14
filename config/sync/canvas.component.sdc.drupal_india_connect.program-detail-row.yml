@@ -1,0 +1,143 @@
+uuid: afcc393d-841e-486e-9703-3615b12b7599
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 0fbfba4e38c2a7c2
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        day_number:
+          required: true
+          field_type: float
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 1.0
+          expression: ℹ︎float␟value
+          derived_schema_metadata: {  }
+        anchor_id:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: day-1
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'AI Summit'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday, Jan 21, 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        track_theme:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: imagine
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        highlights:
+          title: 'Highlight tiles'
+          description: 'Place Program Highlight Tile components here — 2 or 3 per row.'
+        cta:
+          title: 'CTA (optional)'
+          description: 'Optional call-to-action shown below the highlights, e.g. an Event Horizon Badge component.'
+  9a76a790be0952b4:
+    settings:
+      prop_field_definitions:
+        day_number:
+          required: true
+          field_type: float
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 1.0
+          expression: ℹ︎float␟value
+          derived_schema_metadata: {  }
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'AI Summit'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday, Jan 21, 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        track_theme:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: imagine
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        highlights:
+          title: 'Highlight tiles'
+          description: 'Place Program Highlight Tile components here — 2 or 3 per row.'
+        cta:
+          title: 'CTA (optional)'
+          description: 'Optional call-to-action shown below the highlights, e.g. an Event Horizon Badge component.'
+label: 'Program Detail Row'
+id: sdc.drupal_india_connect.program-detail-row
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:program-detail-row'

@@ -2,6 +2,10 @@
 
 <div class="text-media text-media--{{ layout_key }}">
   <div class="text-media__content">
+    {% if label is not empty %}
+      <span class="text-media__label">{{ label }}</span>
+    {% endif %}
+
     {% if heading is not empty %}
       <h2 class="text-media__heading">{{ heading }}</h2>
     {% endif %}
@@ -9,6 +13,8 @@
     {% if body is not empty %}
       <div class="text-media__body">{{ body }}</div>
     {% endif %}
+
+    <div class="text-media__cta">{%- block cta -%}{%- endblock -%}</div>
   </div>
 
   {% if media.src is not empty %}

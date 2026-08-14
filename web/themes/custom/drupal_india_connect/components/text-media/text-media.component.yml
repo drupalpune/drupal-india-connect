@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Text & Media'
-description: 'A two-column section: rich text on one side, an image on the other. Which side the media appears on is configurable.'
+description: 'A two-column section: rich text on one side, an image on the other. Which side the media appears on is configurable. The text side follows the same pill/heading/description shape as Section Heading, plus an optional CTA slot.'
 group: Drupal Connect
 status: stable
 props:
@@ -19,6 +19,12 @@ props:
       default: media-right
       examples:
         - media-right
+    label:
+      type: string
+      title: 'Label (pill)'
+      description: 'Optional small pill shown above the heading.'
+      examples:
+        - 'WHY MUMBAI'
     heading:
       type: string
       title: Heading
@@ -26,7 +32,7 @@ props:
         - 'Why Mumbai?'
     body:
       type: string
-      title: Body
+      title: Description
       contentMediaType: text/html
       x-formatting-context: block
       examples:
@@ -35,3 +41,7 @@ props:
       $ref: json-schema-definitions://canvas.module/image
       title: Media
       type: object
+slots:
+  cta:
+    title: 'CTA (optional)'
+    description: 'Optional call-to-action shown below the description, e.g. a Button or Event Horizon Badge component.'

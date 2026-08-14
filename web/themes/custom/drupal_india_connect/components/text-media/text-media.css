@@ -29,6 +29,29 @@
   gap: var(--sp0-75);
 }
 
+.text-media__label {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  color: var(--color--night-5);
+  border-radius: 999px;
+  /*
+   * Both gradient stops stay very light (~80-85% lightness) so the dark
+   * text keeps comfortable contrast across the whole pill, even though
+   * the two brand colors it's mixed from wouldn't individually pair
+   * safely with this text color. Matches Section Heading's pill.
+   */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--secondary) 20%, var(--color--white)),
+    color-mix(in srgb, var(--primary) 18%, var(--color--white))
+  );
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .text-media__heading {
   margin: 0;
   color: var(--color--night-5);
@@ -103,6 +126,10 @@
   outline: solid 2px var(--focus-ring-color);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+.text-media__cta:empty {
+  display: none;
 }
 
 .text-media__media {

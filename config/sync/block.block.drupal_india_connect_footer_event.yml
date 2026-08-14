@@ -1,6 +1,6 @@
 uuid: 87f0925e-793d-4b79-b20c-65cb2a847a1c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer-event

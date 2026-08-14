@@ -46,6 +46,7 @@ jobs:
 
             composer install --no-dev --optimize-autoloader --no-interaction
 
+            vendor/bin/drush cr
             vendor/bin/drush updb -y
             vendor/bin/drush cim -y
             vendor/bin/drush cr

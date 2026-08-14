@@ -1,0 +1,51 @@
+uuid: 50e78b63-8f89-4d9b-8272-29c7fa0342eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.canvas_html_block
+  module:
+    - text
+  theme:
+    - drupal_india_connect
+active_version: fce317592989cbd4
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Format
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        description:
+          required: true
+          field_type: text_long
+          field_storage_settings: {  }
+          field_instance_settings:
+            allowed_formats:
+              - canvas_html_block
+          field_widget: text_textarea
+          default_value:
+            -
+              value: 'Parallel specialized tracks featuring curated thought leaders.'
+              format: canvas_html_block
+          expression: ℹ︎text_long␟processed
+          derived_schema_metadata:
+            string_shape:
+              contentMediaType: text/html
+              x-formatting-context: block
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Program Highlight Tile'
+id: sdc.drupal_india_connect.program-highlight-tile
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:program-highlight-tile'

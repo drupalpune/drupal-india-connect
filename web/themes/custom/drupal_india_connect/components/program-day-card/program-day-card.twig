@@ -1,0 +1,32 @@
+{% set track_key = track_theme|default('imagine') %}
+
+<div class="program-day-card program-day-card--{{ track_key }}">
+  {% if day_number is not empty or date is not empty %}
+    <span class="program-day-card__eyebrow">
+      {%- if day_number is not empty -%}
+        {{ 'Day @number'|t({ '@number': day_number }) }}
+      {%- endif -%}
+      {%- if day_number is not empty and date is not empty %} &middot; {% endif -%}
+      {{- date -}}
+    </span>
+  {% endif %}
+
+  {% if title is not empty %}
+    <h3 class="program-day-card__title">{{ title }}</h3>
+  {% endif %}
+
+  {% if subtitle is not empty %}
+    <p class="program-day-card__subtitle">{{ subtitle }}</p>
+  {% endif %}
+
+  {% if description is not empty %}
+    <div class="program-day-card__description">{{ description }}</div>
+  {% endif %}
+
+  {% if details_url is not empty %}
+    <a href="{{ details_url }}" class="program-day-card__details">
+      {{ details_label|default('Details below'|t) }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+    </a>
+  {% endif %}
+</div>

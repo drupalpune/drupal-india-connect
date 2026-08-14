@@ -1,0 +1,107 @@
+/*
+ * Theme colors mirror program-detail-row.css exactly (keyed to the
+ * program's three theme days, not event-overview-card's
+ * ai/conference/contribution taxonomy): Imagine = Blue, Discover = Dark
+ * Blue, Build = Orange.
+ */
+.program-day-card {
+  --card-accent: var(--primary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp0-5);
+  padding: var(--sp1-5);
+  border: solid 1px var(--color--night-90);
+  border-top-width: 4px;
+  border-top-color: var(--card-accent);
+  border-radius: 0.75rem;
+  background-color: var(--color--white);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+
+  @container style(--md: true) {
+    padding: var(--sp2);
+  }
+}
+
+.program-day-card--imagine {
+  --card-accent: var(--primary);
+}
+
+.program-day-card--discover {
+  --card-accent: var(--color--primary-20);
+}
+
+.program-day-card--build {
+  --card-accent: var(--secondary);
+}
+
+.program-day-card__eyebrow {
+  color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.program-day-card__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+
+  @container style(--md: true) {
+    font-size: 1.75rem;
+  }
+}
+
+.program-day-card__subtitle {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.program-day-card__description {
+  margin: 0;
+  color: var(--color--night-30);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.program-day-card__description p {
+  margin: 0;
+}
+
+.program-day-card__description p + p {
+  margin-top: var(--sp0-5);
+}
+
+.program-day-card__details {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-25);
+  margin-top: var(--sp0-25);
+  color: var(--card-accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* Reuses the arrow-right glyph, rotated to point down. */
+.program-day-card__details .ph-icon {
+  transform: rotate(90deg);
+}
+
+.program-day-card__details:hover {
+  text-decoration: underline;
+}
+
+.program-day-card__details:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+}

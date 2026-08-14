@@ -1,0 +1,66 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program Day Card'
+description: 'A program highlight for one day of the event: a day/date eyebrow, theme title, subtitle, description, and a "Details below" link — color-coded by theme, matching Program Detail Row. Place several inside a Grid to build a program-at-a-glance section.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - title
+    - track_theme
+  properties:
+    day_number:
+      type: number
+      title: 'Day number'
+      examples:
+        - 1
+    date:
+      type: string
+      title: Date
+      examples:
+        - 'Jan 21'
+    title:
+      type: string
+      title: 'Theme title'
+      description: 'The day''s theme, e.g. "Imagine". Rendered large and uppercase.'
+      examples:
+        - Imagine
+    subtitle:
+      type: string
+      title: Subtitle
+      examples:
+        - 'AI Summit'
+    description:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - 'Curated tracks focused on Enterprise, Government, Education, and MLOps.'
+    track_theme:
+      type: string
+      title: 'Theme'
+      description: 'Drives the card''s brand color, matching Program Detail Row''s theme colors.'
+      enum:
+        - imagine
+        - discover
+        - build
+      meta:enum:
+        imagine: 'Imagine (Blue)'
+        discover: 'Discover (Dark Blue)'
+        build: 'Build (Orange)'
+      default: imagine
+      examples:
+        - imagine
+    details_label:
+      type: string
+      title: 'Details link label'
+      default: 'Details below'
+      examples:
+        - 'Details below'
+    details_url:
+      type: string
+      title: 'Details link target'
+      format: uri-reference
+      examples:
+        - '#day-1'

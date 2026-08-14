@@ -1,6 +1,6 @@
 uuid: 347d044b-d84a-4527-9f0c-24b539aedc0c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer-involved
