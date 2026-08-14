@@ -1,0 +1,18 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Footer branding: event name + venue/date, no logo.
+ */
+#}
+{% set attributes = attributes.addClass('site-branding', 'footer-branding') %}
+{% block content %}
+  <div class="footer-branding__inner">
+    {% if site_name %}
+      <div class="footer-branding__name">
+        <a href="{{ home_path }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+      </div>
+    {% endif %}
+    <div class="footer-branding__venue">IIT Bombay &middot; Jan 21&ndash;23, 2027</div>
+  </div>
+{% endblock %}
