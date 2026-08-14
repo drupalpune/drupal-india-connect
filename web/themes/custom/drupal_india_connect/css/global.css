@@ -75,6 +75,29 @@
 }
 
 /*
+ * Cards sitting on a tint band are white in the design. The Group
+ * component's background prop only offers primary/secondary/accent, so
+ * there is no white to pick — set it here for the padded, rounded groups
+ * that act as cards inside a tinted section.
+ */
+.eh-section--bg-accent .eh-group--padding-lg.eh-group--radius-md {
+  background-color: var(--color--white);
+}
+
+/*
+ * Section headings are uppercase in this system — display type is set in
+ * caps by CSS, never typed that way (see the design system's content
+ * fundamentals). Card titles (h3) stay sentence case.
+ */
+h2.eh-heading,
+.site-footer .region--footer .block__title,
+.view-header .block__title {
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/*
  * Sticky header with a translucent, blurred background, per the design.
  * Needs `overflow-x: clip` (not `hidden`) on <html> to work — see base.css.
  */

@@ -1,0 +1,224 @@
+/**
+ * DrupalAsia Connect homepage hero.
+ *
+ * Colours come from the theme's derived ramps, never the logo hexes
+ * directly — see the design system's "one rule". The navy is
+ * --color--primary-20 (set in css/base.css).
+ */
+
+.eh-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color--sky-90);
+  background-color: var(--color--white);
+}
+
+.eh-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding-block: var(--sp4) var(--sp3);
+  gap: var(--sp3);
+}
+
+@container style(--md: true) {
+  .eh-hero__inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3.5rem;
+  }
+}
+
+.eh-hero__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1.75rem;
+}
+
+/*  Eyebrow: short rule + uppercase label, in the rationed accent colour. */
+.eh-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: var(--sp0-75);
+  color: var(--color--secondary-50);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eh-hero__eyebrow-rule {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background-color: var(--color--secondary-50);
+}
+
+.eh-hero__title {
+  margin: 0;
+  color: var(--color--primary-20);
+  font-size: clamp(3.25rem, 1.5rem + 5.2vw, 7.5rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 0.86;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.eh-hero__title-highlight {
+  color: var(--color--primary-50);
+}
+
+.eh-hero__lede {
+  max-width: 34rem;
+  color: var(--color--night-30);
+  font-size: 1.3125rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.eh-hero__lede :where(p) {
+  margin: 0;
+}
+
+/*  Fact strip: hairline rules top and bottom, label over value. */
+.eh-hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--color--sky-90);
+  gap: 2.5rem;
+}
+
+.eh-hero__fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-25);
+}
+
+.eh-hero__fact-label {
+  color: var(--color--night-40);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eh-hero__fact-value {
+  margin: 0;
+  color: var(--color--primary-20);
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.eh-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp1);
+}
+
+.eh-hero__button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9375rem 1.75rem;
+  border: solid 2px var(--color--primary-50);
+  border-radius: 0.375rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.eh-hero__button--primary {
+  background-color: var(--color--primary-50);
+  color: var(--color--white);
+}
+
+.eh-hero__button--primary:hover,
+.eh-hero__button--primary:focus-visible {
+  border-color: var(--color--primary-60);
+  background-color: var(--color--primary-60);
+  color: var(--color--white);
+}
+
+.eh-hero__button--secondary {
+  background-color: transparent;
+  color: var(--color--primary-50);
+}
+
+.eh-hero__button--secondary:hover,
+.eh-hero__button--secondary:focus-visible {
+  background-color: var(--color--primary-50);
+  color: var(--color--white);
+}
+
+/*  Media well: square, with the secondary -> primary wash over it. */
+.eh-hero__media {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1;
+}
+
+.eh-hero__video,
+.eh-hero__placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.eh-hero__video {
+  object-fit: cover;
+}
+
+/*
+ * Missing imagery is shown as a 45-degree striped placeholder with a
+ * monospace label, never an illustration or a stock stand-in.
+ */
+.eh-hero__placeholder {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--color--sky-94) 0 12px,
+    var(--color--sky-90) 12px 24px
+  );
+}
+
+.eh-hero__media-wash {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color--secondary-50) 28%, transparent),
+    color-mix(in srgb, var(--color--primary-50) 42%, transparent)
+  );
+  pointer-events: none;
+}
+
+.eh-hero__media-caption {
+  position: absolute;
+  z-index: 1;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  padding: var(--sp0-5) var(--sp0-75);
+  background-color: var(--color--white);
+  color: var(--color--primary-20);
+  font-family: var(--font-mono, ui-monospace, menlo, monospace);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+
+.eh-hero__media-mark {
+  position: absolute;
+  z-index: 1;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--color--secondary-50);
+}

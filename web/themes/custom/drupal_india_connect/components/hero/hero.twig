@@ -1,0 +1,108 @@
+{#
+  DrupalAsia Connect homepage hero.
+
+  Dates and location come from the current event term rather than props, so
+  they stay in step with the taxonomy (the same source site-hero-25 reads).
+  event_platform_hero_context() is the module's helper for loading that data
+  when an SDC is rendered standalone by Canvas. SDC components are not in
+  the theme registry, so there is no preprocess hook to do this in.
+#}
+{% set _event = current_event ?? event_platform_hero_context().current_event %}
+{% set _dates = _event.field_dates.0 %}
+
+{#
+  The design writes ranges as "21–23 January 2027": en dash, month spelled
+  out, and the month/year stated once when both ends share them. Smart
+  Date's shipped formats all abbreviate the month, so build it here.
+#}
+{% set event_dates = '' %}
+{% if _dates.value %}
+  {% set _start = _dates.value %}
+  {% set _end = _dates.end_value ?: _start %}
+  {% if _start|date('Y-m') == _end|date('Y-m') %}
+    {% set event_dates = _start|date('j') ~ '–' ~ _end|date('j F Y') %}
+  {% elseif _start|date('Y') == _end|date('Y') %}
+    {% set event_dates = _start|date('j F') ~ '–' ~ _end|date('j F Y') %}
+  {% else %}
+    {% set event_dates = _start|date('j F Y') ~ '–' ~ _end|date('j F Y') %}
+  {% endif %}
+{% endif %}
+
+{% set has_video = media.src is defined and media.src %}
+
+<section{{ attributes.addClass('eh-hero') }}>
+  <div class="eh-hero__inner container">
+    <div class="eh-hero__body">
+      {% if eyebrow %}
+        <p class="eh-hero__eyebrow">
+          <span class="eh-hero__eyebrow-rule" aria-hidden="true"></span>
+          <span>{{ eyebrow }}</span>
+        </p>
+      {% endif %}
+
+      <h1 class="eh-hero__title">
+        {{ title_lead }}
+        {% if title_highlight or title_trail %}
+          <br />
+          {%- if title_highlight %}<span class="eh-hero__title-highlight">{{ title_highlight }}</span>{% endif %}
+          {{- ' ' ~ title_trail -}}
+        {% endif %}
+      </h1>
+
+      {% if lede %}
+        <div class="eh-hero__lede">{{ lede }}</div>
+      {% endif %}
+
+      {% if event_dates or _event.field_location_short.0 %}
+        <dl class="eh-hero__facts">
+          {% if event_dates %}
+            <div class="eh-hero__fact">
+              <dt class="eh-hero__fact-label">{{ dates_label|default('Dates'|t) }}</dt>
+              <dd class="eh-hero__fact-value">{{ event_dates }}</dd>
+            </div>
+          {% endif %}
+          {% if _event.field_location_short.0 %}
+            <div class="eh-hero__fact">
+              <dt class="eh-hero__fact-label">{{ location_label|default('Location'|t) }}</dt>
+              <dd class="eh-hero__fact-value">{{ _event.field_location_short.value }}</dd>
+            </div>
+          {% endif %}
+        </dl>
+      {% endif %}
+
+      {% if (primary_label and primary_url) or (secondary_label and secondary_url) %}
+        <div class="eh-hero__actions">
+          {% if primary_label and primary_url %}
+            <a href="{{ primary_url }}" class="eh-hero__button eh-hero__button--primary">{{ primary_label }}</a>
+          {% endif %}
+          {% if secondary_label and secondary_url %}
+            <a href="{{ secondary_url }}" class="eh-hero__button eh-hero__button--secondary">{{ secondary_label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="eh-hero__media">
+      {% if has_video %}
+        <video
+          class="eh-hero__video"
+          loop
+          autoplay
+          muted
+          playsinline
+          {% if poster.src %}poster="{{ poster.src }}"{% endif %}
+        >
+          <source src="{{ media.src }}">
+        </video>
+      {% else %}
+        {# No teaser yet: the design's striped placeholder, labelled. #}
+        <div class="eh-hero__placeholder"></div>
+        {% if media_caption %}
+          <span class="eh-hero__media-caption">{{ media_caption }}</span>
+        {% endif %}
+      {% endif %}
+      <span class="eh-hero__media-wash" aria-hidden="true"></span>
+      <span class="eh-hero__media-mark" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>

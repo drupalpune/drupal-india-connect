@@ -1,0 +1,30 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Eyebrow
+description: >
+  The small uppercase label that opens most sections. Carried as its own
+  component because the base Text component cannot express the secondary
+  colour the design uses for it.
+group: 'Event Platform'
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      title: Text
+      type: string
+      examples:
+        - 'The event'
+    tone:
+      title: Tone
+      description: >
+        accent = the rationed orange (default); primary = blue, used for the
+        card index numerals; on-dark = the lighter orange for navy bands.
+      type: string
+      enum:
+        - accent
+        - primary
+        - on-dark
+      default: accent
+      examples:
+        - accent

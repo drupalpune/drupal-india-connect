@@ -1,0 +1,92 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Event hero'
+description: >
+  The DrupalAsia Connect homepage hero: eyebrow, two-tone display title,
+  lede, a dates/location fact strip and two calls to action, beside a 1:1
+  media well. Dates and location are read from the current event term so
+  they stay in step with the rest of the site; everything else is a prop.
+group: 'Event Platform'
+props:
+  type: object
+  required:
+    - title_lead
+  properties:
+    eyebrow:
+      title: Eyebrow
+      description: 'Small uppercase line above the title, preceded by a short rule.'
+      type: string
+      examples:
+        - 'The first pan-Asia Drupal event'
+    title_lead:
+      title: 'Title — first line'
+      type: string
+      examples:
+        - DrupalAsia
+    title_highlight:
+      title: 'Title — highlighted word'
+      description: 'Rendered in the primary colour on the second line.'
+      type: string
+      examples:
+        - Connect
+    title_trail:
+      title: 'Title — after the highlight'
+      type: string
+      examples:
+        - '2027'
+    lede:
+      title: Lede
+      type: string
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>Three days of sessions, workshops, contribution sprints and hallway conversations.</p>'
+    dates_label:
+      title: 'Fact strip — dates label'
+      type: string
+      default: Dates
+      examples:
+        - Dates
+    location_label:
+      title: 'Fact strip — location label'
+      type: string
+      default: Location
+      examples:
+        - Location
+    primary_label:
+      title: 'Primary button label'
+      type: string
+      examples:
+        - 'Get event updates'
+    primary_url:
+      title: 'Primary button link'
+      type: string
+      format: uri-reference
+      examples:
+        - '/#notify'
+    secondary_label:
+      title: 'Secondary button label'
+      type: string
+      examples:
+        - 'Plan to speak'
+    secondary_url:
+      title: 'Secondary button link'
+      type: string
+      format: uri-reference
+      examples:
+        - '/#cfp'
+    media:
+      title: 'Teaser video'
+      description: 'Leave empty to show the striped placeholder well.'
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+    poster:
+      title: 'Video poster'
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+    media_caption:
+      title: 'Placeholder caption'
+      description: 'Shown in the media well while no teaser video is set.'
+      type: string
+      default: 'event teaser video / 1:1'
+      examples:
+        - 'event teaser video / 1:1'

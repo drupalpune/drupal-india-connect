@@ -1,0 +1,64 @@
+/**
+ * Fact row: an accent rule on the leading edge, a bold label and a caption.
+ *
+ * Rules do the work borders usually do in this system: 3px card accent,
+ * switching to secondary on the last item of a group.
+ */
+.eh-fact {
+  display: flex;
+  padding-left: var(--sp1);
+  border-left: solid 3px var(--color--primary-50);
+}
+
+.eh-fact--accent-secondary {
+  border-left-color: var(--color--secondary-50);
+}
+
+.eh-fact--stack {
+  flex-direction: column;
+  gap: var(--sp0-25);
+}
+
+.eh-fact--inline {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.eh-fact__title {
+  color: var(--color--primary-20);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.eh-fact__text {
+  color: var(--color--night-35);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+/*
+ * Navy bands: translucent panel, light type. Full width so a stack of
+ * rows reads as a timeline rather than shrink-wrapping to its content.
+ */
+.eh-fact--on-dark {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background-color: rgb(255, 255, 255, 0.06);
+}
+
+.eh-fact--on-dark .eh-fact__title {
+  min-width: 6.5rem;
+  color: var(--color--sky-80);
+  font-size: 0.875rem;
+}
+
+.eh-fact--on-dark.eh-fact--accent-secondary .eh-fact__title {
+  color: color-mix(in srgb, var(--color--secondary-50) 65%, white);
+}
+
+.eh-fact--on-dark .eh-fact__text {
+  color: var(--color--white);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+}
