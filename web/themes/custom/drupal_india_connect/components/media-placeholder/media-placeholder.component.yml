@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Media placeholder'
+description: >
+  A striped well standing in for imagery that does not exist yet, labelled
+  with what belongs there. The design system calls for this rather than an
+  illustration or a stock stand-in.
+group: 'Event Platform'
+props:
+  type: object
+  required:
+    - caption
+  properties:
+    caption:
+      title: Caption
+      description: 'Says what belongs in the slot, e.g. "venue photo or map / 4:3".'
+      type: string
+      examples:
+        - 'venue photo or map / 4:3'
+    ratio:
+      title: 'Aspect ratio'
+      type: string
+      enum:
+        - '1:1'
+        - '4:3'
+        - '16:9'
+      default: '4:3'
+      examples:
+        - '4:3'
