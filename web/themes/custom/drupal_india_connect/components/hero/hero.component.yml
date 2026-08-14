@@ -21,7 +21,7 @@ props:
       title: 'Title — first line'
       type: string
       examples:
-        - DrupalAsia
+        - 'Drupal Asia'
     title_highlight:
       title: 'Title — highlighted word'
       description: 'Rendered in the primary colour on the second line.'

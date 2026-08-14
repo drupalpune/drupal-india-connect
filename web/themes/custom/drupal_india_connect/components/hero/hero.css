@@ -55,13 +55,23 @@
   background-color: var(--color--secondary-50);
 }
 
+/*
+ * The two title lines have to hold without wrapping. The design's H1 step
+ * is sized against a full-width measure, but here the title shares the row
+ * with the media well and only gets about 38vw. The widest line
+ * ("CONNECT 2027") is roughly 7.9 characters wide, so the type has to stay
+ * under about a twelfth of the viewport to fit — hence the 4.4vw rate, and
+ * the 5.5rem cap for once the container stops growing. Set it larger and
+ * the line does not wrap, it overflows the column and slides under the
+ * media well.
+ */
 .eh-hero__title {
   margin: 0;
   color: var(--color--primary-20);
-  font-size: clamp(3.25rem, 1.5rem + 5.2vw, 7.5rem);
+  font-size: clamp(2.75rem, 4.4vw, 5.5rem);
   font-weight: 700;
   letter-spacing: 0.01em;
-  line-height: 0.86;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
