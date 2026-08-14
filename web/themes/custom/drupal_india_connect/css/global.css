@@ -105,6 +105,20 @@
 }
 
 /*
+ * event_horizon sizes the hero title at clamp(4rem, 2.5rem + 10vw, 13rem),
+ * which is roughly double the design's H1 step. "DRUPALASIA" is a long
+ * single word, so at wide viewports it outgrows its grid column and gets
+ * clipped mid-word. Use the design's H1 token instead (see the handoff's
+ * type scale); the component's own gradient/scroll fill is left alone.
+ */
+.site-hero__title[class] {
+  font-size: clamp(3.25rem, 1.5rem + 5.2vw, 7.5rem);
+  letter-spacing: 0.01em;
+  line-height: 0.86;
+  overflow-wrap: break-word;
+}
+
+/*
  * The hero's CTA ships as a small uppercase text link with an arrow chip.
  * The design makes it the page's primary action button instead.
  */
