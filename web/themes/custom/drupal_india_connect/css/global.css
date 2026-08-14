@@ -28,9 +28,17 @@
  * needed here.
  */
 
-/* The logo is wide; give it room in the header without stretching the bar. */
+/*
+ * The logo is a full lockup — drop mark, three lines of wordmark and a
+ * tagline — so it needs real height before the smallest line is legible.
+ * At the shipped 3.25rem it rendered 78x52 with the tagline unreadable.
+ *
+ * The nav beside it is taller than the logo, so growing it up to 5rem
+ * costs no header height at all; the clamp keeps it in proportion once
+ * the bar tightens on small screens.
+ */
 .site-branding__logo img {
-  height: 3.25rem;
+  height: clamp(3.5rem, 3rem + 1.5vw, 5rem);
   width: auto;
 }
 

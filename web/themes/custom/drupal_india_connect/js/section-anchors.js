@@ -23,7 +23,7 @@
     'why attend': 'why-attend',
     'the programme is yours to write': 'cfp',
     'ticket tiers': 'tickets',
-    'host city announcement soon': 'venue',
+    'iit bombay, mumbai': 'venue',
     'founding sponsors': 'sponsors',
     questions: 'faq',
     'be first to know': 'notify',

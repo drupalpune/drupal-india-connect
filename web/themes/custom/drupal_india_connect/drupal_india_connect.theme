@@ -22,7 +22,7 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     '#component' => 'drupal_india_connect:announcement-bar',
     '#props' => [
       'message' => 'Save the date — 21–23 January 2027',
-      'detail' => 'Host city & venue announcement coming soon',
+      'detail' => 'IIT Bombay, Powai, Mumbai',
       'variant' => 'secondary',
     ],
     '#weight' => -100,

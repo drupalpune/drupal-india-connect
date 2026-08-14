@@ -7,7 +7,9 @@ texture:
 video:
   use_default: true
 favicon:
-  use_default: true
+  use_default: false
+  path: themes/custom/drupal_india_connect/favicon.svg
+  mimetype: image/svg+xml
 logo:
   use_default: true
 hero_uses_block: true
