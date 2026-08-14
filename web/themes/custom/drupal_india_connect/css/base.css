@@ -219,6 +219,85 @@ html {
  * Everything below only adjusts variables event_horizon defines in its
  * own stylesheets, so plain declarations are enough to win the cascade.
  */
+/*
+ * Footer: event_horizon's default site-footer is pure black
+ * (--neutral-dark) with every link tinted orange (--text-on-neutral-dark-
+ * secondary), 4-6rem of top/bottom padding, and a divider between the
+ * nav row and the copyright row. Use the brand's Dark Blue background
+ * instead, a tighter top padding, no divider, and muted gray links/
+ * copyright text.
+ */
+.site-footer {
+  background-color: var(--color--primary-20);
+  padding-top: var(--sp2);
+}
+
+.eh-footer {
+  border-top: none;
+}
+
+.eh-footer__top {
+  border-bottom: none;
+}
+
+.eh-footer a {
+  color: var(--color--night-60);
+}
+
+.eh-footer__utility-first {
+  color: var(--color--night-60);
+}
+
+/*
+ * The legal links (Privacy, Code of Conduct) are the only two items in
+ * this list; footer-menu.css's default `justify-content: space-between`
+ * (meant for spacing out unrelated top-level items) stretches them to
+ * opposite ends of the column instead of keeping them together.
+ */
+.eh-footer__utility-last .footer-menu--level-1 {
+  justify-content: flex-end;
+  gap: var(--sp1);
+}
+
+/*
+ * The footer's nav-columns block reuses the "main" menu via
+ * system_menu_block:main, which carries the same `.menu--main` class as
+ * the header's block. primary-nav-narrow.css turns any `.menu--main` into
+ * a fixed, off-canvas mobile drawer (visibility: hidden until toggled
+ * open) — appropriate for the header, but it silently hides this footer
+ * copy on narrow viewports since nothing here ever adds `.is-active`.
+ * Reset it back to a normal in-flow block, scoped to the footer only.
+ */
+@container style(--mobile-nav: true) {
+  .eh-footer .menu--main {
+    position: static;
+    visibility: visible;
+    width: auto;
+    max-width: none;
+    height: auto;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+  }
+}
+
+.footer-branding__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-25);
+}
+
+.footer-branding__name a {
+  color: var(--color--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-branding__venue {
+  color: var(--color--night-60);
+}
+
 :root {
   /*
    * event_horizon points --primary/--secondary at the -60/-50 steps;

@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Drupal India Connect theme.
+ */
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function drupal_india_connect_preprocess_block(&$variables) {
+  // The footer's menu blocks reuse the main and footer menus, but must not
+  // render with menu--main.html.twig: that template (and the
+  // navigation-primary library it attaches) builds the header's interactive
+  // dropdown nav. Force the plain, footer-appropriate menu--footer.html.twig
+  // (and its footer-menu library) instead, keeping the same links.
+  $footer_menu_blocks = [
+    'drupal_india_connect_footer_main_menu',
+    'drupal_india_connect_footer_legal_menu',
+  ];
+  if (in_array($variables['elements']['#id'] ?? NULL, $footer_menu_blocks, TRUE)) {
+    $variables['content']['#theme'] = 'menu__footer';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu--footer.html.twig.
+ */
+function drupal_india_connect_preprocess_menu__footer(&$variables) {
+  // The footer must not show sub-menus: only links that point to an actual
+  // page. A parent item with no URL of its own (e.g. "Program", used only
+  // to group "Program at a glance") is dropped and its linked children are
+  // promoted to the top level instead of being nested underneath it.
+  $variables['items'] = _drupal_india_connect_flatten_footer_menu_items($variables['items']);
+}
+
+/**
+ * Recursively drops <nolink> items, promoting their linked children.
+ */
+function _drupal_india_connect_flatten_footer_menu_items(array $items) {
+  $flattened = [];
+  foreach ($items as $item) {
+    $is_nolink = $item['url']->isRouted() && $item['url']->getRouteName() === '<nolink>';
+    if ($is_nolink) {
+      if (!empty($item['below'])) {
+        $flattened = array_merge($flattened, _drupal_india_connect_flatten_footer_menu_items($item['below']));
+      }
+      continue;
+    }
+    // No sub-menus in the footer: drop any children.
+    $item['below'] = [];
+    $flattened[] = $item;
+  }
+  return $flattened;
+}
