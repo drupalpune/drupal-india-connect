@@ -33,6 +33,8 @@
   flex-direction: column;
   min-width: 0;
   gap: 1.75rem;
+  /*  So the title can size against this column — see .eh-hero__title. */
+  container-type: inline-size;
 }
 
 /*  Eyebrow: short rule + uppercase label, in the rationed accent colour. */
@@ -56,19 +58,24 @@
 }
 
 /*
- * The two title lines have to hold without wrapping. The design's H1 step
- * is sized against a full-width measure, but here the title shares the row
- * with the media well and only gets about 38vw. The widest line
- * ("CONNECT 2027") is roughly 7.9 characters wide, so the type has to stay
- * under about a twelfth of the viewport to fit — hence the 4.4vw rate, and
- * the 5.5rem cap for once the container stops growing. Set it larger and
- * the line does not wrap, it overflows the column and slides under the
- * media well.
+ * Both title lines have to hold without wrapping. "DRUPALASIA" is one
+ * unbreakable word, so if it does not fit it has nowhere to wrap — it
+ * overflows the column and slides under the media well.
+ *
+ * The design's H1 step is sized against a full-width measure, but here the
+ * title shares its row with that well and gets only part of the grid. So
+ * size it against the column rather than the viewport: cqw resolves
+ * against .eh-hero__body, which means the fit holds at every width instead
+ * of being tuned for the narrowest column and left slack everywhere else.
+ *
+ * The widest line ("CONNECT 2027") runs about 7.9 characters, so 12cqw
+ * fills the column with a little room to spare. The clamp keeps the type
+ * sane once the layout goes single-column and the body is the full page.
  */
 .eh-hero__title {
   margin: 0;
   color: var(--color--primary-20);
-  font-size: clamp(2.75rem, 4.4vw, 5.5rem);
+  font-size: clamp(2.75rem, 12cqw, 5.5rem);
   font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 0.9;
