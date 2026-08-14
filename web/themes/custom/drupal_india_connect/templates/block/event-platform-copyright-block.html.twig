@@ -1,2 +1,7 @@
 {# drupal_india_connect override of event_platform_helper/templates/event-platform-copyright-block.html.twig #}
-<p><sup>&copy;</sup> {{ year }} {{ org_name }}. All rights reserved.</p>
+{#
+  Name before the years, so the line reads as the event's own copyright
+  rather than a date stamp. `year` is the span from the current year to the
+  event's year — see drupal_india_connect_preprocess_event_platform_copyright_block().
+#}
+<p><sup>&copy;</sup>Copyright {{ org_name }} {{ year }}. All rights reserved.</p>
