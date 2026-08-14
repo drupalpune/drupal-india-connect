@@ -50,6 +50,25 @@ html {
 }
 
 /*
+ * The auto margin above only works while `.menu--main` participates in
+ * normal flow, which primary-nav-narrow.css breaks below the 1100px
+ * wide-nav breakpoint by giving it `position: fixed` (the off-canvas
+ * mobile drawer) — removing it from flow means it can no longer push
+ * anything. Below that breakpoint there's no in-flow nav to anchor the
+ * margin to, so apply it to the next in-flow item instead (the account
+ * link) to keep "Log in" + the mobile nav toggle pushed flush right as a
+ * group. Narrow phones happen to have little enough slack space that this
+ * was never visible, but at tablet widths (e.g. iPad's 820px) it left "Log
+ * in" and the toggle stranded next to the logo with a large dead gap to
+ * the right of them.
+ */
+@container style(--mobile-nav: true) {
+  .site-header .menu--account {
+    margin-inline-start: auto;
+  }
+}
+
+/*
  * The account menu block (My account / Log in / Log out) renders through
  * Drupal core's generic menu.html.twig rather than event_horizon's
  * menu--main.html.twig, so its <ul> gets no flex layout and the links
@@ -147,6 +166,87 @@ html {
       background-color: var(--primary);
       text-decoration: none;
     }
+  }
+}
+
+/*
+ * The account link (My account / Log in / Log out) only gets CTA-button
+ * styling in the wide-nav container query above; below that breakpoint it
+ * falls back to a bare, unstyled browser link sitting next to the mobile
+ * nav toggle. Give it the same button treatment, sized for the tighter
+ * mobile header.
+ */
+@container style(--mobile-nav: true) {
+  .menu--account a[href='/user/login'],
+  .menu--account a[href^='/user/logout'] {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    height: var(--sp3);
+    padding: 1px var(--sp1-5);
+    color: var(--primary);
+    border: solid 2px var(--primary);
+    border-radius: 0.1875rem;
+    background-color: var(--color--white);
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .menu--account a[href='/user'] {
+    font-weight: 500;
+    color: var(--color--night-5);
+    text-decoration: none;
+  }
+
+  /*
+   * primary-nav-narrow.css lays the open drawer out with
+   * `justify-content: space-between` (see `.primary-nav`), clearly meant
+   * to anchor something at the bottom — it has its own bottom-row
+   * treatment for the authenticated `.account-menu-item`. But the account
+   * link lives in a separate block outside the drawer's markup, so for
+   * anonymous visitors that bottom slot sits empty and the drawer shows a
+   * few links up top over a large dead void.
+   *
+   * navigation.js already adds `is-overlay-active` to <body> while the
+   * drawer is open. Use that to lift this same link out of the header and
+   * anchor it to the bottom of the drawer instead, so the empty space
+   * gets a purposeful "Log in" button that's reachable without closing
+   * the menu.
+   */
+  body.is-overlay-active .menu--account {
+    position: fixed;
+    z-index: 103; /* Above the drawer's own z-index: 102. */
+    right: 0;
+    bottom: 0;
+    /* Match `.menu--main`'s own width/max-width (primary-nav-narrow.css)
+     * instead of spanning the full viewport — on wider viewports (e.g.
+     * tablets) the drawer itself is capped at 31.25rem, and a full-bleed
+     * bar would otherwise overhang the dimmed page content beside it. */
+    width: 100%;
+    max-width: 31.25rem;
+    padding: var(--sp2);
+    background: var(--neutral-dark);
+  }
+
+  body.is-overlay-active .menu--account .menu,
+  body.is-overlay-active .menu--account .menu li {
+    display: block;
+    width: 100%;
+  }
+
+  body.is-overlay-active .menu--account a[href='/user/login'],
+  body.is-overlay-active .menu--account a[href^='/user/logout'] {
+    width: 100%;
+    height: var(--sp4);
+    font-size: 1rem;
+  }
+
+  body.is-overlay-active .menu--account a[href='/user'] {
+    color: var(--text-on-neutral-dark);
   }
 }
 
