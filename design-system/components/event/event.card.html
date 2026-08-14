@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Event platform" subtitle="Countdown, announcement bar, speaker and sponsor teasers" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .band { background: var(--surface-band-dark); padding: 0 20px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px 20px; }
+  .speakers { background: var(--surface-band-dark); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Countdown && v.AnnouncementBar) || {};
+  const { Countdown, AnnouncementBar, SponsorTeaser, SiteStats } = NS;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+      <AnnouncementBar message="Save the date — 18–20 January 2027" detail="Host city announcement coming soon" />
+      <div className="band">
+        <Countdown target="2027-01-18T09:00:00+05:30" eyebrow="Countdown to day one" label="Monday 18 January 2027, 09:00" variant="dark" />
+      </div>
+      <div className="row">
+        <SponsorTeaser name="Drupal" logo="../../assets/icons/drupal-evergreen.svg" href="#" />
+        <SponsorTeaser name="Drupal" logo="../../assets/icons/drupal-rocket.svg" href="#" />
+        <SponsorTeaser name="Drupal" logo="../../assets/icons/palm-tree.svg" href="#" />
+      </div>
+    </>
+  );
+</script>
+</body>
+</html>

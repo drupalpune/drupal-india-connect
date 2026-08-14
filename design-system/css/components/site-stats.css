@@ -1,0 +1,114 @@
+.site-stats {
+  container-type: inline-size;
+}
+
+.site-stats__inner[class] {
+  --color-background: var(--neutral-dark);
+  --color-text: var(--text-on-neutral-dark);
+  --color-subtext: var(--text-on-neutral-dark-secondary);
+
+  position: relative; /*  Anchor the tree. */
+  color: var(--color-text);
+  border-image-source: linear-gradient(
+    var(--color-background),
+    var(--color-background)
+  );
+  border-image-slice: fill 0;
+  border-image-outset: 0 50vw;
+  background-color: var(--color-background);
+  padding-block: 4rem;
+
+  @container style(--grid-md: true) {
+    padding-block: 4.5rem;
+  }
+}
+
+.site-stats__label[class] {
+  @container style(--md: true) {
+    grid-row: 1;
+    grid-column: 10 / span 3;
+  }
+}
+
+.site-stats__title[class] {
+  margin-top: 0;
+  padding-left: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color--night-20);
+  color: inherit;
+  border-left: solid 4px var(--color--primary-50);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: var(--sp);
+
+  @container style(--grid-max: true) {
+    font-size: 0.875rem;
+    line-height: var(--sp1-5);
+  }
+
+  @container style(--grid-md: true) {
+    margin-top: 2.4375rem;
+  }
+}
+
+.site-stats__list[class] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @container style(--grid-md: true) {
+    display: flex;
+    gap: var(--grid-gap);
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  @container style(--md: true) {
+    grid-row: 1;
+    grid-column: 1 / span 9;
+  }
+
+  @container style(--grid-max: true) {
+    grid-column: 2 / span 8;
+  }
+}
+
+.site-stats__item[class] {
+  display: flex;
+  gap: var(--grid-gap);
+  flex-wrap: wrap;
+  padding: var(--sp2) 0;
+  border-bottom: solid 2px var(--color--sky-86);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  > * {
+    flex: 1;
+  }
+
+  @container style(--grid-md: true) {
+    display: block;
+    border-bottom: none;
+  }
+}
+
+.site-stats__stat[class] {
+  margin-bottom: var(--sp);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 3.5rem;
+}
+
+.site-stats__desc[class] {
+  color: var(--color-subtext);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: var(--sp1-5);
+}

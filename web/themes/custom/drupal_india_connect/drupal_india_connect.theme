@@ -44,10 +44,14 @@ function drupal_india_connect_preprocess_page(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK() for event-platform-copyright-block.html.twig.
  *
- * The block prints date('Y'), so the footer read "DrupalAsia Connect 2026"
- * next to a hero announcing 2027 — which scans as a different event rather
- * than a copyright date. Use the event's own year instead, read from the
- * same term the hero uses, so the two cannot drift apart.
+ * The block prints date('Y') alone, so the footer read "DrupalAsia Connect
+ * 2026" next to a hero announcing 2027 — which scans as a different event
+ * rather than a copyright date. Print the span instead: from the year the
+ * site is being published to the year of the event, read from the same term
+ * the hero uses so the two cannot drift apart.
+ *
+ * The two collapse to a single year when they are the same, and are ordered
+ * lowest first so the range still reads correctly after the event.
  */
 function drupal_india_connect_preprocess_event_platform_copyright_block(array &$variables) {
   $event_details = \Drupal\config_pages\Entity\ConfigPages::config('event_details');
@@ -65,7 +69,14 @@ function drupal_india_connect_preprocess_event_platform_copyright_block(array &$
 
   $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($current);
   $start = $term?->get('field_dates')?->value;
-  if ($start) {
-    $variables['year'] = date('Y', is_numeric($start) ? (int) $start : strtotime($start));
+  if (!$start) {
+    return;
   }
+
+  $event_year = (int) date('Y', is_numeric($start) ? (int) $start : strtotime($start));
+  $this_year = (int) date('Y');
+  $from = min($this_year, $event_year);
+  $to = max($this_year, $event_year);
+
+  $variables['year'] = $from === $to ? (string) $from : $from . '–' . $to;
 }

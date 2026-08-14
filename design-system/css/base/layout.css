@@ -1,0 +1,32 @@
+/**
+ * @file
+ * Base Layout.
+ */
+
+.container {
+  width: 94%;
+  max-width: var(--layout--max-width);
+  margin-inline: auto;
+}
+
+.grid {
+  --grid-gap: 1.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--grid-gap);
+
+  :where(& > *) {
+    grid-column: 1 / -1;
+  }
+
+  @container style(--grid-md: true) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @container style(--grid-max: true) {
+    --grid-gap: 2rem;
+
+    grid-template-columns: repeat(14, 1fr);
+  }
+}

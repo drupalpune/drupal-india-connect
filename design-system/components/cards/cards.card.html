@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Cards" subtitle="Content, icon, logo, testimonial and stat cards" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 16px; background: var(--surface-page); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+  .dark { background: var(--surface-band-dark); color: #fff; padding: 16px; border-radius: 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Card && v.StatCard) || {};
+  const { Card, CardIcon, CardLogo, CardTestimonial, StatCard } = NS;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+      <div className="grid">
+        <Card headingText="Save the date" text="18–20 January 2027." url="#" background="background" />
+        <CardIcon icon="rocket" iconStyle="primary-background" iconAlign="left" textAlign="left" text="Contribute" description="Mentored sprints for first-time contributors." backgroundColor="background" borderRadius="medium" />
+        <CardTestimonial text="The hallway track alone paid for the trip." citeName="Priya R." citeText="Platform lead" align="left" />
+      </div>
+      <div className="dark">
+        <StatCard stat="3" description="Days of sessions, workshops and sprints" />
+        <StatCard stat="60+" description="Sessions across four tracks" />
+        <CardLogo media="../../assets/icons/drupal-evergreen.svg" mediaAlt="Drupal" backgroundColor="secondary" borderRadius="medium" />
+      </div>
+    </>
+  );
+</script>
+</body>
+</html>

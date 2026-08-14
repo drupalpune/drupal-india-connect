@@ -10,6 +10,23 @@ This file is the things that have already cost time here.
   changes in this project have been recovered from those dumps.
 - Do not push unless asked. Deploys to production run on push to `main`.
 
+## Design work
+
+The brand system is at `design-system/`, fronted by the
+`drupalasia-connect-design` skill. Read `design-system/readme.md` before
+designing anything, and never paste a brand hex — the primary and secondary
+ramps are derived from hue/saturation/lightness triples in
+`design-system/tokens/colors.css`.
+
+`design-system/reference/` holds the approved homepage prototype. Diff
+against it before rebuilding a section from description; working
+section-by-section from screenshots has repeatedly produced invented copy
+here, when the prototype already had the real words.
+
+**The built theme is the source of truth where the two disagree.** The
+divergences are listed at the end of `design-system/readme.md` — the hero's
+sentence case and column-relative sizing are deliberate, not drift.
+
 ## The homepage is data, not code
 
 The homepage is `canvas_page` entity **1**, a flat list of ~114 rows in the

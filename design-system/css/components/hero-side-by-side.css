@@ -1,0 +1,155 @@
+.eh-hero-sbs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+
+  /*  Image position: right reverses the row */
+  &.eh-hero-sbs--img-right {
+    @container style(--md: true) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  /*  Mobile direction variants */
+  &.eh-hero-sbs--mobile-vertical-reverse {
+    flex-direction: column-reverse;
+    @container style(--md: true) {
+      flex-direction: row;
+    }
+  }
+
+  /*  Gap variants */
+  &.eh-hero-sbs--gap-large {
+    gap: var(--sp2);
+    @container style(--md: true) {
+      gap: var(--sp3);
+    }
+  }
+  &.eh-hero-sbs--gap-extra-large {
+    gap: var(--sp4);
+    @container style(--md: true) {
+      gap: 6rem;
+    }
+  }
+
+  /*  Padding top */
+  &.eh-hero-sbs--pt-16 {
+    padding-top: var(--sp1);
+  }
+  &.eh-hero-sbs--pt-32 {
+    padding-top: var(--sp1-5);
+    @container style(--md: true) {
+      padding-top: 1.75rem;
+    }
+    @container style(--lg: true) {
+      padding-top: var(--sp2);
+    }
+  }
+  &.eh-hero-sbs--pt-64 {
+    padding-top: var(--sp2-5);
+    @container style(--md: true) {
+      padding-top: 3.25rem;
+    }
+    @container style(--lg: true) {
+      padding-top: var(--sp4);
+    }
+  }
+
+  /*  Padding bottom */
+  &.eh-hero-sbs--pb-16 {
+    padding-bottom: var(--sp1);
+  }
+  &.eh-hero-sbs--pb-32 {
+    padding-bottom: var(--sp1-5);
+    @container style(--md: true) {
+      padding-bottom: 1.75rem;
+    }
+    @container style(--lg: true) {
+      padding-bottom: var(--sp2);
+    }
+  }
+  &.eh-hero-sbs--pb-64 {
+    padding-bottom: var(--sp2-5);
+    @container style(--md: true) {
+      padding-bottom: 3.25rem;
+    }
+    @container style(--lg: true) {
+      padding-bottom: var(--sp4);
+    }
+  }
+
+  @container style(--md: true) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/*  Media panel */
+.eh-hero-sbs__media {
+  overflow: hidden;
+  flex: 1;
+
+  /*  Aspect ratio variants */
+  &.eh-hero-sbs__media--ratio-2-1 {
+    aspect-ratio: 2/1;
+  }
+  &.eh-hero-sbs__media--ratio-16-9 {
+    aspect-ratio: 16/9;
+  }
+  &.eh-hero-sbs__media--ratio-3-2 {
+    aspect-ratio: 3/2;
+  }
+  &.eh-hero-sbs__media--ratio-4-3 {
+    aspect-ratio: 4/3;
+  }
+  &.eh-hero-sbs__media--ratio-1-1 {
+    aspect-ratio: 1/1;
+  }
+
+  /*  Border radius variants */
+  &.eh-hero-sbs__media--radius-small {
+    border-radius: 0.125rem;
+  }
+  &.eh-hero-sbs__media--radius-large {
+    border-radius: 0.75rem;
+    @container style(--md: true) {
+      border-radius: 1rem;
+    }
+  }
+  &.eh-hero-sbs__media--radius-extra-large {
+    border-radius: 1.5rem;
+    @container style(--md: true) {
+      border-radius: 2rem;
+    }
+  }
+
+  /*  On desktop in a row layout, aspect ratio comes from the container height */
+  @container style(--md: true) {
+    aspect-ratio: unset;
+    align-self: stretch;
+  }
+}
+
+.eh-hero-sbs__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*  Content panel */
+.eh-hero-sbs__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--sp1);
+
+  &.eh-hero-sbs__content--justify-start {
+    justify-content: flex-start;
+  }
+  &.eh-hero-sbs__content--justify-center {
+    justify-content: center;
+  }
+  &.eh-hero-sbs__content--justify-end {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,77 @@
+.eh-blockquote {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-inline-start: var(--sp2);
+  gap: var(--sp1);
+}
+
+.eh-blockquote__mark {
+  position: absolute;
+  top: -1.25rem;
+  width: 4rem;
+  height: 4rem;
+  pointer-events: none;
+  color: var(--color--night-90, #e5e7e9);
+  inset-inline-start: -2rem;
+}
+
+.eh-blockquote__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp1);
+}
+
+.eh-blockquote__text {
+  margin: 0;
+  color: inherit;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.4;
+
+  @container style(--md: true) {
+    font-size: 1.5rem;
+  }
+  @container style(--lg: true) {
+    font-size: 1.75rem;
+  }
+}
+
+.eh-blockquote__footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: 1.2;
+  gap: 0.125rem;
+
+  @container style(--md: true) {
+    font-size: 1.125rem;
+  }
+  @container style(--lg: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.eh-blockquote__name {
+  font-weight: 700;
+}
+
+.eh-blockquote__cite {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.eh-blockquote__cite-link {
+  transition: opacity 0.2s;
+  text-decoration: underline;
+  color: inherit;
+  text-underline-offset: 2px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

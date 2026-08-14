@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Layout" subtitle="Section bands, navbar, accordion, footer" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); padding: 12px 16px 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Section && v.Navbar) || {};
+  const { Section, Navbar, Accordion, AccordionContainer, Footer, Button, Heading, Text } = NS;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+      <Navbar
+        logo={<img src="../../assets/logo.svg" alt="DrupalAsia Connect" />}
+        items={[{ label: 'About', href: '#' }, { label: 'Schedule', href: '#', active: true }, { label: 'Sponsors', href: '#' }]}
+        actions={<Button label="Get updates" size="small" />}
+      />
+      <Section columns="50-50" backgroundColor="accent" fullWidth paddingBlockStart="32" paddingBlockEnd="32"
+        header={<Heading text="Section band, 50 / 50" level={2} size="3xl" />}>
+        <Text size="sm">Two columns above 700px, one below. The band bleeds full width.</Text>
+        <AccordionContainer>
+          <Accordion title="Accordion row" openByDefault><Text size="sm">Expands by animating grid-template-rows.</Text></Accordion>
+          <Accordion title="Second row"><Text size="sm">Closed by default.</Text></Accordion>
+        </AccordionContainer>
+      </Section>
+      <Footer
+        brand={<img src="../../assets/logo.svg" alt="DrupalAsia Connect" />}
+        actions={<Button label="Sponsor us" variant="secondary" size="small" />}
+        utilityEnd={<span style={{ fontSize: 14 }}>© 2026 DrupalAsia Connect</span>}
+        horizontal
+      />
+    </>
+  );
+</script>
+</body>
+</html>

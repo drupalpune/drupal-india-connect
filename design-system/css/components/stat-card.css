@@ -1,0 +1,30 @@
+.eh-stat-card {
+  padding-block: var(--sp2);
+  border-bottom: solid 2px color-mix(in sRGB, currentColor 30%, transparent);
+
+  @container style(--grid-md: true) {
+    border-bottom: none;
+    padding-block: 0;
+  }
+}
+
+.eh-stat-card__stat {
+  margin-bottom: var(--sp);
+  letter-spacing: -0.02em;
+  color: inherit;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 3.5rem;
+}
+
+.eh-stat-card__description {
+  opacity: 0.75;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: var(--sp1-5);
+
+  > * {
+    margin: 0;
+  }
+}

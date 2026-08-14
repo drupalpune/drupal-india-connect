@@ -62,16 +62,41 @@ On the production server the same file holds the database credentials,
 
 ```
 config/sync/                     exported configuration
+design-system/                   brand system — tokens, guidelines, prototype
 recipes/summit/                  site install recipe
 web/themes/custom/
   drupal_india_connect/
     components/                  SDC components (see below)
     css/base.css                 design tokens, colour ramps
     css/global.css               overrides on top of event_horizon
+    images/                      design assets that deploy with the code
     js/section-anchors.js        homepage anchor ids + scroll offset
-    drupal_india_connect.theme   announcement bar, footer trademark
-design_handoff_drupalasia_home/  the approved design and its prototype
+    drupal_india_connect.theme   announcement bar, copyright, trademark
 ```
+
+### Design system
+
+`design-system/` holds the brand system: the colour, type and spacing
+tokens, guideline cards, component patterns, fonts and icons. Start with
+[`design-system/readme.md`](design-system/readme.md).
+
+The guidelines are standalone HTML — open any of
+`design-system/guidelines/*.card.html` in a browser, no build step. The
+approved homepage prototype the build was matched against is at
+`design-system/reference/DrupalAsia Connect Home.dc.html`.
+
+**The one rule worth knowing before you touch colour:** primary and
+secondary are *derived*, not written. Each ramp is a hue/saturation/lightness
+triple, and the steps are computed from it with `calc()`. Never hand-write a
+step, and never paste a hex into a component.
+
+If you use Claude Code, the same system is wired up as a skill
+(`/drupalasia-connect-design`) — see
+`.claude/skills/drupalasia-connect-design/SKILL.md`.
+
+Where the system and the built theme disagree, **the theme wins**; the
+build has deliberately diverged in a few places, listed at the end of
+`design-system/readme.md`.
 
 ### Components
 

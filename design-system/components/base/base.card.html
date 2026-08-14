@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Base" subtitle="Button, badge, icon, heading and body type" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-page); font-family: var(--font-sans); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); width: 100%; }
+  .dark { background: var(--surface-band-dark); padding: 12px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Button && v.Heading) || {};
+  const { Button, Badge, Icon, Heading, Text } = NS;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+      <div className="row"><span className="lbl">Button variants &amp; sizes</span>
+        <Button label="Get updates" variant="primary" size="large" />
+        <Button label="Programme" variant="secondary" />
+        <Button label="Submit a session" variant="secondary-inverted" icon="arrow-right" />
+        <Button label="Sold out" variant="primary" size="small" disabled />
+      </div>
+      <div className="row dark"><Button label="Notify me" variant="primary-inverted" /><Icon icon="calendar" size="medium" /></div>
+      <div className="row"><span className="lbl">Badges &amp; icons</span>
+        <Badge label="Keynote" icon="star" />
+        <Badge label="Workshop" style="secondary" />
+        <Icon icon="map-pin" size="small" /><Icon icon="mail" size="small" /><Icon icon="rocket" size="small" /><Icon icon="download" size="small" />
+      </div>
+      <div className="row"><span className="lbl">Heading + text</span></div>
+      <Heading text="Save the date" level={3} size="4xl" />
+      <Heading text="Highlights" level={4} size="xs" style="accented" />
+      <Text size="sm">Body copy sits at 16–20px depending on viewport, in General Sans.</Text>
+    </>
+  );
+</script>
+</body>
+</html>

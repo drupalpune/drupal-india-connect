@@ -1,0 +1,113 @@
+.eh-countdown {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp3) 0;
+  gap: var(--sp2-5);
+  font-family: var(--font-sans);
+}
+
+.eh-countdown__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+}
+
+.eh-countdown__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.eh-countdown__label {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.eh-countdown__units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp1);
+}
+
+.eh-countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 7rem;
+  padding: var(--sp1-5);
+  gap: var(--sp0-25);
+  border-top: solid 3px var(--color--primary-50);
+}
+
+.eh-countdown__unit--seconds {
+  border-top-color: var(--color--secondary-50);
+}
+
+.eh-countdown__value {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.eh-countdown__unit-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.eh-countdown__finished {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/*  Dark treatment: sits on the navy band. */
+.eh-countdown--dark {
+  color: var(--color--white);
+
+  & .eh-countdown__eyebrow,
+  & .eh-countdown__unit-label {
+    color: var(--color--sky-80);
+  }
+
+  & .eh-countdown__unit {
+    background-color: rgb(255, 255, 255, 0.07);
+  }
+}
+
+/*  Light treatment: sits on white or the blue tint. */
+.eh-countdown--light {
+  color: var(--color--night-5);
+
+  & .eh-countdown__eyebrow,
+  & .eh-countdown__unit-label {
+    color: var(--color--night-40);
+  }
+
+  & .eh-countdown__unit {
+    background-color: var(--color--sky-97);
+  }
+}
+
+/*  Stack on small screens. */
+@media (max-width: 43.75rem) {
+  .eh-countdown__units {
+    width: 100%;
+  }
+
+  .eh-countdown__unit {
+    flex: 1 1 6rem;
+    min-width: 0;
+    padding: var(--sp1);
+  }
+
+  .eh-countdown__value {
+    font-size: 2rem;
+  }
+}
