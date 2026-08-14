@@ -83,6 +83,23 @@ props:
       title: 'Video poster'
       $ref: json-schema-definitions://canvas.module/image
       type: object
+    still:
+      title: 'Still image'
+      description: >
+        Shown in the media well when there is no teaser video. A path to an
+        image shipped with the theme, e.g.
+        /themes/custom/drupal_india_connect/images/hero-teaser.jpg. This is a
+        plain path rather than a media reference because the file is a theme
+        asset that deploys with the code — the files directory is not in git.
+      type: string
+      format: uri-reference
+      examples:
+        - /themes/custom/drupal_india_connect/images/hero-teaser.jpg
+    still_alt:
+      title: 'Still image alternative text'
+      type: string
+      examples:
+        - 'The audience at a Drupal conference session.'
     media_caption:
       title: 'Placeholder caption'
       description: 'Shown in the media well while no teaser video is set.'

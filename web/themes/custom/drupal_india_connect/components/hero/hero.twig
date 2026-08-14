@@ -94,8 +94,11 @@
         >
           <source src="{{ media.src }}">
         </video>
+      {% elseif still %}
+        {# No teaser video yet, but a still to run in its place. #}
+        <img class="eh-hero__image" src="{{ still }}" alt="{{ still_alt|default('') }}">
       {% else %}
-        {# No teaser yet: the design's striped placeholder, labelled. #}
+        {# Neither: the design's striped placeholder, labelled. #}
         <div class="eh-hero__placeholder"></div>
         {% if media_caption %}
           <span class="eh-hero__media-caption">{{ media_caption }}</span>

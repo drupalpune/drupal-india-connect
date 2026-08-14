@@ -189,6 +189,7 @@
 }
 
 .eh-hero__video,
+.eh-hero__image,
 .eh-hero__placeholder {
   position: absolute;
   inset: 0;
@@ -196,7 +197,9 @@
   height: 100%;
 }
 
-.eh-hero__video {
+/*  The well is square; source images are not, so crop rather than squash. */
+.eh-hero__video,
+.eh-hero__image {
   object-fit: cover;
 }
 
@@ -221,6 +224,20 @@
     color-mix(in srgb, var(--color--primary-50) 42%, transparent)
   );
   pointer-events: none;
+}
+
+/*
+ * That wash is tuned for the striped placeholder, where it is doing the
+ * colour work. Over a photograph it reads as a purple cast that buries the
+ * subject, so drop it to a hint of brand tint when there is real imagery.
+ */
+.eh-hero__media:has(.eh-hero__image) .eh-hero__media-wash,
+.eh-hero__media:has(.eh-hero__video) .eh-hero__media-wash {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color--secondary-50) 8%, transparent),
+    color-mix(in srgb, var(--color--primary-50) 16%, transparent)
+  );
 }
 
 .eh-hero__media-caption {

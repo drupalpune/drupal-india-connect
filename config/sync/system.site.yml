@@ -7,7 +7,7 @@ mail: admin@example.com
 slogan: ''
 page:
   403: /user/login
-  404: ''
+  404: /node/11
   front: /page/1
 admin_compact_mode: false
 weight_select_max: 100

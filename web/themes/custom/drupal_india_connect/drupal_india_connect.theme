@@ -40,3 +40,32 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     '#weight' => 20,
   ];
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for event-platform-copyright-block.html.twig.
+ *
+ * The block prints date('Y'), so the footer read "DrupalAsia Connect 2026"
+ * next to a hero announcing 2027 — which scans as a different event rather
+ * than a copyright date. Use the event's own year instead, read from the
+ * same term the hero uses, so the two cannot drift apart.
+ */
+function drupal_india_connect_preprocess_event_platform_copyright_block(array &$variables) {
+  $event_details = \Drupal\config_pages\Entity\ConfigPages::config('event_details');
+  if (!$event_details) {
+    return;
+  }
+
+  $current = $event_details->get('field_current')?->getValue();
+  while (is_array($current)) {
+    $current = array_pop($current);
+  }
+  if (!$current) {
+    return;
+  }
+
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($current);
+  $start = $term?->get('field_dates')?->value;
+  if ($start) {
+    $variables['year'] = date('Y', is_numeric($start) ? (int) $start : strtotime($start));
+  }
+}
