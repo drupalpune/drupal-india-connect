@@ -13,8 +13,13 @@ html {
    * `.container` wrapper. `vw` includes the scrollbar's own width, which
    * makes the breakout overshoot the true viewport by that amount and
    * forces a horizontal scrollbar. This clips that harmless overshoot.
+   *
+   * `clip` rather than `hidden`: `hidden` makes <html> a scroll container,
+   * which silently breaks `position: sticky` on every descendant — the
+   * sticky site header included. `clip` does the same clipping without
+   * creating one.
    */
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /*

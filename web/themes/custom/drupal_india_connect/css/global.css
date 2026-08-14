@@ -75,6 +75,67 @@
 }
 
 /*
+ * Sticky header with a translucent, blurred background, per the design.
+ * Needs `overflow-x: clip` (not `hidden`) on <html> to work — see base.css.
+ */
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  padding-block: var(--sp0-75);
+}
+
+/*
+ * event_horizon puts `.container` on the header itself, so the bar is
+ * width-constrained. The design's bar bleeds to the viewport edge with
+ * its contents still on the grid — so paint the background on a
+ * full-bleed pseudo-element behind the row rather than restructuring the
+ * header's markup.
+ */
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  border-bottom: 1px solid var(--color--sky-90);
+  background-color: rgb(253, 253, 253, 0.92);
+  backdrop-filter: blur(10px);
+  content: '';
+}
+
+/*
+ * The hero's CTA ships as a small uppercase text link with an arrow chip.
+ * The design makes it the page's primary action button instead.
+ */
+.site-hero__cta[class] a {
+  padding: 0.9375rem 1.75rem;
+  border: solid 2px var(--color--primary-50);
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-50);
+  color: var(--color--white);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.site-hero__cta[class] a:hover,
+.site-hero__cta[class] a:focus-visible {
+  border-color: var(--color--primary-60);
+  background-color: var(--color--primary-60);
+  color: var(--color--white);
+}
+
+/* The design's hero buttons carry no icon. */
+.site-hero__media-cta-icon {
+  display: none;
+}
+
+/*
  * Footer: the design lays the link columns out side by side.
  *
  * The region already carries event_horizon's `.grid` (6/12/14 columns),
