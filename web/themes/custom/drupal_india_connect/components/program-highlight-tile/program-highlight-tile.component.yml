@@ -1,0 +1,23 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program Highlight Tile'
+description: 'A small labeled detail tile (e.g. "Format", "Sessions") for use inside a Program Detail Row''s highlights slot. Has no color prop of its own — it inherits its accent color from the parent row via a CSS custom property, so it always matches the row it''s placed in.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - label
+    - description
+  properties:
+    label:
+      type: string
+      title: Label
+      examples:
+        - Format
+    description:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - 'Parallel specialized tracks featuring curated thought leaders.'

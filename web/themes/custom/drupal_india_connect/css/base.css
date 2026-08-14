@@ -15,6 +15,9 @@ html {
    * forces a horizontal scrollbar. This clips that harmless overshoot.
    */
   overflow-x: hidden;
+
+  /* Smooths in-page anchor jumps, e.g. a Program Day Card's "Details below" link. */
+  scroll-behavior: smooth;
 }
 
 /*

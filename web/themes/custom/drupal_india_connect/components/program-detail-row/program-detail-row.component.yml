@@ -1,0 +1,55 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program Detail Row'
+description: 'One numbered row of a program timeline: badge, title, theme tag, date, a slot for highlight tiles, and an optional CTA slot. Stack several directly as siblings to build a "Program at a Glance" detail section — the connecting line is drawn per-row and trimmed at the first/last row, so it only looks continuous when rows are direct siblings.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - day_number
+    - title
+    - track_theme
+  properties:
+    day_number:
+      type: number
+      title: 'Day number'
+      examples:
+        - 1
+    anchor_id:
+      type: string
+      title: 'Anchor ID'
+      description: 'Optional HTML id for this row, so other links (e.g. a Program Day Card''s "Details below" link) can jump straight to it with a "#anchor_id" URL.'
+      examples:
+        - day-1
+    title:
+      type: string
+      title: Title
+      examples:
+        - 'AI Summit'
+    date:
+      type: string
+      title: Date
+      examples:
+        - 'Thursday, Jan 21, 2027'
+    track_theme:
+      type: string
+      title: 'Theme'
+      description: 'Drives the badge and tag color. Separate from Event Overview Card''s ai/conference/contribution colors — this one is keyed to the program''s three theme days.'
+      enum:
+        - imagine
+        - discover
+        - build
+      meta:enum:
+        imagine: 'Imagine (Blue)'
+        discover: 'Discover (Dark Blue)'
+        build: 'Build (Orange)'
+      default: imagine
+      examples:
+        - imagine
+slots:
+  highlights:
+    title: 'Highlight tiles'
+    description: 'Place Program Highlight Tile components here — 2 or 3 per row.'
+  cta:
+    title: 'CTA (optional)'
+    description: 'Optional call-to-action shown below the highlights, e.g. an Event Horizon Badge component.'
