@@ -1,13 +1,27 @@
-name: Deploy to staging
+name: Deploy on release tag
 
+# Deploys are cut from a tag, never from a branch. Pushing to `main` no longer
+# ships anything: you tag the commit you want live and push the tag. That makes
+# every deploy a named point in history you can name in a conversation, and it
+# decouples "merged" from "released".
+#
+# Tag format is semver with no prefix (1.0.0, 2.4.3). A leading `v` is also
+# accepted so a habit of typing `v1.0.0` doesn't silently fail to deploy.
+# Pre-release tags (1.0.0-rc1) deliberately do NOT match.
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch: {}
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Existing tag to deploy (e.g. 1.0.0). Also used to roll back.'
+        required: true
+        type: string
 
 concurrency:
-  group: deploy-staging
+  group: deploy-production
   cancel-in-progress: false
 
 jobs:
@@ -16,7 +30,12 @@ jobs:
     steps:
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          # On a tag push this is the tag name; on a manual run it is the tag
+          # typed into the form.
+          DEPLOY_REF: ${{ inputs.ref || github.ref_name }}
         with:
+          envs: DEPLOY_REF
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
           username: ${{ secrets.DEPLOY_USER }}
@@ -29,26 +48,90 @@ jobs:
             export PATH="/opt/alt/php84/usr/bin:$PATH"
             export COMPOSER_PROCESS_TIMEOUT=1800
 
+            # Fail before touching anything if the ref is missing or malformed,
+            # rather than half-deploying. `set -u` would catch an unset var, but
+            # an empty string would sail through and check out nothing.
+            if [ -z "${DEPLOY_REF:-}" ]; then
+              echo "DEPLOY_REF is empty - refusing to deploy." >&2
+              exit 1
+            fi
+            echo "Deploying tag: $DEPLOY_REF"
+
             # Preserve any server-only tracked-file edits (e.g. the staging
             # Basic Auth block in web/.htaccess) across the pull.
+            #
+            # This has to survive a failed deploy. With `set -e`, anything that
+            # fails between the stash and the pop aborts the script, and the
+            # working tree is left at the repo version of web/.htaccess — which
+            # carries no auth block, so the site goes public until a human
+            # notices. That has happened once already. Hence the EXIT trap:
+            # the pop runs on every exit path bash controls, not just success.
+            #
+            # (A SIGKILL — an ssh-action command_timeout, a dropped connection —
+            # still bypasses it. The durable fix is to stop keeping the auth
+            # block in a tracked file at all; see README.)
             STASHED=0
+
+            restore_stash() {
+              [ "$STASHED" -eq 1 ] || return 0
+              # Cleared first so the trap cannot pop a second time.
+              STASHED=0
+              git stash pop || echo "WARNING: stash pop failed. Server-only edits (Basic Auth) are still stashed - see 'git stash list'. THE SITE MAY BE PUBLIC."
+            }
+            trap restore_stash EXIT
+
             if ! git diff --quiet; then
               git stash push -m "pre-deploy-$(date +%s)"
               STASHED=1
             fi
 
-            git fetch origin main
-            git merge --ff-only origin/main
+            # --force on the tag fetch so a moved tag is picked up rather than
+            # rejected; --prune-tags so tags deleted upstream don't linger here
+            # and let a stale name still deploy.
+            git fetch origin --tags --force --prune --prune-tags
 
-            if [ "$STASHED" -eq 1 ]; then
-              git stash pop
+            if ! git rev-parse -q --verify "refs/tags/$DEPLOY_REF^{commit}" >/dev/null; then
+              echo "No such tag on origin: $DEPLOY_REF" >&2
+              exit 1
             fi
 
+            # Detached HEAD at the tag. This replaces `merge --ff-only`, which
+            # only ever moved forward; a checkout can also move backwards, which
+            # is what makes rolling back to an earlier tag possible.
+            #
+            # NOTE: code rolls back, the database does not. `updb` may have run
+            # schema updates that an older tag's code does not expect, so a
+            # rollback can need the matching dump from ~/backups restoring too.
+            git checkout --force --detach "refs/tags/$DEPLOY_REF"
+
+            # Restore immediately, so the tree is only missing the auth block
+            # for the fetch/checkout that need it — not across the whole
+            # composer/drush run, which is where the slow failures live.
+            restore_stash
+
             composer install --no-dev --optimize-autoloader --no-interaction
+
+            # Snapshot the database before anything writes to it. `updb` mutates
+            # live data and `cim` reverts any server-side config drift, so this
+            # dump is the only way back from a bad import.
+            BACKUP_DIR="$HOME/backups"
+            mkdir -p "$BACKUP_DIR"
+            vendor/bin/drush sql:dump --gzip \
+              --result-file="$BACKUP_DIR/prod-predeploy-$(date +%Y%m%d-%H%M%S).sql"
+
+            # Keep the 10 most recent. Each is ~3MB against 16TB free, so depth
+            # is cheap; the risk worth guarding is having only one snapshot.
+            ls -1t "$BACKUP_DIR"/prod-predeploy-*.sql.gz 2>/dev/null \
+              | tail -n +11 | xargs -r rm -f || true
+
+            # Record which tag each dump belongs to, so a rollback can pair the
+            # right dump with the right code.
+            echo "$(date -u +%FT%TZ) $DEPLOY_REF $(git rev-parse --short HEAD)" \
+              >> "$BACKUP_DIR/deploy-log.txt"
 
             vendor/bin/drush cr
             vendor/bin/drush updb -y
             vendor/bin/drush cim -y
             vendor/bin/drush cr
 
-            echo "Deploy complete: $(git rev-parse --short HEAD)"
+            echo "Deploy complete: $DEPLOY_REF ($(git rev-parse --short HEAD))"
