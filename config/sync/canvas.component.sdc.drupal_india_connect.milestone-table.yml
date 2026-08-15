@@ -1,0 +1,21 @@
+uuid: 7ae3a5ae-56dd-4e75-9ff0-54ae2fd8e99c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: dcea88e738339648
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        rows:
+          title: 'Milestone rows'
+          description: 'Place Milestone Row components here, one per milestone.'
+label: 'Milestone Table'
+id: sdc.drupal_india_connect.milestone-table
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:milestone-table'

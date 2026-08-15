@@ -1,0 +1,56 @@
+.milestone-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+  padding-block: var(--sp1);
+  border-block-end: solid 1px var(--color--night-90);
+}
+
+.milestone-row:first-child {
+  padding-block-start: 0;
+}
+
+.milestone-row:last-child {
+  padding-block-end: 0;
+  border-block-end: none;
+}
+
+.milestone-row__label {
+  color: var(--color--night-40);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.milestone-row__value {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.milestone-row__value--name {
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+/*
+ * Above --md the row becomes a real grid row sharing milestone-table's
+ * column template, and the per-cell labels (only needed for the stacked
+ * mobile layout) are hidden.
+ */
+@container style(--md: true) {
+  .milestone-row {
+    display: grid;
+    grid-template-columns: var(--milestone-table-columns);
+    align-items: start;
+    gap: var(--sp1);
+    padding-block: var(--sp1-5);
+  }
+
+  .milestone-row__label {
+    display: none;
+  }
+}

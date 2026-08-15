@@ -1,0 +1,13 @@
+<div class="milestone-table">
+  <div class="milestone-table__header" role="presentation">
+    <span class="milestone-table__header-cell">{{ 'Name'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Description'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Opens'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Closes'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Key Date / Outcome'|t }}</span>
+  </div>
+
+  <div class="milestone-table__rows">
+    {% block rows %}{% endblock %}
+  </div>
+</div>

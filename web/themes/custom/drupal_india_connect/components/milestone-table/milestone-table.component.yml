@@ -1,0 +1,12 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Milestone Table'
+description: 'A responsive table of dated milestones: Name, Description, Opens, Closes, Key Date/Outcome. Renders as a true 5-column table with a hairline-divided header from the --md container breakpoint up, and collapses into labeled stacked rows below it. Place Milestone Row components in the rows slot, one per milestone.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties: {}
+slots:
+  rows:
+    title: 'Milestone rows'
+    description: 'Place Milestone Row components here, one per milestone.'

@@ -1,0 +1,37 @@
+/*
+ * Column template is shared with milestone-row.css via this custom
+ * property, so the header and every row line up under one definition.
+ */
+.milestone-table {
+  --milestone-table-columns: 1.1fr 2fr 0.85fr 0.85fr 1.3fr;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.milestone-table__header {
+  display: none;
+}
+
+@container style(--md: true) {
+  .milestone-table__header {
+    display: grid;
+    grid-template-columns: var(--milestone-table-columns);
+    gap: var(--sp1);
+    padding-block-end: var(--sp0-75);
+    border-block-end: solid 1px var(--color--night-90);
+  }
+
+  .milestone-table__header-cell {
+    color: var(--color--secondary-50);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+.milestone-table__rows {
+  display: flex;
+  flex-direction: column;
+}
