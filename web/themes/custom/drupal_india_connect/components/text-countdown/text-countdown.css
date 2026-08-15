@@ -1,0 +1,132 @@
+.text-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp2);
+}
+
+@container style(--md: true) {
+  .text-countdown {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp3);
+  }
+
+  /*
+   * DOM order is always content-then-countdown; row-reverse flips which
+   * side the countdown visually lands on without changing reading/tab
+   * order. Matches Text & Media's media-left handling.
+   */
+  .text-countdown--countdown-left {
+    flex-direction: row-reverse;
+  }
+}
+
+.text-countdown__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp1);
+}
+
+.text-countdown__label {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  color: var(--color--night-5);
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--secondary) 20%, var(--color--white)),
+    color-mix(in srgb, var(--primary) 18%, var(--color--white))
+  );
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*
+ * The huge statement. Reuses the type scale's h2-minor token rather than
+ * hand-writing a clamp, per the design system's "never hand-write a step"
+ * rule extended to type.
+ */
+.text-countdown__heading {
+  margin: 0;
+  color: var(--secondary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/*
+ * Same rich-text shape as Text & Media's body — the canvas_html_block
+ * format allows: strong, em, u, a, p (with text-align-* classes), br, ul,
+ * ol, li — all of it needs explicit styling here or it falls back to
+ * unstyled browser defaults.
+ */
+.text-countdown__body {
+  color: var(--color--night-30);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.text-countdown__body p,
+.text-countdown__body ul,
+.text-countdown__body ol {
+  margin: 0;
+}
+
+.text-countdown__body > * + * {
+  margin-top: var(--sp1);
+}
+
+.text-countdown__body .text-align-left {
+  text-align: left;
+}
+
+.text-countdown__body .text-align-center {
+  text-align: center;
+}
+
+.text-countdown__body .text-align-right {
+  text-align: right;
+}
+
+.text-countdown__body .text-align-justify {
+  text-align: justify;
+}
+
+.text-countdown__body ul,
+.text-countdown__body ol {
+  padding-left: 1.25rem;
+}
+
+.text-countdown__body li + li {
+  margin-top: var(--sp0-25);
+}
+
+.text-countdown__body a {
+  color: var(--secondary);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+.text-countdown__body a:hover {
+  text-decoration-color: currentColor;
+}
+
+.text-countdown__body a:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.text-countdown__countdown {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}

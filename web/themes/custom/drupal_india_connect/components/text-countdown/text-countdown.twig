@@ -1,0 +1,21 @@
+{% set layout_key = layout|default('countdown-right') %}
+
+<div class="text-countdown text-countdown--{{ layout_key }}">
+  <div class="text-countdown__content">
+    {% if label is not empty %}
+      <span class="text-countdown__label">{{ label }}</span>
+    {% endif %}
+
+    {% if heading is not empty %}
+      <h2 class="text-countdown__heading">{{ heading }}</h2>
+    {% endif %}
+
+    {% if body is not empty %}
+      <div class="text-countdown__body">{{ body }}</div>
+    {% endif %}
+  </div>
+
+  <div class="text-countdown__countdown">
+    {% block countdown %}{% endblock %}
+  </div>
+</div>
