@@ -55,15 +55,16 @@ html {
  * wide-nav breakpoint by giving it `position: fixed` (the off-canvas
  * mobile drawer) — removing it from flow means it can no longer push
  * anything. Below that breakpoint there's no in-flow nav to anchor the
- * margin to, so apply it to the next in-flow item instead (the account
- * link) to keep "Log in" + the mobile nav toggle pushed flush right as a
- * group. Narrow phones happen to have little enough slack space that this
- * was never visible, but at tablet widths (e.g. iPad's 820px) it left "Log
- * in" and the toggle stranded next to the logo with a large dead gap to
- * the right of them.
+ * margin to, so apply it to whichever element actually follows it instead
+ * (the account menu when enabled, the header CTA, or the mobile nav
+ * toggle itself) — an adjacent-sibling selector rather than a specific
+ * block's class, since which of those blocks are enabled varies. Narrow
+ * phones happen to have little enough slack space that this was never
+ * visible, but at tablet widths (e.g. iPad's 820px) it left everything
+ * after the logo stranded there with a large dead gap to the right.
  */
 @container style(--mobile-nav: true) {
-  .site-header .menu--account {
+  .site-header .menu--main + * {
     margin-inline-start: auto;
   }
 }
