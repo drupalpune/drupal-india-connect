@@ -262,6 +262,21 @@ h2.eh-heading,
 }
 
 /*
+ * event_horizon's mobile drawer (.menu--main, primary-nav-narrow.css)
+ * reserves a static 7.5rem of top padding to clear the header/close
+ * button. This theme's announcement bar plus the sticky header above push
+ * past that on narrow viewports, so the drawer's first row — "Program",
+ * the only top-level item with a submenu toggle — renders underneath the
+ * still-visible close button (z-index 110) and the tap never reaches it.
+ * --dac-mobile-nav-offset is measured and published by section-anchors.js.
+ */
+@container style(--mobile-nav: true) {
+  .menu--main {
+    --menu-top-padding: var(--dac-mobile-nav-offset, 7.5rem);
+  }
+}
+
+/*
  * event_horizon sizes the hero title at clamp(4rem, 2.5rem + 10vw, 13rem),
  * which is roughly double the design's H1 step. "DRUPALASIA" is a long
  * single word, so at wide viewports it outgrows its grid column and gets

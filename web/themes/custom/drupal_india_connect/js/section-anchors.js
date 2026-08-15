@@ -45,6 +45,20 @@
    * puts the target's heading behind the bar. CSS needs the height to offset
    * against, and it changes with viewport (the nav wraps) — so measure it
    * rather than hard-coding a value that is only right at one width.
+   *
+   * Also publishes --dac-mobile-nav-offset: the mobile drawer
+   * (event_horizon's .menu--main) reserves a static 7.5rem of top padding
+   * to clear the header, but this theme adds an announcement bar above the
+   * header and makes the header itself taller/sticky, so 7.5rem often isn't
+   * enough — the drawer's first row (and its has-children toggle) then
+   * renders underneath the still-visible header, which sits above the
+   * drawer in stacking order and swallows the tap. getBoundingClientRect()
+   * .bottom (not .height) is what's needed here: at the top of the page it
+   * already includes the announcement bar's height, because the header
+   * follows it in normal flow; once scrolled past, the bar is gone and the
+   * header is pinned at top:0, so .bottom collapses to just its own height.
+   * Recomputed on scroll too, since that value changes continuously while
+   * the header settles into its stuck position.
    */
   const trackHeaderHeight = () => {
     const header = document.querySelector('.site-header');
@@ -52,12 +66,18 @@
       return;
     }
     const publish = () => {
+      const rect = header.getBoundingClientRect();
       document.documentElement.style.setProperty(
         '--dac-header-height',
-        `${Math.round(header.getBoundingClientRect().height)}px`,
+        `${Math.round(rect.height)}px`,
+      );
+      document.documentElement.style.setProperty(
+        '--dac-mobile-nav-offset',
+        `${Math.round(rect.bottom)}px`,
       );
     };
     publish();
+    window.addEventListener('scroll', publish, { passive: true });
     if (window.ResizeObserver) {
       new ResizeObserver(publish).observe(header);
     } else {
