@@ -12,6 +12,7 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.milestone-table
     - canvas.component.sdc.drupal_india_connect.section-heading
     - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.drupal_india_connect.text-countdown
     - canvas.component.sdc.drupal_india_connect.venue-location
 name: 'Drupal Connect'
 configEntityTypeId: component
@@ -26,4 +27,5 @@ items:
   - sdc.drupal_india_connect.milestone-table
   - sdc.drupal_india_connect.section-heading
   - sdc.drupal_india_connect.spacer
+  - sdc.drupal_india_connect.text-countdown
   - sdc.drupal_india_connect.venue-location

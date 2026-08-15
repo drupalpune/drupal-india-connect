@@ -1,0 +1,44 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Text & Countdown'
+description: 'A two-column section: a large statement and supporting rich text on one side, a Countdown Timer component on the other. Which side the countdown appears on is configurable. Same pill/heading/body shape as Text & Media, but with a countdown slot instead of an image.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties:
+    layout:
+      type: string
+      title: Layout
+      description: 'Which side the countdown appears on.'
+      enum:
+        - countdown-left
+        - countdown-right
+      meta:enum:
+        countdown-left: 'Countdown on left, text on right'
+        countdown-right: 'Text on left, countdown on right'
+      default: countdown-right
+      examples:
+        - countdown-right
+    label:
+      type: string
+      title: 'Label (pill)'
+      description: 'Optional small pill shown above the heading.'
+      examples:
+        - 'OUR MISSION'
+    heading:
+      type: string
+      title: Heading
+      description: 'The large statement. Rendered big.'
+      examples:
+        - "Build together. Shape what's next. Grow with Drupal."
+    body:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>DrupalAsia Connect is where ideas, technology, and community come together.</p>'
+slots:
+  countdown:
+    title: Countdown
+    description: 'Place a Countdown Timer component here.'

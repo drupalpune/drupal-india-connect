@@ -24,6 +24,10 @@
       <p class="people-card__designation">{{ designation }}</p>
     {% endif %}
 
+    {% if description is not empty %}
+      <div class="people-card__description">{{ description }}</div>
+    {% endif %}
+
     {% if drupal_url is not empty or linkedin_url is not empty %}
       <div class="people-card__links">
         {% if drupal_url is not empty %}

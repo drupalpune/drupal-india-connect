@@ -77,6 +77,71 @@
   font-size: 0.875rem;
 }
 
+/*
+ * Same rich-text shape as Text & Media's body — the canvas_html_block
+ * format allows: strong, em, u, a, p (with text-align-* classes), br, ul,
+ * ol, li — all of it needs explicit styling here or it falls back to
+ * unstyled browser defaults.
+ */
+.people-card__description {
+  margin-top: var(--sp0-25);
+  color: var(--color--night-30);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.people-card__description p,
+.people-card__description ul,
+.people-card__description ol {
+  margin: 0;
+}
+
+.people-card__description > * + * {
+  margin-top: var(--sp0-5);
+}
+
+.people-card__description .text-align-left {
+  text-align: left;
+}
+
+.people-card__description .text-align-center {
+  text-align: center;
+}
+
+.people-card__description .text-align-right {
+  text-align: right;
+}
+
+.people-card__description .text-align-justify {
+  text-align: justify;
+}
+
+.people-card__description ul,
+.people-card__description ol {
+  padding-left: 1.25rem;
+  text-align: left;
+}
+
+.people-card__description li + li {
+  margin-top: var(--sp0-25);
+}
+
+.people-card__description a {
+  color: var(--secondary);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+.people-card__description a:hover {
+  text-decoration-color: currentColor;
+}
+
+.people-card__description a:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .people-card__links {
   display: flex;
   align-items: center;
