@@ -1,0 +1,35 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Milestone Row'
+description: 'One row of a Milestone Table: a name, a description, and Opens / Closes / Key Date-Outcome text. All three date-ish fields are free text, rendered exactly as given — this component does not interpret, validate, or reformat dates, so values like "TBD" or "—" pass through untouched.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: Name
+      examples:
+        - 'Call for Speakers'
+    description:
+      type: string
+      title: Description
+      examples:
+        - 'Session submissions are open to the community.'
+    opens:
+      type: string
+      title: Opens
+      examples:
+        - '24 August'
+    closes:
+      type: string
+      title: Closes
+      examples:
+        - '18 September'
+    outcome:
+      type: string
+      title: 'Key Date / Outcome'
+      examples:
+        - 'Reviewer confirmations by 18 September 2026'
