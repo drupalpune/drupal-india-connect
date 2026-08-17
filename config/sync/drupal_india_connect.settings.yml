@@ -10,9 +10,9 @@ video:
   use_default: 1
   path: null
 favicon:
-  use_default: false
-  path: themes/custom/drupal_india_connect/favicon.svg
-  mimetype: image/svg+xml
+  use_default: 0
+  path: themes/custom/drupal_india_connect/favicon.png
+  mimetype: image/png
 logo:
   use_default: 1
 hero_uses_block: 1
