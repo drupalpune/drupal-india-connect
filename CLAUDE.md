@@ -8,10 +8,27 @@ This file is the things that have already cost time here.
 - Run everything through DDEV: `ddev drush …`, `ddev composer …`.
 - **`ddev export-db` before any script that writes entities.** Several
   changes in this project have been recovered from those dumps.
-- Do not push unless asked. Deploys to production run on push to `main`.
+- Do not push unless asked. Merging to `main` deploys nothing by itself —
+  see **Deployment is tag-based** below for what actually ships.
 - `main` has GitHub branch protection: force-push and branch deletion are
   rejected at the remote. Undo a bad push with a revert commit, not
   `push --force` (which would just fail).
+
+## Deployment is tag-based
+
+`.github/workflows/deploy.yml` only fires on a semver tag push (`1.2.3` or
+`v1.2.3`, no pre-release suffix) or a manual run with an existing tag as
+input — pushing/merging to `main` ships nothing on its own. Cutting a
+release is `git tag 1.2.3 && git push origin 1.2.3`; the same manual-run
+path with an older tag is how you roll back (code only — the database does
+not roll back with it, see the workflow's own comments).
+
+The deploy script stashes any server-only tracked-file edits (the staging
+Basic Auth block in `web/.htaccess`) before pulling and restores them
+straight after — **this has already gone wrong once and left the site
+public**, when something failed between the stash and the pop. If a deploy
+fails partway, check `git stash list` on the server and `web/.htaccess`
+before assuming the site is still behind auth.
 
 ## Design work
 

@@ -128,17 +128,29 @@ That means:
   homepage. You need a database.
 - Copy changes, menu links, taxonomy terms and node content all move
   between environments by database sync, not by deploy.
-- Only theme files and configuration are deployed by pushing to `main`.
+- Only theme files and configuration are deployed, and only by tagging a
+  release (see below) — merging to `main` on its own ships nothing.
 
 ## Deployment
 
-Push to `main` → `.github/workflows/deploy.yml` → SSH to the server, which
-runs `git merge --ff-only`, `composer install --no-dev`, then
-`drush updb`, `drush cim`, `drush cr`.
+Deploys are cut from a tag, never from a branch. Pushing to `main` does not
+ship anything by itself:
+
+```bash
+git tag 1.2.3        # semver, no `v` prefix — see .github/workflows/deploy.yml
+git push origin 1.2.3
+```
+
+That push triggers `.github/workflows/deploy.yml`, which SSHes to the
+server and checks out that tag in detached HEAD (so a deploy can move
+backwards, not just forwards — the same workflow, run manually with an
+existing tag as input, is also how you roll back), then runs
+`composer install --no-dev`, a pre-deploy DB backup, `drush updb`,
+`drush cim`, `drush cr`.
 
 Because the deploy runs `drush cim`, **anything you changed through the
 admin UI must be exported to `config/sync` or the deploy will revert it.**
-Check before pushing:
+Check before tagging:
 
 ```bash
 ddev drush config:status
@@ -149,9 +161,8 @@ project has staged unrelated files and resurrected deleted configuration
 that broke production deploys.
 
 `main` has GitHub branch protection: force-push and branch deletion are
-blocked at the remote. A normal fast-forward `git push` still triggers the
-deploy as above; if a bad push needs undoing, revert with a new commit
-rather than reaching for `push --force`.
+blocked at the remote. That protects history on the branch itself; it has
+no bearing on when a deploy happens, since only a tag push does that.
 
 ## Before going live
 
