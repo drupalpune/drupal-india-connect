@@ -8,6 +8,14 @@ id: front
 label: 'Front page'
 tags:
   canonical_url: '[site:url]'
+  description: '[config_page:event_details:field_hompage_description_text]'
+  og_description: '[config_page:event_details:field_hompage_description_text]'
+  og_image: '[site:url]themes/custom/drupal_india_connect/images/home-hero-teaser.jpg'
+  og_image_height: '1368'
+  og_image_type: image/jpeg
+  og_image_width: '2047'
+  og_title: '[config_page:event_details:field_event_name] | [config_page:event_details:field_current:entity:field_dates] | [config_page:event_details:field_current:entity:field_location_short]'
   og_url: '[site:url]'
   shortlink: '[site:url]'
   title: '[site:name] | [config_page:event_details:field_current:entity:field_dates] | [config_page:event_details:field_current:entity:field_location_short] | [config_page:event_details:field_event_name]'
+  twitter_cards_type: summary_large_image
