@@ -406,6 +406,32 @@ html {
   color: var(--color--night-60);
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: var(--sp0-75);
+  margin: 0;
+  margin-top: var(--sp0-75);
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social__link {
+  display: inline-flex;
+  color: var(--color--night-60);
+  transition: color 0.2s ease;
+}
+
+.footer-social__link:hover,
+.footer-social__link:focus-visible {
+  color: var(--color--white);
+}
+
+.footer-social__link:focus-visible {
+  outline: solid 2px var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
 :root {
   /*
    * event_horizon points --primary/--secondary at the -60/-50 steps;

@@ -13,12 +13,14 @@
   {% embed 'event_horizon:footer' with {
     align: true,
     branding: elements.drupal_india_connect_footer_branding,
+    social_menu: elements.drupal_india_connect_footer_social_menu,
     main_menu: elements.drupal_india_connect_footer_main_menu,
     copyright: elements.drupal_india_connect_copyright,
     legal_menu: elements.drupal_india_connect_footer_legal_menu,
   } only %}
     {% block footer_first %}
       {{ branding }}
+      {{ social_menu }}
     {% endblock %}
 
     {% block footer_last %}

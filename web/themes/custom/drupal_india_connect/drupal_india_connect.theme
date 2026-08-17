@@ -130,3 +130,50 @@ function _drupal_india_connect_flatten_footer_menu_items(array $items) {
   }
   return $flattened;
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for menu--footer-social.html.twig.
+ *
+ * The "Social media links" menu (Structure > Menus > Social media links)
+ * only carries a title and a URL per link — editors don't pick an icon.
+ * Instead the icon is matched from the link's own domain, so adding a
+ * LinkedIn URL is enough to get the LinkedIn glyph; a network with no menu
+ * link here just never appears in the loop. An unrecognised domain still
+ * renders as a plain (icon-less) link rather than being dropped.
+ *
+ * Mastodon is federated — an instance can be hosted on any domain — so it
+ * can't be keyed off a fixed host the way the others are. A handful of the
+ * largest public instances are listed directly; anything else falls back to
+ * matching "mastodon" in the link's own title, which is how editors already
+ * label these links in practice.
+ */
+function drupal_india_connect_preprocess_menu__footer_social(array &$variables) {
+  $icons_by_domain = [
+    'linkedin.com' => 'linkedin-logo',
+    'x.com' => 'x-logo',
+    'twitter.com' => 'x-logo',
+    'facebook.com' => 'facebook-logo',
+    'fb.com' => 'facebook-logo',
+    'instagram.com' => 'instagram-logo',
+    'youtube.com' => 'youtube-logo',
+    'youtu.be' => 'youtube-logo',
+    'mastodon.social' => 'mastodon-logo',
+    'mastodon.online' => 'mastodon-logo',
+    'mstdn.social' => 'mastodon-logo',
+    'fosstodon.org' => 'mastodon-logo',
+  ];
+
+  foreach ($variables['items'] as &$item) {
+    $host = parse_url($item['url']->toString(), PHP_URL_HOST) ?? '';
+    $host = strtolower(preg_replace('/^www\./', '', $host));
+    if (isset($icons_by_domain[$host])) {
+      $item['icon'] = $icons_by_domain[$host];
+    }
+    elseif (str_contains(strtolower((string) $item['title']), 'mastodon')) {
+      $item['icon'] = 'mastodon-logo';
+    }
+    else {
+      $item['icon'] = NULL;
+    }
+  }
+}

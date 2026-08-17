@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Footer social media links: one icon per menu link, in "Structure > Menus
+ * > Social media links". Only add a link for a network you actually have;
+ * an icon is matched to the link's URL by domain (see
+ * drupal_india_connect_preprocess_menu__footer_social()) and networks with
+ * no link simply don't appear — nothing to hide manually.
+ */
+#}
+{% if items %}
+  <ul{{ attributes.addClass('footer-social') }}>
+    {% for item in items %}
+      <li class="footer-social__item">
+        <a href="{{ item.url.toString }}" class="footer-social__link" target="_blank" rel="noopener noreferrer">
+          {% if item.icon %}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: item.icon, icon_size: 'small' } only %}
+          {% endif %}
+          <span class="visually-hidden">{{ item.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
