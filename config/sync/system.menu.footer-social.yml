@@ -1,0 +1,8 @@
+uuid: bb01396f-fbc2-4981-9673-6e91b0fcc68b
+langcode: en
+status: true
+dependencies: {  }
+id: footer-social
+label: 'Social media links'
+description: 'Footer social media icon links (LinkedIn, X, Facebook, Instagram, YouTube). Add a menu link here for each network you want shown; omit any you do not have.'
+locked: false

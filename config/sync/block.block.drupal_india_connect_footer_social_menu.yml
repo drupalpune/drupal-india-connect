@@ -1,0 +1,25 @@
+uuid: c6d48e5e-f482-4b9a-b3ac-c0ab6f3c2805
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-social
+  module:
+    - system
+  theme:
+    - drupal_india_connect
+id: drupal_india_connect_footer_social_menu
+theme: drupal_india_connect
+region: footer
+weight: -13
+provider: null
+plugin: 'system_menu_block:footer-social'
+settings:
+  id: 'system_menu_block:footer-social'
+  label: 'Social media links'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }
