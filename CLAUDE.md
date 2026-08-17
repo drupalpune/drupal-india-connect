@@ -9,6 +9,9 @@ This file is the things that have already cost time here.
 - **`ddev export-db` before any script that writes entities.** Several
   changes in this project have been recovered from those dumps.
 - Do not push unless asked. Deploys to production run on push to `main`.
+- `main` has GitHub branch protection: force-push and branch deletion are
+  rejected at the remote. Undo a bad push with a revert commit, not
+  `push --force` (which would just fail).
 
 ## Design work
 
@@ -135,6 +138,26 @@ For rendered/layout checks, fetch the page with `credentials: 'omit'` and
 write it into an iframe — an iframe also gives a real narrow viewport for
 mobile work, which a desktop browser window cannot go below ~500px to
 reach.
+
+## Syncing the database from production
+
+Use the `db-sync-from-live` skill (`.claude/skills/db-sync-from-live/`)
+rather than running ssh/scp/drush by hand — it backs up local first, dumps
+remote into a throwaway temp dir, cleans that up, then imports and checks
+`config:status`. It also already knows the one thing that isn't obvious
+from the server itself:
+
+- **Production's default `php` on PATH is 8.3; this Drupal's Composer
+  dependencies need 8.4.** Running `vendor/bin/drush` there with the
+  default PHP prints a Composer platform-requirement warning and exits
+  with no further output — it looks like drush hung or failed silently,
+  not like a version mismatch. The fix is a CloudLinux/cPanel-style
+  alternate PHP build (`/opt/alt/php84/usr/bin/php` on this host): put it
+  first on `PATH` before invoking `vendor/bin/drush`, or set
+  `REMOTE_PHP_BIN` in `.claude/db-sync.local.env`.
+- SSH host/port/user and the remote app path live only in
+  `.claude/db-sync.local.env` (gitignored, one per machine) — never in this
+  file or in the skill's own scripts, since both are committed.
 
 ## Environment notes
 

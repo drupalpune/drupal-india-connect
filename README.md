@@ -34,6 +34,13 @@ dump from production or from a teammate:
 ddev import-db --file=path/to/dump.sql.gz
 ```
 
+If you use Claude Code, pulling a fresh copy from production is scripted as
+the `db-sync-from-live` skill — it backs up your local DB first, dumps the
+remote one over SSH into a throwaway temp location, cleans that up after
+downloading, imports locally, and checks for config drift. See
+`.claude/skills/db-sync-from-live/SKILL.md`. Connection details are supplied
+per-machine in a gitignored `.claude/db-sync.local.env`, never committed.
+
 Then:
 
 ```bash
@@ -140,6 +147,11 @@ ddev drush config:status
 See `CLAUDE.md` for how to export safely — a bare `drush cex` in this
 project has staged unrelated files and resurrected deleted configuration
 that broke production deploys.
+
+`main` has GitHub branch protection: force-push and branch deletion are
+blocked at the remote. A normal fast-forward `git push` still triggers the
+deploy as above; if a bad push needs undoing, revert with a new commit
+rather than reaching for `push --force`.
 
 ## Before going live
 
