@@ -11,7 +11,7 @@ props:
     icon:
       type: string
       title: 'Icon name'
-      description: 'Any Phosphor icon name in kebab-case, e.g. "arrow-right", "calendar", "brain", "linkedin-logo", "x-logo", "facebook-logo", "instagram-logo", "youtube-logo", "mastodon-logo" — must already exist as an SVG file in icons/phosphor/regular/. Unknown names render nothing rather than erroring.'
+      description: 'Any Phosphor icon name in kebab-case, e.g. "arrow-right", "calendar", "brain", "linkedin-logo", "x-logo", "facebook-logo", "instagram-logo", "youtube-logo", "mastodon-logo", "check", "handshake", "megaphone", "chart-line-up", "user-plus", "users-three", "presentation" — must already exist as an SVG file in icons/phosphor/regular/. Unknown names render nothing rather than erroring.'
       examples:
         - 'arrow-right'
     icon_size:

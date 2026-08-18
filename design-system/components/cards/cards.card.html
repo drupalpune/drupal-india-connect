@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x360" name="Cards" subtitle="Content, icon, logo, testimonial and stat cards" -->
+<!-- @dsCard group="Components" viewport="700x520" name="Cards" subtitle="Content, icon, logo, testimonial, stat and sponsor-tier cards" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
   body { margin: 0; padding: 16px; background: var(--surface-page); font-family: var(--font-sans); }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
   .dark { background: var(--surface-band-dark); color: #fff; padding: 16px; border-radius: 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 </style>
 </head>
 <body>
@@ -18,7 +19,7 @@
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
   const NS = Object.values(window).find((v) => v && typeof v === 'object' && v.Card && v.StatCard) || {};
-  const { Card, CardIcon, CardLogo, CardTestimonial, StatCard } = NS;
+  const { Card, CardIcon, CardLogo, CardTestimonial, StatCard, SponsorTier } = NS;
   ReactDOM.createRoot(document.getElementById('root')).render(
     <>
       <div className="grid">
@@ -30,6 +31,12 @@
         <StatCard stat="3" description="Days of sessions, workshops and sprints" />
         <StatCard stat="60+" description="Sessions across four tracks" />
         <CardLogo media="../../assets/icons/drupal-evergreen.svg" mediaAlt="Drupal" backgroundColor="secondary" borderRadius="medium" />
+      </div>
+      <div className="tiers">
+        <SponsorTier tierName="Presenting" price="₹550,000" tierAccent="secondary" ctaText="Become a sponsor" ctaUrl="#" benefits="<ul><li>12 event tickets + early bird pricing on 6 additional tickets</li><li>6m x 3m expo hall space with 1st booth selection priority</li></ul>" />
+        <SponsorTier tierName="Champion" price="₹450,000" tierAccent="primary-50" ctaText="Become a sponsor" ctaUrl="#" benefits="<ul><li>8 event tickets + early bird pricing on 4 additional tickets</li><li>3m x 3m expo hall space with 2nd booth selection priority</li></ul>" />
+        <SponsorTier tierName="Advocate" price="₹350,000" tierAccent="primary-60" ctaText="Become a sponsor" ctaUrl="#" benefits="<ul><li>4 event tickets + early bird pricing on 2 additional tickets</li><li>3m x 3m expo hall space with 3rd booth selection priority</li></ul>" />
+        <SponsorTier tierName="Exhibitor" price="₹250,000" tierAccent="neutral" ctaText="Become a sponsor" ctaUrl="#" benefits="<ul><li>2 event tickets</li><li>2m x 2m expo hall space (assigned)</li></ul>" />
       </div>
     </>
   );

@@ -1,0 +1,61 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Sponsor Tier'
+description: 'A sponsorship package: tier name, price, a checklist of benefits, and an optional call to action. Not a ticket-pricing component — see the design system readme for why card-pricing is excluded upstream.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - tier_name
+    - price
+    - benefits
+  properties:
+    tier_name:
+      type: string
+      title: 'Tier name'
+      examples:
+        - Presenting
+    price:
+      type: string
+      title: Price
+      description: 'A string, not a number — so "Price on request" or a currency-prefixed amount both work.'
+      examples:
+        - '₹550,000'
+    benefits:
+      type: string
+      title: Benefits
+      description: 'The checklist of what this tier includes. Edited as a rich-text bulleted list in Canvas — each list item gets a check mark automatically.'
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<ul><li>12 event tickets + early bird pricing on 6 additional tickets</li><li>6m x 3m expo hall space with 1st booth selection priority</li></ul>'
+    tier_accent:
+      type: string
+      title: 'Accent colour'
+      description: 'Which token colours the top border and tier name. Spend "secondary" on at most one tier per page — it is the brand''s rationed accent.'
+      enum:
+        - secondary
+        - primary-50
+        - primary-60
+        - neutral
+      meta:enum:
+        secondary: 'Secondary (brand orange) — reserve for one tier only'
+        primary-50: 'Primary, darker step'
+        primary-60: 'Primary, default step'
+        neutral: 'Neutral grey'
+      default: primary-60
+      examples:
+        - secondary
+    cta_text:
+      type: string
+      title: 'Call to action text'
+      description: 'Optional. Only shown when a CTA URL is also set.'
+      examples:
+        - 'Become a sponsor'
+    cta_url:
+      type: string
+      title: 'Call to action URL'
+      description: 'Optional. Leave both CTA fields empty to end the card after the last benefit.'
+      format: uri-reference
+      examples:
+        - '/sponsor-us'

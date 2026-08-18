@@ -1,0 +1,20 @@
+{% set accent = tier_accent|default('primary-60') %}
+
+<article class="sponsor-tier sponsor-tier--accent-{{ accent }}">
+  <header class="sponsor-tier__header">
+    {% if tier_name is not empty %}
+      <p class="sponsor-tier__name">{{ tier_name }}</p>
+    {% endif %}
+    {% if price is not empty %}
+      <p class="sponsor-tier__price">{{ price }}</p>
+    {% endif %}
+  </header>
+
+  {% if benefits is not empty %}
+    <div class="sponsor-tier__benefits">{{ benefits }}</div>
+  {% endif %}
+
+  {% if cta_url is not empty %}
+    <a class="sponsor-tier__cta" href="{{ cta_url }}">{{ cta_text|default('Become a sponsor') }}</a>
+  {% endif %}
+</article>

@@ -217,7 +217,7 @@ Blockquote, Image, Video
 **Layout** (`components/layout/`) — Section, Group, Navbar, Footer, Accordion,
 AccordionContainer
 **Card** (`components/cards/`) — Card, CardIcon, CardLogo, CardTestimonial,
-StatCard
+StatCard, SponsorTier
 **Hero** (`components/hero/`) — HeroBillboard, HeroSideBySide, Cta
 **Event platform** (`components/event/`) — SiteHero25, SiteHeader,
 SiteHeroDetails, SiteStats, FeaturedSpeaker, SponsorTeaser, Countdown,
@@ -225,18 +225,25 @@ AnnouncementBar
 
 ### Intentional additions
 
-Two, both shipped in the sub-theme as new Drupal SDCs and mirrored here:
+Three, all shipped in the sub-theme as new Drupal SDCs and mirrored here:
 
 - **Countdown** — the live countdown to day one. The base theme has no
   countdown, and a save-the-date homepage needs one.
 - **AnnouncementBar** — one line of site-wide news above the header. The theme
   has no equivalent region component.
+- **SponsorTier** (`sponsor-tier`) — a sponsorship package: tier name, price,
+  a benefits checklist, and an optional CTA. This is distinct from the
+  excluded `card-pricing` below — it's informational (what a sponsor gets),
+  not a ticket-sale flow. `tier_accent` colours the top border/label from
+  existing tokens (secondary, primary-50, primary-60, neutral); spend
+  secondary on at most one tier per page.
 
 ### Deliberately absent
 
 - **card-pricing** — excluded upstream on purpose: ticketing belongs to
   commerce/registration, not to a Canvas component. Ticket tiers are built from
-  `Card` until real pricing exists.
+  `Card` until real pricing exists. Sponsorship tiers are a different thing —
+  see `SponsorTier` above.
 - **site-hero** (the pre-2025 hero) — superseded by `SiteHero25`; building
   both would invite the wrong one being used.
 - **details** — a Drupal render-array wrapper for file/attachment lists with no
