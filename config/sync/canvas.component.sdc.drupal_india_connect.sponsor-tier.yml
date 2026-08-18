@@ -1,0 +1,105 @@
+uuid: 4afec048-18b3-452a-9d93-b74882506bf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.canvas_html_block
+  module:
+    - link
+    - options
+    - text
+  theme:
+    - drupal_india_connect
+active_version: ff88d849eb8099aa
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        tier_name:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Presenting
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        price:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '₹550,000'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        benefits:
+          required: true
+          field_type: text_long
+          field_storage_settings: {  }
+          field_instance_settings:
+            allowed_formats:
+              - canvas_html_block
+          field_widget: text_textarea
+          default_value:
+            -
+              value: '<ul><li>12 event tickets + early bird pricing on 6 additional tickets</li><li>6m x 3m expo hall space with 1st booth selection priority</li></ul>'
+              format: canvas_html_block
+          expression: ℹ︎text_long␟processed
+          derived_schema_metadata:
+            string_shape:
+              contentMediaType: text/html
+              x-formatting-context: block
+        tier_accent:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: secondary
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        cta_text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Become a sponsor'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cta_url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: /sponsor-us
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Sponsor Tier'
+id: sdc.drupal_india_connect.sponsor-tier
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:sponsor-tier'
