@@ -29,6 +29,22 @@
  */
 
 /*
+ * event_horizon only zeroes `.region--content`'s bottom margin on
+ * `.path-frontpage`, so every other Canvas-built page (Sponsors, Program,
+ * etc.) keeps the base margin-block-end and shows a gap of bare page
+ * background between its last full-bleed section and the footer. Every
+ * page here is built the same way, so scope the same zero-margin
+ * treatment to any Canvas page rather than just the front page.
+ */
+.canvas-page .region--content {
+  margin-bottom: 0;
+}
+
+.canvas-page .region--content > * {
+  margin-bottom: 0;
+}
+
+/*
  * The logo is a full lockup — drop mark, three lines of wordmark and a
  * tagline — so it needs real height before the smallest line is legible.
  * At the shipped 3.25rem it rendered 78x52 with the tagline unreadable.
@@ -132,6 +148,20 @@
 .eh-section--bg-secondary .webform-confirmation__message {
   color: var(--color--white);
   font-size: 1.0625rem;
+}
+
+/*
+ * Sponsor tier cards are documented (see the component's own CSS comment)
+ * to sit inside a row Group, but Group sets no width on its children — the
+ * main "Sponsorship Opportunities" tiers avoid this because they sit
+ * directly in a Section's own grid, which is mobile-first by default. The
+ * Module sponsorship cards use a Group instead (for the labeled sub-rows),
+ * so without a flex-basis here they size to their content and never drop
+ * to one per row on mobile.
+ */
+.eh-group--row > .sponsor-tier {
+  flex: 1 1 260px;
+  max-width: 320px;
 }
 
 /*
