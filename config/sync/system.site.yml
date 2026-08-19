@@ -3,7 +3,7 @@ _core:
 langcode: en
 uuid: a34b838b-bdba-4e8e-95db-69e31d6d1072
 name: 'DrupalAsia Connect India 2027'
-mail: admin@example.com
+mail: events@drupalasia.org
 slogan: ''
 page:
   403: /user/login
