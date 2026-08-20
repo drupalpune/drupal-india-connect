@@ -33,7 +33,6 @@ third_party_settings:
     group_scheduling:
       children:
         - field_social_media_card
-        - moderation_state
         - field_time_slot
         - field_r
       label: 'Admin Functions'
