@@ -3,6 +3,20 @@
 Drupal 11 event site on DDEV. See `README.md` for the stack and layout.
 This file is the things that have already cost time here.
 
+## Commands
+
+```bash
+ddev start && ddev composer install   # bring the environment up
+ddev drush cr                          # cache rebuild, after config/theme changes
+ddev drush cim / cex                   # import/export config (see Config below, never bare cex)
+ddev launch                            # open the local site
+```
+
+There is no automated test suite and no theme build step (no
+`package.json`, no PHPUnit tests outside core/contrib) — verify changes by
+loading the site (see **Verifying** below), not by looking for a `npm test`
+or `phpunit` to run.
+
 ## Ground rules
 
 - Run everything through DDEV: `ddev drush …`, `ddev composer …`.
