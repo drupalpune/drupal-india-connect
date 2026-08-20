@@ -12,8 +12,8 @@ id: node.session.field_audience
 field_name: field_audience
 entity_type: node
 bundle: session
-label: Audience
-description: ''
+label: 'Difficulty level'
+description: 'Please select the most relevant difficulty level.'
 required: true
 translatable: false
 default_value: {  }

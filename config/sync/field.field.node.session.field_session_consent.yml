@@ -1,0 +1,21 @@
+uuid: b980084f-0e00-4348-bb2f-f6e8dffdca65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_session_consent
+    - node.type.session
+  module:
+    - options
+id: node.session.field_session_consent
+field_name: field_session_consent
+entity_type: node
+bundle: session
+label: 'Session consent'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

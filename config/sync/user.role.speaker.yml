@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.restricted_html
     - node.type.session
     - workflows.workflow.session_acceptance
   module:
     - content_moderation
     - field_permissions
+    - filter
     - node
 _core:
   default_config_hash: 9TWUoJnCXSDHq-ZAhulUl7ehneCTSW8W217kew2txkE
@@ -23,5 +25,6 @@ permissions:
   - 'use session_acceptance transition decline'
   - 'use session_acceptance transition edit_confirmed'
   - 'use session_acceptance transition propose_session'
+  - 'use text format restricted_html'
   - 'view own field_speakers'
   - 'view session revisions'
