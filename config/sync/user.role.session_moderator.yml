@@ -26,7 +26,6 @@ permissions:
   - 'access content overview'
   - 'access site in maintenance mode'
   - 'access taxonomy overview'
-  - 'access user profiles'
   - 'create terms in room'
   - 'create terms in time_slot'
   - 'delete terms in room'
@@ -53,4 +52,3 @@ permissions:
   - 'view latest version'
   - 'view session revisions'
   - 'view the administration theme'
-  - 'view user email addresses'
