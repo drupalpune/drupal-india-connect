@@ -1,0 +1,19 @@
+uuid: 415ae122-e6dc-487d-a895-954c6f77f70f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speaking_experience_detail
+    - node.type.session
+id: node.session.field_speaking_experience_detail
+field_name: field_speaking_experience_detail
+entity_type: node
+bundle: session
+label: 'Speaking experience details'
+description: "Highlight your speaking history by sharing titles or descriptions of topics, dates, and links.\r\nFor first time speakers, we advice to record yourself for 5-10 mins speaking on any topic and share a link. This might help the reviewers understand your speaking style."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -11,8 +11,8 @@ id: node.session.field_speakers
 field_name: field_speakers
 entity_type: node
 bundle: session
-label: Speaker(s)
-description: ''
+label: Co-speaker(s)
+description: 'Enter any other co-speakers for the session.'
 required: true
 translatable: false
 default_value: {  }
@@ -29,6 +29,8 @@ settings:
       type: role
       role:
         speaker: speaker
+        content_editor: '0'
+        session_moderator: '0'
         administrator: '0'
     include_anonymous: false
 field_type: entity_reference

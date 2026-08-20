@@ -1,13 +1,11 @@
-uuid: 9e80da04-4527-4244-8249-8a360e21ebcf
+uuid: 54dcbcc9-ced4-471e-9929-3e57f75577e5
 langcode: en
 status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: ILgWjVehZwJyWg-yQGVjBJdVo0cihjc5giYfr-iEz-Y
-id: node.field_short_description
-field_name: field_short_description
+id: node.field_speaking_experience_detail
+field_name: field_speaking_experience_detail
 entity_type: node
 type: string_long
 settings:

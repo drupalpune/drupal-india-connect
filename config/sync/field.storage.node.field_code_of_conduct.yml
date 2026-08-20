@@ -1,0 +1,24 @@
+uuid: 93a2911d-e4e7-4d66-afb6-d4e2d26caf3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_code_of_conduct
+field_name: field_code_of_conduct
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'I/we will abide by the code of conduct'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

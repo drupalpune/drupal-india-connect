@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - dashboard.dashboard.welcome
+    - filter.format.restricted_html
     - filter.format.webform_default
     - storage.storage_type.sponsorship
   module:
@@ -38,6 +39,7 @@ permissions:
   - 'delete own files'
   - 'skip CAPTCHA'
   - 'use klaro'
+  - 'use text format restricted_html'
   - 'use text format webform_default'
   - 'view field_r'
   - 'view field_time_slot'
