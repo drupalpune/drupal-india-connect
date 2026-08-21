@@ -13,6 +13,8 @@
         <a href="{{ home_path }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
       </div>
     {% endif %}
-    <div class="footer-branding__venue">IIT Bombay &middot; Jan 21&ndash;23, 2027</div>
+    {% if footer_venue %}
+      <div class="footer-branding__venue">{{ footer_venue }}</div>
+    {% endif %}
   </div>
 {% endblock %}
