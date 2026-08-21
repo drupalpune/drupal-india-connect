@@ -11,12 +11,12 @@ field_name: field_code_of_conduct_accept
 entity_type: user
 bundle: user
 label: 'Code of conduct agreement'
-description: 'I confirm I have read and agree to the <a href="/code-of-conduct" target="_blank" rel="noopener">Code of Conduct</a>.'
+description: 'I have read and agree to abide by the <a href="/code-of-conduct" target="_blank" rel="noopener">Code of Conduct</a>.'
 required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  on_label: 'I have read and agree to the Code of Conduct'
+  on_label: 'I agree to the statement below'
   off_label: 'I have not agreed to the Code of Conduct'
 field_type: boolean
