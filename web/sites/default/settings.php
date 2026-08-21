@@ -764,7 +764,13 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  *
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
-# $settings['trusted_host_patterns'] = [];
+// Production only runs on drupalasia.org (and www.); DDEV overrides this in
+// the auto-generated settings.ddev.php, included further below, so this does
+// not affect local development.
+$settings['trusted_host_patterns'] = [
+  '^drupalasia\.org$',
+  '^www\.drupalasia\.org$',
+];
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.

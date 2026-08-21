@@ -2,9 +2,15 @@ uuid: b1e01550-bf5e-4b24-859c-9cf0680e3464
 langcode: en
 status: open
 dependencies:
+  module:
+    - honeypot
   enforced:
     module:
       - webform
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 _core:
   default_config_hash: rFS7n8XHomqQzqQ-43SKb-QhTEPlE86S2vpbwYY3ksA
 weight: 0
@@ -281,10 +287,10 @@ handlers:
       bcc_options: {  }
       cc_mail: ''
       cc_options: {  }
-      from_mail: '[webform_submission:values:email:raw]'
+      from_mail: _default
       from_options: {  }
-      from_name: '[webform_submission:values:name:raw]'
-      reply_to: ''
+      from_name: _default
+      reply_to: '[webform_submission:values:email:raw]'
       return_path: ''
       sender_mail: ''
       sender_name: ''
