@@ -29,6 +29,28 @@
  */
 
 /*
+ * `.eh-section--bg-black`/`--dark-background` set `color: white` on the
+ * section (or `.eh-heading`/`.eh-text` directly), but a plain-text link's
+ * own `a { color }` rule always wins over that inherited value — so any
+ * link inside a rich-text component on the navy band (e.g. a "Prefer to
+ * email us" line) kept event_horizon's default link blue, which reads as
+ * near-invisible against --neutral-dark. Give it the brand orange instead,
+ * matching the link treatment already used in rich text elsewhere (see
+ * text-media.css). `:not(.eh-button)` keeps this off CTA buttons, which
+ * set their own text color per variant.
+ */
+.eh-section--bg-black a:not(.eh-button),
+.eh-section--dark-background a:not(.eh-button) {
+  color: var(--secondary);
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+.eh-section--bg-black a:not(.eh-button):hover,
+.eh-section--dark-background a:not(.eh-button):hover {
+  text-decoration-color: currentColor;
+}
+
+/*
  * event_horizon only zeroes `.region--content`'s bottom margin on
  * `.path-frontpage`, so every other Canvas-built page (Sponsors, Program,
  * etc.) keeps the base margin-block-end and shows a gap of bare page
