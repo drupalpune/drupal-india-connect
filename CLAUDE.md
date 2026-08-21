@@ -130,12 +130,28 @@ and diff first:
 ```bash
 ddev drush config:export --destination=/var/www/html/cex-full -y
 # diff cex-full/*.yml against config/sync/, copy only what you intend
+php scripts/check-canvas-folder-duplicates.php /var/www/html/cex-full
 ```
 
 Known noisy config: `canvas.component.*` entities carry an `active_version`
 hash that churns, and `canvas.page_region.drupal_india_connect.header` must
 stay `status: false` — enabling it 500s `ApiLayoutController::get()` and
 breaks the live site header.
+
+**Canvas folders duplicate silently — always run the check script above
+before copying an export into `config/sync`.** `Component::postSave()`
+auto-creates a Folder *by name* the first time a component is saved into a
+category that doesn't have one yet, but Drupal's config system tracks
+Folders by UUID — so if discovery ever runs before a fresh environment's
+first `drush cim` (e.g. someone browses admin pages, which triggers a
+cache rebuild and component discovery, before importing config), it
+creates a second same-named folder that import can never merge with the
+"real" one. This had already happened to 20 of 21 folders (43 entities for
+21 names) before anyone noticed, because the only symptom is `drush cron`
+throwing `RuntimeException: It is impossible for an item to exist in
+multiple Folders` — nothing points back to config/sync. Run
+`php scripts/check-canvas-folder-duplicates.php config/sync` any time to
+check what's already committed.
 
 ## Front-end gotchas
 
