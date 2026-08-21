@@ -1,0 +1,61 @@
+uuid: 144f17f1-279c-4833-bf0b-9deece693823
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.session
+    - views.view.sessions_by_speaker
+  module:
+    - eca_base
+    - eca_content
+    - eca_views
+id: process_session_submission_limit_notice
+weight: 0
+template: false
+events:
+  Event_notice_form:
+    plugin: 'content_entity:prepareform'
+    label: 'Prepare session form'
+    configuration:
+      type: 'node session'
+    successors:
+      -
+        id: Activity_notice_query
+        condition: Condition_notice_is_new
+conditions:
+  Condition_notice_is_new:
+    plugin: eca_entity_is_new
+    configuration:
+      negate: false
+      entity: ''
+gateways: {  }
+actions:
+  Activity_notice_query:
+    label: "Get speaker's active sessions"
+    plugin: eca_views_query
+    configuration:
+      token_name: speaker_sessions
+      view_id: sessions_by_speaker
+      display_id: default
+      arguments: '[current-user:uid]'
+    successors:
+      -
+        id: Activity_notice_count
+        condition: ''
+  Activity_notice_count:
+    label: 'Count active sessions'
+    plugin: eca_count
+    configuration:
+      token_name: speaker_session_count
+      list_token: speaker_sessions
+    successors:
+      -
+        id: Activity_notice_message
+        condition: ''
+  Activity_notice_message:
+    label: 'Show submission count'
+    plugin: action_message_action
+    configuration:
+      message: 'You have submitted [speaker_session_count] of 2 sessions allowed.'
+      replace_tokens: true
+    successors: {  }

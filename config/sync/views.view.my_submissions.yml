@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - node.type.session
-    - system.menu.account
     - user.role.authenticated
+    - user.role.speaker
   module:
     - content_moderation
     - node
@@ -312,22 +312,39 @@ display:
         - 'user.node_grants:view'
         - user.roles
       tags: {  }
-  page_1:
-    id: page_1
-    display_title: Page
-    display_plugin: page
-    position: 1
+  block_1:
+    id: block_1
+    display_title: 'Dashboard summary'
+    display_plugin: block
+    position: 2
     display_options:
+      title: 'Your session submissions'
+      access:
+        type: role
+        options:
+          role:
+            speaker: speaker
+      defaults:
+        access: false
+        title: false
+        footer: false
+        block_description: false
+      footer:
+        my_submissions_link:
+          id: my_submissions_link
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<a href="/node/add/session">Submit a new session</a>'
+            format: basic_html
+          tokenize: false
       display_extenders: {  }
-      path: my-submissions
-      menu:
-        type: normal
-        title: 'My Submissions'
-        description: 'See the status of the sessions you have submitted.'
-        weight: 0
-        expanded: false
-        menu_name: account
-        context: '0'
+      block_description: 'Your session submissions (dashboard)'
     cache_metadata:
       max-age: -1
       contexts:

@@ -79,10 +79,8 @@ type_settings:
     propose_session:
       label: 'Propose Session'
       from:
-        - accepted
         - draft
         - proposed
-        - rejected
       to: proposed
       weight: -4
     publish:
