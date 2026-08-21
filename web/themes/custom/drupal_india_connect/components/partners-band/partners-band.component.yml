@@ -1,0 +1,8 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Partners Band'
+description: 'The light strip above the dark site footer crediting the co-organizing partners: Drupal Pune (host), IIT Bombay (in association with), and the DrupalAsia Steering Committee (no label on this one, by request — see the twig comment on why the empty label span stays). Content is fixed — this is site chrome, not editorial content, so it takes no props and is included directly from page.html.twig the same way site-header/site-hero are.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties: {}
