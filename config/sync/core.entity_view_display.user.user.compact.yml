@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.user.compact
     - field.field.user.user.field_bio
+    - field.field.user.user.field_code_of_conduct_accept
     - field.field.user.user.field_display_name
     - field.field.user.user.user_picture
     - image.style.thumbnail
@@ -43,4 +44,5 @@ content:
     region: content
 hidden:
   field_bio: true
+  field_code_of_conduct_accept: true
   member_for: true

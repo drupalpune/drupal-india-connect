@@ -1,27 +1,29 @@
-uuid: 6e366151-7095-4b28-bd9f-5ef9ca9689b9
+uuid: 973d59ac-ba11-40a3-a453-ea884de195ea
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.user.register
     - field.field.user.user.field_bio
     - field.field.user.user.field_code_of_conduct_accept
     - field.field.user.user.field_display_name
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
+    - path
     - svg_image
     - text
     - user
-_core:
-  default_config_hash: _lBZupAqF2ZPefwVZygCNAC3JLHFER1WFVCxMHprtCY
-id: user.user.default
+id: user.user.register
 targetEntityType: user
 bundle: user
-mode: default
+mode: register
 content:
   account:
     weight: -10
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_bio:
     type: text_textarea
     weight: 2
@@ -29,6 +31,13 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_code_of_conduct_accept:
+    type: boolean_checkbox
+    weight: 20
+    region: content
+    settings:
+      display_label: false
     third_party_settings: {  }
   field_display_name:
     type: string_textfield
@@ -41,9 +50,19 @@ content:
   language:
     weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
+    settings: {  }
+    third_party_settings: {  }
   user_picture:
     type: image_image
     weight: -1
@@ -52,6 +71,4 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-hidden:
-  field_code_of_conduct_accept: true
-  path: true
+hidden: {  }
