@@ -43,22 +43,31 @@
 }
 
 .sponsor-tier__name {
-  margin: 0 0 var(--sp0-5);
-  color: var(--tier-accent, var(--primary));
+  margin: 0;
   font-weight: 700;
-  font-size: 0.8125rem;
-  letter-spacing: 0.12em;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.sponsor-tier__price {
-  margin: 0;
-  color: var(--color--night-5);
-  font-weight: 800;
-  font-size: 1.875rem;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+/*
+ * Tier name colour is independent of --tier-accent (the top border /
+ * benefit checkmark colour) — see the component's tier_name_color prop.
+ */
+.sponsor-tier__name--tone-secondary {
+  color: var(--secondary);
+}
+
+.sponsor-tier__name--tone-primary-50 {
+  color: var(--color--primary-50);
+}
+
+.sponsor-tier__name--tone-primary-60 {
+  color: var(--color--primary-60);
+}
+
+.sponsor-tier__name--tone-neutral {
+  color: var(--color--night-50);
 }
 
 /*

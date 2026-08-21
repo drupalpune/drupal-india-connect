@@ -1,12 +1,10 @@
 {% set accent = tier_accent|default('primary-60') %}
+{% set name_color = tier_name_color|default('primary-60') %}
 
 <article class="sponsor-tier sponsor-tier--accent-{{ accent }}">
   <header class="sponsor-tier__header">
     {% if tier_name is not empty %}
-      <p class="sponsor-tier__name">{{ tier_name }}</p>
-    {% endif %}
-    {% if price is not empty %}
-      <p class="sponsor-tier__price">{{ price }}</p>
+      <p class="sponsor-tier__name sponsor-tier__name--tone-{{ name_color }}">{{ tier_name }}</p>
     {% endif %}
   </header>
 

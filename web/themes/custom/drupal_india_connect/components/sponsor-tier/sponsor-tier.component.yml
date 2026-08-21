@@ -1,13 +1,12 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Sponsor Tier'
-description: 'A sponsorship package: tier name, price, a checklist of benefits, and an optional call to action. Not a ticket-pricing component — see the design system readme for why card-pricing is excluded upstream.'
+description: 'A sponsorship package: tier name, a checklist of benefits, and an optional call to action. No price field — see the design system readme for why card-pricing is excluded upstream.'
 group: Drupal Connect
 status: stable
 props:
   type: object
   required:
     - tier_name
-    - price
     - benefits
   properties:
     tier_name:
@@ -15,12 +14,6 @@ props:
       title: 'Tier name'
       examples:
         - Presenting
-    price:
-      type: string
-      title: Price
-      description: 'A string, not a number — so "Price on request" or a currency-prefixed amount both work.'
-      examples:
-        - '₹550,000'
     benefits:
       type: string
       title: Benefits
@@ -33,6 +26,23 @@ props:
       type: string
       title: 'Accent colour'
       description: 'Which token colours the top border and tier name. Spend "secondary" on at most one tier per page — it is the brand''s rationed accent.'
+      enum:
+        - secondary
+        - primary-50
+        - primary-60
+        - neutral
+      meta:enum:
+        secondary: 'Secondary (brand orange) — reserve for one tier only'
+        primary-50: 'Primary, darker step'
+        primary-60: 'Primary, default step'
+        neutral: 'Neutral grey'
+      default: primary-60
+      examples:
+        - secondary
+    tier_name_color:
+      type: string
+      title: 'Tier name colour'
+      description: 'Colours the tier name text only — independent of the accent colour above, which still controls the top border and benefit checkmarks.'
       enum:
         - secondary
         - primary-50
