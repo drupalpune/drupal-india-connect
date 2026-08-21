@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - canvas.component.block.event_platform_header_cta
+    - canvas.component.block.event_platform_helper_confirmation
     - canvas.component.block.event_platform_helper_copyright
     - canvas.component.block.event_platform_home_hero
     - canvas.component.sdc.drupal_india_connect.eyebrow
     - canvas.component.sdc.drupal_india_connect.fact
     - canvas.component.sdc.drupal_india_connect.hero
     - canvas.component.sdc.drupal_india_connect.media-placeholder
-    - canvas.component.sdc.event_horizon.featured-speaker
     - canvas.component.sdc.event_horizon.site-hero-25
 _core:
   default_config_hash: UhYlrlVOf12XddycpDWaAeMNULA6OdNgXE7oD6p6UHk
@@ -19,11 +19,11 @@ configEntityTypeId: component
 weight: 0
 items:
   - block.event_platform_header_cta
+  - block.event_platform_helper_confirmation
   - block.event_platform_helper_copyright
   - block.event_platform_home_hero
   - sdc.drupal_india_connect.eyebrow
   - sdc.drupal_india_connect.fact
   - sdc.drupal_india_connect.hero
   - sdc.drupal_india_connect.media-placeholder
-  - sdc.event_horizon.featured-speaker
   - sdc.event_horizon.site-hero-25
