@@ -6,17 +6,10 @@
  * in footer_utility_first, legal links in footer_utility_last. Instead of
  * the base theme's bare block-dump layout.
  *
- * The "In association with" logo strip has no matching slot on the Footer
- * component (footer_first/last/utility_first/utility_last only), and its
- * logos are hardcoded rather than editorial content, so it renders inside
- * footer_first, below the social links block, instead of going through a
- * slot of its own.
- *
  * @see event_horizon:footer
  */
 #}
 {% if content %}
-  {% set iit_bombay_logo = file_url(directory ~ '/images/IIT-Bombay.jpeg') %}
   {% embed 'event_horizon:footer' with {
     align: true,
     branding: elements.drupal_india_connect_footer_branding,
@@ -24,26 +17,10 @@
     main_menu: elements.drupal_india_connect_footer_main_menu,
     copyright: elements.drupal_india_connect_copyright,
     legal_menu: elements.drupal_india_connect_footer_legal_menu,
-    iit_bombay_logo: iit_bombay_logo,
   } only %}
     {% block footer_first %}
       {{ branding }}
       {{ social_menu }}
-      <div class="dac-footer-logos">
-        <span class="dac-footer-logos__title">{{ 'In association with'|t }}</span>
-        <ul class="dac-footer-logos__list">
-          <li class="dac-footer-logos__item">
-            <img
-              class="dac-footer-logos__img"
-              src="{{ iit_bombay_logo }}"
-              alt="{{ 'Indian Institute of Technology Bombay'|t }}"
-              width="150"
-              height="150"
-              loading="lazy"
-            >
-          </li>
-        </ul>
-      </div>
     {% endblock %}
 
     {% block footer_last %}
