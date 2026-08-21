@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Overrides event_horizon's page.html.twig only to insert the
+ * co-organizing-partners band between the main content and the dark site
+ * footer. Everything else here is copied verbatim from the base theme —
+ * see event_horizon:templates/layout/page.html.twig if the base changes.
+ */
+#}
+<div class="layout-container">
+  {{ page.header }}
+
+  {{ include('event_horizon:site-header', {
+    primary_menu: page.primary_menu,
+    event_details,
+  }, with_context = false) }}
+
+  {{ page.highlighted }}
+
+  {% if is_front and not hero_uses_block %}
+    {% include 'event_horizon:site-hero-25' %}
+    {% include 'event_horizon:site-stats' %}
+  {% endif %}
+
+  {{ page.content_above }}
+
+  {% if page.sidebar %}
+    {{ attach_library('event_horizon/sidebar') }}
+    <div class="layout-sidebar container grid">
+  {% endif %}
+
+    <main class="site-main {{ page.sidebar ? '' : 'container' }}">
+      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+      {{ page.content }}
+    </main>
+
+  {% if page.sidebar %}
+    {{ page.sidebar }}
+    </div>
+  {% endif %}
+
+  {{ page.content_below }}
+
+  {% include 'drupal_india_connect:partners-band' %}
+
+  <footer class="site-footer" >
+    {{ page.footer }}
+  </footer>
+
+  {% if page.modal %}
+    {{ page.modal }}
+  {% endif %}
+
+  <div class="overlay" data-drupal-selector="overlay"></div>
+</div>{# /.layout-container #}

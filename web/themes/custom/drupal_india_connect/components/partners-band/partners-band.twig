@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Co-organizing partners band, sat between the main content and the dark
+ * site footer (see the override of page.html.twig). Fixed content, not a
+ * repeatable list — see the component description for why.
+ */
+#}
+<div class="partners-band">
+  <div class="partners-band__inner container">
+    <div class="partners-band__col">
+      <span class="partners-band__label">{{ 'Host'|t }}</span>
+      <a href="https://www.drupalpune.in/drupalers-association-pune-dap" class="partners-band__link" rel="noopener" target="_blank">
+        <span class="partners-band__logo partners-band__logo--dap">
+          {{ source('@drupal_india_connect/images/partners/drupalpune-logo.svg', true) }}
+        </span>
+        <span class="partners-band__caption">{{ 'Drupalers Association Pune'|t }}</span>
+      </a>
+    </div>
+
+    <span class="partners-band__divider" aria-hidden="true"></span>
+
+    <div class="partners-band__col">
+      <span class="partners-band__label">{{ 'In association with'|t }}</span>
+      <a href="https://www.iitb.ac.in/" class="partners-band__link" rel="noopener" target="_blank">
+        <span class="partners-band__logo partners-band__logo--iitb">
+          {{ source('@drupal_india_connect/images/partners/iitb-logo.svg', true) }}
+        </span>
+        <span class="partners-band__caption">{{ 'Indian Institute of Technology Bombay'|t }}</span>
+      </a>
+    </div>
+
+    <span class="partners-band__divider" aria-hidden="true"></span>
+
+    <div class="partners-band__col">
+      {#
+        No "With" label here on purpose — the client asked for the label
+        text to go, but the empty span is kept so this column still reserves
+        the same header row height as the other two; drop it and the logo
+        below quietly floats out of line with its neighbours again (this bit
+        us once already, see partners-band__label's min-height rule).
+      #}
+      <span class="partners-band__label" aria-hidden="true"></span>
+      <a href="/meet-the-drupal-asia-steering-committee" class="partners-band__link">
+        <span class="partners-band__logo partners-band__logo--druplicon">
+          {{ source('@drupal_india_connect/images/partners/druplicon.svg', true) }}
+        </span>
+        <span class="partners-band__caption">{{ 'DrupalAsia Steering Committee'|t }}</span>
+      </a>
+    </div>
+  </div>
+</div>

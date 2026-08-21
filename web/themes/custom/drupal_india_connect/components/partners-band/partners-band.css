@@ -1,0 +1,150 @@
+/*
+ * Light strip between the main content and the dark site footer. Stacks on
+ * narrow viewports, becomes a row of columns with dot-on-line dividers from
+ * --md up — same breakpoint convention as the footer's own link columns
+ * (see global.css's footer grid rule).
+ */
+.partners-band {
+  border-block-start: 1px solid var(--color--sky-90);
+  background-color: var(--color--sky-94);
+}
+
+.partners-band__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp2);
+  padding-block: var(--sp2-5);
+}
+
+@container style(--grid-md: true) {
+  .partners-band__inner {
+    flex-direction: row;
+    justify-content: center;
+    /*
+     * Top-align the three columns explicitly. Without this, a column whose
+     * link box is shorter than its neighbours (e.g. one caption wrapping to
+     * two lines, another to one) can drift to a different vertical position
+     * than the others — the logos and labels stop lining up across columns.
+     */
+    align-items: flex-start;
+  }
+}
+
+.partners-band__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp1);
+  text-align: center;
+}
+
+/*
+ * The label reserves a fixed-height row only once columns sit side by side
+ * (--grid-md up) — that's what makes the empty third label (see the twig
+ * comment) hold its place so the logos underneath line up. Below that,
+ * columns stack and there's no row to align against, so the empty label
+ * must NOT reserve height there or it just leaves a gap above that logo.
+ */
+@container style(--grid-md: true) {
+  .partners-band__col > .partners-band__label {
+    display: flex;
+    align-items: center;
+    min-height: 2.4em;
+  }
+}
+
+.partners-band__label {
+  color: var(--text-on-neutral-primary);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+
+.partners-band__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp1);
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+ * "Links keep their colour and switch the underline to secondary" — the
+ * system's link hover convention (design-system/readme.md, Motion).
+ */
+.partners-band__link:hover .partners-band__caption,
+.partners-band__link:focus-visible .partners-band__caption {
+  text-decoration: underline;
+  text-decoration-color: var(--color--secondary-50);
+}
+
+/* Focus is a 2px currentColor outline at 2–3px offset, per the system. */
+.partners-band__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.partners-band__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+}
+
+.partners-band__logo svg {
+  height: 100%;
+  width: auto;
+}
+
+/*
+ * The DrupalAsia mark reads small next to full institutional logos — give
+ * it less height so it doesn't look like it's trying to be a fourth
+ * institution's crest. Shrink the svg itself, not the .partners-band__logo
+ * box: the box has to stay 4rem like its neighbours, or this column comes
+ * up short and its caption starts higher than the other two — which is
+ * exactly the "not aligned properly" this was.
+ */
+.partners-band__logo--druplicon svg {
+  height: 2.75rem;
+}
+
+.partners-band__caption {
+  margin: 0;
+  color: var(--text-on-neutral-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+/*
+ * A vertical rule with an accent dot at its midpoint, matching the design's
+ * rationed use of the secondary (orange) ramp as a small accent rather than
+ * a fill colour — see global.css's note on footer link colour.
+ */
+.partners-band__divider {
+  position: relative;
+  display: none;
+  align-self: stretch;
+  width: 1px;
+  background-color: var(--color--sky-90);
+}
+
+@container style(--grid-md: true) {
+  .partners-band__divider {
+    display: block;
+  }
+}
+
+.partners-band__divider::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--color--secondary-50);
+  content: '';
+}
