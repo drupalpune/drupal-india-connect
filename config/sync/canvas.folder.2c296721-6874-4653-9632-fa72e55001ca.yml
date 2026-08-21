@@ -11,6 +11,7 @@ dependencies:
     - canvas.component.block.views_block.featured_speakers-block_1
     - canvas.component.block.views_block.featured_speakers-featured_speakers_homepage
     - canvas.component.block.views_block.job_listings-block_1
+    - canvas.component.block.views_block.my_submissions-block_1
     - canvas.component.block.views_block.news-block_1
     - canvas.component.block.views_block.news-block_2
     - canvas.component.block.views_block.recent_pages-block_recent_pages
@@ -34,6 +35,7 @@ items:
   - block.views_block.featured_speakers-block_1
   - block.views_block.featured_speakers-featured_speakers_homepage
   - block.views_block.job_listings-block_1
+  - block.views_block.my_submissions-block_1
   - block.views_block.news-block_1
   - block.views_block.news-block_2
   - block.views_block.recent_pages-block_recent_pages

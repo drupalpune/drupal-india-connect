@@ -1,0 +1,71 @@
+uuid: a5fb2251-b2c4-45d7-8396-34de35d7eabd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.session
+    - views.view.sessions_by_speaker
+  module:
+    - eca_base
+    - eca_content
+    - eca_views
+id: process_session_submission_limit_enforce
+weight: 0
+template: false
+events:
+  Event_validate_session:
+    plugin: 'content_entity:validate'
+    label: 'Validate session'
+    configuration:
+      type: 'node session'
+    successors:
+      -
+        id: Activity_block_query
+        condition: Condition_is_new
+conditions:
+  Condition_is_new:
+    plugin: eca_entity_is_new
+    configuration:
+      negate: false
+      entity: ''
+  Condition_at_limit:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      left: '[speaker_session_count]'
+      right: '2'
+      operator: atleast
+      type: numeric
+      case: false
+gateways: {  }
+actions:
+  Activity_block_query:
+    label: "Get speaker's active sessions"
+    plugin: eca_views_query
+    configuration:
+      token_name: speaker_sessions
+      view_id: sessions_by_speaker
+      display_id: default
+      arguments: '[current-user:uid]'
+    successors:
+      -
+        id: Activity_block_count
+        condition: ''
+  Activity_block_count:
+    label: 'Count active sessions'
+    plugin: eca_count
+    configuration:
+      token_name: speaker_session_count
+      list_token: speaker_sessions
+    successors:
+      -
+        id: Activity_block_error
+        condition: Condition_at_limit
+  Activity_block_error:
+    label: 'Reject: submission limit reached'
+    plugin: eca_content_validation_error
+    configuration:
+      message: 'You have already submitted 2 sessions, which is the maximum allowed.'
+      property: ''
+      object: ''
+    successors: {  }

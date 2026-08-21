@@ -1,0 +1,98 @@
+uuid: d451fa4f-d91a-4c12-9d18-400c04e06b32
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.session
+    - workflows.workflow.session_acceptance
+  module:
+    - content_moderation
+    - node
+id: sessions_by_speaker
+label: 'Sessions by speaker'
+module: views
+description: "Returns a speaker's active session submissions. Used by ECA to enforce the per-speaker submission cap."
+tag: Sessions
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Master
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Sessions by speaker'
+      fields:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+          label: Nid
+      pager:
+        type: none
+      exposed_form:
+        type: basic
+      access:
+        type: none
+      cache:
+        type: tag
+      arguments:
+        field_speakers_target_id:
+          id: field_speakers_target_id
+          table: node__field_speakers
+          field: field_speakers_target_id
+          relationship: none
+          entity_type: node
+          entity_field: field_speakers
+          plugin_id: numeric
+          default_action: default
+          default_argument_type: fixed
+          summary:
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: numeric
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          entity_type: node
+          plugin_id: bundle
+          operator: in
+          value:
+            session: session
+        moderation_state:
+          id: moderation_state
+          table: node_field_data
+          field: moderation_state
+          relationship: none
+          entity_type: node
+          plugin_id: moderation_state_filter
+          operator: 'not in'
+          value:
+            session_acceptance-draft: session_acceptance-draft
+            session_acceptance-rejected: session_acceptance-rejected
+            session_acceptance-declined: session_acceptance-declined
+      style:
+        type: default
+      row:
+        type: fields
+      query:
+        type: views_query
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+      tags:
+        - 'config:workflow_list'

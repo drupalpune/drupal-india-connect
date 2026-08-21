@@ -1,0 +1,26 @@
+uuid: 708398a6-d98d-4d45-a95c-ca9a476f0dc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.my_submissions
+  module:
+    - views
+active_version: a9f750d05b1d5a78
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:my_submissions-block_1'
+        label: 'Your session submissions (dashboard)'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Your session submissions (dashboard)'
+id: block.views_block.my_submissions-block_1
+provider: views
+source: block
+source_local_id: 'views_block:my_submissions-block_1'
