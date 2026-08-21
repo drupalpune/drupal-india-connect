@@ -34,7 +34,7 @@
           const remaining = target - Date.now();
           if (remaining <= 0) {
             complete();
-            clearInterval(timer);
+            clearInterval(el.ehCountdownInterval);
             return;
           }
           const secs = Math.floor(remaining / 1000);
@@ -44,8 +44,12 @@
           if (out.seconds) out.seconds.textContent = pad(secs % 60);
         }
 
+        // Store the interval id on the element (not a local const) so that
+        // a target already in the past on the first synchronous tick()
+        // call below doesn't clearInterval() a binding that hasn't been
+        // assigned yet.
         tick();
-        const timer = setInterval(tick, 1000);
+        el.ehCountdownInterval = setInterval(tick, 1000);
       });
     },
   };
