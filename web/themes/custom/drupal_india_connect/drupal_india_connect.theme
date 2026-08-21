@@ -54,20 +54,7 @@ function drupal_india_connect_preprocess_page(array &$variables) {
  * lowest first so the range still reads correctly after the event.
  */
 function drupal_india_connect_preprocess_event_platform_copyright_block(array &$variables) {
-  $event_details = \Drupal\config_pages\Entity\ConfigPages::config('event_details');
-  if (!$event_details) {
-    return;
-  }
-
-  $current = $event_details->get('field_current')?->getValue();
-  while (is_array($current)) {
-    $current = array_pop($current);
-  }
-  if (!$current) {
-    return;
-  }
-
-  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($current);
+  $term = _drupal_india_connect_current_event_term();
   $start = $term?->get('field_dates')?->value;
   if (!$start) {
     return;
@@ -79,6 +66,64 @@ function drupal_india_connect_preprocess_event_platform_copyright_block(array &$
   $to = max($this_year, $event_year);
 
   $variables['year'] = $from === $to ? (string) $from : $from . '–' . $to;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block--drupal-india-connect-footer-branding.html.twig.
+ *
+ * This block previously hardcoded "IIT Bombay · Jan 21–23, 2027" as a
+ * literal string in the template, while the hero pulls the same venue and
+ * dates from the current event term (see
+ * EventPlatformTwigExtension::getHeroContext()). A hardcoded copy drifts
+ * silently the moment the event is rescheduled or rolled over to a new
+ * edition. Read from the same term instead, formatted the same way the
+ * hero formats it, so the two cannot disagree.
+ */
+function drupal_india_connect_preprocess_block__drupal_india_connect_footer_branding(array &$variables) {
+  $term = _drupal_india_connect_current_event_term();
+  $start = $term?->get('field_dates')?->value;
+  if (!$term || !$start) {
+    return;
+  }
+
+  $location = $term->get('field_location_short')->value;
+  $end = $term->get('field_dates')->end_value ?? $start;
+  $formatted_dates = \Drupal::service('smart_date.manager')->formatSmartDate(
+    strtotime($start),
+    strtotime($end),
+    'compact_date_only',
+    NULL,
+    'string'
+  );
+
+  if ($location && $formatted_dates) {
+    $variables['footer_venue'] = $location . ' · ' . $formatted_dates;
+  }
+}
+
+/**
+ * Loads the taxonomy term for the event configured as "current" in the
+ * event_details Config Pages entity, or NULL if none is set up yet.
+ *
+ * Shared by the preprocess hooks above so the footer's venue/date line and
+ * the copyright year read from the exact same source and cannot drift
+ * apart from each other.
+ */
+function _drupal_india_connect_current_event_term(): ?\Drupal\taxonomy\TermInterface {
+  $event_details = \Drupal\config_pages\Entity\ConfigPages::config('event_details');
+  if (!$event_details) {
+    return NULL;
+  }
+
+  $current = $event_details->get('field_current')?->getValue();
+  while (is_array($current)) {
+    $current = array_pop($current);
+  }
+  if (!$current) {
+    return NULL;
+  }
+
+  return \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($current);
 }
 
 
