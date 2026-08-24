@@ -1,0 +1,80 @@
+uuid: c00ec52b-78cd-4324-8480-3446c0e215ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.event_horizon.button
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - link
+    - options
+    - text
+id: introduction
+label: Introduction
+component_tree:
+  '0:4b9c8ab4-f9d7-42e3-ad16-45901ba84c85':
+    uuid: 4b9c8ab4-f9d7-42e3-ad16-45901ba84c85
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:group_slot:0:dbc99a96-720d-46ce-9190-c497994715c2':
+    parent_uuid: 4b9c8ab4-f9d7-42e3-ad16-45901ba84c85
+    slot: group_slot
+    uuid: dbc99a96-720d-46ce-9190-c497994715c2
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: Tracks
+      level: 3
+      text_size: default
+      text_color: primary
+      align: left
+      style: accented
+      margin_top: sm
+  '0:group_slot:1:9c55050c-6f7f-48dd-9f26-1a2442fb5325':
+    parent_uuid: 4b9c8ab4-f9d7-42e3-ad16-45901ba84c85
+    slot: group_slot
+    uuid: 9c55050c-6f7f-48dd-9f26-1a2442fb5325
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: xs
+  '0:group_slot:2:a503c080-1454-4d6d-be54-753ca96c66f7':
+    parent_uuid: 4b9c8ab4-f9d7-42e3-ad16-45901ba84c85
+    slot: group_slot
+    uuid: a503c080-1454-4d6d-be54-753ca96c66f7
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>DrupalAsia Connect India features a range of tracks covering different aspects of Drupal, technology, community, and the broader web ecosystem. Explore the tracks to find the one that best fits your session idea.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:group_slot:3:2f6b121b-5aa0-4b7f-9cb4-9064b5ba5707':
+    parent_uuid: 4b9c8ab4-f9d7-42e3-ad16-45901ba84c85
+    slot: group_slot
+    uuid: 2f6b121b-5aa0-4b7f-9cb4-9064b5ba5707
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: primary
+      label: 'Session Tracks'
+      href:
+        uri: 'internal:/session-tracks'
+        options: {  }
+      size: medium
+      icon: arrow-right
+      mobile_width: false
+      icon_first: false
+      disabled: false

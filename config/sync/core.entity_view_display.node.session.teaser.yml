@@ -14,12 +14,14 @@ dependencies:
     - field.field.node.session.field_session_category
     - field.field.node.session.field_session_consent
     - field.field.node.session.field_session_tags
+    - field.field.node.session.field_short_description
     - field.field.node.session.field_social_media_card
     - field.field.node.session.field_speakers
     - field.field.node.session.field_speaking_experience
     - field.field.node.session.field_speaking_experience_detail
     - field.field.node.session.field_synopsis
     - field.field.node.session.field_time_slot
+    - field.field.node.session.field_type
     - node.type.session
   module:
     - user
@@ -80,9 +82,11 @@ hidden:
   field_is_training: true
   field_session_consent: true
   field_session_tags: true
+  field_short_description: true
   field_social_media_card: true
   field_speaking_experience: true
   field_speaking_experience_detail: true
   field_synopsis: true
   field_time_slot: true
+  field_type: true
   links: true
