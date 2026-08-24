@@ -13,12 +13,14 @@ dependencies:
     - field.field.node.session.field_session_category
     - field.field.node.session.field_session_consent
     - field.field.node.session.field_session_tags
+    - field.field.node.session.field_short_description
     - field.field.node.session.field_social_media_card
     - field.field.node.session.field_speakers
     - field.field.node.session.field_speaking_experience
     - field.field.node.session.field_speaking_experience_detail
     - field.field.node.session.field_synopsis
     - field.field.node.session.field_time_slot
+    - field.field.node.session.field_type
     - node.type.session
   module:
     - options
@@ -120,6 +122,13 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
   flag_my_schedule:
     settings: {  }
     third_party_settings: {  }
@@ -134,6 +143,7 @@ hidden:
   field_event: true
   field_is_non_session: true
   field_is_training: true
+  field_short_description: true
   field_social_media_card: true
   field_speakers: true
   links: true
