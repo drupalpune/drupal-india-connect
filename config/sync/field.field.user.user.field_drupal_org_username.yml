@@ -1,0 +1,20 @@
+uuid: c3d4e5f6-7a8b-4c9d-8e1f-2a3b4c5d6e7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_drupal_org_username
+  module:
+    - user
+id: user.user.field_drupal_org_username
+field_name: field_drupal_org_username
+entity_type: user
+bundle: user
+label: 'Drupal.org username'
+description: 'Your username on drupal.org (optional).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
