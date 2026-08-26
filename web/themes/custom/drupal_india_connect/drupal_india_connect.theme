@@ -39,6 +39,78 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     '#value' => t('Drupal is a registered trademark of Dries Buytaert.'),
     '#weight' => 20,
   ];
+
+  $nudge = _drupal_india_connect_profile_nudge();
+  if ($nudge) {
+    $variables['page']['content']['drupalasia_profile_nudge'] = $nudge;
+  }
+}
+
+/**
+ * Builds the "fill in your profile" nudge shown on a user's own account page.
+ *
+ * field_drupal_org_username and field_drupal_slack_username (added for
+ * speaker profiles) are both optional, so existing accounts created before
+ * those fields have neither filled in. Rather than emailing every
+ * existing user, the cheapest nudge is an on-page message shown only when
+ * the viewer is looking at their own account and at least one of the two
+ * fields is still blank. Dismissal is handled client-side (see
+ * js/profile-nudge.js) — there is no server-persisted "dismissed" flag, so
+ * this always renders the same markup and lets the JS decide whether to
+ * hide it, keyed by uid in localStorage.
+ */
+function _drupal_india_connect_profile_nudge(): ?array {
+  $route_match = \Drupal::routeMatch();
+  if ($route_match->getRouteName() !== 'entity.user.canonical') {
+    return NULL;
+  }
+
+  /** @var \Drupal\user\UserInterface|null $viewed_user */
+  $viewed_user = $route_match->getParameter('user');
+  if (!$viewed_user) {
+    return NULL;
+  }
+
+  $current_user = \Drupal::currentUser();
+  if ((int) $viewed_user->id() !== (int) $current_user->id()) {
+    return NULL;
+  }
+
+  $has_org = (bool) trim((string) $viewed_user->get('field_drupal_org_username')->value);
+  $has_slack = (bool) trim((string) $viewed_user->get('field_drupal_slack_username')->value);
+  if ($has_org && $has_slack) {
+    return NULL;
+  }
+
+  return [
+    '#type' => 'container',
+    '#attributes' => [
+      'id' => 'dac-profile-nudge',
+      'class' => ['dac-profile-nudge'],
+      'data-uid' => $viewed_user->id(),
+    ],
+    'message' => [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['dac-profile-nudge__message']],
+      '#markup' => t('Add your Drupal.org and Drupal Slack usernames so other attendees and organisers can find you. <a href=":url">Update your profile</a>.', [
+        ':url' => $viewed_user->toUrl('edit-form')->toString(),
+      ]),
+    ],
+    'dismiss' => [
+      '#type' => 'html_tag',
+      '#tag' => 'button',
+      '#attributes' => [
+        'type' => 'button',
+        'class' => ['dac-profile-nudge__dismiss'],
+        'aria-label' => t('Dismiss'),
+      ],
+      '#value' => '×',
+    ],
+    '#attached' => [
+      'library' => ['drupal_india_connect/profile-nudge'],
+    ],
+    '#weight' => -50,
+  ];
 }
 
 /**

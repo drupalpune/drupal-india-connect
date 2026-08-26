@@ -1,0 +1,38 @@
+.dac-profile-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp1);
+  margin-block-end: var(--sp1-5);
+  padding: var(--sp1) var(--sp1-5);
+  border: solid 2px var(--color--primary-50);
+  border-radius: 0.375rem;
+  background-color: var(--color--primary-20);
+  color: var(--color--white);
+}
+
+.dac-profile-nudge__message {
+  margin: 0;
+}
+
+.dac-profile-nudge__message a {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.dac-profile-nudge__dismiss {
+  flex-shrink: 0;
+  border: 0;
+  background: none;
+  padding: 0 var(--sp0-5);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dac-profile-nudge__dismiss:hover,
+.dac-profile-nudge__dismiss:focus-visible {
+  opacity: 0.75;
+}
