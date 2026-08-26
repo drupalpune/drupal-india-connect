@@ -39,6 +39,77 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     '#value' => t('Drupal is a registered trademark of Dries Buytaert.'),
     '#weight' => 20,
   ];
+
+  $nudge = _drupal_india_connect_profile_nudge();
+  if ($nudge) {
+    $variables['page']['content']['drupalasia_profile_nudge'] = $nudge;
+  }
+}
+
+/**
+ * Builds the "fill in your Drupal.org / Slack username" account nudge.
+ *
+ * Only shown to a user viewing their own account page (never to admins
+ * viewing someone else's), and only while at least one of the two fields
+ * is still blank. Dismissal is handled client-side (see
+ * js/profile-nudge.js) — this is the "cheapest option" scoped in issue #41,
+ * deliberately not backed by email or a server-persisted per-user flag.
+ */
+function _drupal_india_connect_profile_nudge(): ?array {
+  if (\Drupal::routeMatch()->getRouteName() !== 'entity.user.canonical') {
+    return NULL;
+  }
+
+  $viewed_user = \Drupal::routeMatch()->getParameter('user');
+  if (!$viewed_user instanceof \Drupal\user\UserInterface) {
+    return NULL;
+  }
+
+  if ((int) $viewed_user->id() !== (int) \Drupal::currentUser()->id()) {
+    return NULL;
+  }
+
+  $fields_to_check = ['field_drupal_org_username', 'field_drupal_slack_username'];
+  $has_blank_field = FALSE;
+  foreach ($fields_to_check as $field_name) {
+    if ($viewed_user->hasField($field_name) && $viewed_user->get($field_name)->isEmpty()) {
+      $has_blank_field = TRUE;
+      break;
+    }
+  }
+  if (!$has_blank_field) {
+    return NULL;
+  }
+
+  return [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => ['dac-profile-nudge'],
+      'data-dac-profile-nudge' => 'uid-' . $viewed_user->id(),
+    ],
+    '#weight' => -100,
+    'message' => [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => ['class' => ['dac-profile-nudge__message']],
+      '#value' => t('Add your Drupal.org and Drupal Slack usernames so organisers and other attendees can find you. <a href=":url">Edit your profile</a>.', [
+        ':url' => $viewed_user->toUrl('edit-form')->toString(),
+      ]),
+    ],
+    'dismiss' => [
+      '#type' => 'html_tag',
+      '#tag' => 'button',
+      '#value' => t('Dismiss'),
+      '#attributes' => [
+        'type' => 'button',
+        'class' => ['dac-profile-nudge__dismiss'],
+        'aria-label' => t('Dismiss this reminder'),
+      ],
+    ],
+    '#attached' => [
+      'library' => ['drupal_india_connect/profile-nudge'],
+    ],
+  ];
 }
 
 /**

@@ -6,6 +6,8 @@ dependencies:
     - field.field.user.user.field_bio
     - field.field.user.user.field_code_of_conduct_accept
     - field.field.user.user.field_display_name
+    - field.field.user.user.field_drupal_org_username
+    - field.field.user.user.field_drupal_slack_username
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -33,6 +35,22 @@ content:
   field_display_name:
     type: string_textfield
     weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_drupal_org_username:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_drupal_slack_username:
+    type: string_textfield
+    weight: 4
     region: content
     settings:
       size: 60

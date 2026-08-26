@@ -9,3 +9,14 @@ global:
   dependencies:
     - core/drupal
     - core/once
+
+profile-nudge:
+  version: 1.x
+  css:
+    component:
+      css/profile-nudge.css: {}
+  js:
+    js/profile-nudge.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

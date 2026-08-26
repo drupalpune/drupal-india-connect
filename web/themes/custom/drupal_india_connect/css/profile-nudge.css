@@ -1,0 +1,37 @@
+.dac-profile-nudge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp1);
+  margin-block-end: var(--sp1-5);
+  padding: var(--sp1) var(--sp1-5);
+  border: 1px solid var(--color--primary-80);
+  border-radius: var(--radius-lg);
+  background-color: var(--color--sky-97);
+  font-family: var(--font-sans);
+}
+
+.dac-profile-nudge__message {
+  margin: 0;
+}
+
+.dac-profile-nudge__message a {
+  color: var(--color--primary-50);
+  font-weight: 600;
+}
+
+.dac-profile-nudge__dismiss {
+  flex-shrink: 0;
+  border: 1px solid var(--color--night-80);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  padding: var(--sp0-25) var(--sp0-75);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.dac-profile-nudge__dismiss:hover {
+  background-color: var(--color--night-95);
+}

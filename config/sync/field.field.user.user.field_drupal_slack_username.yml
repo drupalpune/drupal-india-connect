@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_drupal_slack_username
+  module:
+    - user
+id: user.user.field_drupal_slack_username
+field_name: field_drupal_slack_username
+entity_type: user
+bundle: user
+label: 'Drupal Slack username'
+description: 'Your username on the Drupal community Slack (drupal.slack.com).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
