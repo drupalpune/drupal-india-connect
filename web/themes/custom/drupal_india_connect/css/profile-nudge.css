@@ -1,0 +1,55 @@
+.dac-profile-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp1);
+  margin-block-end: var(--sp1-5);
+  padding: var(--sp1) var(--sp1-5);
+  border: solid 1px var(--border-hairline);
+  border-inline-start: solid 3px var(--color--primary-60);
+  border-radius: 0.5rem;
+  background-color: var(--color--sky-97);
+  color: var(--text-body);
+}
+
+.dac-profile-nudge__message {
+  margin: 0;
+}
+
+.dac-profile-nudge__message a {
+  color: var(--color--primary-60);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.dac-profile-nudge__message a:hover,
+.dac-profile-nudge__message a:focus-visible {
+  text-decoration-color: var(--color--secondary-50);
+}
+
+.dac-profile-nudge__dismiss {
+  flex-shrink: 0;
+  display: flex;
+  border: 0;
+  border-radius: 0.25rem;
+  background: none;
+  padding: var(--sp0-25);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.dac-profile-nudge__dismiss:hover,
+.dac-profile-nudge__dismiss:focus-visible {
+  color: var(--color--primary-60);
+}
+
+.dac-profile-nudge__dismiss:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.dac-profile-nudge__dismiss-icon {
+  display: block;
+}
