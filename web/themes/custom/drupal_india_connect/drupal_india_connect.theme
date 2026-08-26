@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Render\Markup;
+
 /**
  * @file
  * Theme-specific PHP hooks for DrupalAsia Connect.
@@ -82,17 +84,27 @@ function _drupal_india_connect_profile_nudge(): ?array {
     return NULL;
   }
 
+  // event_horizon's templates/layout/container.html.twig overrides the
+  // core 'container' theme hook to print only {{ children }} (it exists so
+  // that theme's own layout containers render without an extra wrapper
+  // div). That override is theme-wide, so a plain '#type' => 'container'
+  // here would silently lose its id/class/data-uid — which is exactly what
+  // breaks both the dismiss button (its JS selector never matches) and the
+  // styling (the CSS class never reaches the DOM). 'html_tag' has no
+  // #theme hook to intercept, so it renders normally.
   return [
-    '#type' => 'container',
+    '#type' => 'html_tag',
+    '#tag' => 'div',
     '#attributes' => [
       'id' => 'dac-profile-nudge',
       'class' => ['dac-profile-nudge'],
       'data-uid' => $viewed_user->id(),
     ],
     'message' => [
-      '#type' => 'container',
+      '#type' => 'html_tag',
+      '#tag' => 'p',
       '#attributes' => ['class' => ['dac-profile-nudge__message']],
-      '#markup' => t('Add your Drupal.org and Drupal Slack usernames so other attendees and organisers can find you. <a href=":url">Update your profile</a>.', [
+      '#value' => t('Add your Drupal.org and Drupal Slack usernames so other attendees and organisers can find you. <a href=":url">Update your profile</a>.', [
         ':url' => $viewed_user->toUrl('edit-form')->toString(),
       ]),
     ],
@@ -104,7 +116,11 @@ function _drupal_india_connect_profile_nudge(): ?array {
         'class' => ['dac-profile-nudge__dismiss'],
         'aria-label' => t('Dismiss'),
       ],
-      '#value' => '×',
+      // The theme's closed icon set's "x" glyph (see event_horizon's
+      // components/icon/icon.twig), inlined directly since #value only
+      // accepts plain text or MarkupInterface — not a themeable icon
+      // render array — inside an html_tag button.
+      '#value' => Markup::create('<svg class="dac-profile-nudge__dismiss-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>'),
     ],
     '#attached' => [
       'library' => ['drupal_india_connect/profile-nudge'],
