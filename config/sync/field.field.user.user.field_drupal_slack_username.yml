@@ -1,0 +1,20 @@
+uuid: d4e5f6a7-8b9c-4d0e-9f1a-2b3c4d5e6f7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_drupal_slack_username
+  module:
+    - user
+id: user.user.field_drupal_slack_username
+field_name: field_drupal_slack_username
+entity_type: user
+bundle: user
+label: 'Drupal Slack username'
+description: 'Your username on Drupal Slack (optional).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
