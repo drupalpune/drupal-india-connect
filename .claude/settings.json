@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(ssh*)",
+      "Bash(scp*)",
+      "Bash(rsync*)",
+      "Bash(sftp*)",
+      "Bash(*ssh *)",
+      "Bash(*scp *)",
+      "Bash(*rsync *)"
+    ]
+  }
+}

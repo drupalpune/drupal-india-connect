@@ -18,6 +18,7 @@
 # they are shared project tooling and belong in the repo.
 /.claude/*
 !/.claude/skills/
+!/.claude/settings.json
 
 # Editors / OS.
 .DS_Store
