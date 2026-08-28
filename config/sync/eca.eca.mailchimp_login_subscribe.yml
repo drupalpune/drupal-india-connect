@@ -1,0 +1,30 @@
+uuid: 3003f373-e696-4ba8-8a78-cffaf574c4b5
+langcode: en
+status: false
+dependencies:
+  module:
+    - eca_user
+    - mailchimp_login_subscribe
+id: mailchimp_login_subscribe
+weight: 0
+template: false
+events:
+  Event_login_subscribe:
+    plugin: 'user:login'
+    label: 'User login'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_login_subscribe
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Activity_login_subscribe:
+    label: 'Subscribe user to Mailchimp newsletter'
+    plugin: mailchimp_login_subscribe_subscribe_email
+    configuration:
+      list_id: 'REPLACE_WITH_MAILCHIMP_AUDIENCE_ID'
+      email: '[account:mail]'
+      double_optin: false
+    successors: {  }

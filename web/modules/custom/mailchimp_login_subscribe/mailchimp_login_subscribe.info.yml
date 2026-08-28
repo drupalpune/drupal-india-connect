@@ -1,0 +1,8 @@
+name: Mailchimp Login Subscribe
+type: module
+description: 'Provides an ECA action to subscribe a user''s email to a Mailchimp Audience, for use with events like user login or registration.'
+package: Mailchimp
+core_version_requirement: ^10 || ^11
+dependencies:
+  - mailchimp:mailchimp
+  - eca:eca_user
