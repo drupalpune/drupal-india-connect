@@ -1,0 +1,34 @@
+uuid: 06b1f0f6-2d24-4608-b319-c1962113a951
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_content
+id: process_speaker_registration_notice
+weight: 0
+template: false
+events:
+  Event_reg_notice_form:
+    plugin: 'content_entity:prepareform'
+    label: 'Prepare user register form'
+    configuration:
+      type: 'user user'
+    successors:
+      -
+        id: Activity_reg_notice_message
+        condition: Condition_reg_notice_is_new
+conditions:
+  Condition_reg_notice_is_new:
+    plugin: eca_entity_is_new
+    configuration:
+      negate: false
+      entity: ''
+gateways: {  }
+actions:
+  Activity_reg_notice_message:
+    label: 'Show speaker registration notice'
+    plugin: action_message_action
+    configuration:
+      message: '<strong>Before you register:</strong> creating an account here is for submitting a session as a speaker — it does not register you for the event. Ticket sales and event registration will be announced separately later on. See the <a href="/announcements">Announcements</a> page for more info.'
+      replace_tokens: true
+    successors: {  }
