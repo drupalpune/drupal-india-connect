@@ -123,21 +123,27 @@
 /*
  * Newsletter sign-up, on the orange closing band: the design puts the
  * field and the button on one wrapping row, with a navy submit.
+ * Covers both the `event_updates` webform and the Mailchimp Signup
+ * block's own form (class `mailchimp-signup-subscribe-form`) --
+ * whichever ends up on the band.
  */
-.eh-section--bg-secondary .webform-submission-form {
+.eh-section--bg-secondary .webform-submission-form,
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: var(--sp0-75);
 }
 
-.eh-section--bg-secondary .webform-submission-form .form-item {
+.eh-section--bg-secondary .webform-submission-form .form-item,
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form .form-item {
   flex: 1 1 16rem;
   margin: 0;
   min-width: 0;
 }
 
-.eh-section--bg-secondary .webform-submission-form input[type='email'] {
+.eh-section--bg-secondary .webform-submission-form input[type='email'],
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form input[type='email'] {
   width: 100%;
   padding: var(--sp1) 1.125rem;
   border: solid 2px var(--color--white);
@@ -146,11 +152,13 @@
   font-size: 1.0625rem;
 }
 
-.eh-section--bg-secondary .webform-submission-form .form-actions {
+.eh-section--bg-secondary .webform-submission-form .form-actions,
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form .form-actions {
   margin: 0;
 }
 
-.eh-section--bg-secondary .webform-submission-form .webform-button--submit {
+.eh-section--bg-secondary .webform-submission-form .webform-button--submit,
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form .form-actions input[type='submit'] {
   padding: var(--sp1) 1.75rem;
   border: solid 2px var(--color--primary-20);
   border-radius: 0.375rem;
@@ -162,7 +170,8 @@
   transition: opacity 0.2s ease;
 }
 
-.eh-section--bg-secondary .webform-submission-form .webform-button--submit:hover {
+.eh-section--bg-secondary .webform-submission-form .webform-button--submit:hover,
+.eh-section--bg-secondary .mailchimp-signup-subscribe-form .form-actions input[type='submit']:hover {
   opacity: 0.9;
 }
 
