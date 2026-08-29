@@ -62,6 +62,7 @@
         "drupal/klaro": "^3.0",
         "drupal/linkit": "^7.0",
         "drupal/login_emailusername": "^3.0",
+        "drupal/mailchimp": "^3.1",
         "drupal/mailsystem": "^4.5",
         "drupal/maxlength": "^3.1",
         "drupal/media_file_delete": "^1.3",
