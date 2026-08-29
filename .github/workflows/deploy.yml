@@ -48,6 +48,29 @@ jobs:
             export PATH="/opt/alt/php84/usr/bin:$PATH"
             export COMPOSER_PROCESS_TIMEOUT=1800
 
+            # The shared MySQL instance behind this host drops connections
+            # under load ("MySQL server has gone away") independently of
+            # anything this script does - it's shown up both mid-deploy and
+            # in production's own watchdog log outside of any deploy. A
+            # single blip on a drush DB command otherwise kills the whole
+            # deploy via `set -e`, leaving code and DB out of sync (new code
+            # checked out, old config/schema still in place) until someone
+            # re-runs it by hand. Retry with backoff instead of failing on
+            # the first hiccup.
+            retry() {
+              local max_attempts=3 delay=5 attempt=1
+              until "$@"; do
+                if [ "$attempt" -ge "$max_attempts" ]; then
+                  echo "Command failed after $attempt attempts: $*" >&2
+                  return 1
+                fi
+                echo "Command failed (attempt $attempt/$max_attempts), retrying in ${delay}s: $*" >&2
+                sleep "$delay"
+                attempt=$((attempt + 1))
+                delay=$((delay * 2))
+              done
+            }
+
             # Fail before touching anything if the ref is missing or malformed,
             # rather than half-deploying. `set -u` would catch an unset var, but
             # an empty string would sail through and check out nothing.
@@ -116,7 +139,7 @@ jobs:
             # dump is the only way back from a bad import.
             BACKUP_DIR="$HOME/backups"
             mkdir -p "$BACKUP_DIR"
-            vendor/bin/drush sql:dump --gzip \
+            retry vendor/bin/drush sql:dump --gzip \
               --result-file="$BACKUP_DIR/prod-predeploy-$(date +%Y%m%d-%H%M%S).sql"
 
             # Keep the 10 most recent. Each is ~3MB against 16TB free, so depth
@@ -129,9 +152,9 @@ jobs:
             echo "$(date -u +%FT%TZ) $DEPLOY_REF $(git rev-parse --short HEAD)" \
               >> "$BACKUP_DIR/deploy-log.txt"
 
-            vendor/bin/drush cr
-            vendor/bin/drush updb -y
-            vendor/bin/drush cim -y
-            vendor/bin/drush cr
+            retry vendor/bin/drush cr
+            retry vendor/bin/drush updb -y
+            retry vendor/bin/drush cim -y
+            retry vendor/bin/drush cr
 
             echo "Deploy complete: $DEPLOY_REF ($(git rev-parse --short HEAD))"
