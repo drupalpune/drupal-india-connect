@@ -389,6 +389,88 @@ html {
   }
 }
 
+/*
+ * Footer link columns: one column per top-level main-menu item, its title
+ * as the column heading and its children listed under it, as in the
+ * approved prototype's footer (design-system/reference/).
+ *
+ * event_horizon sizes .eh-footer__last for a single narrow list of links
+ * (min-width: 16rem), which is far too tight for four columns — let it
+ * take the width the branding column leaves instead.
+ */
+@container style(--md: true) {
+  .eh-footer__last {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 46rem;
+  }
+}
+
+.footer-menu--columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp1-5) var(--sp2);
+
+  @container style(--sm: true) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @container style(--lg: true) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.footer-menu__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+}
+
+/*
+ * Scoped to .eh-footer because `.eh-footer a` tints every footer link and
+ * would otherwise win over these single-class selectors.
+ */
+.eh-footer .footer-menu__group-title {
+  color: var(--color--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: var(--sp1-5);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.eh-footer .footer-menu__group-title--link:hover,
+.eh-footer .footer-menu__group-title--link:focus-visible {
+  text-decoration: underline;
+}
+
+.eh-footer .footer-menu__sublist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eh-footer .footer-menu__group .footer-menu__item {
+  font-size: 1rem;
+  line-height: var(--sp1-5);
+}
+
+.eh-footer .footer-menu__link {
+  color: var(--color--night-60);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.eh-footer .footer-menu__link:hover,
+.eh-footer .footer-menu__link:focus-visible {
+  color: var(--color--white);
+  text-decoration: underline;
+}
+
 .footer-branding__inner {
   display: flex;
   flex-direction: column;

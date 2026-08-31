@@ -237,10 +237,14 @@ function drupal_india_connect_preprocess_block(&$variables) {
  * Implements hook_preprocess_HOOK() for menu--footer.html.twig.
  */
 function drupal_india_connect_preprocess_menu__footer(&$variables) {
-  // The footer must not show sub-menus: only links that point to an actual
-  // page. A parent item with no URL of its own (e.g. "Program", used only
-  // to group "Program at a glance") is dropped and its linked children are
-  // promoted to the top level instead of being nested underneath it.
+  // The main menu keeps its tree here: the footer's link columns are built
+  // from it, one column per top-level item (see menu--footer.html.twig).
+  if (($variables['menu_name'] ?? NULL) === 'main') {
+    return;
+  }
+
+  // Every other footer menu is the utility row, a single line of links —
+  // no sub-menus, and no parent item that has no URL of its own.
   $variables['items'] = _drupal_india_connect_flatten_footer_menu_items($variables['items']);
 }
 

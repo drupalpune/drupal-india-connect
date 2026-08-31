@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Two menus render through this template (both forced here from
+ * drupal_india_connect_preprocess_block(), so the header's interactive
+ * menu--main.html.twig never runs in the footer):
+ *
+ * - The main menu, in the footer's link area, grouped into columns the way
+ *   the approved prototype's footer is: each top-level item is the column
+ *   heading, its children the links beneath it.
+ * - The legal menu, in the utility row, a single flat line of links.
+ *
+ * A top-level item that has no page of its own ("Program", which only
+ * groups "Program at a glance" and friends) is a plain heading — the base
+ * theme links it to `href=""`, which reloads the current page. One that
+ * does have a page ("Community") stays clickable and takes the same
+ * heading styling.
+ */
+#}
+{{ attach_library('event_horizon/footer-menu') }}
+
+{% if menu_name == 'main' %}
+  <ul{{ attributes.addClass('footer-menu', 'footer-menu--columns') }}>
+    {% for item in items %}
+      <li{{ item.attributes.addClass('footer-menu__group') }}>
+        {% if item.url.isRouted and item.url.routeName == '<nolink>' %}
+          <span class="footer-menu__group-title">{{ item.title }}</span>
+        {% else %}
+          {{ link(item.title, item.url, { 'class': ['footer-menu__group-title', 'footer-menu__group-title--link'] }) }}
+        {% endif %}
+
+        {% if item.below %}
+          <ul class="footer-menu__sublist">
+            {% for child in item.below %}
+              <li{{ child.attributes.addClass('footer-menu__item') }}>
+                {{ link(child.title, child.url, { 'class': ['footer-menu__link'] }) }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <ul{{ attributes.addClass('footer-menu', 'footer-menu--level-1') }}>
+    {% for item in items %}
+      <li{{ item.attributes.addClass('footer-menu__item', 'footer-menu__item--level-1') }}>
+        {{ link(item.title, item.url, { 'class': ['footer-menu__link', 'footer-menu__link--level-1'] }) }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
