@@ -455,3 +455,77 @@ h2.eh-heading,
   margin: 0;
   font-size: 0.9375rem;
 }
+
+/*
+ * Session detail page (node--session--full.html.twig): title as a real
+ * h1, description on the left, metadata (speakers, time, track, room,
+ * level, type, tags) in a labelled <aside> on the right. Stacked by
+ * default — main content first, then the metadata — and placed
+ * side by side once there's room, same breakpoint the footer's column
+ * grid switches on.
+ */
+.session-detail__title {
+  margin-block: 0 var(--sp1-5);
+  font-size: var(--type-h2-minor);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color--night-5);
+}
+
+.session-detail__synopsis {
+  margin-bottom: var(--sp1-5);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color--night-20);
+}
+
+.session-detail__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp2);
+
+  @container style(--md: true) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.session-metadata {
+  padding: var(--sp1-5);
+  border: 1px solid var(--color--sky-90);
+  border-radius: 0.5rem;
+  background-color: var(--color--sky-97);
+}
+
+.session-metadata #session-meta-heading {
+  margin-block: 0 var(--sp1);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.session-metadata__action {
+  margin-bottom: var(--sp1-5);
+}
+
+.session-metadata__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp1);
+}
+
+.session-metadata__item {
+  padding-bottom: var(--sp1);
+  border-bottom: 1px solid var(--color--sky-90);
+  font-size: 0.9375rem;
+}
+
+.session-metadata__item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.session-detail__pager {
+  margin-top: var(--sp2);
+}
