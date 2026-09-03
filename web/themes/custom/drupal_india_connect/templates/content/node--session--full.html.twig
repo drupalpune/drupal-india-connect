@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * Session node, full/canonical view mode only (the `--full` suffix keeps
+ * teasers on session listing views untouched).
+ *
+ * Presents the session title as a real page heading, and moves metadata
+ * (speakers, time, track, room, level, type, tags) into a labelled
+ * <aside> beside the description, per the design reference at
+ * https://events.drupal.org/rotterdam2026/session/ — the fields that only
+ * matter during CFP review (code of conduct, speaking experience, session
+ * consent) stay hidden in core.entity_view_display.node.session.default,
+ * so the data is still on the entity, just not rendered here.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    'node--view-mode-full',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  {% if content.content_moderation_control %}
+    {{ content.content_moderation_control }}
+  {% endif %}
+
+  {{ title_prefix }}
+  {% if page %}
+    <h1{{ title_attributes.addClass('session-detail__title') }}>{{ label }}</h1>
+  {% else %}
+    <h2{{ title_attributes.addClass('session-detail__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div{{ content_attributes.addClass('session-detail__layout') }}>
+    <div class="session-detail__main">
+      {% if content.field_synopsis %}
+        <div class="session-detail__synopsis">{{ content.field_synopsis }}</div>
+      {% endif %}
+
+      {% if content.field_description %}
+        {{ content.field_description }}
+      {% endif %}
+    </div>
+
+    <aside class="session-metadata" aria-labelledby="session-meta-heading">
+      <h2 id="session-meta-heading">Session details</h2>
+
+      {% if content.flag_my_schedule %}
+        <div class="session-metadata__action">
+          {{ content.flag_my_schedule }}
+        </div>
+      {% endif %}
+
+      <div class="session-metadata__list">
+        {% if content.field_speakers %}
+          <div class="session-metadata__item session-metadata__item--speakers">
+            {{ content.field_speakers }}
+          </div>
+        {% endif %}
+        {% if content.field_time_slot %}
+          <div class="session-metadata__item">
+            {{ content.field_time_slot }}
+          </div>
+        {% endif %}
+        {% if content.field_session_category %}
+          <div class="session-metadata__item">
+            {{ content.field_session_category }}
+          </div>
+        {% endif %}
+        {% if content.field_r %}
+          <div class="session-metadata__item">
+            {{ content.field_r }}
+          </div>
+        {% endif %}
+        {% if content.field_audience %}
+          <div class="session-metadata__item">
+            {{ content.field_audience }}
+          </div>
+        {% endif %}
+        {% if content.field_type %}
+          <div class="session-metadata__item">
+            {{ content.field_type }}
+          </div>
+        {% endif %}
+        {% if content.field_session_tags %}
+          <div class="session-metadata__item session-metadata__item--tags">
+            {{ content.field_session_tags }}
+          </div>
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+
+  {% if content.flippy_pager %}
+    <div class="session-detail__pager">
+      {{ content.flippy_pager }}
+    </div>
+  {% endif %}
+</article>

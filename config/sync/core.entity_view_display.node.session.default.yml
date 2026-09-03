@@ -46,13 +46,6 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_code_of_conduct:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 13
-    region: content
   field_description:
     type: text_default
     label: hidden
@@ -76,13 +69,6 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_session_consent:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 12
-    region: content
   field_session_tags:
     type: entity_reference_label
     label: above
@@ -91,19 +77,13 @@ content:
     third_party_settings: {  }
     weight: 16
     region: content
-  field_speaking_experience:
-    type: list_default
+  field_speakers:
+    type: entity_reference_entity_view
     label: above
-    settings: {  }
+    settings:
+      view_mode: compact
     third_party_settings: {  }
-    weight: 14
-    region: content
-  field_speaking_experience_detail:
-    type: basic_string
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 15
+    weight: 6
     region: content
   field_synopsis:
     type: string
@@ -140,10 +120,13 @@ content:
     weight: 0
     region: content
 hidden:
+  field_code_of_conduct: true
   field_event: true
   field_is_non_session: true
   field_is_training: true
+  field_session_consent: true
   field_short_description: true
   field_social_media_card: true
-  field_speakers: true
+  field_speaking_experience: true
+  field_speaking_experience_detail: true
   links: true
