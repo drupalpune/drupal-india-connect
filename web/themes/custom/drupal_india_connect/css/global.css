@@ -466,7 +466,8 @@ h2.eh-heading,
  */
 .session-detail__title {
   margin-block: 0 var(--sp1-5);
-  font-size: var(--type-h2-minor);
+  margin-top: 48px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.1;
   color: var(--color--night-5);
