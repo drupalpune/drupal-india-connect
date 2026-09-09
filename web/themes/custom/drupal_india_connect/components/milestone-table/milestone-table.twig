@@ -1,7 +1,17 @@
-<div class="milestone-table">
+{% set columns = ['1.1fr', '2fr'] %}
+{% if show_time_commitment %}{% set columns = columns|merge(['0.9fr']) %}{% endif %}
+{% if show_ticket_details %}{% set columns = columns|merge(['1.1fr']) %}{% endif %}
+{% set columns = columns|merge(['0.85fr', '0.85fr', '1.3fr']) %}
+<div class="milestone-table" style="--milestone-table-columns: {{ columns|join(' ') }};">
   <div class="milestone-table__header" role="presentation">
     <span class="milestone-table__header-cell">{{ 'Name'|t }}</span>
     <span class="milestone-table__header-cell">{{ 'Description'|t }}</span>
+    {% if show_time_commitment %}
+      <span class="milestone-table__header-cell">{{ 'Time Commitment'|t }}</span>
+    {% endif %}
+    {% if show_ticket_details %}
+      <span class="milestone-table__header-cell">{{ 'Ticket Details'|t }}</span>
+    {% endif %}
     <span class="milestone-table__header-cell">{{ 'Opens'|t }}</span>
     <span class="milestone-table__header-cell">{{ 'Closes'|t }}</span>
     <span class="milestone-table__header-cell">{{ 'Key Date / Outcome'|t }}</span>

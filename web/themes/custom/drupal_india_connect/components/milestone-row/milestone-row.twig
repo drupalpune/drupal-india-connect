@@ -9,6 +9,20 @@
     <p class="milestone-row__value">{{ description }}</p>
   </div>
 
+  {% if time_commitment %}
+    <div class="milestone-row__cell">
+      <span class="milestone-row__label">{{ 'Time Commitment'|t }}</span>
+      <span class="milestone-row__value">{{ time_commitment }}</span>
+    </div>
+  {% endif %}
+
+  {% if ticket_details %}
+    <div class="milestone-row__cell">
+      <span class="milestone-row__label">{{ 'Ticket Details'|t }}</span>
+      <span class="milestone-row__value">{{ ticket_details }}</span>
+    </div>
+  {% endif %}
+
   <div class="milestone-row__cell">
     <span class="milestone-row__label">{{ 'Opens'|t }}</span>
     <span class="milestone-row__value">{{ opens }}</span>

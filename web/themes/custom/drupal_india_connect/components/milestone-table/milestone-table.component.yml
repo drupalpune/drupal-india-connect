@@ -1,11 +1,21 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Milestone Table'
-description: 'A responsive table of dated milestones: Name, Description, Opens, Closes, Key Date/Outcome. Renders as a true 5-column table with a hairline-divided header from the --md container breakpoint up, and collapses into labeled stacked rows below it. Place Milestone Row components in the rows slot, one per milestone.'
+description: 'A responsive table of dated milestones: Name, Description, Opens, Closes, Key Date/Outcome, plus two optional columns (Time Commitment, Ticket Details) that only exist when this table instance actually uses them. Renders a hairline-divided header from the --md container breakpoint up, and collapses into labeled stacked rows below it. Set show_time_commitment / show_ticket_details to true only when every Milestone Row in the rows slot supplies that field — the column count (header + each row) must match across the whole table, so do not mix rows that have the field with rows that do not. Place Milestone Row components in the rows slot, one per milestone.'
 group: Drupal Connect
 status: stable
 props:
   type: object
-  properties: {}
+  properties:
+    show_time_commitment:
+      type: boolean
+      title: 'Show Time Commitment column'
+      description: 'Enable only if every row in this table sets a time_commitment value.'
+      default: false
+    show_ticket_details:
+      type: boolean
+      title: 'Show Ticket Details column'
+      description: 'Enable only if every row in this table sets a ticket_details value.'
+      default: false
 slots:
   rows:
     title: 'Milestone rows'
