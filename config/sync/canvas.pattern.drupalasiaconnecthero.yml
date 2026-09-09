@@ -1,0 +1,121 @@
+uuid: e2db4515-ebb2-4c59-9531-be17676c84ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.hero-side-by-side
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - field.field.media.image.field_media_image
+    - field.field.media.svg_image.field_media_svg_image
+    - filter.format.canvas_html_block
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - media.type.svg_image
+  content:
+    - 'file:file:97eb9ed9-0984-46c5-91f2-3ec09bd46e58'
+    - 'media:image:495215e3-5b80-4e6d-a7c4-0c0c49a3186d'
+  module:
+    - file
+    - media
+    - options
+    - text
+id: drupalasiaconnecthero
+label: 'DrupalAsia Connect Hero'
+component_tree:
+  '0:a08a498e-30c2-4371-b054-f0b5ce99524f':
+    uuid: a08a498e-30c2-4371-b054-f0b5ce99524f
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:group_slot:0:91020b57-2491-4f25-ae9d-b8a3780fadea':
+    parent_uuid: a08a498e-30c2-4371-b054-f0b5ce99524f
+    slot: group_slot
+    uuid: 91020b57-2491-4f25-ae9d-b8a3780fadea
+    component_id: sdc.event_horizon.hero-side-by-side
+    component_version: 134543b92be69eb8
+    inputs:
+      hero_flex_gap: large
+      justify_content: center
+      hero_flex_direction_mobile: vertical
+      padding_block_start: '0'
+      padding_block_end: '0'
+      image_size: '4:3'
+      image_position: right
+      image_radius: small
+      media:
+        target_id: '24'
+  '0:group_slot:0:hero_slot:0:efafb64c-b689-4470-9e9c-12c551b59b0e':
+    parent_uuid: 91020b57-2491-4f25-ae9d-b8a3780fadea
+    slot: hero_slot
+    uuid: efafb64c-b689-4470-9e9c-12c551b59b0e
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '48'
+      margin_block_end: '48'
+      padding_block_start: '0'
+      padding_block_end: '0'
+      full_width: false
+      dark_background: false
+      section_header: true
+      section_footer: true
+  '0:group_slot:0:hero_slot:0:footer_slot:0:52ac6bdc-18bb-4b1d-a0e3-845056f903bc':
+    parent_uuid: efafb64c-b689-4470-9e9c-12c551b59b0e
+    slot: footer_slot
+    uuid: 52ac6bdc-18bb-4b1d-a0e3-845056f903bc
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p><strong>Date: 21 January 2027</strong></p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:group_slot:0:hero_slot:0:header_slot:0:bb2be778-7c0c-4d94-ab8c-968de80d971f':
+    parent_uuid: efafb64c-b689-4470-9e9c-12c551b59b0e
+    slot: header_slot
+    uuid: bb2be778-7c0c-4d94-ab8c-968de80d971f
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: Imagine
+      tone: accent
+  '0:group_slot:0:hero_slot:0:header_slot:1:fa0acea6-244b-49d8-8d52-06ea936a0819':
+    parent_uuid: efafb64c-b689-4470-9e9c-12c551b59b0e
+    slot: header_slot
+    uuid: fa0acea6-244b-49d8-8d52-06ea936a0819
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'AI Summit'
+      level: 2
+      text_size: heading-responsive-5xl
+      text_color: accent
+      align: left
+      style: default
+      margin_top: sm
+  '0:group_slot:0:hero_slot:0:main_slot:0:4c5d9c38-0925-4053-bffc-e5dfe3908d53':
+    parent_uuid: efafb64c-b689-4470-9e9c-12c551b59b0e
+    slot: main_slot
+    uuid: 4c5d9c38-0925-4053-bffc-e5dfe3908d53
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p class="text-align-justify">The AI Summit at DrupalAsia Connect India 2027 brings together technology leaders, practitioners, and domain experts to explore how AI is reshaping real-world systems.</p><p class="text-align-justify">We focus on what is actually happening beyond the hype — across industries, workflows, and organizations.</p><p class="text-align-justify">From automation to AI agents, we explore how work is changing and what comes next.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default

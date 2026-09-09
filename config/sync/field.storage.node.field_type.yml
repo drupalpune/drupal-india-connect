@@ -14,6 +14,9 @@ settings:
     -
       value: 45_mins
       label: '45 mins (Full session)'
+    -
+      value: 20_mins
+      label: '20 mins (Lightning session)'
   allowed_values_function: ''
 module: options
 locked: false
