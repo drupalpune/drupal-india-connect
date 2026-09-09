@@ -2,16 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp0-5);
-  padding-block: var(--sp1);
-  border-block-end: solid 1px var(--color--night-90);
-}
-
-.milestone-row:first-child {
-  padding-block-start: 0;
+  padding: var(--sp1);
+  border-block-end: solid 1px var(--color--night-70);
 }
 
 .milestone-row:last-child {
-  padding-block-end: 0;
   border-block-end: none;
 }
 
@@ -38,16 +33,44 @@
 
 /*
  * Above --md the row becomes a real grid row sharing milestone-table's
- * column template, and the per-cell labels (only needed for the stacked
- * mobile layout) are hidden.
+ * column template and outer border, and the per-cell labels (only needed
+ * for the stacked mobile layout) are hidden. border-block-end still draws
+ * the horizontal rule, now joined by a divider between each column.
  */
 @container style(--md: true) {
   .milestone-row {
     display: grid;
     grid-template-columns: var(--milestone-table-columns);
-    align-items: start;
-    gap: var(--sp1);
+    gap: 0;
+    padding: 0;
+    border-block-end: solid 1px var(--color--night-70);
+  }
+
+  .milestone-row:last-child {
+    border-block-end: none;
+  }
+
+  /*
+   * Padding lives on the cell, not the row, so a stretched cell's
+   * border-inline-end runs the full grid-row height (align-items defaults
+   * to stretch) and meets the row's own top/bottom edges — instead of
+   * stopping short at the cell's own content height.
+   */
+  .milestone-row__cell {
     padding-block: var(--sp1-5);
+    padding-inline: var(--sp0-75);
+  }
+
+  .milestone-row__cell:first-child {
+    padding-inline-start: var(--sp1);
+  }
+
+  .milestone-row__cell:last-child {
+    padding-inline-end: var(--sp1);
+  }
+
+  .milestone-row__cell:not(:last-child) {
+    border-inline-end: solid 1px var(--color--night-70);
   }
 
   .milestone-row__label {

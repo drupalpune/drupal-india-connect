@@ -1,6 +1,12 @@
 /*
  * Column template is shared with milestone-row.css via this custom
  * property, so the header and every row line up under one definition.
+ *
+ * Traditional bordered-table look at every size: one outer border/radius
+ * around the whole component, clipped with overflow: hidden, and no gap
+ * between rows — the header's and every row's own border-block-end draws
+ * the horizontal lines, so adjacent rows touch instead of floating as
+ * separate cards.
  */
 .milestone-table {
   /* Overridden inline per-instance by milestone-table.twig based on
@@ -10,6 +16,9 @@
 
   display: flex;
   flex-direction: column;
+  border: solid 1px var(--color--night-70);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .milestone-table__header {
@@ -17,20 +26,41 @@
 }
 
 @container style(--md: true) {
+  /*
+   * Grid container carries no padding of its own — same as .milestone-row
+   * — so both grids compute their fr column tracks over the exact same
+   * available width. Padding lives on the cells instead; if the header
+   * container had its own padding while rows didn't, the two grids would
+   * size their columns over different widths and the dividers would drift
+   * out of alignment between the header and the rows below it.
+   */
   .milestone-table__header {
     display: grid;
     grid-template-columns: var(--milestone-table-columns);
-    gap: var(--sp1);
-    padding-block-end: var(--sp0-75);
-    border-block-end: solid 1px var(--color--night-90);
+    gap: 0;
+    border-block-end: solid 1px var(--color--night-70);
   }
 
   .milestone-table__header-cell {
+    padding-block: var(--sp0-75);
+    padding-inline: var(--sp0-75);
     color: var(--color--secondary-50);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+  }
+
+  .milestone-table__header-cell:first-child {
+    padding-inline-start: var(--sp1);
+  }
+
+  .milestone-table__header-cell:last-child {
+    padding-inline-end: var(--sp1);
+  }
+
+  .milestone-table__header-cell:not(:last-child) {
+    border-inline-end: solid 1px var(--color--night-70);
   }
 }
 
