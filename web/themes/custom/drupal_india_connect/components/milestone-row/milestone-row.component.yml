@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Milestone Row'
-description: 'One row of a Milestone Table: a name, a description, and Opens / Closes / Key Date-Outcome text. All three date-ish fields are free text, rendered exactly as given — this component does not interpret, validate, or reformat dates, so values like "TBD" or "—" pass through untouched.'
+description: 'One row of a Milestone Table: a name, a description, optional Time Commitment / Ticket Details text, and Opens / Closes / Key Date-Outcome text. All free-text fields are rendered exactly as given — this component does not interpret, validate, or reformat dates, so values like "TBD" or "—" pass through untouched. Time Commitment and Ticket Details are optional: the cell (and its column) is omitted entirely when left blank, so set the parent Milestone Table''s matching show_time_commitment / show_ticket_details prop to keep the header in sync — and keep it consistent for every row in that table, since a row missing the field while siblings have it will misalign the column grid.'
 group: Drupal Connect
 status: stable
 props:
@@ -18,6 +18,16 @@ props:
       title: Description
       examples:
         - 'Session submissions are open to the community.'
+    time_commitment:
+      type: string
+      title: 'Time Commitment'
+      examples:
+        - '40–50 hours between October 2026 and January 2027'
+    ticket_details:
+      type: string
+      title: 'Ticket Details'
+      examples:
+        - 'One (1) free complimentary ticket per volunteer'
     opens:
       type: string
       title: Opens

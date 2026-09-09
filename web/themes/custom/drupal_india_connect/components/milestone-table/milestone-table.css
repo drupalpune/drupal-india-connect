@@ -3,6 +3,9 @@
  * property, so the header and every row line up under one definition.
  */
 .milestone-table {
+  /* Overridden inline per-instance by milestone-table.twig based on
+     which optional columns (Time Commitment, Ticket Details) are in use;
+     this is just the no-optional-columns fallback. */
   --milestone-table-columns: 1.1fr 2fr 0.85fr 0.85fr 1.3fr;
 
   display: flex;

@@ -4,9 +4,35 @@ status: true
 dependencies:
   theme:
     - drupal_india_connect
-active_version: dcea88e738339648
+active_version: 60e7bc3b543e4725
 versioned_properties:
   active:
+    settings:
+      prop_field_definitions:
+        show_time_commitment:
+          required: false
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value: null
+          expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
+        show_ticket_details:
+          required: false
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value: null
+          expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        rows:
+          title: 'Milestone rows'
+          description: 'Place Milestone Row components here, one per milestone.'
+  dcea88e738339648:
     settings:
       prop_field_definitions: {  }
     fallback_metadata:

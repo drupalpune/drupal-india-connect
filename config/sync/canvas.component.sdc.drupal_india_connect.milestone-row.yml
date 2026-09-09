@@ -4,9 +4,98 @@ status: true
 dependencies:
   theme:
     - drupal_india_connect
-active_version: ceac78b6f9b6ce83
+active_version: f1aab06570065202
 versioned_properties:
   active:
+    settings:
+      prop_field_definitions:
+        name:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Call for Speakers'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        description:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Session submissions are open to the community.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        time_commitment:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '40–50 hours between October 2026 and January 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        ticket_details:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'One (1) free complimentary ticket per volunteer'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        opens:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '24 August'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        closes:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '18 September'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        outcome:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Reviewer confirmations by 18 September 2026'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  ceac78b6f9b6ce83:
     settings:
       prop_field_definitions:
         name:
