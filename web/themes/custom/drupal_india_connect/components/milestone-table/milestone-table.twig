@@ -4,17 +4,17 @@
 {% set columns = columns|merge(['0.85fr', '0.85fr', '1.3fr']) %}
 <div class="milestone-table" style="--milestone-table-columns: {{ columns|join(' ') }};">
   <div class="milestone-table__header" role="presentation">
-    <span class="milestone-table__header-cell">{{ 'Name'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Role'|t }}</span>
     <span class="milestone-table__header-cell">{{ 'Description'|t }}</span>
     {% if show_time_commitment %}
       <span class="milestone-table__header-cell">{{ 'Time Commitment'|t }}</span>
     {% endif %}
     {% if show_ticket_details %}
-      <span class="milestone-table__header-cell">{{ 'Ticket Details'|t }}</span>
+      <span class="milestone-table__header-cell">{{ 'Volunteer Benefit'|t }}</span>
     {% endif %}
-    <span class="milestone-table__header-cell">{{ 'Opens'|t }}</span>
-    <span class="milestone-table__header-cell">{{ 'Closes'|t }}</span>
-    <span class="milestone-table__header-cell">{{ 'Key Date / Outcome'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Applications Open'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Applications Close'|t }}</span>
+    <span class="milestone-table__header-cell">{{ 'Notification Date'|t }}</span>
   </div>
 
   <div class="milestone-table__rows">
