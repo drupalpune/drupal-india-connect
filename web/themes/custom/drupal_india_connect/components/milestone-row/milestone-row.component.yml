@@ -16,8 +16,9 @@ props:
     description:
       type: string
       title: Description
+      pattern: '(.|\r?\n)*'
       examples:
-        - 'Session submissions are open to the community.'
+        - "Session submissions are open to the community.\n\nWe're looking for people who enjoy reading proposals and giving feedback."
     time_commitment:
       type: string
       title: 'Time Commitment'

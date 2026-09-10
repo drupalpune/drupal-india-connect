@@ -6,7 +6,7 @@
 
   <div class="milestone-row__cell">
     <span class="milestone-row__label">{{ 'Description'|t }}</span>
-    <p class="milestone-row__value">{{ description }}</p>
+    <p class="milestone-row__value">{{ description|nl2br }}</p>
   </div>
 
   {% if time_commitment %}
