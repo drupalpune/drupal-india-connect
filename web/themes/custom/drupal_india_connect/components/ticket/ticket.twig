@@ -1,0 +1,48 @@
+{% set accent_key = accent|default('primary-50') %}
+
+<article class="ticket ticket--accent-{{ accent_key }}">
+  <div class="ticket__body">
+    {% if eyebrow is not empty %}
+      <p class="ticket__eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+
+    {% if title is not empty %}
+      <h3 class="ticket__heading">{{ title }}</h3>
+    {% endif %}
+
+    {% if text is not empty %}
+      <p class="ticket__text">{{ text }}</p>
+    {% endif %}
+
+    {% if includes is not empty %}
+      <div class="ticket__includes">
+        <span class="ticket__includes-label">{{ 'Includes'|t }}</span>
+        <p class="ticket__includes-value">{{ includes }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <footer class="ticket__footer">
+    <div class="ticket__price-block">
+      {% if availability is not empty %}
+        <p class="ticket__availability">{{ availability }}</p>
+      {% endif %}
+
+      {% if price is not empty %}
+        <p class="ticket__price">{{ price }}</p>
+        <p class="ticket__price-note">{{ price_note|default('per attendee'|t) }}</p>
+      {% endif %}
+    </div>
+
+    {% if cta_url is not empty %}
+      {% include 'event_horizon:button' ignore missing with {
+        label: cta_label|default('Get this ticket'|t),
+        href: cta_url,
+        variant: 'primary',
+        size: 'medium',
+        icon: 'arrow-right',
+        mobile_width: true,
+      } only %}
+    {% endif %}
+  </footer>
+</article>

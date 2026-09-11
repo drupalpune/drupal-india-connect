@@ -1,0 +1,82 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Ticket
+description: 'One actual purchasable ticket, matching an exact KonfHub ticket definition: registration phase, exact name, short description, included experience(s), exact price, status, and a purchase CTA. For a homepage-level ticket category with no CTA, see Ticket Overview instead.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - title
+    - price
+  properties:
+    eyebrow:
+      type: string
+      title: 'Registration phase'
+      examples:
+        - Early Bird
+    title:
+      type: string
+      title: 'Ticket name'
+      description: 'Keep this exact — it should match the KonfHub ticket name.'
+      examples:
+        - 'Conference Only'
+    text:
+      type: string
+      title: Description
+      description: 'Short selling point. Keep it brief.'
+      examples:
+        - 'Book early and get the best-value conference-only access for Day 2 and Day 3.'
+    includes:
+      type: string
+      title: Includes
+      description: 'Compact included-experience summary, e.g. "AI Summit · Conference".'
+      examples:
+        - 'Conference · Day 2 & Day 3'
+    price:
+      type: string
+      title: Price
+      description: 'Exact display price.'
+      examples:
+        - '₹2,500'
+    price_note:
+      type: string
+      title: 'Price note'
+      default: 'per attendee'
+      examples:
+        - 'per attendee'
+    availability:
+      type: string
+      title: Availability
+      description: 'Short availability/status copy.'
+      examples:
+        - 'Limited Early Bird allocation'
+    cta_label:
+      type: string
+      title: 'Call to action label'
+      default: 'Get this ticket'
+      examples:
+        - 'Get this ticket'
+    cta_url:
+      type: string
+      title: 'Call to action URL'
+      description: 'Omit to render the ticket without a purchase action.'
+      format: uri-reference
+      examples:
+        - 'https://konfhub.com/...'
+    accent:
+      type: string
+      title: 'Accent colour'
+      description: 'Spend "secondary" (brand orange) on at most one ticket per group.'
+      enum:
+        - secondary
+        - primary-50
+        - primary-60
+        - neutral
+      meta:enum:
+        secondary: 'Secondary (brand orange) — reserve for one ticket only'
+        primary-50: 'Primary, darker step'
+        primary-60: 'Primary, default step'
+        neutral: 'Neutral grey'
+      default: primary-50
+      examples:
+        - primary-50
