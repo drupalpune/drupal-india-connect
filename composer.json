@@ -105,6 +105,11 @@
     "conflict": {
         "drupal/drupal": "*"
     },
+    "autoload": {
+        "files": [
+            "bootstrap/symfony-request-parse-body-fix.php"
+        ]
+    },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "config": {
