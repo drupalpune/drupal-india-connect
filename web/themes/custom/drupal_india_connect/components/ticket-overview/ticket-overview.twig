@@ -1,0 +1,24 @@
+{% set accent_key = accent|default('primary-50') %}
+
+<article class="ticket-overview ticket-overview--accent-{{ accent_key }}">
+  <div class="ticket-overview__body">
+    {% if eyebrow is not empty %}
+      <p class="ticket-overview__eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+
+    {% if title is not empty %}
+      <h3 class="ticket-overview__heading">{{ title }}</h3>
+    {% endif %}
+
+    {% if text is not empty %}
+      <p class="ticket-overview__text">{{ text }}</p>
+    {% endif %}
+
+    {% if price is not empty %}
+      <div class="ticket-overview__price">
+        <span class="ticket-overview__price-label">{{ price_label|default('Price range'|t) }}</span>
+        <strong class="ticket-overview__price-value">{{ price }}</strong>
+      </div>
+    {% endif %}
+  </div>
+</article>

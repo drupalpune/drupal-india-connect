@@ -1,0 +1,57 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Ticket Overview'
+description: 'Homepage-level, informational ticket category card: a short description and a price or price range. No purchase CTA — for one actual purchasable ticket, see the Ticket component instead.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow
+      description: 'Short context above the title, e.g. "Day 2 & Day 3".'
+      examples:
+        - 'Day 2 & Day 3'
+    title:
+      type: string
+      title: 'Category name'
+      examples:
+        - Conference
+    text:
+      type: string
+      title: Description
+      description: 'One or two lines only. Longer ticket detail belongs on the registration page.'
+      examples:
+        - 'Sessions, keynotes, community spaces and contribution.'
+    price:
+      type: string
+      title: Price
+      description: 'A display string such as "₹5,000", "₹2,500–₹5,500", or "TBC".'
+      examples:
+        - '₹2,500–₹5,500'
+    price_label:
+      type: string
+      title: 'Price label'
+      description: 'Use "Price" when there is only one price.'
+      default: 'Price range'
+      examples:
+        - 'Price range'
+    accent:
+      type: string
+      title: 'Accent colour'
+      description: 'Spend "secondary" (brand orange) on at most one card per group.'
+      enum:
+        - secondary
+        - primary-50
+        - primary-60
+        - neutral
+      meta:enum:
+        secondary: 'Secondary (brand orange) — reserve for one card only'
+        primary-50: 'Primary, darker step'
+        primary-60: 'Primary, default step'
+        neutral: 'Neutral grey'
+      default: primary-50
+      examples:
+        - primary-50
