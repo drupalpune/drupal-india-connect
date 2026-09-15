@@ -92,13 +92,12 @@
   flex-direction: column;
   gap: var(--sp1-5);
   padding: var(--sp1-5);
-  background-color: var(--color--sky-94);
-  border-top: solid 1px var(--border-hairline, var(--color--night-90));
+  background-color: var(--neutral-dark);
 }
 
 .ticket__availability {
   margin: 0 0 var(--sp0-5);
-  color: var(--color--night-40);
+  color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.4;
@@ -106,7 +105,7 @@
 
 .ticket__price {
   margin: 0;
-  color: var(--color--primary-50);
+  color: var(--text-on-neutral-dark);
   font-size: 2.75rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -116,7 +115,7 @@
 
 .ticket__price-note {
   margin: var(--sp0-25) 0 0;
-  color: var(--color--night-40);
+  color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
   font-size: 0.8125rem;
   line-height: 1.4;
 }
