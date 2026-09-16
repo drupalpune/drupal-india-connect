@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.media.image.field_media_image
     - field.field.media.svg_image.field_media_svg_image
+    - filter.format.canvas_html_block
     - image.style.canvas_parametrized_width
     - media.type.image
     - media.type.svg_image
@@ -14,6 +15,7 @@ dependencies:
     - media
     - media_library
     - options
+    - text
   theme:
     - event_horizon
 active_version: c313844ff80fde7d
@@ -111,17 +113,21 @@ versioned_properties:
           derived_schema_metadata: {  }
         text:
           required: false
-          field_type: string_long
+          field_type: text_long
           field_storage_settings: {  }
-          field_instance_settings: {  }
-          field_widget: string_textarea
+          field_instance_settings:
+            allowed_formats:
+              - canvas_html_block
+          field_widget: text_textarea
           default_value:
             -
-              value: 'Quaerat laborum rerum dolores dolores dolor qui.'
-          expression: ℹ︎string_long␟value
+              value: '<p>Quaerat laborum rerum dolores dolores dolor qui.</p>'
+              format: canvas_html_block
+          expression: ℹ︎text_long␟processed
           derived_schema_metadata:
             string_shape:
-              pattern: '(.|\r?\n)*'
+              contentMediaType: text/html
+              x-formatting-context: block
         is_text_centered:
           required: false
           field_type: boolean

@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "cweagans/composer-patches": "^1.7",
         "drupal/add_content_by_bundle": "^2.0",
         "drupal/addtocal_augment": "^1.2",
         "drupal/auto_entitylabel": "^3.4",
@@ -122,11 +123,18 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
             "php-tuf/composer-integration": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
+        "enable-patching": true,
+        "patches": {
+            "drupal/event_horizon": {
+                "Allow WYSIWYG/rich-text description in Image card component (issue #37)": "patches/event_horizon-image-card-wysiwyg.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
