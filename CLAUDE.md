@@ -137,6 +137,33 @@ hash that churns, and `canvas.page_region.drupal_india_connect.header` must
 stay `status: false` — enabling it 500s `ApiLayoutController::get()` and
 breaks the live site header.
 
+## Vendor patches
+
+Contrib module/theme fixes are tracked via `cweagans/composer-patches`
+(`patches/*.patch`, referenced from `composer.json`'s `extra.patches`).
+
+`ddev composer install`/`update` re-downloads the patched package from
+scratch and re-applies every patch in `extra.patches` — editing files
+directly under `web/themes/contrib/` or `web/modules/contrib/` is fine
+while you're working out a fix, but the next `composer install` silently
+discards those edits and replaces them with whatever's actually in the
+`.patch` file. Regenerate the patch from your edit before you're done:
+
+```bash
+# with your vendor edits still in place, diff against a pristine copy
+diff -ruN a/<component-dir> b/<component-dir> > patches/<name>.patch
+# then revert the vendor files and let composer re-apply the patch cleanly
+ddev composer install
+```
+
+A patch that changes an SDC component's schema/render only affects
+new or re-edited content going forward. Existing `canvas_page` rows
+already using the old prop shape are content, not config — and per
+**Deployment is tag-based**, deploys are code-only, so any accompanying
+data-migration script does not travel with the patch. It has to be
+re-run by hand against each environment's own database after the tag
+ships.
+
 ## Front-end gotchas
 
 - **New component/asset directories need permissions.** Files created by
@@ -145,6 +172,10 @@ breaks the live site header.
   more than once.
 - **Browser page cache, not Drupal, is usually why CSS "isn't applying".**
   Verify with a unique query string (`/?v=<random>`), not a plain reload.
+  For sustained front-end work, turn off aggregation instead of fighting
+  this repeatedly — add to the gitignored `web/sites/default/settings.local.php`:
+  `$config['system.performance']['css']['preprocess'] = FALSE;` and the
+  same for `js`.
 - `html { overflow-x: clip }` in `base.css` — **not `hidden`**. `hidden`
   makes `<html>` a scroll container and silently kills `position: sticky`.
 - `scrollIntoView({behavior: 'auto'})` defers to the CSS `scroll-behavior`,

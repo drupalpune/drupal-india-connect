@@ -1,0 +1,28 @@
+diff -ruN a/components/card/card.component.yml b/components/card/card.component.yml
+--- a/components/card/card.component.yml	2026-09-16 13:58:26
++++ b/components/card/card.component.yml	2026-09-16 13:58:26
+@@ -78,9 +78,10 @@
+     text:
+       type: string
+       title: Description
+-      pattern: '(.|\r?\n)*'
++      contentMediaType: text/html
++      x-formatting-context: block
+       examples:
+-        - 'Quaerat laborum rerum dolores dolores dolor qui.'
++        - '<p>Quaerat laborum rerum dolores dolores dolor qui.</p>'
+     is_text_centered:
+       type: boolean
+       title: Center text
+diff -ruN a/components/card/card.twig b/components/card/card.twig
+--- a/components/card/card.twig	2026-09-16 13:58:26
++++ b/components/card/card.twig	2026-09-16 13:58:26
+@@ -39,7 +39,7 @@
+       </h{{ heading_level }}>
+     {% endif %}
+     {% if text is not empty %}
+-      <p class="eh-card__text">{{ text }}</p>
++      <div class="eh-card__text">{{ text|raw }}</div>
+     {% endif %}
+   </div>
+ </div>
