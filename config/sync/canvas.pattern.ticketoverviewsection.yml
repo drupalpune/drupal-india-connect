@@ -1,0 +1,151 @@
+uuid: fe8b33f2-4e72-4200-b582-4a2f693fdaf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.ticket-overview
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: ticketoverviewsection
+label: 'Ticket overview section'
+component_tree:
+  '0:d41419c8-a54a-46b4-a628-a41c83efa4af':
+    uuid: d41419c8-a54a-46b4-a628-a41c83efa4af
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      full_width: false
+      dark_background: false
+    label: 'Section - Ticket overview'
+  '0:header_slot:0:48129b2c-a166-46d9-b0be-3a39a134aa3c':
+    parent_uuid: d41419c8-a54a-46b4-a628-a41c83efa4af
+    slot: header_slot
+    uuid: 48129b2c-a166-46d9-b0be-3a39a134aa3c
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Ticket overview'
+      tone: accent
+    label: 'Eyebrow - Ticket overview'
+  '0:header_slot:1:4de474b6-3cb7-48a2-a41c-64695e5b7b56':
+    parent_uuid: d41419c8-a54a-46b4-a628-a41c83efa4af
+    slot: header_slot
+    uuid: 4de474b6-3cb7-48a2-a41c-64695e5b7b56
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Choose your experience'
+      level: 1
+      text_size: heading-responsive-5xl
+      text_color: default
+      align: left
+      style: default
+      margin_top: sm
+    label: 'Heading - Choose your experience'
+  '0:header_slot:2:d6ae6238-80e9-40d3-a3d0-c9c02ea26f60':
+    parent_uuid: d41419c8-a54a-46b4-a628-a41c83efa4af
+    slot: header_slot
+    uuid: d6ae6238-80e9-40d3-a3d0-c9c02ea26f60
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>A homepage-level view of the ways to attend, with only the information people need before they move into registration.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - Ticket overview intro'
+  '0:main_slot:0:38869fba-0b3d-485d-bccf-bcfde1960390':
+    parent_uuid: d41419c8-a54a-46b4-a628-a41c83efa4af
+    slot: main_slot
+    uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 5
+      gap: '24'
+    label: 'Grid - Ticket overview cards'
+  '0:main_slot:0:grid_slot:0:083a7abe-1750-4a54-b49d-602347acc78d':
+    parent_uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    slot: grid_slot
+    uuid: 083a7abe-1750-4a54-b49d-602347acc78d
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Day 1'
+      title: 'AI Summit'
+      text: 'A dedicated day for Drupal, AI and the open web.'
+      price: '₹5,000'
+      price_label: Price
+      accent: primary-50
+    label: 'Ticket overview - AI Summit'
+  '0:main_slot:0:grid_slot:1:bef43c22-c8df-448a-ad55-38d3dc73e47a':
+    parent_uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    slot: grid_slot
+    uuid: bef43c22-c8df-448a-ad55-38d3dc73e47a
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Day 2 & Day 3'
+      title: Conference
+      text: 'Sessions, keynotes, community spaces and contribution.'
+      price: '₹2,500–₹5,500'
+      price_label: 'Price range'
+      accent: primary-50
+    label: 'Ticket overview - Conference'
+  '0:main_slot:0:grid_slot:2:b04eb6cc-db9e-4860-9232-51b2b1720536':
+    parent_uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    slot: grid_slot
+    uuid: b04eb6cc-db9e-4860-9232-51b2b1720536
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: Networking
+      title: 'Networking drinks'
+      text: 'An evening to meet speakers, sponsors and the community.'
+      price: '₹2,500'
+      price_label: Price
+      accent: primary-50
+    label: 'Ticket overview - Networking drinks'
+  '0:main_slot:0:grid_slot:3:8b446492-5fde-41fb-aee3-2d0d41952fe9':
+    parent_uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    slot: grid_slot
+    uuid: 8b446492-5fde-41fb-aee3-2d0d41952fe9
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Hands-on learning'
+      title: Workshop
+      text: 'Focused workshop access, booked separately from other tickets.'
+      price: TBC
+      price_label: Price
+      accent: secondary
+    label: 'Ticket overview - Workshop'
+  '0:main_slot:0:grid_slot:4:0e694e4c-3113-45f1-875f-788fb42f7e93':
+    parent_uuid: 38869fba-0b3d-485d-bccf-bcfde1960390
+    slot: grid_slot
+    uuid: 0e694e4c-3113-45f1-875f-788fb42f7e93
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Multiple experiences'
+      title: 'Combo tickets'
+      text: 'Combine the AI Summit, Conference and Networking.'
+      price: '₹5,000–₹8,000'
+      price_label: 'Price range'
+      accent: primary-50
+    label: 'Ticket overview - Combo tickets'

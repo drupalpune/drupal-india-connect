@@ -1,0 +1,92 @@
+uuid: 58c7442b-0da3-43af-aa44-742259e01252
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 0f599437b108fe66
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        eyebrow:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Day 2 & Day 3'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Conference
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Sessions, keynotes, community spaces and contribution.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        price:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '₹2,500–₹5,500'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        price_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Price range'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        accent:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: primary-50
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Ticket Overview'
+id: sdc.drupal_india_connect.ticket-overview
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:ticket-overview'

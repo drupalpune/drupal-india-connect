@@ -1,0 +1,145 @@
+uuid: 1b122743-f1d1-4c6b-ac0d-4b9746edbfab
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - options
+  theme:
+    - drupal_india_connect
+active_version: caaf5142bd0ec49e
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        eyebrow:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Early Bird'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Conference Only'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Book early and get the best-value conference-only access for Day 2 and Day 3.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        includes:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Conference · Day 2 & Day 3'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        price:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '₹2,500'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        price_note:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'per attendee'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        availability:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Limited Early Bird allocation'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cta_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Get this ticket'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cta_url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://konfhub.com/...'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+        accent:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: primary-50
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Ticket
+id: sdc.drupal_india_connect.ticket
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:ticket'

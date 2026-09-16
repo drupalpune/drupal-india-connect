@@ -1,0 +1,399 @@
+uuid: 554bdf42-a6e3-48f7-b3eb-765000a76d09
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.drupal_india_connect.ticket-overview
+    - canvas.component.sdc.event_horizon.button
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: hpticketoverviewold
+label: 'HP - Ticket overview old'
+component_tree:
+  '0:13b7ab8a-62ca-474b-bee2-2e6d32962ede':
+    uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: 33-33-33
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      full_width: false
+      dark_background: false
+      section_header: true
+      section_footer: false
+    label: 'Section 5'
+  '0:header_slot:0:a6a6bd86-a69d-4d67-bacb-2bd4f66ad850':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: header_slot
+    uuid: a6a6bd86-a69d-4d67-bacb-2bd4f66ad850
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: row
+      flex_gap: lg
+      items_align: start
+      flex_align: start
+    label: 'Group 6'
+  '0:header_slot:0:group_slot:0:45571a37-49a2-42ce-8c84-73ecb3535107':
+    parent_uuid: a6a6bd86-a69d-4d67-bacb-2bd4f66ad850
+    slot: group_slot
+    uuid: 45571a37-49a2-42ce-8c84-73ecb3535107
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group 7'
+  '0:header_slot:0:group_slot:0:group_slot:0:9b220020-3592-42c4-99a2-b00238fda6e1':
+    parent_uuid: 45571a37-49a2-42ce-8c84-73ecb3535107
+    slot: group_slot
+    uuid: 9b220020-3592-42c4-99a2-b00238fda6e1
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: Tickets
+      tone: accent
+    label: 'Eyebrow - Tickets'
+  '0:header_slot:0:group_slot:0:group_slot:1:8135ac4b-54c5-4757-bf78-d15349570448':
+    parent_uuid: 45571a37-49a2-42ce-8c84-73ecb3535107
+    slot: group_slot
+    uuid: 8135ac4b-54c5-4757-bf78-d15349570448
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Choose Your Experience'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - Ticket tiers'
+  '0:header_slot:0:group_slot:1:73fcce58-e89a-40b1-8fa3-218869dd470b':
+    parent_uuid: a6a6bd86-a69d-4d67-bacb-2bd4f66ad850
+    slot: group_slot
+    uuid: 73fcce58-e89a-40b1-8fa3-218869dd470b
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Whether you''re joining us for the conference, going deeper at the AI Summit, or staying on to connect with the community, choose the registration phase and experience that works for you.</p><p><strong>Ticket sales are not open yet.</strong> Pricing and the on-sale date will be announced here and on <a href="https://www.linkedin.com/company/drupalconasia">LinkedIn</a>.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - Pricing is set once the venue contract is sig...'
+  '0:header_slot:1:72969daf-099e-4118-abf5-f24b1d94f3a8':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: header_slot
+    uuid: 72969daf-099e-4118-abf5-f24b1d94f3a8
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: md
+  '0:header_slot:2:c13892e4-ca55-4304-acea-c364769ade58':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: header_slot
+    uuid: c13892e4-ca55-4304-acea-c364769ade58
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 3
+      gap: '24'
+    label: 'Grid - Ticket overview cards'
+  '0:header_slot:2:grid_slot:0:ea6c4e8f-5bee-4b2f-85e3-0db5c93986bd':
+    parent_uuid: c13892e4-ca55-4304-acea-c364769ade58
+    slot: grid_slot
+    uuid: ea6c4e8f-5bee-4b2f-85e3-0db5c93986bd
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Day 1 - Imagine'
+      title: 'AI Summit'
+      text: 'A dedicated day for Drupal, AI and the open web.'
+      price: '~ ₹5,000'
+      price_label: Price
+      accent: primary-50
+    label: 'Ticket overview - AI Summit'
+  '0:header_slot:2:grid_slot:1:95e8c322-f01a-47b6-b36d-21646322b23a':
+    parent_uuid: c13892e4-ca55-4304-acea-c364769ade58
+    slot: grid_slot
+    uuid: 95e8c322-f01a-47b6-b36d-21646322b23a
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Day 2 & Day 3 - DISCOVER'
+      title: Conference
+      text: 'Sessions, keynotes, community spaces and contribution.'
+      price: '₹2,500–₹5500'
+      price_label: 'Price range'
+      accent: primary-50
+    label: 'Ticket overview - Conference'
+  '0:header_slot:2:grid_slot:2:1d082997-45a0-4be6-aa12-d16858e2aee9':
+    parent_uuid: c13892e4-ca55-4304-acea-c364769ade58
+    slot: grid_slot
+    uuid: 1d082997-45a0-4be6-aa12-d16858e2aee9
+    component_id: sdc.drupal_india_connect.ticket-overview
+    component_version: 0f599437b108fe66
+    inputs:
+      eyebrow: 'Multiple experiences'
+      title: 'Combo tickets'
+      text: 'Combine the AI Summit, Conference and Networking.'
+      price: '₹5,000–₹8,000'
+      price_label: 'Price range'
+      accent: primary-50
+    label: 'Ticket overview - Combo tickets'
+  '0:main_slot:0:e5b9bb1e-231a-4f27-97e4-71dec927b760':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: main_slot
+    uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+      radius: md
+      padding: lg
+    label: 'Group 8'
+  '0:main_slot:0:group_slot:0:e3a8d997-73d9-4b6e-a652-b099166101c4':
+    parent_uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    slot: group_slot
+    uuid: e3a8d997-73d9-4b6e-a652-b099166101c4
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Early bird'
+      level: 3
+      text_size: heading-responsive-xl
+      text_color: default
+      align: left
+    label: 'Heading - Early bird'
+  '0:main_slot:0:group_slot:1:6b93f434-62de-4dd9-bd0a-8a48c977abde':
+    parent_uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    slot: group_slot
+    uuid: 6b93f434-62de-4dd9-bd0a-8a48c977abde
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'From ₹TBA'
+      level: 4
+      text_size: heading-responsive-lg
+      text_color: primary
+      align: left
+    label: 'Heading - Price TBA'
+  '0:main_slot:0:group_slot:2:820e9364-7c6d-486c-976f-9228ecd0124e':
+    parent_uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    slot: group_slot
+    uuid: 820e9364-7c6d-486c-976f-9228ecd0124e
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Best-value registration for attendees booking early.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - Limited allocation, released first to the mai...'
+  '0:main_slot:0:group_slot:3:42418a56-e3a0-4a02-afb4-ac0abc1b86ac':
+    parent_uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    slot: group_slot
+    uuid: 42418a56-e3a0-4a02-afb4-ac0abc1b86ac
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<ul><li data-list-item-id="e7a596902254ea69a43c0888e64485e58">Conference-only access</li><li data-list-item-id="efad7c66c1325778685de0dd6391f68e2">AI Summit + Conference</li><li data-list-item-id="e5ef54dfdcc337bc2a2342c076922a9ed">Networking + Conference</li><li data-list-item-id="ee78dcba207d81447f01ccb6a2754acba">Full Combo</li><li data-list-item-id="ec06f7e67aa2a34d3d910cdafa0e471d6">Available until <strong>TBD</strong> or sold out</li></ul>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - All three daysSessions, sprints and social ev...'
+  '0:main_slot:0:group_slot:4:3da1dd05-58ae-41fa-833c-007e9baf576b':
+    parent_uuid: e5b9bb1e-231a-4f27-97e4-71dec927b760
+    slot: group_slot
+    uuid: 3da1dd05-58ae-41fa-833c-007e9baf576b
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: secondary
+      label: TBA
+      size: medium
+      mobile_width: false
+      icon_first: false
+      disabled: true
+    label: 'Button - Notify me'
+  '0:main_slot:1:93ed6bf0-c69e-4d17-af9e-6a7d8db46102':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: main_slot
+    uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+      radius: md
+      padding: lg
+      background: accent
+    label: 'Group 9'
+  '0:main_slot:1:group_slot:0:8a9ea41a-d6a7-46d9-a188-47103b8dceed':
+    parent_uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    slot: group_slot
+    uuid: 8a9ea41a-d6a7-46d9-a188-47103b8dceed
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: Standard
+      level: 3
+      text_size: heading-responsive-xl
+      text_color: default
+      align: left
+    label: 'Heading - Standard'
+  '0:main_slot:1:group_slot:1:b67626b1-ebc2-4fd1-b6dc-a2eb8d013bc1':
+    parent_uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    slot: group_slot
+    uuid: b67626b1-ebc2-4fd1-b6dc-a2eb8d013bc1
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'From ₹TBA'
+      level: 4
+      text_size: heading-responsive-lg
+      text_color: primary
+      align: left
+    label: 'Heading - Price TBA'
+  '0:main_slot:1:group_slot:2:76e02b2c-42e4-4c05-ace0-503c6a2d1d9c':
+    parent_uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    slot: group_slot
+    uuid: 76e02b2c-42e4-4c05-ace0-503c6a2d1d9c
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Regular registration after Early Bird closes</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - The regular conference pass for individuals a...'
+  '0:main_slot:1:group_slot:3:a8b732c1-e933-44cb-bda3-90d5b7ba51de':
+    parent_uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    slot: group_slot
+    uuid: a8b732c1-e933-44cb-bda3-90d5b7ba51de
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<ul><li data-list-item-id="e1e323d6f884707f11ca7f017b59dd948">Conference-only access</li><li data-list-item-id="eea5d69e0abc90d9d68a5f240a2597db7">AI Summit + Conference</li><li data-list-item-id="e6b5dbe965f31e3720c5e93ce0221de13">Networking + Conference</li><li data-list-item-id="eb2c0bc1d623b5de8bd9261b08050d32a">Full Combo</li><li data-list-item-id="e46cfb73e63c9239f56925c6dcca1a546">AI Summit Only</li><li data-list-item-id="edc99827c030c940e4673a322b4997911">Workshop, subject to capacity</li></ul>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - All three daysWorkshops subject to capacityTe...'
+  '0:main_slot:1:group_slot:4:6f8e84e8-abec-4729-a480-36b01930e148':
+    parent_uuid: 93ed6bf0-c69e-4d17-af9e-6a7d8db46102
+    slot: group_slot
+    uuid: 6f8e84e8-abec-4729-a480-36b01930e148
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: primary
+      label: TBA
+      size: medium
+      mobile_width: false
+      icon_first: false
+      disabled: true
+    label: 'Button - Notify me'
+  '0:main_slot:2:7c91c456-15c3-40a5-a522-b4b87ac05699':
+    parent_uuid: 13b7ab8a-62ca-474b-bee2-2e6d32962ede
+    slot: main_slot
+    uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+      radius: md
+      padding: lg
+    label: 'Group 10'
+  '0:main_slot:2:group_slot:0:0154987f-9a05-4b35-aa86-a6408ce115a5':
+    parent_uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    slot: group_slot
+    uuid: 0154987f-9a05-4b35-aa86-a6408ce115a5
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Late Registration'
+      level: 3
+      text_size: heading-responsive-xl
+      text_color: default
+      align: left
+    label: 'Heading - Student & community'
+  '0:main_slot:2:group_slot:1:751ae1e0-6059-4f99-80ee-1cb19755bb9d':
+    parent_uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    slot: group_slot
+    uuid: 751ae1e0-6059-4f99-80ee-1cb19755bb9d
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'From ₹TBA'
+      level: 4
+      text_size: heading-responsive-lg
+      text_color: primary
+      align: left
+    label: 'Heading - Price TBA'
+  '0:main_slot:2:group_slot:2:b4bfed2a-bf9d-47fe-8be1-9f1405326f66':
+    parent_uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    slot: group_slot
+    uuid: b4bfed2a-bf9d-47fe-8be1-9f1405326f66
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Final registration phase for the conference, subject to remaining availability.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - Concession rate, plus a grant programme for t...'
+  '0:main_slot:2:group_slot:3:4abaab69-424e-425e-9da9-f85d6ef1e4e4':
+    parent_uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    slot: group_slot
+    uuid: 4abaab69-424e-425e-9da9-f85d6ef1e4e4
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<ul><li data-list-item-id="e93c382fd1032f4615b6588c0e7f4fbcd">Conference-only access</li><li data-list-item-id="e126113a0bbb9f72d00d3f82c21a2ac8f">Other ticket combinations subject to availability</li><li data-list-item-id="ea998e659cb52f4ed7d67572784ca1315">Workshops not available in this phase</li></ul>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - All three daysVerification required'
+  '0:main_slot:2:group_slot:4:66731de6-4c32-44b3-b992-9bf4512ac190':
+    parent_uuid: 7c91c456-15c3-40a5-a522-b4b87ac05699
+    slot: group_slot
+    uuid: 66731de6-4c32-44b3-b992-9bf4512ac190
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: secondary
+      label: TBA
+      size: medium
+      mobile_width: false
+      icon_first: false
+      disabled: true
+    label: 'Button - Notify me'
