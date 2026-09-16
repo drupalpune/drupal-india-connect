@@ -1,0 +1,156 @@
+uuid: 1f179d51-c901-4710-9552-b198f84bae0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.ticket
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - link
+    - options
+    - text
+id: confticketsection
+label: 'Conf ticket section'
+component_tree:
+  '0:52a40675-233a-4b13-b0aa-83ede512e553':
+    uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      background_color: accent
+      full_width: true
+      dark_background: false
+    label: 'Section - Available tickets'
+  '0:header_slot:0:f62830ad-c3fa-43d4-8a15-6cabdcdbec56':
+    parent_uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    slot: header_slot
+    uuid: f62830ad-c3fa-43d4-8a15-6cabdcdbec56
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Available tickets'
+      tone: accent
+    label: 'Eyebrow - Available tickets'
+  '0:header_slot:1:251510a2-7fd4-4c25-9d17-9da438a1e380':
+    parent_uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    slot: header_slot
+    uuid: 251510a2-7fd4-4c25-9d17-9da438a1e380
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Early Bird tickets'
+      level: 2
+      text_size: heading-responsive-4xl
+      text_color: default
+      align: left
+      style: default
+      margin_top: sm
+    label: 'Heading - Early Bird tickets'
+  '0:header_slot:2:87e640f9-daa9-4106-944f-d0cc8b7e0e65':
+    parent_uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    slot: header_slot
+    uuid: 87e640f9-daa9-4106-944f-d0cc8b7e0e65
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>These are actual purchasable tickets. Each card carries the registration phase, exact price and the experience included.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - Available tickets intro'
+  '0:main_slot:0:e5327a48-2fe0-4812-9222-6ccbce22caf0':
+    parent_uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    slot: main_slot
+    uuid: e5327a48-2fe0-4812-9222-6ccbce22caf0
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 3
+      gap: '24'
+    label: 'Grid - Ticket cards'
+  '0:main_slot:0:grid_slot:0:d710b2a3-a845-4c2e-a673-e6207502e263':
+    parent_uuid: e5327a48-2fe0-4812-9222-6ccbce22caf0
+    slot: grid_slot
+    uuid: d710b2a3-a845-4c2e-a673-e6207502e263
+    component_id: sdc.drupal_india_connect.ticket
+    component_version: caaf5142bd0ec49e
+    inputs:
+      eyebrow: 'Early Bird'
+      title: 'Conference Only'
+      text: 'Book early and get the best-value conference-only access for Day 2 and Day 3.'
+      includes: 'Conference · Day 2 & Day 3'
+      price: '₹2,500'
+      price_note: 'per attendee'
+      availability: 'Limited Early Bird allocation'
+      cta_label: 'Get this ticket'
+      cta_url:
+        uri: 'internal:/'
+        options: {  }
+      accent: primary-50
+    label: 'Ticket - Conference Only'
+  '0:main_slot:0:grid_slot:1:4f77b036-cae4-4b51-81cd-09c7cacc62e1':
+    parent_uuid: e5327a48-2fe0-4812-9222-6ccbce22caf0
+    slot: grid_slot
+    uuid: 4f77b036-cae4-4b51-81cd-09c7cacc62e1
+    component_id: sdc.drupal_india_connect.ticket
+    component_version: caaf5142bd0ec49e
+    inputs:
+      eyebrow: 'Early Bird'
+      title: 'AI Summit + Conference'
+      text: 'Get Day 1 AI Summit + Day 2 and Day 3 Conference access at the Early Bird rate.'
+      includes: 'AI Summit · Conference'
+      price: '₹5,500'
+      price_note: 'per attendee'
+      availability: 'Limited Early Bird allocation'
+      cta_label: 'Get this ticket'
+      cta_url:
+        uri: 'internal:/'
+        options: {  }
+      accent: primary-50
+    label: 'Ticket - AI Summit + Conference'
+  '0:main_slot:0:grid_slot:2:7b183d39-448a-4c9b-8bbb-b4d006f68bb0':
+    parent_uuid: e5327a48-2fe0-4812-9222-6ccbce22caf0
+    slot: grid_slot
+    uuid: 7b183d39-448a-4c9b-8bbb-b4d006f68bb0
+    component_id: sdc.drupal_india_connect.ticket
+    component_version: caaf5142bd0ec49e
+    inputs:
+      eyebrow: 'Early Bird'
+      title: 'Full Combo'
+      text: 'Go for the full experience: AI Summit + Conference + Networking at the Early Bird rate.'
+      includes: 'AI Summit · Conference · Networking'
+      price: '₹7,000'
+      price_note: 'per attendee'
+      availability: 'Limited Early Bird allocation'
+      cta_label: 'Get this ticket'
+      cta_url:
+        uri: 'internal:/'
+        options: {  }
+      accent: secondary
+    label: 'Ticket - Full Combo'
+  '0:main_slot:1:c4f05593-0dbb-4396-bf5c-99a2576e0307':
+    parent_uuid: 52a40675-233a-4b13-b0aa-83ede512e553
+    slot: main_slot
+    uuid: c4f05593-0dbb-4396-bf5c-99a2576e0307
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Workshop is always booked separately. Final availability dates can be added once they are confirmed in the ticket sheet.</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Design note'
