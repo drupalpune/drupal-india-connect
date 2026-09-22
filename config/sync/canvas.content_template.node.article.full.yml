@@ -1,0 +1,80 @@
+uuid: 4f561f97-3f3f-4201-a15d-246afc144e2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.image
+    - canvas.component.sdc.event_horizon.text
+    - core.entity_view_mode.node.full
+    - field.field.media.image.field_media_image
+    - field.field.node.article.body
+    - field.field.node.article.field_featured_image
+    - filter.format.content_format
+    - filter.format.plain_text
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - node.type.article
+  module:
+    - file
+    - media
+    - node
+    - options
+id: node.article.full
+content_entity_type_id: node
+content_entity_type_bundle: article
+content_entity_type_view_mode: full
+component_tree:
+  '0:e9ed7924-c274-4ec7-af7c-2f73bce0973e':
+    uuid: e9ed7924-c274-4ec7-af7c-2f73bce0973e
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: md
+  '1:7c38adba-da9e-41c5-bc69-bfb85b513ef2':
+    uuid: 7c38adba-da9e-41c5-bc69-bfb85b513ef2
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text:
+        sourceType: entity-field
+        expression: 'ℹ︎␜entity:node:article␝title␞␟value'
+      level: 2
+      text_size: heading-responsive-4xl
+      text_color: default
+      align: center
+      style: default
+  '2:8238c1a7-9175-430e-bb4c-19b79fcb5ba8':
+    uuid: 8238c1a7-9175-430e-bb4c-19b79fcb5ba8
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: sm
+  '3:66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced':
+    uuid: 66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced
+    component_id: sdc.event_horizon.image
+    component_version: d77451010df91d0e
+    inputs:
+      media:
+        sourceType: entity-field
+        expression: 'ℹ︎␜entity:node:article␝field_featured_image␞␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
+      size: '16:9'
+      radius: large
+  '4:61bc4f1f-3921-4f37-a46d-61e492d1f4a0':
+    uuid: 61bc4f1f-3921-4f37-a46d-61e492d1f4a0
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: sm
+  '5:58542a4d-edd3-416f-a5d3-200cd9f39952':
+    uuid: 58542a4d-edd3-416f-a5d3-200cd9f39952
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        sourceType: entity-field
+        expression: 'ℹ︎␜entity:node:article␝body␞␟processed'
+      text_size: normal
+      text_color: default
+exposed_slots: {  }
