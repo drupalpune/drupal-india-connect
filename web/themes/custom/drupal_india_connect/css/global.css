@@ -530,3 +530,30 @@ h2.eh-heading,
 .session-detail__pager {
   margin-top: var(--sp2);
 }
+
+/*
+ * Article full view (Canvas content template node.article.full): title
+ * in the logo navy, headings inside the body field in the logo blue.
+ * The template's heading/text components are left on text_color
+ * "default" so these win without per-article edits.
+ */
+.page-node-type-article .site-main .eh-heading {
+  color: var(--color--primary-20);
+}
+
+.page-node-type-article .site-main .eh-text :is(h2, h3, h4, h5, h6) {
+  color: var(--color--primary-50);
+}
+
+/*
+ * Body copy pasted from Google Docs wraps heading text in spans with an
+ * inline `color: #000000`; only !important beats an inline style.
+ */
+.page-node-type-article .site-main .eh-text :is(h2, h3, h4, h5, h6) * {
+  color: inherit !important;
+}
+
+/* Same Google Docs paste leaves an inline `padding-inline-start: 48px` on lists. */
+.page-node-type-article .site-main .eh-text ul {
+  padding-inline-start: unset !important;
+}
