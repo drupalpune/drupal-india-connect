@@ -13,6 +13,7 @@ dependencies:
     - canvas.component.sdc.event_horizon.text
     - core.entity_view_mode.node.full
     - field.field.media.image.field_media_image
+    - field.field.media.svg_image.field_media_svg_image
     - field.field.node.article.body
     - field.field.node.article.field_featured_image
     - filter.format.canvas_html_block
@@ -20,7 +21,11 @@ dependencies:
     - filter.format.plain_text
     - image.style.canvas_parametrized_width
     - media.type.image
+    - media.type.svg_image
     - node.type.article
+  content:
+    - 'file:file:259187c7-0eec-436e-ad50-0da59c77cb8d'
+    - 'media:image:be0042d2-b8fc-4c68-8cdb-ae0af5294c42'
   module:
     - file
     - link
@@ -106,7 +111,8 @@ component_tree:
     component_version: 26ebbd8a6b31ad9d
     inputs:
       width: 80%
-      columns: '100'
+      columns: 50-50
+      views_columns: 50-50
       mobile_columns: '1'
       margin_block_start: '0'
       margin_block_end: '0'
@@ -117,7 +123,18 @@ component_tree:
       dark_background: true
       section_header: false
       section_footer: false
-  '3:main_slot:0:a7f8ed6c-3daf-4281-adc6-4d836425312f':
+  '3:main_slot:0:4c835761-8458-4232-89a2-cc255e51ff37':
+    parent_uuid: b6f3ed02-2cbc-4b4b-a0ff-2d5d7f9e5e4b
+    slot: main_slot
+    uuid: 4c835761-8458-4232-89a2-cc255e51ff37
+    component_id: sdc.event_horizon.image
+    component_version: d77451010df91d0e
+    inputs:
+      media:
+        target_id: '21'
+      size: '3:2'
+      radius: small
+  '3:main_slot:1:a7f8ed6c-3daf-4281-adc6-4d836425312f':
     parent_uuid: b6f3ed02-2cbc-4b4b-a0ff-2d5d7f9e5e4b
     slot: main_slot
     uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
@@ -127,9 +144,10 @@ component_tree:
       flex_direction: column
       flex_gap: md
       items_align: start
-      flex_align: start
+      flex_align: center
       padding: md
-  '3:main_slot:0:group_slot:0:283bec1c-7eca-4e8c-b0b7-5edf5147053f':
+      equal_children: false
+  '3:main_slot:1:group_slot:0:283bec1c-7eca-4e8c-b0b7-5edf5147053f':
     parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
     slot: group_slot
     uuid: 283bec1c-7eca-4e8c-b0b7-5edf5147053f
@@ -138,7 +156,7 @@ component_tree:
     inputs:
       text: 'Call for speakers'
       tone: on-dark
-  '3:main_slot:0:group_slot:1:5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68':
+  '3:main_slot:1:group_slot:1:5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68':
     parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
     slot: group_slot
     uuid: 5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68
@@ -151,7 +169,7 @@ component_tree:
       text_color: default
       align: left
       style: default
-  '3:main_slot:0:group_slot:2:d4ab5986-ae25-4de0-affe-fb40832188a4':
+  '3:main_slot:1:group_slot:2:d4ab5986-ae25-4de0-affe-fb40832188a4':
     parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
     slot: group_slot
     uuid: d4ab5986-ae25-4de0-affe-fb40832188a4
@@ -163,7 +181,7 @@ component_tree:
         format: canvas_html_block
       text_size: text-lg
       text_color: default
-  '3:main_slot:0:group_slot:3:837bb9c1-90a5-4f4a-beba-4718e896a19e':
+  '3:main_slot:1:group_slot:3:837bb9c1-90a5-4f4a-beba-4718e896a19e':
     parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
     slot: group_slot
     uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
@@ -174,7 +192,7 @@ component_tree:
       flex_gap: md
       items_align: start
       flex_align: start
-  '3:main_slot:0:group_slot:3:group_slot:0:266cf110-d439-4621-947c-96082d3f1b77':
+  '3:main_slot:1:group_slot:3:group_slot:0:266cf110-d439-4621-947c-96082d3f1b77':
     parent_uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
     slot: group_slot
     uuid: 266cf110-d439-4621-947c-96082d3f1b77
@@ -183,22 +201,9 @@ component_tree:
     inputs:
       variant: primary-inverted
       label: 'Submit a session'
-      href: /call-for-speaker-details
-      size: large
-      icon: arrow-right
-      mobile_width: true
-      icon_first: false
-      disabled: false
-  '3:main_slot:0:group_slot:3:group_slot:1:004b8628-7e0c-443c-b8d9-b8551b835aeb':
-    parent_uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
-    slot: group_slot
-    uuid: 004b8628-7e0c-443c-b8d9-b8551b835aeb
-    component_id: sdc.event_horizon.button
-    component_version: 0ca665b3987e81dd
-    inputs:
-      variant: secondary-inverted
-      label: Register
-      href: /user/register
+      href:
+        uri: 'internal:/call-for-speaker-details'
+        options: {  }
       size: large
       icon: arrow-right
       mobile_width: true
