@@ -1,0 +1,42 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Story Card'
+description: 'A featured story teaser: an eyebrow above a framed card holding a heading, a short teaser, a "read more" button and an optional image. Built for the homepage community-story band; place it inside a Section.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - heading
+  properties:
+    label:
+      type: string
+      title: 'Eyebrow'
+      description: 'Optional small uppercase label shown above the card.'
+      examples:
+        - 'Community story'
+    heading:
+      type: string
+      title: Heading
+      examples:
+        - 'From DrupalCon Asia to DrupalAsia Connect: A New Chapter for Our Community'
+    teaser:
+      type: string
+      title: Teaser
+      description: 'One or two sentences.'
+      examples:
+        - 'Discover how our regional gatherings have evolved, what this new chapter means for open-source collaboration across Asia, and why we''re uniting under a shared vision for 2027 and beyond.'
+    cta_label:
+      type: string
+      title: 'Button label'
+      examples:
+        - 'Read the full story'
+    cta_url:
+      type: string
+      title: 'Button link'
+      format: uri-reference
+      examples:
+        - /blog/from-drupalcon-asia-to-drupalasia-connect
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: 'Image (optional)'
+      type: object

@@ -20,3 +20,9 @@ profile-nudge:
   dependencies:
     - core/drupal
     - core/once
+
+blog:
+  version: 1.x
+  css:
+    theme:
+      css/blog.css: {}

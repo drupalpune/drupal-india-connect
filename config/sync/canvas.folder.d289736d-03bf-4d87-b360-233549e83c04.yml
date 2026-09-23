@@ -18,6 +18,7 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.section-heading
     - canvas.component.sdc.drupal_india_connect.spacer
     - canvas.component.sdc.drupal_india_connect.sponsor-tier
+    - canvas.component.sdc.drupal_india_connect.story-card
     - canvas.component.sdc.drupal_india_connect.text-countdown
     - canvas.component.sdc.drupal_india_connect.text-media
     - canvas.component.sdc.drupal_india_connect.venue-location
@@ -40,6 +41,7 @@ items:
   - sdc.drupal_india_connect.section-heading
   - sdc.drupal_india_connect.spacer
   - sdc.drupal_india_connect.sponsor-tier
+  - sdc.drupal_india_connect.story-card
   - sdc.drupal_india_connect.text-countdown
   - sdc.drupal_india_connect.text-media
   - sdc.drupal_india_connect.venue-location

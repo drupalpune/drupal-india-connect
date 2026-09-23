@@ -314,3 +314,16 @@ function drupal_india_connect_preprocess_menu__footer_social(array &$variables) 
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view.
+ *
+ * The blog listing's header and empty text are styled by the blog library,
+ * which the article card template also attaches; attach it here too so an
+ * empty /blog is styled.
+ */
+function drupal_india_connect_preprocess_views_view(array &$variables) {
+  if ($variables['view']->id() === 'blog') {
+    $variables['#attached']['library'][] = 'drupal_india_connect/blog';
+  }
+}

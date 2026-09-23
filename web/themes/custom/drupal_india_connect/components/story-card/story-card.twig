@@ -1,0 +1,44 @@
+{% set has_media = media.src is not empty %}
+
+<div class="story-card{{ has_media ? ' story-card--has-media' }}">
+  {% if label is not empty %}
+    <p class="story-card__label">{{ label }}</p>
+  {% endif %}
+
+  <div class="story-card__card">
+    <div class="story-card__content">
+      {% if heading is not empty %}
+        <h2 class="story-card__title">{{ heading }}</h2>
+      {% endif %}
+
+      {% if teaser is not empty %}
+        <p class="story-card__teaser">{{ teaser }}</p>
+      {% endif %}
+
+      {% if cta_url is not empty %}
+        <div class="story-card__actions">
+          {% include 'event_horizon:button' ignore missing with {
+            label: cta_label|default('Read the full story'|t),
+            href: cta_url,
+            variant: 'primary',
+            size: 'medium',
+            icon: 'arrow-right',
+            mobile_width: true,
+          } only %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if has_media %}
+      <div class="story-card__media">
+        {% include 'canvas:image' ignore missing with {
+          src: media.src,
+          alt: media.alt,
+          class: 'story-card__image',
+          width: media.width,
+          height: media.height,
+        } only %}
+      </div>
+    {% endif %}
+  </div>
+</div>

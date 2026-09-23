@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Article in the "card" view mode, as listed on /blog (views.view.blog).
+ *
+ * The excerpt comes from the body's summary if one was entered, otherwise
+ * from the start of the body. Body is hidden in the card display itself,
+ * so it is read from the entity here and stripped of markup — pasted
+ * Google Docs content carries inline styles that must not leak into cards.
+ */
+#}
+{{ attach_library('drupal_india_connect/blog') }}
+{% set body = node.body.0 %}
+{% set excerpt = (body.summary ?: body.value)|default('')|striptags|replace({'&nbsp;': ' '})|trim %}
+{% if excerpt|length > 180 %}
+  {% set excerpt = excerpt|slice(0, 180)|split(' ')|slice(0, -1)|join(' ') ~ '…' %}
+{% endif %}
+
+<article{{ attributes.addClass('dac-post-card') }}>
+  {% if content.field_featured_image|render|trim is not empty %}
+    <div class="dac-post-card__media">{{ content.field_featured_image }}</div>
+  {% endif %}
+
+  <div class="dac-post-card__body">
+    <time class="dac-post-card__date" datetime="{{ node.getCreatedTime()|date('c') }}">
+      {{ node.getCreatedTime()|format_date('custom', 'j F Y') }}
+    </time>
+
+    {{ title_prefix }}
+    <h2{{ title_attributes.addClass('dac-post-card__title') }}>
+      <a href="{{ url }}" class="dac-post-card__link" rel="bookmark">{{ label }}</a>
+    </h2>
+    {{ title_suffix }}
+
+    {% if excerpt is not empty %}
+      <p class="dac-post-card__excerpt">{{ excerpt }}</p>
+    {% endif %}
+
+    <span class="dac-post-card__more" aria-hidden="true">
+      {{ 'Read the post'|t }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+    </span>
+  </div>
+</article>
