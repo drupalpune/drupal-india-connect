@@ -3,7 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
     - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.event_horizon.button
+    - canvas.component.sdc.event_horizon.group
     - canvas.component.sdc.event_horizon.heading
     - canvas.component.sdc.event_horizon.image
     - canvas.component.sdc.event_horizon.section
@@ -12,6 +15,7 @@ dependencies:
     - field.field.media.image.field_media_image
     - field.field.node.article.body
     - field.field.node.article.field_featured_image
+    - filter.format.canvas_html_block
     - filter.format.content_format
     - filter.format.plain_text
     - image.style.canvas_parametrized_width
@@ -19,21 +23,29 @@ dependencies:
     - node.type.article
   module:
     - file
+    - link
     - media
     - node
     - options
+    - text
 id: node.article.full
 content_entity_type_id: node
 content_entity_type_bundle: article
 content_entity_type_view_mode: full
 component_tree:
-  e9ed7924-c274-4ec7-af7c-2f73bce0973e:
-    uuid: e9ed7924-c274-4ec7-af7c-2f73bce0973e
+  '0:61bc4f1f-3921-4f37-a46d-61e492d1f4a0':
+    uuid: 61bc4f1f-3921-4f37-a46d-61e492d1f4a0
     component_id: sdc.drupal_india_connect.spacer
     component_version: d83b87a148d92563
     inputs:
-      size: md
-  a045000c-0778-48e8-b0b6-185b667ba2fd:
+      size: sm
+  '1:8238c1a7-9175-430e-bb4c-19b79fcb5ba8':
+    uuid: 8238c1a7-9175-430e-bb4c-19b79fcb5ba8
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: sm
+  '2:a045000c-0778-48e8-b0b6-185b667ba2fd':
     uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
     component_id: sdc.event_horizon.section
     component_version: 26ebbd8a6b31ad9d
@@ -49,7 +61,7 @@ component_tree:
       dark_background: false
       section_header: false
       section_footer: false
-  7c38adba-da9e-41c5-bc69-bfb85b513ef2:
+  '2:main_slot:0:7c38adba-da9e-41c5-bc69-bfb85b513ef2':
     parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
     slot: main_slot
     uuid: 7c38adba-da9e-41c5-bc69-bfb85b513ef2
@@ -64,7 +76,7 @@ component_tree:
       text_color: default
       align: center
       style: default
-  66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced:
+  '2:main_slot:1:66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced':
     parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
     slot: main_slot
     uuid: 66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced
@@ -74,9 +86,9 @@ component_tree:
       media:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:article␝field_featured_image␞␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
-      size: '16:9'
+      size: '2:1'
       radius: large
-  58542a4d-edd3-416f-a5d3-200cd9f39952:
+  '2:main_slot:2:58542a4d-edd3-416f-a5d3-200cd9f39952':
     parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
     slot: main_slot
     uuid: 58542a4d-edd3-416f-a5d3-200cd9f39952
@@ -88,16 +100,114 @@ component_tree:
         expression: 'ℹ︎␜entity:node:article␝body␞␟processed'
       text_size: normal
       text_color: default
-  8238c1a7-9175-430e-bb4c-19b79fcb5ba8:
-    uuid: 8238c1a7-9175-430e-bb4c-19b79fcb5ba8
+  '3:b6f3ed02-2cbc-4b4b-a0ff-2d5d7f9e5e4b':
+    uuid: b6f3ed02-2cbc-4b4b-a0ff-2d5d7f9e5e4b
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 80%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      background_color: black
+      full_width: true
+      dark_background: true
+      section_header: false
+      section_footer: false
+  '3:main_slot:0:a7f8ed6c-3daf-4281-adc6-4d836425312f':
+    parent_uuid: b6f3ed02-2cbc-4b4b-a0ff-2d5d7f9e5e4b
+    slot: main_slot
+    uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+      padding: md
+  '3:main_slot:0:group_slot:0:283bec1c-7eca-4e8c-b0b7-5edf5147053f':
+    parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
+    slot: group_slot
+    uuid: 283bec1c-7eca-4e8c-b0b7-5edf5147053f
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Call for speakers'
+      tone: on-dark
+  '3:main_slot:0:group_slot:1:5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68':
+    parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
+    slot: group_slot
+    uuid: 5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'The programme is yours to write'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+      style: default
+  '3:main_slot:0:group_slot:2:d4ab5986-ae25-4de0-affe-fb40832188a4':
+    parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
+    slot: group_slot
+    uuid: d4ab5986-ae25-4de0-affe-fb40832188a4
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Propose a 45-minute talk or a 20-minute lightning talk on any track. Accepted sessions receive a free ticket to the event.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+  '3:main_slot:0:group_slot:3:837bb9c1-90a5-4f4a-beba-4718e896a19e':
+    parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
+    slot: group_slot
+    uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: row
+      flex_gap: md
+      items_align: start
+      flex_align: start
+  '3:main_slot:0:group_slot:3:group_slot:0:266cf110-d439-4621-947c-96082d3f1b77':
+    parent_uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
+    slot: group_slot
+    uuid: 266cf110-d439-4621-947c-96082d3f1b77
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: primary-inverted
+      label: 'Submit a session'
+      href: /call-for-speaker-details
+      size: large
+      icon: arrow-right
+      mobile_width: true
+      icon_first: false
+      disabled: false
+  '3:main_slot:0:group_slot:3:group_slot:1:004b8628-7e0c-443c-b8d9-b8551b835aeb':
+    parent_uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
+    slot: group_slot
+    uuid: 004b8628-7e0c-443c-b8d9-b8551b835aeb
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: secondary-inverted
+      label: Register
+      href: /user/register
+      size: large
+      icon: arrow-right
+      mobile_width: true
+      icon_first: false
+      disabled: false
+  '4:e9ed7924-c274-4ec7-af7c-2f73bce0973e':
+    uuid: e9ed7924-c274-4ec7-af7c-2f73bce0973e
     component_id: sdc.drupal_india_connect.spacer
     component_version: d83b87a148d92563
     inputs:
-      size: sm
-  61bc4f1f-3921-4f37-a46d-61e492d1f4a0:
-    uuid: 61bc4f1f-3921-4f37-a46d-61e492d1f4a0
-    component_id: sdc.drupal_india_connect.spacer
-    component_version: d83b87a148d92563
-    inputs:
-      size: sm
+      size: md
 exposed_slots: {  }

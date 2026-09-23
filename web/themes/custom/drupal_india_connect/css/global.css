@@ -557,3 +557,42 @@ h2.eh-heading,
 .page-node-type-article .site-main .eh-text ul {
   padding-inline-start: unset !important;
 }
+
+/*
+ * Call-for-speakers band closing the article template: a full-bleed navy
+ * section (`background_color: black`, re-pointed at the logo navy above)
+ * whose content stays on the article's 80% column. Follows the
+ * prototype's CFP band: on-dark eyebrow, white heading, blue-grey body,
+ * solid white + ghost-white buttons.
+ */
+/* The group's padding lines the copy up with the article text on desktop,
+ * but on phones it only indents it further than the article above. */
+@media (max-width: 699px) {
+  .page-node-type-article .site-main .eh-section--bg-black .eh-group {
+    padding-inline: 0;
+  }
+}
+
+.page-node-type-article .site-main .eh-section--bg-black .eh-heading {
+  color: var(--neutral-white);
+}
+
+.page-node-type-article .site-main .eh-section--bg-black .eh-text {
+  max-width: 36rem;
+  /* The design system's on-dark body colour (--text-on-dark-body), derived
+   * from the primary hue. The theme's --text-on-neutral-dark-secondary is
+   * orange here, which is for links, not prose. */
+  color: hsl(var(--color--primary-hue) 40% 83%);
+}
+
+.page-node-type-article .site-main .eh-section--bg-black .eh-button--secondary-inverted {
+  color: var(--neutral-white);
+  border-color: rgb(255 255 255 / 0.4);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color--primary-20);
+    border-color: var(--neutral-white);
+    background-color: var(--neutral-white);
+  }
+}
