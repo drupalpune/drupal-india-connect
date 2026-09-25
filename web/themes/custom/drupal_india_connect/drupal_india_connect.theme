@@ -23,7 +23,7 @@ function drupal_india_connect_preprocess_page(array &$variables) {
     '#type' => 'component',
     '#component' => 'drupal_india_connect:announcement-bar',
     '#props' => [
-      'message' => 'Save the date — 21–23 January 2027',
+      'message' => 'Save the date — 28–30 January 2027',
       'detail' => 'IIT Bombay',
       'variant' => 'secondary',
     ],
