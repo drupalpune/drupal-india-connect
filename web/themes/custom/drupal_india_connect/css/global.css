@@ -492,39 +492,154 @@ h2.eh-heading,
   }
 }
 
+/*
+ * "Session details" card: white panel, hairline border, 8px radius and the
+ * system's 3px primary top accent. Each detail is a <dt>/<dd> pair: an
+ * eyebrow-sized label over its value.
+ */
 .session-metadata {
   padding: var(--sp1-5);
   border: 1px solid var(--color--sky-90);
+  border-top: solid 3px var(--color--primary-50);
   border-radius: 0.5rem;
-  background-color: var(--color--sky-97);
+  background-color: var(--color--white);
 }
 
-.session-metadata #session-meta-heading {
+.session-metadata .session-metadata__heading {
   margin-block: 0 var(--sp1);
-  font-size: 1.0625rem;
+  color: var(--color--secondary-50);
+  font-size: 0.75rem;
   font-weight: 700;
-  text-transform: none;
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .session-metadata__action {
-  margin-bottom: var(--sp1-5);
+  margin-block-end: var(--sp1);
 }
 
 .session-metadata__list {
   display: flex;
   flex-direction: column;
-  gap: var(--sp1);
+  margin: 0;
 }
 
 .session-metadata__item {
-  padding-bottom: var(--sp1);
-  border-bottom: 1px solid var(--color--sky-90);
-  font-size: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-25);
+  padding-block: var(--sp0-75);
+  border-block-end: 1px solid var(--color--sky-90);
+}
+
+.session-metadata__item:first-child {
+  padding-block-start: 0;
 }
 
 .session-metadata__item:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+
+.session-metadata__label {
+  color: var(--color--night-30);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.session-metadata__value {
+  margin: 0;
+  color: var(--color--night-5);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* The <dt> already names each detail: drop the formatters' own labels
+   (visible and screen-reader-only, which would be read twice) and their
+   Font Awesome icons (outside the brand's closed icon set). */
+.session-metadata__value .field__label,
+.session-metadata__value .meta__icon-label,
+.session-metadata__value .meta-field > svg {
+  display: none;
+}
+
+.session-metadata__value .meta-field {
+  display: inline;
+}
+
+.session-metadata__value a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--color--secondary-50);
+    text-underline-offset: 0.2em;
+  }
+}
+
+/* Speakers: round avatar beside the name, one row per speaker. */
+.session-metadata__item--speakers .session-metadata__value > *,
+.session-metadata__item--speakers .field__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+}
+
+.session-metadata__value .user-compact {
+  display: flex;
+  align-items: center;
+  gap: var(--sp0-75);
+  margin: 0;
+}
+
+.session-metadata__value .user-compact__media img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--color--sky-97);
+}
+
+.session-metadata__value .user-compact__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Tags: 4px-radius chips. */
+.session-metadata__item--tags .field__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp0-5);
+}
+
+.session-metadata__item--tags .field__item a {
+  display: inline-block;
+  padding: var(--sp0-25) var(--sp0-5);
+  border-radius: 0.25rem;
+  background-color: var(--color--sky-97);
+  color: var(--color--primary-50);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: background-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color--sky-90);
+    text-decoration: none;
+  }
 }
 
 .session-detail__pager {
@@ -595,4 +710,24 @@ h2.eh-heading,
     border-color: var(--neutral-white);
     background-color: var(--neutral-white);
   }
+}
+
+/* "Evaluate this session" (moderators only), above the Session details card. */
+.session-detail__evaluation {
+  margin-block-end: var(--sp1);
+}
+
+/* event_horizon's primary button (form submits, login, "Evaluate this
+   session", job links) keeps its blue text on hover/focus/active while
+   darkening the background to near-navy, which is unreadable. */
+.button--primary:is(:hover, :focus, :active) {
+  color: var(--color--white);
+}
+
+/* Dialog close button: Gin centres it with top: 50% + translateY(-50%), but
+   jQuery UI's own stylesheet (attached later, when the dialog opens) adds
+   margin-top: -10px for its older centring method, pushing the × 10px up
+   into the corner. The extra .ui-dialog-titlebar outranks both. */
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+  margin-block: 0;
 }

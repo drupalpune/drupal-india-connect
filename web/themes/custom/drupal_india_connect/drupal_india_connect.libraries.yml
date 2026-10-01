@@ -26,3 +26,9 @@ blog:
   css:
     theme:
       css/blog.css: {}
+
+session-ratings:
+  version: 1.x
+  css:
+    theme:
+      css/session-ratings.css: {}
