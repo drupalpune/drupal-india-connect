@@ -55,51 +55,38 @@
       {% endif %}
 
       <aside class="session-metadata" aria-labelledby="session-meta-heading">
-        <h2 id="session-meta-heading">Session details</h2>
+        <h2 id="session-meta-heading" class="session-metadata__heading">Session details</h2>
 
-        {% if content.flag_my_schedule %}
-          <div class="session-metadata__action">
-            {{ content.flag_my_schedule }}
-          </div>
+        {#
+          Empty fields still produce a non-empty render array (cache
+          metadata), so `{% if content.field_x %}` printed blank rows.
+          Render each one first and only print it when it has content.
+        #}
+        {% set schedule_action = content.flag_my_schedule|render %}
+        {% if schedule_action|striptags|trim is not empty %}
+          <div class="session-metadata__action">{{ schedule_action }}</div>
         {% endif %}
 
-        <div class="session-metadata__list">
-          {% if content.field_speakers %}
-            <div class="session-metadata__item session-metadata__item--speakers">
-              {{ content.field_speakers }}
-            </div>
-          {% endif %}
-          {% if content.field_time_slot %}
-            <div class="session-metadata__item">
-              {{ content.field_time_slot }}
-            </div>
-          {% endif %}
-          {% if content.field_session_category %}
-            <div class="session-metadata__item">
-              {{ content.field_session_category }}
-            </div>
-          {% endif %}
-          {% if content.field_r %}
-            <div class="session-metadata__item">
-              {{ content.field_r }}
-            </div>
-          {% endif %}
-          {% if content.field_audience %}
-            <div class="session-metadata__item">
-              {{ content.field_audience }}
-            </div>
-          {% endif %}
-          {% if content.field_type %}
-            <div class="session-metadata__item">
-              {{ content.field_type }}
-            </div>
-          {% endif %}
-          {% if content.field_session_tags %}
-            <div class="session-metadata__item session-metadata__item--tags">
-              {{ content.field_session_tags }}
-            </div>
-          {% endif %}
-        </div>
+        {% set details = [
+          { label: 'Speakers'|t, value: content.field_speakers|render, modifier: 'speakers' },
+          { label: 'Time slot'|t, value: content.field_time_slot|render, modifier: 'time' },
+          { label: 'Room'|t, value: content.field_r|render, modifier: 'room' },
+          { label: 'Category'|t, value: content.field_session_category|render, modifier: 'category' },
+          { label: 'Level'|t, value: content.field_audience|render, modifier: 'level' },
+          { label: 'Type'|t, value: content.field_type|render, modifier: 'type' },
+          { label: 'Tags'|t, value: content.field_session_tags|render, modifier: 'tags' },
+        ] %}
+
+        <dl class="session-metadata__list">
+          {% for detail in details %}
+            {% if detail.value|striptags|trim is not empty %}
+              <div class="session-metadata__item session-metadata__item--{{ detail.modifier }}">
+                <dt class="session-metadata__label">{{ detail.label }}</dt>
+                <dd class="session-metadata__value">{{ detail.value }}</dd>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </dl>
       </aside>
     </div>
   </div>
