@@ -596,3 +596,23 @@ h2.eh-heading,
     background-color: var(--neutral-white);
   }
 }
+
+/* "Evaluate this session" (moderators only), above the Session details card. */
+.session-detail__evaluation {
+  margin-block-end: var(--sp1);
+}
+
+/* event_horizon's primary button (form submits, login, "Evaluate this
+   session", job links) keeps its blue text on hover/focus/active while
+   darkening the background to near-navy, which is unreadable. */
+.button--primary:is(:hover, :focus, :active) {
+  color: var(--color--white);
+}
+
+/* Dialog close button: Gin centres it with top: 50% + translateY(-50%), but
+   jQuery UI's own stylesheet (attached later, when the dialog opens) adds
+   margin-top: -10px for its older centring method, pushing the × 10px up
+   into the corner. The extra .ui-dialog-titlebar outranks both. */
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+  margin-block: 0;
+}

@@ -27,7 +27,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Ratings - Proposed Sessions'
+      title: 'Rate proposed sessions'
       fields:
         title:
           id: title
@@ -39,7 +39,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Title
+          label: Session
           exclude: false
           alter:
             alter_text: false
@@ -85,7 +85,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: Speaker(s)
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -213,11 +213,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: Ratings
+          label: Rating
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="/form/session-evaluation?session={{ nid }}&destination=sessions/ratings">Evaluate</a>'
+            text: '<a class="dac-ratings__action" href="/form/session-evaluation?session={{ nid }}&destination=sessions/ratings">Rate session</a>'
             make_link: false
             path: ''
             absolute: false
@@ -263,7 +263,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 50
+          items_per_page: 10
           total_pages: null
           id: 0
           tags:
@@ -272,7 +272,7 @@ display:
             first: '« First'
             last: 'Last »'
           expose:
-            items_per_page: true
+            items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '10, 25, 50, 100'
             items_per_page_options_all: true
@@ -503,7 +503,29 @@ display:
           entity_type: node
           plugin_id: webform_views_entity_reverse
           required: false
-      header: {  }
+      css_class: dac-ratings
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<header class="dac-ratings__header"><p class="dac-ratings__eyebrow">Session review</p><h1 class="dac-ratings__title">Rate proposed sessions</h1><p class="dac-ratings__intro">Score each session from 1 to 10 on importance of topic, originality and authority. Once you rate a session it moves to “Already rated by you”, where you can change your scores.</p></header>'
+          tokenize: false
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: '<span class="dac-ratings__count">Sessions to rate: @total</span>'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -535,7 +557,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Title
+          label: Session
           exclude: false
           alter:
             alter_text: false
@@ -685,7 +707,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: edit
+          text: 'Change scores'
           output_url_as_text: false
           absolute: false
         webform_submission_value:
@@ -700,7 +722,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ webform_submission_value }} ({{ edit_webform_submission }})'
+            text: '<span class="dac-ratings__score">{{ webform_submission_value }}<span class="dac-ratings__score-max"> / 10</span></span> {{ edit_webform_submission }}'
             make_link: false
             path: ''
             absolute: false
@@ -782,22 +804,22 @@ display:
           break_phrase: false
           not: false
       defaults:
+        css_class: false
         fields: false
         arguments: false
         header: false
+      css_class: 'dac-ratings dac-ratings--rated'
       header:
-        area:
-          id: area
+        area_text_custom:
+          id: area_text_custom
           table: views
-          field: area
+          field: area_text_custom
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
+          plugin_id: text_custom
           empty: false
-          content:
-            value: '<h2>Already Rated By You</h2>'
-            format: basic_html
+          content: '<h2 class="dac-ratings__subtitle">Already rated by you</h2>'
           tokenize: false
       display_extenders: {  }
       displays:
@@ -823,18 +845,16 @@ display:
     position: 1
     display_options:
       empty:
-        area:
-          id: area
+        area_text_custom:
+          id: area_text_custom
           table: views
-          field: area
+          field: area_text_custom
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
+          plugin_id: text_custom
           empty: true
-          content:
-            value: 'Congratulations! There are no more sessions for you to review. If the whole team has finished evaluating the sessions, you can move on to <a href="/sessions/moderation">bulk moderate the sessions</a>, which will also notify the session creators of your decisions.'
-            format: basic_html
+          content: '<p class="dac-ratings__done">You have rated every proposed session. When the whole team has finished, <a href="/admin/content/session-moderation">moderate the sessions in bulk</a>, which also notifies the session creators of your decisions.</p>'
           tokenize: false
       defaults:
         empty: false

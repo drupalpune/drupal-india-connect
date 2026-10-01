@@ -197,11 +197,15 @@ access:
     users: {  }
     permissions: {  }
   view_own:
-    roles: {  }
+    roles:
+      - session_moderator
+      - administrator
     users: {  }
     permissions: {  }
   update_own:
-    roles: {  }
+    roles:
+      - session_moderator
+      - administrator
     users: {  }
     permissions: {  }
   delete_own:

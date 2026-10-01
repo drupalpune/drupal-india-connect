@@ -326,4 +326,44 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
   if ($variables['view']->id() === 'blog') {
     $variables['#attached']['library'][] = 'drupal_india_connect/blog';
   }
+  if ($variables['view']->id() === 'session_ratings') {
+    $variables['#attached']['library'][] = 'drupal_india_connect/session-ratings';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ *
+ * Puts the session_evaluation view ("Evaluate this session" / "Your
+ * Evaluation") in the session page's sidebar column, above the "Session
+ * details" card. It used to be a page block, which can only sit above or
+ * below the whole node, so that block placement is disabled and the same
+ * view is embedded here instead. Who sees it is unchanged: the view's own
+ * access restricts it to session moderators and administrators, and it
+ * only shows while the session is still Proposed.
+ */
+function drupal_india_connect_preprocess_node(array &$variables) {
+  $node = $variables['node'];
+  if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
+    return;
+  }
+
+  $variables['#cache']['contexts'][] = 'user.roles';
+  if (!$node->hasField('moderation_state') || $node->get('moderation_state')->value !== 'proposed') {
+    return;
+  }
+
+  $view = \Drupal\views\Views::getView('session_evaluation');
+  if (!$view || !$view->access('block_1')) {
+    return;
+  }
+
+  $variables['session_evaluation'] = [
+    '#type' => 'view',
+    '#name' => 'session_evaluation',
+    '#display_id' => 'block_1',
+    '#arguments' => [\Drupal::currentUser()->id(), $node->id()],
+    // The view shows the current user's own evaluation, if any.
+    '#cache' => ['contexts' => ['user']],
+  ];
 }

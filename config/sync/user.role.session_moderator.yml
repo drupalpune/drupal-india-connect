@@ -49,6 +49,7 @@ permissions:
   - 'view bof revisions'
   - 'view event_details config page entity'
   - 'view field_social_media_card'
+  - 'view field_speakers'
   - 'view latest version'
   - 'view session revisions'
   - 'view the administration theme'

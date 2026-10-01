@@ -49,53 +49,59 @@
       {% endif %}
     </div>
 
-    <aside class="session-metadata" aria-labelledby="session-meta-heading">
-      <h2 id="session-meta-heading">Session details</h2>
-
-      {% if content.flag_my_schedule %}
-        <div class="session-metadata__action">
-          {{ content.flag_my_schedule }}
-        </div>
+    <div class="session-detail__sidebar">
+      {% if session_evaluation %}
+        <div class="session-detail__evaluation">{{ session_evaluation }}</div>
       {% endif %}
 
-      <div class="session-metadata__list">
-        {% if content.field_speakers %}
-          <div class="session-metadata__item session-metadata__item--speakers">
-            {{ content.field_speakers }}
+      <aside class="session-metadata" aria-labelledby="session-meta-heading">
+        <h2 id="session-meta-heading">Session details</h2>
+
+        {% if content.flag_my_schedule %}
+          <div class="session-metadata__action">
+            {{ content.flag_my_schedule }}
           </div>
         {% endif %}
-        {% if content.field_time_slot %}
-          <div class="session-metadata__item">
-            {{ content.field_time_slot }}
-          </div>
-        {% endif %}
-        {% if content.field_session_category %}
-          <div class="session-metadata__item">
-            {{ content.field_session_category }}
-          </div>
-        {% endif %}
-        {% if content.field_r %}
-          <div class="session-metadata__item">
-            {{ content.field_r }}
-          </div>
-        {% endif %}
-        {% if content.field_audience %}
-          <div class="session-metadata__item">
-            {{ content.field_audience }}
-          </div>
-        {% endif %}
-        {% if content.field_type %}
-          <div class="session-metadata__item">
-            {{ content.field_type }}
-          </div>
-        {% endif %}
-        {% if content.field_session_tags %}
-          <div class="session-metadata__item session-metadata__item--tags">
-            {{ content.field_session_tags }}
-          </div>
-        {% endif %}
-      </div>
-    </aside>
+
+        <div class="session-metadata__list">
+          {% if content.field_speakers %}
+            <div class="session-metadata__item session-metadata__item--speakers">
+              {{ content.field_speakers }}
+            </div>
+          {% endif %}
+          {% if content.field_time_slot %}
+            <div class="session-metadata__item">
+              {{ content.field_time_slot }}
+            </div>
+          {% endif %}
+          {% if content.field_session_category %}
+            <div class="session-metadata__item">
+              {{ content.field_session_category }}
+            </div>
+          {% endif %}
+          {% if content.field_r %}
+            <div class="session-metadata__item">
+              {{ content.field_r }}
+            </div>
+          {% endif %}
+          {% if content.field_audience %}
+            <div class="session-metadata__item">
+              {{ content.field_audience }}
+            </div>
+          {% endif %}
+          {% if content.field_type %}
+            <div class="session-metadata__item">
+              {{ content.field_type }}
+            </div>
+          {% endif %}
+          {% if content.field_session_tags %}
+            <div class="session-metadata__item session-metadata__item--tags">
+              {{ content.field_session_tags }}
+            </div>
+          {% endif %}
+        </div>
+      </aside>
+    </div>
   </div>
 
   {% if content.flippy_pager %}
