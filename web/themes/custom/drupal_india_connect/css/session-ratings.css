@@ -129,9 +129,8 @@
   background-color: var(--color--sky-97);
 }
 
-/* Title and speaker links: no underline until hover, then secondary. */
-.dac-ratings .views-field-title a,
-.dac-ratings .views-field-field-speakers a {
+/* Title links: no underline until hover, then secondary. */
+.dac-ratings .views-field-title a {
   color: inherit;
   text-decoration: none;
 
@@ -145,12 +144,6 @@
 
 .dac-ratings .views-field-title a {
   font-weight: 600;
-}
-
-/* Same width in both tables so the two columns line up. */
-.dac-ratings .views-field-field-speakers {
-  width: 14rem;
-  color: var(--color--night-30);
 }
 
 /* Fixed width (fits "8.67 / 10  Change scores") so both tables' columns align. */
@@ -246,8 +239,7 @@
     margin-block-start: var(--sp0-5);
   }
 
-  .dac-ratings td.views-field-webform-submission-value,
-  .dac-ratings td.views-field-field-speakers {
+  .dac-ratings td.views-field-webform-submission-value {
     width: auto;
     text-align: start;
   }
