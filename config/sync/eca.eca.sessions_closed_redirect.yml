@@ -1,0 +1,86 @@
+uuid: 9193ec8f-e67e-4a45-bdcb-f0dfc138b70f
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_content
+    - eca_misc
+id: sessions_closed_redirect
+weight: 0
+template: false
+events:
+  Event_access_denied:
+    plugin: 'kernel:exception_status_code'
+    label: 'Access denied'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_and
+        condition: Condition_is_403
+conditions:
+  Condition_is_403:
+    plugin: eca_scalar
+    label: '403?'
+    configuration:
+      negate: false
+      left: '[event:code]'
+      right: '403'
+      operator: equal
+      type: value
+      case: false
+  Condition_is_session_form:
+    plugin: eca_scalar
+    label: 'Session submission form?'
+    configuration:
+      negate: false
+      left: '[current-page:url:path]'
+      right: /node/add/session
+      operator: equal
+      type: value
+      case: false
+  Condition_sessions_not_open:
+    plugin: eca_entity_field_value
+    label: 'Sessions not open?'
+    configuration:
+      negate: true
+      expected_value: sessions_open
+      field_name: moderation_state
+      operator: equal
+      type: value
+      case: false
+      entity: current_event
+gateways: {  }
+actions:
+  Activity_and:
+    label: AND
+    plugin: eca_void_and_condition
+    configuration: {  }
+    successors:
+      -
+        id: Activity_load_event
+        condition: Condition_is_session_form
+  Activity_load_event:
+    label: 'Load current event'
+    plugin: eca_token_load_entity
+    configuration:
+      token_name: current_event
+      from: id
+      entity_type: taxonomy_term
+      entity_id: '[config_page:event_details:field_current:target_id]'
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: entity
+    successors:
+      -
+        id: Activity_redirect
+        condition: Condition_sessions_not_open
+  Activity_redirect:
+    label: 'Redirect to the closed page'
+    plugin: action_goto_action
+    configuration:
+      url: /call-for-sessions-closed
+    successors: {  }
