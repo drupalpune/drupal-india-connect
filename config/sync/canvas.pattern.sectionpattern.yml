@@ -1,0 +1,555 @@
+uuid: ff7bbf66-be73-4ad9-ada2-c577fe01e2af
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.fact
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.hero-banner
+    - canvas.component.sdc.event_horizon.badge
+    - canvas.component.sdc.event_horizon.blockquote
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.image
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - field.field.media.image.field_media_image
+    - field.field.media.svg_image.field_media_svg_image
+    - filter.format.canvas_html_block
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - media.type.svg_image
+  content:
+    - 'file:file:5cfd3219-f1ff-4d1d-887f-8cb0b14bf450'
+    - 'file:file:632d683b-ec12-47b4-9d9b-b12346bd3e15'
+    - 'file:file:8c17fb22-82cc-45bb-9324-66a56918d19f'
+    - 'media:image:bf978059-f5eb-432d-a9f1-953bb91e5d4f'
+    - 'media:image:e5339635-9c93-47a9-be65-ef49093a489f'
+    - 'media:image:f3594ee9-e1ac-4e34-b5a8-0651a5285388'
+  module:
+    - file
+    - media
+    - options
+    - text
+id: sectionpattern
+label: 'AI Summit Content Overview'
+component_tree:
+  '0:a045000c-0778-48e8-b0b6-185b667ba2fd':
+    uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 90%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '48'
+      margin_block_end: '48'
+      padding_block_start: '0'
+      padding_block_end: '0'
+      full_width: false
+      dark_background: false
+      section_header: false
+      section_footer: false
+  '0:main_slot:0:f16460cf-21a7-4fa9-b367-ce3b6b1a22a5':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: f16460cf-21a7-4fa9-b367-ce3b6b1a22a5
+    component_id: sdc.drupal_india_connect.hero-banner
+    component_version: 31a36fa1908caa35
+    inputs:
+      kicker: 'The thinking behind Day 1 · AI Summit'
+      title_top: 'How an '
+      title_highlight: 'AI-Focused Day'
+      title_bottom: ' Became a Summit'
+      description:
+        value: '<p>The conversation started with AI. It became a much bigger question about problems, people, domains and how we build with intelligence responsibly.</p>'
+        format: canvas_html_block
+      date: '28 January 2027'
+      location: 'IIT Bombay'
+      image:
+        target_id: '52'
+      media_caption: 'IIT Bombay · AI Summit venue'
+  '0:main_slot:1:a7bc6f4a-eebc-4779-9b73-829cea632e73':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: a7bc6f4a-eebc-4779-9b73-829cea632e73
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:1:group_slot:0:d1f46176-64ed-4a31-8715-d3f210fd518a':
+    parent_uuid: a7bc6f4a-eebc-4779-9b73-829cea632e73
+    slot: group_slot
+    uuid: d1f46176-64ed-4a31-8715-d3f210fd518a
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Where it started'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:main_slot:1:group_slot:1:c854d70a-0131-4838-af5c-c378c0818fe2':
+    parent_uuid: a7bc6f4a-eebc-4779-9b73-829cea632e73
+    slot: group_slot
+    uuid: c854d70a-0131-4838-af5c-c378c0818fe2
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'The thinking behind Day 1 of DrupalAsia Connect India 2027'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+      style: default
+    label: 'Heading - One Drupal community, one continent'
+  '0:main_slot:1:group_slot:2:815e1cfc-f86e-4e77-a304-bbbbf6b6591c':
+    parent_uuid: a7bc6f4a-eebc-4779-9b73-829cea632e73
+    slot: group_slot
+    uuid: 815e1cfc-f86e-4e77-a304-bbbbf6b6591c
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>When we began shaping DrupalAsia Connect India 2027, Day 1 was still an open question.</p>'
+        format: canvas_html_block
+      text_size: text-xl
+      text_color: default
+  '0:main_slot:1:group_slot:3:1ce78467-94e9-4111-b56a-e8c9df1a5261':
+    parent_uuid: a7bc6f4a-eebc-4779-9b73-829cea632e73
+    slot: group_slot
+    uuid: 1ce78467-94e9-4111-b56a-e8c9df1a5261
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>AI was impossible to ignore. It was reshaping how people worked, built software and thought about technology. So dedicating the first day to AI felt natural. What was far less obvious was what that day should actually be.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:2:bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:2:group_slot:0:d72be6af-433e-4097-9773-d0ff049a4eed':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: d72be6af-433e-4097-9773-d0ff049a4eed
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The shift'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:main_slot:2:group_slot:1:d3f67136-05a7-453f-b422-7e3aded4976c':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: d3f67136-05a7-453f-b422-7e3aded4976c
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'The thinking behind Day 1 of DrupalAsia Connect India 2027'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - One Drupal community, one continent'
+  '0:main_slot:2:group_slot:2:dad0f1ad-b33f-47f6-abbc-21f9b032aba6':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: dad0f1ad-b33f-47f6-abbc-21f9b032aba6
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>The moment we began calling it an AI Summit, the conversation shifted.</p><p>A summit should offer more than a sequence of talks about the latest tools. We started asking a harder question: what should someone be able to think about differently after spending the day with us?</p><p>We did not have the answer immediately.</p><p>Most AI conversations around us were centered on GPT, prompting, generative AI and rapidly changing products. Those developments matter. They have made AI dramatically more visible and accessible. But we also felt that allowing generative AI to become the entire definition of AI would narrow the conversation too much.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:2:group_slot:3:931fdd9d-38a7-4ed0-860f-bb1bd0b9e90c':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: 931fdd9d-38a7-4ed0-860f-bb1bd0b9e90c
+    component_id: sdc.event_horizon.blockquote
+    component_version: 508919e5073ff696
+    inputs:
+      text: '"Place generative AI in context rather than making it the whole context."'
+  '0:main_slot:2:group_slot:4:b0dee1df-3bdd-40e8-a28c-e8d80f6d1821':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 6
+      gap: '24'
+  '0:main_slot:2:group_slot:4:grid_slot:0:a4c21ca7-97dd-4078-9d07-681a24dcfe6a':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: a4c21ca7-97dd-4078-9d07-681a24dcfe6a
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: Prediction
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:4:grid_slot:1:6e88e96e-4349-4b57-a7ef-69963e0089d9':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: 6e88e96e-4349-4b57-a7ef-69963e0089d9
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: Classification
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:4:grid_slot:2:8a524bfd-f813-4d23-9c3b-dbbf27e5a708':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: 8a524bfd-f813-4d23-9c3b-dbbf27e5a708
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: Optimization
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:4:grid_slot:3:5c3a499d-2253-4620-8bd1-20e7ef41a70f':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: 5c3a499d-2253-4620-8bd1-20e7ef41a70f
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: 'Computer vision'
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:4:grid_slot:4:b6f8d63d-d072-4665-a1df-a0626400d50d':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: b6f8d63d-d072-4665-a1df-a0626400d50d
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: Automation
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:4:grid_slot:5:3b10dc26-2190-4a6b-af58-fb751599836c':
+    parent_uuid: b0dee1df-3bdd-40e8-a28c-e8d80f6d1821
+    slot: grid_slot
+    uuid: 3b10dc26-2190-4a6b-af58-fb751599836c
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: Search
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:5:7712d3e9-9e6f-453c-bc76-f9ca17ad3aed':
+    parent_uuid: bffde46d-3a5e-4b6d-89c1-a55fbf25a6cf
+    slot: group_slot
+    uuid: 7712d3e9-9e6f-453c-bc76-f9ca17ad3aed
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 2
+      gap: '24'
+  '0:main_slot:2:group_slot:5:grid_slot:0:1d17fe4d-1a14-40eb-84a1-4575ee4cd541':
+    parent_uuid: 7712d3e9-9e6f-453c-bc76-f9ca17ad3aed
+    slot: grid_slot
+    uuid: 1d17fe4d-1a14-40eb-84a1-4575ee4cd541
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: 'Decision support'
+      style: secondary
+      icon_first: true
+  '0:main_slot:2:group_slot:5:grid_slot:1:aa489292-4e90-4eab-b8f0-b1d4f15673b1':
+    parent_uuid: 7712d3e9-9e6f-453c-bc76-f9ca17ad3aed
+    slot: grid_slot
+    uuid: aa489292-4e90-4eab-b8f0-b1d4f15673b1
+    component_id: sdc.event_horizon.badge
+    component_version: bfe5c65718a21f4d
+    inputs:
+      label: 'Specialized models'
+      style: secondary
+      icon_first: true
+  '0:main_slot:3:f60e08f8-1f96-4ecf-a50e-5d185a3f45b2':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: f60e08f8-1f96-4ecf-a50e-5d185a3f45b2
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:3:group_slot:0:fa83c82d-96e6-48e4-8f81-bb148095994b':
+    parent_uuid: f60e08f8-1f96-4ecf-a50e-5d185a3f45b2
+    slot: group_slot
+    uuid: fa83c82d-96e6-48e4-8f81-bb148095994b
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 2
+      gap: '24'
+  '0:main_slot:3:group_slot:0:grid_slot:0:a35bc0e8-4131-4e92-ad61-3d919cfd3b2b':
+    parent_uuid: fa83c82d-96e6-48e4-8f81-bb148095994b
+    slot: grid_slot
+    uuid: a35bc0e8-4131-4e92-ad61-3d919cfd3b2b
+    component_id: sdc.event_horizon.image
+    component_version: d77451010df91d0e
+    inputs:
+      media:
+        target_id: '53'
+      size: '4:3'
+      radius: extra-large
+      caption: 'AI Cross Domain'
+  '0:main_slot:3:group_slot:0:grid_slot:1:52989457-dc53-4a5f-b123-5ec7fe56fbc1':
+    parent_uuid: fa83c82d-96e6-48e4-8f81-bb148095994b
+    slot: grid_slot
+    uuid: 52989457-dc53-4a5f-b123-5ec7fe56fbc1
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+    label: 'Group 16'
+  '0:main_slot:3:group_slot:0:grid_slot:1:group_slot:0:201df2a0-a0c2-43cb-895d-e6337571e1f5':
+    parent_uuid: 52989457-dc53-4a5f-b123-5ec7fe56fbc1
+    slot: group_slot
+    uuid: 201df2a0-a0c2-43cb-895d-e6337571e1f5
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Cross-domain exchange'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:main_slot:3:group_slot:0:grid_slot:1:group_slot:1:d0373eb1-ffbc-418c-b2df-b26d48368599':
+    parent_uuid: 52989457-dc53-4a5f-b123-5ec7fe56fbc1
+    slot: group_slot
+    uuid: d0373eb1-ffbc-418c-b2df-b26d48368599
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'What if different worlds shared the room?'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+      style: default
+    label: 'Heading - One Drupal community, one continent'
+  '0:main_slot:3:group_slot:0:grid_slot:1:group_slot:2:c199860f-8c7d-4ae2-94f8-df4abbcffaed':
+    parent_uuid: 52989457-dc53-4a5f-b123-5ec7fe56fbc1
+    slot: group_slot
+    uuid: c199860f-8c7d-4ae2-94f8-df4abbcffaed
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Our brainstorming began reaching into government and public services, digital public infrastructure, education, agriculture, enterprise systems, language technology, and other domains.</p><p>Not because we wanted to fit every possible field into one day, but because each works under different constraints.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:4:66347228-953b-4995-841b-3c43d76731bb':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: 66347228-953b-4995-841b-3c43d76731bb
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:4:group_slot:0:02a69e50-ed71-4fb1-aacb-699580ce9082':
+    parent_uuid: 66347228-953b-4995-841b-3c43d76731bb
+    slot: group_slot
+    uuid: 02a69e50-ed71-4fb1-aacb-699580ce9082
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>A team building for rural environments may think deeply about connectivity and limited compute. Public systems bring questions of scale, accessibility, privacy, and trust. Indian-language AI raises different challenges around data, representation and inclusion.</p><p>What might a Drupal developer learn from those constraints? What might a public-sector practitioner discover from an open-source community?</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:4:group_slot:1:9c00af9b-8d9c-432a-b750-6f820546e195':
+    parent_uuid: 66347228-953b-4995-841b-3c43d76731bb
+    slot: group_slot
+    uuid: 9c00af9b-8d9c-432a-b750-6f820546e195
+    component_id: sdc.event_horizon.blockquote
+    component_version: 508919e5073ff696
+    inputs:
+      text: '"Ideas travel. Sometimes the most useful answer to your own problem comes from seeing how someone in a completely different world framed theirs."'
+  '0:main_slot:5:8bc7ebd2-12d3-426c-9c08-266a13ed83b4':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: 8bc7ebd2-12d3-426c-9c08-266a13ed83b4
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:5:group_slot:0:0f8d1914-fe69-4fce-97a7-3b1d9a2bed80':
+    parent_uuid: 8bc7ebd2-12d3-426c-9c08-266a13ed83b4
+    slot: group_slot
+    uuid: 0f8d1914-fe69-4fce-97a7-3b1d9a2bed80
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 2
+      gap: '24'
+  '0:main_slot:5:group_slot:0:grid_slot:0:880c4bac-d215-4f9c-bff8-3f182f7f5008':
+    parent_uuid: 0f8d1914-fe69-4fce-97a7-3b1d9a2bed80
+    slot: grid_slot
+    uuid: 880c4bac-d215-4f9c-bff8-3f182f7f5008
+    component_id: sdc.event_horizon.image
+    component_version: d77451010df91d0e
+    inputs:
+      media:
+        target_id: '54'
+      size: '1:1'
+      radius: large
+      caption: 'Operator Orchestrator Path'
+  '0:main_slot:5:group_slot:0:grid_slot:1:a14f4c26-cd04-4eac-9714-e369d235cb33':
+    parent_uuid: 0f8d1914-fe69-4fce-97a7-3b1d9a2bed80
+    slot: grid_slot
+    uuid: a14f4c26-cd04-4eac-9714-e369d235cb33
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+    label: 'Group 16'
+  '0:main_slot:5:group_slot:0:grid_slot:1:group_slot:0:e02eae7e-93de-4776-8944-cb94dc338319':
+    parent_uuid: a14f4c26-cd04-4eac-9714-e369d235cb33
+    slot: group_slot
+    uuid: e02eae7e-93de-4776-8944-cb94dc338319
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The event'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:main_slot:5:group_slot:0:grid_slot:1:group_slot:1:13f69fc5-d165-4e08-bfcb-69cf66b0fd27':
+    parent_uuid: a14f4c26-cd04-4eac-9714-e369d235cb33
+    slot: group_slot
+    uuid: 13f69fc5-d165-4e08-bfcb-69cf66b0fd27
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'One Drupal community, connected across borders'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - One Drupal community, one continent'
+  '0:main_slot:5:group_slot:0:grid_slot:1:group_slot:2:3c9407b0-2175-4759-8667-440a272e879c':
+    parent_uuid: a14f4c26-cd04-4eac-9714-e369d235cb33
+    slot: group_slot
+    uuid: 3c9407b0-2175-4759-8667-440a272e879c
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Most of us experience AI as consumers. A new model launches, a feature appears, and we try to keep up. But nobody can follow every release—and perhaps that should not be the goal.</p><p>What if the more durable skill is learning to start with the problem? Understand the people, the context, and the constraints first. Then decide whether AI helps, what capability belongs there, how the pieces should connect, and where human judgment must remain.</p><p>This is what we mean by moving from AI consumers to AI operators and orchestrators.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:5:group_slot:0:grid_slot:1:group_slot:3:cb209e49-6d7c-471a-8c2c-9c316bd9f61f':
+    parent_uuid: a14f4c26-cd04-4eac-9714-e369d235cb33
+    slot: group_slot
+    uuid: cb209e49-6d7c-471a-8c2c-9c316bd9f61f
+    component_id: sdc.drupal_india_connect.fact
+    component_version: 30371a331605036f
+    inputs:
+      title: 'Start with the problem, not the model.'
+      accent: secondary
+      layout: stack
+      tone: plain
+  '0:main_slot:6:4a4eeb8b-b83e-471e-a553-874f764b91d0':
+    parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
+    slot: main_slot
+    uuid: 4a4eeb8b-b83e-471e-a553-874f764b91d0
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      radius: sm
+      padding: sm
+  '0:main_slot:6:group_slot:0:ac1b7d37-bab1-4de4-b07a-0d5cf45a4f11':
+    parent_uuid: 4a4eeb8b-b83e-471e-a553-874f764b91d0
+    slot: group_slot
+    uuid: ac1b7d37-bab1-4de4-b07a-0d5cf45a4f11
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+    label: 'Group 16'
+  '0:main_slot:6:group_slot:0:group_slot:0:c90dfb5b-2085-4a26-80e9-cd33537fd397':
+    parent_uuid: ac1b7d37-bab1-4de4-b07a-0d5cf45a4f11
+    slot: group_slot
+    uuid: c90dfb5b-2085-4a26-80e9-cd33537fd397
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The room we want to create'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:main_slot:6:group_slot:0:group_slot:1:daafba42-5c07-44b8-8a34-07dd4759a3a5':
+    parent_uuid: ac1b7d37-bab1-4de4-b07a-0d5cf45a4f11
+    slot: group_slot
+    uuid: daafba42-5c07-44b8-8a34-07dd4759a3a5
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'A Summit shaped by questions'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+      style: default
+    label: 'Heading - One Drupal community, one continent'
+  '0:main_slot:6:group_slot:0:group_slot:2:c5a509fc-d2f3-4994-af1f-cf126c1ec9d9':
+    parent_uuid: ac1b7d37-bab1-4de4-b07a-0d5cf45a4f11
+    slot: group_slot
+    uuid: c5a509fc-d2f3-4994-af1f-cf126c1ec9d9
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>We do not want the Summit to present a finished answer to what AI should become.</p><p>We want it to create a room where practitioners from different worlds can compare experiences, disagree, challenge assumptions, and discover connections that would be difficult to find inside a single ecosystem.</p><p>If people leave knowing only a few more tools, we probably have not gone far enough. We would rather they leave with a clearer view of the landscape, sharper questions, and more confidence in deciding where AI genuinely belongs in their own work.</p><p>And we hope that conversation belongs to more than people who already call themselves AI practitioners.</p><p>Whether you work in open source, public infrastructure, education, agriculture, enterprise technology, design, policy—or somewhere we have not yet considered—bring your experience, your questions, and your curiosity.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default

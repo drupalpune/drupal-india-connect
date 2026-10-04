@@ -1,0 +1,46 @@
+uuid: 8833cf5e-ddb5-4c1d-9ebb-a576b53f4416
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+  module:
+    - options
+id: eyebrowandheading
+label: 'Eyebrow and Heading'
+component_tree:
+  '0:6122608b-0a01-4254-82d4-03e1ed4bf111':
+    uuid: 6122608b-0a01-4254-82d4-03e1ed4bf111
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+    label: 'Group 16'
+  '0:group_slot:0:7c5de4b9-7e26-420f-b4a9-05232cec2254':
+    parent_uuid: 6122608b-0a01-4254-82d4-03e1ed4bf111
+    slot: group_slot
+    uuid: 7c5de4b9-7e26-420f-b4a9-05232cec2254
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The event'
+      tone: accent
+    label: 'Eyebrow - The event'
+  '0:group_slot:1:fc104b72-2be9-46ad-a124-741e0a212de3':
+    parent_uuid: 6122608b-0a01-4254-82d4-03e1ed4bf111
+    slot: group_slot
+    uuid: fc104b72-2be9-46ad-a124-741e0a212de3
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'One Drupal community, connected across borders'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - One Drupal community, one continent'

@@ -1,0 +1,160 @@
+uuid: 1d5f1717-1940-4b9d-a68b-a56b12361ea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.event_horizon.button
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.image
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - field.field.media.image.field_media_image
+    - field.field.media.svg_image.field_media_svg_image
+    - filter.format.canvas_html_block
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - media.type.svg_image
+  content:
+    - 'file:file:97eb9ed9-0984-46c5-91f2-3ec09bd46e58'
+    - 'media:image:495215e3-5b80-4e6d-a7c4-0c0c49a3186d'
+  module:
+    - file
+    - link
+    - media
+    - options
+    - text
+id: herosection
+label: 'Hero section'
+component_tree:
+  '0:f5e96f79-f2ff-4250-82bd-35fb1eee0dac':
+    uuid: f5e96f79-f2ff-4250-82bd-35fb1eee0dac
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: 50-50
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '32'
+      padding_block_end: '32'
+      full_width: true
+      dark_background: false
+      section_header: false
+      section_footer: false
+    label: 'Section 6'
+  '0:main_slot:0:61043f46-6840-4ec0-aeb6-38a4200875bf':
+    parent_uuid: f5e96f79-f2ff-4250-82bd-35fb1eee0dac
+    slot: main_slot
+    uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: center
+      equal_children: false
+    label: 'Group 11'
+  '0:main_slot:0:group_slot:0:e4f2dff6-1974-416a-8b36-0753e72b064e':
+    parent_uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    slot: group_slot
+    uuid: e4f2dff6-1974-416a-8b36-0753e72b064e
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'Put Your Brand at the Heart of the Drupal Community'
+      tone: accent
+    label: 'Eyebrow - Venue & travel'
+  '0:main_slot:0:group_slot:1:13fdda5e-c761-4dbc-9e20-8a885de14c38':
+    parent_uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    slot: group_slot
+    uuid: 13fdda5e-c761-4dbc-9e20-8a885de14c38
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Become a Sponsor'
+      level: 2
+      text_size: heading-responsive-7xl
+      text_color: primary
+      align: left
+    label: 'Heading - Host city announcement soon'
+  '0:main_slot:0:group_slot:2:2d0bbd86-5953-4737-afc8-fe2409bf5469':
+    parent_uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    slot: group_slot
+    uuid: 2d0bbd86-5953-4737-afc8-fe2409bf5469
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p><strong>Partner with us. Make an impact. Get seen.</strong></p><p>Join us as a sponsor and put your brand at the heart of an experience that brings people, ideas, and opportunities together. Gain meaningful visibility, connect with the right audience, and show your commitment to creating something that matters.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - We are finalising the host city with regional...'
+  '0:main_slot:0:group_slot:3:f79e8e6b-6656-40f3-98db-58f1d8e30b04':
+    parent_uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    slot: group_slot
+    uuid: f79e8e6b-6656-40f3-98db-58f1d8e30b04
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: primary
+      label: 'Become a Sponsor'
+      href:
+        uri: 'mailto:events@drupalasia.org?subject=Sponsorship%20Inquiry%20-%20DrupalAsia%20Connect%20India%202027&body=Hi%20DrupalAsia%20Team%2C%0A%0AOur%20organization%20is%20interested%20in%20becoming%20a%20sponsor%20for%20DrupalAsia%20Connect%20India%202027.%0A%0AName%3A%20%0ACompany%20%2F%20Organization%3A%20%0APhone%3A%20%0APreferred%20Sponsorship%20Tier%20%28if%20known%29%3A%20%0A%0AAdditional%20Notes%20%2F%20Questions%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you%21'
+        options: {  }
+      size: medium
+      mobile_width: true
+      icon_first: false
+      disabled: false
+  '0:main_slot:0:group_slot:4:21c4048e-7677-4514-891a-351cccf739b4':
+    parent_uuid: 61043f46-6840-4ec0-aeb6-38a4200875bf
+    slot: group_slot
+    uuid: 21c4048e-7677-4514-891a-351cccf739b4
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: row
+      flex_gap: lg
+      items_align: start
+      flex_align: start
+      equal_children: true
+    label: 'Group 12'
+  '0:main_slot:0:group_slot:4:group_slot:0:fb0ef984-2dc0-47b0-98b6-ea98d8d39944':
+    parent_uuid: 21c4048e-7677-4514-891a-351cccf739b4
+    slot: group_slot
+    uuid: fb0ef984-2dc0-47b0-98b6-ea98d8d39944
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text_size: normal
+      text_color: default
+    label: 'Text - Visa lettersInvitation letters available to a...'
+  '0:main_slot:1:88d9d8c4-73b7-4a69-b1c2-aa7021966eaf':
+    parent_uuid: f5e96f79-f2ff-4250-82bd-35fb1eee0dac
+    slot: main_slot
+    uuid: 88d9d8c4-73b7-4a69-b1c2-aa7021966eaf
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: center
+      flex_align: center
+      padding: md
+      equal_children: false
+    label: 'Group 14'
+  '0:main_slot:1:group_slot:0:b960b952-cf35-4b27-bbdc-fd996cac8aa9':
+    parent_uuid: 88d9d8c4-73b7-4a69-b1c2-aa7021966eaf
+    slot: group_slot
+    uuid: b960b952-cf35-4b27-bbdc-fd996cac8aa9
+    component_id: sdc.event_horizon.image
+    component_version: d77451010df91d0e
+    inputs:
+      media:
+        target_id: '24'
+      size: '4:3'
+      radius: small

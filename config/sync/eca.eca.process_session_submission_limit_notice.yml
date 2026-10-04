@@ -28,6 +28,16 @@ conditions:
     configuration:
       negate: false
       entity: ''
+  Condition_notice_not_ajax:
+    plugin: eca_scalar
+    label: 'Not an AJAX rebuild?'
+    configuration:
+      negate: true
+      left: '[current-page:query:ajax_form]'
+      right: '1'
+      operator: equal
+      type: value
+      case: false
 gateways: {  }
 actions:
   Activity_notice_query:
@@ -41,7 +51,7 @@ actions:
     successors:
       -
         id: Activity_notice_count
-        condition: ''
+        condition: Condition_notice_not_ajax
   Activity_notice_count:
     label: 'Count active sessions'
     plugin: eca_count
@@ -58,4 +68,14 @@ actions:
     configuration:
       message: 'You have submitted [speaker_session_count] of 2 sessions allowed.'
       replace_tokens: true
+    successors:
+      -
+        id: Activity_notice_help
+        condition: ''
+  Activity_notice_help:
+    label: 'Show Slack help'
+    plugin: action_message_action
+    configuration:
+      message: 'Facing an issue while submitting your session? Reach out to the organisers in the <strong>#drupalcon_asia</strong> channel on <a href="https://www.drupal.org/slack">Drupal Slack</a>.'
+      replace_tokens: false
     successors: {  }
