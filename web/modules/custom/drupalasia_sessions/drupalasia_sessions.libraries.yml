@@ -1,5 +1,0 @@
-session-help:
-  version: 1.x
-  css:
-    theme:
-      css/session-help.css: {}

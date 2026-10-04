@@ -1,8 +1,0 @@
-name: 'DrupalAsia Sessions'
-type: module
-description: 'Explains the closed call for sessions and points session submitters to Drupal Slack for help.'
-package: DrupalAsia Connect
-core_version_requirement: ^11
-dependencies:
-  - drupal:node
-  - event_platform_helper:event_platform_helper
