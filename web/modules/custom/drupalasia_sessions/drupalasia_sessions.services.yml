@@ -1,0 +1,11 @@
+services:
+  cache_context.drupalasia_closed_session_403:
+    class: Drupal\drupalasia_sessions\Cache\Context\ClosedSession403CacheContext
+    arguments: ['@request_stack']
+    tags:
+      - { name: cache.context }
+  drupalasia_sessions.closed_session_403_theme_negotiator:
+    class: Drupal\drupalasia_sessions\Theme\ClosedSession403ThemeNegotiator
+    arguments: ['@cache_context.drupalasia_closed_session_403', '@config.factory']
+    tags:
+      - { name: theme_negotiator, priority: 100 }

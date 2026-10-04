@@ -1,0 +1,157 @@
+<?php
+
+/**
+ * @file
+ * Session submission help for DrupalAsia Connect.
+ *
+ * This lives in a module rather than the drupal_india_connect theme because
+ * node/add/session renders in the admin theme (Gin) for speakers — every
+ * authenticated user has 'view the administration theme' — so front-end
+ * theme hooks never run on the session form. The closed-call 403 is switched
+ * to the front-end theme by ClosedSession403ThemeNegotiator.
+ */
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_block_build_alter().
+ *
+ * The main content block varies on whether this is the closed-call
+ * 403; see ClosedSession403CacheContext for why that has to be declared.
+ */
+function drupalasia_sessions_block_build_alter(array &$build, BlockPluginInterface $block): void {
+  if ($block->getPluginId() === 'system_main_block') {
+    $build['#cache']['contexts'][] = 'drupalasia_closed_session_403';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ *
+ * Once the call for sessions closes, event_platform_helper stops granting
+ * speakers 'create session content' and /node/add/session falls through to
+ * core's bare "You are not authorized to access this page." Speakers
+ * following an old link kept retrying that page with no idea why, so swap
+ * the 403's title and body for an explanation and a way to reach us.
+ */
+function drupalasia_sessions_preprocess_block(array &$variables): void {
+  // The notice carries its own <h1>, like the 404 page it is modelled on.
+  if ($variables['plugin_id'] === 'system_main_block'
+    && \Drupal::service('cache_context.drupalasia_closed_session_403')->applies()) {
+    $variables['content'] = _drupalasia_sessions_closed_notice();
+  }
+}
+
+/**
+ * Implements hook_metatags_alter().
+ *
+ * Metatag owns the <title> element, so the closed-call 403's tab title is
+ * set here rather than in hook_preprocess_html().
+ */
+function drupalasia_sessions_metatags_alter(array &$metatags, array &$context): void {
+  if (\Drupal::service('cache_context.drupalasia_closed_session_403')->applies()) {
+    $metatags['title'] = t('The call for sessions is closed') . ' | [site:name]';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for node_session_form.
+ */
+function drupalasia_sessions_form_node_session_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  // Only on the create form: moderators editing a session don't need it.
+  if (!$form_state->getFormObject()->getEntity()->isNew()) {
+    return;
+  }
+  $form['drupalasia_session_help'] = _drupalasia_sessions_help() + ['#weight' => -1000];
+}
+
+/**
+ * Builds the body shown in place of the 403 once the call for sessions closes.
+ *
+ * Built from the same event_horizon section/heading/text components as the
+ * site's 404 page (node 11), so the two error pages read as a pair.
+ */
+function _drupalasia_sessions_closed_notice(): array {
+  $text = '<p class="lead">' . t('We are no longer accepting session submissions. Thank you to everyone who sent in a proposal.') . '</p>'
+    . '<p>' . t('Check the <a href=":url">key dates</a> to see when speakers will be notified and when the agenda goes live.', [
+      ':url' => Url::fromUserInput('/announcements')->toString(),
+    ]) . '</p>'
+    . '<h2>' . t('Facing an issue?') . '</h2>'
+    . '<p>' . _drupalasia_sessions_slack_sentence() . '</p>';
+
+  return [
+    '#type' => 'component',
+    '#component' => 'event_horizon:section',
+    '#props' => [
+      'width' => '75%',
+      'section_header' => TRUE,
+      'columns' => '100',
+      'mobile_columns' => '1',
+      'margin_block_start' => '48',
+      'margin_block_end' => '48',
+      'padding_block_start' => '0',
+      'padding_block_end' => '0',
+    ],
+    '#slots' => [
+      'header_slot' => [
+        '#type' => 'component',
+        '#component' => 'event_horizon:heading',
+        '#props' => [
+          'heading_text' => (string) t('The call for sessions is closed'),
+          'level' => 1,
+          'text_size' => 'default',
+          'text_color' => 'default',
+          'align' => 'left',
+        ],
+      ],
+      'main_slot' => [
+        '#type' => 'component',
+        '#component' => 'event_horizon:text',
+        '#props' => [
+          'text' => Markup::create($text),
+          'text_size' => 'normal',
+          'text_color' => 'default',
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
+ * The "reach out on Drupal Slack" sentence, shared by both help messages.
+ */
+function _drupalasia_sessions_slack_sentence() {
+  return t('If something is stopping you from submitting a session, reach out to the organisers in the <strong>#drupalcon_asia</strong> channel on <a href=":url">Drupal Slack</a>.', [
+    ':url' => 'https://www.drupal.org/slack',
+  ]);
+}
+
+/**
+ * Builds the "reach out on Drupal Slack" help box for session submitters.
+ */
+function _drupalasia_sessions_help(): array {
+  return [
+    '#type' => 'html_tag',
+    '#tag' => 'aside',
+    '#attributes' => [
+      'class' => ['drupalasia-session-help'],
+      'aria-label' => t('Help with session submissions'),
+    ],
+    'help_title' => [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => ['class' => ['drupalasia-session-help__title']],
+      '#value' => t('Facing an issue?'),
+    ],
+    'help_text' => [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#attributes' => ['class' => ['drupalasia-session-help__text']],
+      '#value' => _drupalasia_sessions_slack_sentence(),
+    ],
+    '#attached' => ['library' => ['drupalasia_sessions/session-help']],
+  ];
+}
