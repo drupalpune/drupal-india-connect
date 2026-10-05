@@ -1,6 +1,6 @@
 uuid: 5b8b236b-f043-43ff-beec-0c6be68cf955
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.session_evaluation
@@ -15,14 +15,14 @@ _core:
   default_config_hash: 65LRnH9OyK446korCZoJsjbJDbkOEKwWKUJSMInT-qM
 id: drupal_india_connect_views_block__session_evaluation_block_1
 theme: drupal_india_connect
-region: sidebar_first
-weight: -7
+region: content
+weight: -12
 provider: null
 plugin: 'views_block:session_evaluation-block_1'
 settings:
   id: 'views_block:session_evaluation-block_1'
   label: ''
-  label_display: visible
+  label_display: '0'
   provider: views
   views_label: ''
   items_per_page: null
