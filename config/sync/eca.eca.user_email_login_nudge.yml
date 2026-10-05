@@ -1,0 +1,53 @@
+uuid: 7546feb5-2587-43e2-89d1-9b3e7a5f411c
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_content
+    - eca_user
+id: user_email_login_nudge
+weight: 0
+template: false
+events:
+  Event_login:
+    plugin: 'user:login'
+    label: 'User login'
+    configuration: {  }
+    successors:
+      -
+        id: Activity_load_account
+        condition: ''
+conditions:
+  Condition_email_empty:
+    plugin: eca_entity_field_value_empty
+    label: 'Email empty?'
+    configuration:
+      negate: false
+      field_name: mail
+      entity: login_account
+gateways: {  }
+actions:
+  Activity_load_account:
+    label: 'Load the account that logged in'
+    plugin: eca_token_load_entity
+    configuration:
+      token_name: login_account
+      from: id
+      entity_type: user
+      entity_id: '[current-user:uid]'
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: entity
+    successors:
+      -
+        id: Activity_warn
+        condition: Condition_email_empty
+  Activity_warn:
+    label: 'Ask for an email'
+    plugin: eca_warning_message
+    configuration:
+      message: 'Your account has no email address. <a href="/user/[current-user:uid]/edit">Add one now</a> so you can reset your password and receive site notifications.'
+    successors: {  }
