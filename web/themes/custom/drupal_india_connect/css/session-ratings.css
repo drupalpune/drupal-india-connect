@@ -154,6 +154,30 @@
   white-space: nowrap;
 }
 
+/* Category: fixed width so the title keeps the remaining space. */
+.dac-ratings td.views-field-field-session-category,
+.dac-ratings th.views-field-field-session-category {
+  width: 16rem;
+}
+
+.dac-ratings td.views-field-field-session-category {
+  color: var(--color--night-30);
+  font-size: 0.875rem;
+}
+
+/* Category filter: select and Apply on one row. */
+.dac-ratings .views-exposed-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--sp0-75);
+  margin-block-end: var(--sp1-5);
+
+  .form-item {
+    margin: 0;
+  }
+}
+
 /* "Rate session": a compact primary button (6px radius, darkens on hover). */
 .dac-ratings__action {
   display: inline-flex;
@@ -239,7 +263,8 @@
     margin-block-start: var(--sp0-5);
   }
 
-  .dac-ratings td.views-field-webform-submission-value {
+  .dac-ratings td.views-field-webform-submission-value,
+  .dac-ratings td.views-field-field-session-category {
     width: auto;
     text-align: start;
   }
