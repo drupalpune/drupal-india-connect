@@ -1,0 +1,43 @@
+diff -ruN a/components/image/image.component.yml b/components/image/image.component.yml
+--- a/components/image/image.component.yml	2026-07-13 14:47:40.000000000 +0530
++++ b/components/image/image.component.yml	2026-10-06 14:45:50.525939155 +0530
+@@ -23,12 +23,14 @@
+         - '3:2'
+         - '4:3'
+         - '1:1'
++        - original
+       meta:enum:
+         '2:1': '2×1'
+         '16:9': '16×9'
+         '3:2': '3×2'
+         '4:3': '4×3'
+         '1:1': Square
++        original: 'Original (no crop)'
+       default: '4:3'
+       examples:
+         - '4:3'
+diff -ruN a/components/image/image.css b/components/image/image.css
+--- a/components/image/image.css	2026-07-13 14:47:40.000000000 +0530
++++ b/components/image/image.css	2026-10-06 14:45:50.526121299 +0530
+@@ -23,6 +23,10 @@
+   &.eh-image--ratio-1-1 {
+     aspect-ratio: 1 / 1;
+   }
++  /* Keep the image's own proportions: no crop, height follows width. */
++  &.eh-image--ratio-original .eh-image__img {
++    height: auto;
++  }
+ 
+   &.eh-image--radius-small {
+     border-radius: 0.25rem;
+diff -ruN a/components/image/image.twig b/components/image/image.twig
+--- a/components/image/image.twig	2026-07-13 14:47:40.000000000 +0530
++++ b/components/image/image.twig	2026-10-06 14:45:50.526026209 +0530
+@@ -5,6 +5,7 @@
+   '3:2': 'eh-image--ratio-3-2',
+   '4:3': 'eh-image--ratio-4-3',
+   '1:1': 'eh-image--ratio-1-1',
++  'original': 'eh-image--ratio-original',
+ } %}
+ 
+ {% set container_classes = [

@@ -1,0 +1,36 @@
+uuid: 76571911-ff6d-445f-ab5f-319d62bc505d
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_content
+id: user_email_required
+weight: 0
+template: false
+events:
+  Event_validate_user:
+    plugin: 'content_entity:validate'
+    label: 'Validate user'
+    configuration:
+      type: 'user user'
+    successors:
+      -
+        id: Activity_reject_no_email
+        condition: Condition_email_empty
+conditions:
+  Condition_email_empty:
+    plugin: eca_entity_field_value_empty
+    label: 'Email empty?'
+    configuration:
+      negate: false
+      field_name: mail
+      entity: ''
+gateways: {  }
+actions:
+  Activity_reject_no_email:
+    label: 'Reject: email is required'
+    plugin: eca_content_validation_error
+    configuration:
+      message: 'An email address is required, so password resets and site notifications can reach this account.'
+      property: mail
+    successors: {  }
