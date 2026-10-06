@@ -86,12 +86,12 @@ component_tree:
     slot: main_slot
     uuid: 66feb9a5-3f62-4a1c-b9a5-f44cf7a39ced
     component_id: sdc.event_horizon.image
-    component_version: d77451010df91d0e
+    component_version: ba9386a736ec47c3
     inputs:
       media:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:article␝field_featured_image␞␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
-      size: '2:1'
+      size: original
       radius: large
   '2:main_slot:2:58542a4d-edd3-416f-a5d3-200cd9f39952':
     parent_uuid: a045000c-0778-48e8-b0b6-185b667ba2fd
@@ -209,10 +209,4 @@ component_tree:
       mobile_width: true
       icon_first: false
       disabled: false
-  '4:e9ed7924-c274-4ec7-af7c-2f73bce0973e':
-    uuid: e9ed7924-c274-4ec7-af7c-2f73bce0973e
-    component_id: sdc.drupal_india_connect.spacer
-    component_version: d83b87a148d92563
-    inputs:
-      size: md
 exposed_slots: {  }

@@ -132,7 +132,8 @@
         "enable-patching": true,
         "patches": {
             "drupal/event_horizon": {
-                "Allow WYSIWYG/rich-text description in Image card component (issue #37)": "patches/event_horizon-image-card-wysiwyg.patch"
+                "Allow WYSIWYG/rich-text description in Image card component (issue #37)": "patches/event_horizon-image-card-wysiwyg.patch",
+                "Add an 'Original (no crop)' aspect ratio to the Image component": "patches/event_horizon-image-original-ratio.patch"
             }
         },
         "drupal-scaffold": {
