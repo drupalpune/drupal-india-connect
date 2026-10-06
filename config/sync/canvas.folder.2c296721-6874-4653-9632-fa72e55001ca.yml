@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.block.views_block.blog-block_latest
     - canvas.component.block.views_block.concurrent_sessions-block_1
     - canvas.component.block.views_block.event_dates-block_1
     - canvas.component.block.views_block.event_sponsors-block_1
@@ -27,6 +28,7 @@ name: 'Lists (Views)'
 configEntityTypeId: component
 weight: 0
 items:
+  - block.views_block.blog-block_latest
   - block.views_block.concurrent_sessions-block_1
   - block.views_block.event_dates-block_1
   - block.views_block.event_sponsors-block_1

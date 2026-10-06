@@ -1,5 +1,6 @@
 /**
- * Blog listing (views.view.blog, /blogs) and the article card it renders.
+ * Blog listing (views.view.blog: /blogs, and the homepage latest-posts
+ * block) and the article card it renders.
  */
 
 .dac-blog {
@@ -11,6 +12,71 @@
   @container style(--md: true) {
     gap: var(--sp2-5);
   }
+}
+
+/* On the homepage the Canvas section provides the band's spacing. */
+.dac-blog--latest {
+  padding-block: 0;
+}
+
+/*
+ * Homepage latest-posts header, after the prototype's News band: section
+ * heading on the left, "All posts" link on the right, sharing a baseline
+ * and wrapping under it on narrow screens.
+ */
+.dac-latest-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp1) var(--sp1-5);
+}
+
+.dac-latest-header__title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+}
+
+/* Same step as the homepage's other section headings (heading-responsive-3xl). */
+.dac-latest-title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.dac-latest-all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  color: var(--color--primary-50);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-decoration: none;
+}
+
+.dac-latest-all::after {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  content: "";
+  mask: url("../icons/phosphor/regular/arrow-right.svg") center / contain no-repeat;
+}
+
+.dac-latest-all:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color--secondary-50);
+  text-underline-offset: 0.2em;
+}
+
+.dac-latest-all:focus-visible {
+  outline: solid 2px currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* The flex gap spaces the header, grid and pager; drop event_horizon's .view margins. */

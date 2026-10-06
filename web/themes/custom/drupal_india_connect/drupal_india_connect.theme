@@ -332,6 +332,27 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for views-view-unformatted.html.twig.
+ *
+ * On the homepage the latest-posts block sits under the section's own
+ * <h2>, so its card titles drop to <h3>; /blogs has only the page <h1>
+ * above them and keeps <h2>. The level is part of the render cache key so
+ * the two variants of a card are cached separately.
+ */
+function drupal_india_connect_preprocess_views_view_unformatted(array &$variables) {
+  $view = $variables['view'];
+  if ($view->id() !== 'blog' || $view->current_display !== 'block_latest') {
+    return;
+  }
+  foreach ($variables['rows'] as &$row) {
+    $row['content']['#dac_heading_level'] = 3;
+    if (isset($row['content']['#cache']['keys'])) {
+      $row['content']['#cache']['keys'][] = 'dac_h3';
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for node templates.
  *
  * Puts the session_evaluation view ("Evaluate this session" / "Your
@@ -344,6 +365,10 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
  */
 function drupal_india_connect_preprocess_node(array &$variables) {
   $node = $variables['node'];
+
+  // Card title level; see drupal_india_connect_preprocess_views_view_unformatted().
+  $variables['heading_level'] = $variables['elements']['#dac_heading_level'] ?? 2;
+
   if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
     return;
   }

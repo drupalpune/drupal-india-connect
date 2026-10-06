@@ -11,7 +11,7 @@ dependencies:
 id: blog
 label: Blog
 module: views
-description: 'Public listing of published articles at /blog.'
+description: 'Public listing of published articles at /blogs, and the latest-posts block on the homepage.'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -121,6 +121,44 @@ display:
       contexts:
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_latest:
+    id: block_latest
+    display_title: 'Latest posts'
+    display_plugin: block
+    position: 2
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      empty: {  }
+      defaults:
+        empty: false
+        css_class: false
+        pager: false
+        header: false
+      css_class: 'dac-blog dac-blog--latest'
+      display_description: 'The three newest published articles, as cards. Used on the homepage.'
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+          empty: false
+          content: '<header class="dac-latest-header"><div class="dac-latest-header__title"><p class="dac-blog-eyebrow">Blog</p><h2 class="dac-latest-title">Latest updates</h2></div><a class="dac-latest-all" href="/blogs">All posts</a></header>'
+          tokenize: false
+      display_extenders: {  }
+      block_description: 'Blog: latest posts'
+      block_hide_empty: true
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
