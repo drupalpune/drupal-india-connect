@@ -1,5 +1,5 @@
 /**
- * Blog listing (views.view.blog, /blog) and the article card it renders.
+ * Blog listing (views.view.blog, /blogs) and the article card it renders.
  */
 
 .dac-blog {
@@ -7,16 +7,33 @@
   flex-direction: column;
   gap: var(--sp2);
   padding-block: var(--sp2) var(--sp5);
+
+  @container style(--md: true) {
+    gap: var(--sp2-5);
+  }
+}
+
+/* The flex gap spaces the header, grid and pager; drop event_horizon's .view margins. */
+.dac-blog.view > * {
+  margin-block-end: 0;
 }
 
 .dac-blog-header {
   display: flex;
   flex-direction: column;
-  gap: var(--sp0-5);
+  gap: var(--sp0-75);
+  padding-bottom: var(--sp2);
+  border-bottom: solid 1px var(--color--night-90);
 }
 
-/* Matches the Eyebrow component: the page has no Canvas components to load its CSS. */
+/*
+ * Matches the Eyebrow component (the page has no Canvas components to load
+ * its CSS), with the system's 2px lead-in rule.
+ */
 .dac-blog-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
   margin: 0;
   color: var(--color--secondary-50);
   font-weight: 700;
@@ -25,11 +42,18 @@
   text-transform: uppercase;
 }
 
+.dac-blog-eyebrow::before {
+  width: 1.5rem;
+  height: 2px;
+  background-color: currentColor;
+  content: "";
+}
+
 .dac-blog-title {
   margin: 0;
   color: var(--color--night-5);
   font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 6vw, 4rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -99,12 +123,45 @@
   }
 }
 
+/*
+ * A fixed 16:9 frame so a row of cards lines up whatever shape was
+ * uploaded. The template picks the fit from the image's own proportions:
+ * photos near 16:9 fill the frame, banners and logos sit whole on a tint.
+ */
+.dac-post-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--color--sky-97);
+}
+
+/*
+ * The field/media wrappers fill the frame too: logged in, contextual links
+ * make .media position: relative, and an empty wrapper would collapse the
+ * absolutely positioned image to nothing.
+ */
+.dac-post-card__media :is(.field, .media, .field__item, picture) {
+  height: 100%;
+}
+
 .dac-post-card__media img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
+}
+
+.dac-post-card__media--contain {
+  border-bottom: solid 1px var(--color--sky-90);
+}
+
+.dac-post-card__media--contain img {
+  inset: var(--sp1);
+  width: calc(100% - 2 * var(--sp1));
+  height: calc(100% - 2 * var(--sp1));
+  object-fit: contain;
 }
 
 .dac-post-card__body {
