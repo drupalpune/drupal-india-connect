@@ -306,6 +306,39 @@ html {
 }
 
 /*
+ * Even spacing across the level-1 items. event_horizon's caret toggle is
+ * 40px wide with a -32px end margin, so it spills into the next item: the
+ * caret sat ~12px from the following label while plain links were 40px
+ * apart. Keep the toggle inside its <li> and size it so the visible gap
+ * after a caret matches the 1rem a plain link's padding gives. (The icon
+ * sits 0.1875rem into the toggle and is 1.125rem wide; its chevron stroke
+ * stops ~0.25rem short of that box, hence 0.75rem after it, not 1rem.)
+ */
+@container style(--wide-nav: true) {
+  .primary-nav__menu-link--level-1.primary-nav__menu-link--has-children {
+    padding-inline-end: 0.25rem;
+  }
+
+  .primary-nav__button-toggle {
+    width: calc(0.1875rem + 1.125rem + 0.75rem);
+    margin-inline-end: 0;
+  }
+
+  .primary-nav__menu--level-1 {
+    padding-inline-end: 0;
+  }
+
+  /*
+   * The header's 32px flex gap plus the last item's 1rem padding put the
+   * CTA 48px from "Key Dates"; pull the menu in so it is 40px, like the
+   * space between items (1rem + 0.5rem gap + 1rem).
+   */
+  .site-header > .menu--main {
+    margin-inline-end: -0.5rem;
+  }
+}
+
+/*
  * Brand palette: Blue #0462D1 (primary), Orange #F66E0E (secondary),
  * Dark Blue #0C2152 (an extra-dark primary step — see below). These are the
  * exact hues from the DrupalAsia Connect logo (logo.svg); base_primary_color
