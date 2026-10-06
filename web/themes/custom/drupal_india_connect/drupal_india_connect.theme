@@ -320,7 +320,7 @@ function drupal_india_connect_preprocess_menu__footer_social(array &$variables) 
  *
  * The blog listing's header and empty text are styled by the blog library,
  * which the article card template also attaches; attach it here too so an
- * empty /blog is styled.
+ * empty /blogs is styled.
  */
 function drupal_india_connect_preprocess_views_view(array &$variables) {
   if ($variables['view']->id() === 'blog') {
