@@ -16,6 +16,7 @@ dependencies:
     - taxonomy.vocabulary.session_audience
     - taxonomy.vocabulary.session_category
     - taxonomy.vocabulary.time_slot
+    - user.role.administrator
     - workflows.workflow.session_acceptance
   module:
     - add_content_by_bundle
@@ -2613,6 +2614,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      access:
+        type: role
+        options:
+          role:
+            administrator: administrator
       arguments:
         name:
           id: name
@@ -3155,6 +3161,7 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        access: false
         title: false
         style: false
         row: false

@@ -7,6 +7,8 @@ dependencies:
     - node.type.session
     - system.menu.admin
     - taxonomy.vocabulary.session_category
+    - user.role.administrator
+    - user.role.session_moderator
   module:
     - node
     - taxonomy
@@ -293,9 +295,11 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            session_moderator: session_moderator
+            administrator: administrator
       cache:
         type: tag
         options: {  }
@@ -914,7 +918,7 @@ display:
         weight: -5
         expanded: false
         menu_name: admin
-        parent: config_pages.event_details
+        parent: system.admin
         context: '0'
     cache_metadata:
       max-age: -1
