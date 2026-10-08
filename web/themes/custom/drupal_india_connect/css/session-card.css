@@ -36,17 +36,3 @@
   font-size: 0.8125rem;
   line-height: 1.4;
 }
-
-/* Term page header: "N sessions on this topic. See all sessions" */
-.dac-term__all {
-  color: var(--color--primary-50);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--color--primary-50);
-  text-underline-offset: 0.2em;
-
-  &:hover,
-  &:focus-visible {
-    text-decoration-color: var(--color--secondary-50);
-  }
-}

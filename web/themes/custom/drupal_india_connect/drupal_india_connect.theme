@@ -340,7 +340,7 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
  * In practice these are session tag pages: the tag chips on a session link
  * here. The view printed no heading at all (the theme has no page title
  * block), so this adds the blog's eyebrow / title / intro header, with a
- * count and a way back to the full session list, and reuses its grid by
+ * count, and reuses its grid by
  * adding the dac-blog class. Rows are cards (node--session--card).
  */
 function _drupal_india_connect_term_listing(array &$variables): void {
@@ -352,7 +352,6 @@ function _drupal_india_connect_term_listing(array &$variables): void {
   $variables['attributes']['class'][] = 'dac-blog';
   $variables['attributes']['class'][] = 'dac-term';
   $variables['#attached']['library'][] = 'drupal_india_connect/blog';
-  $variables['#attached']['library'][] = 'drupal_india_connect/session-card';
 
   $is_session_tag = $term->bundle() === 'se';
   // taxonomy_index only holds published nodes, which is what the view lists.
@@ -362,22 +361,13 @@ function _drupal_india_connect_term_listing(array &$variables): void {
     ->execute()
     ->fetchField();
 
-  $sessions_url = NULL;
-  $event = _drupal_india_connect_current_event_term();
-  if ($is_session_tag && $event) {
-    // Same argument the main nav's session list uses (/events/india-2027/sessions).
-    $sessions_url = \Drupal\Core\Url::fromRoute('view.session_list.page_3', [
-      'arg_0' => strtolower(str_replace(' ', '-', $event->label())),
-    ])->toString();
-  }
-
   $variables['header'] = [
     '#type' => 'inline_template',
     '#template' => '<div class="dac-blog-header">
       <p class="dac-blog-eyebrow">{{ eyebrow }}</p>
       <h1 class="dac-blog-title">{{ title }}</h1>
       {% if description %}<div class="dac-blog-intro">{{ description }}</div>{% endif %}
-      <p class="dac-blog-intro dac-term__count">{{ count_text }}{% if sessions_url %} <a href="{{ sessions_url }}" class="dac-term__all">{{ "See all sessions"|t }}</a>{% endif %}</p>
+      <p class="dac-blog-intro dac-term__count">{{ count_text }}</p>
     </div>',
     '#context' => [
       'eyebrow' => $is_session_tag ? t('Session topic') : $term->get('vid')->entity?->label(),
@@ -386,7 +376,6 @@ function _drupal_india_connect_term_listing(array &$variables): void {
       'count_text' => $is_session_tag
         ? \Drupal::translation()->formatPlural($count, '1 session on this topic.', '@count sessions on this topic.')
         : \Drupal::translation()->formatPlural($count, '1 item.', '@count items.'),
-      'sessions_url' => $sessions_url,
     ],
     '#cache' => ['tags' => array_merge($term->getCacheTags(), ['node_list'])],
   ];
