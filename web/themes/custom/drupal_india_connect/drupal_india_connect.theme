@@ -329,6 +329,67 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
   if ($variables['view']->id() === 'session_ratings') {
     $variables['#attached']['library'][] = 'drupal_india_connect/session-ratings';
   }
+  if ($variables['view']->id() === 'taxonomy_term' && $variables['view']->current_display === 'page_1') {
+    _drupal_india_connect_term_listing($variables);
+  }
+}
+
+/**
+ * Gives term pages (/taxonomy/term/N) the blog listing's header and grid.
+ *
+ * In practice these are session tag pages: the tag chips on a session link
+ * here. The view printed no heading at all (the theme has no page title
+ * block), so this adds the blog's eyebrow / title / intro header, with a
+ * count and a way back to the full session list, and reuses its grid by
+ * adding the dac-blog class. Rows are cards (node--session--card).
+ */
+function _drupal_india_connect_term_listing(array &$variables): void {
+  $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+  if (!$term instanceof \Drupal\taxonomy\TermInterface) {
+    return;
+  }
+
+  $variables['attributes']['class'][] = 'dac-blog';
+  $variables['attributes']['class'][] = 'dac-term';
+  $variables['#attached']['library'][] = 'drupal_india_connect/blog';
+  $variables['#attached']['library'][] = 'drupal_india_connect/session-card';
+
+  $is_session_tag = $term->bundle() === 'se';
+  // taxonomy_index only holds published nodes, which is what the view lists.
+  $count = (int) \Drupal::database()->select('taxonomy_index', 'ti')
+    ->condition('ti.tid', $term->id())
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+
+  $sessions_url = NULL;
+  $event = _drupal_india_connect_current_event_term();
+  if ($is_session_tag && $event) {
+    // Same argument the main nav's session list uses (/events/india-2027/sessions).
+    $sessions_url = \Drupal\Core\Url::fromRoute('view.session_list.page_3', [
+      'arg_0' => strtolower(str_replace(' ', '-', $event->label())),
+    ])->toString();
+  }
+
+  $variables['header'] = [
+    '#type' => 'inline_template',
+    '#template' => '<div class="dac-blog-header">
+      <p class="dac-blog-eyebrow">{{ eyebrow }}</p>
+      <h1 class="dac-blog-title">{{ title }}</h1>
+      {% if description %}<div class="dac-blog-intro">{{ description }}</div>{% endif %}
+      <p class="dac-blog-intro dac-term__count">{{ count_text }}{% if sessions_url %} <a href="{{ sessions_url }}" class="dac-term__all">{{ "See all sessions"|t }}</a>{% endif %}</p>
+    </div>',
+    '#context' => [
+      'eyebrow' => $is_session_tag ? t('Session topic') : $term->get('vid')->entity?->label(),
+      'title' => $term->label(),
+      'description' => $term->getDescription() ? ['#markup' => $term->getDescription()] : NULL,
+      'count_text' => $is_session_tag
+        ? \Drupal::translation()->formatPlural($count, '1 session on this topic.', '@count sessions on this topic.')
+        : \Drupal::translation()->formatPlural($count, '1 item.', '@count items.'),
+      'sessions_url' => $sessions_url,
+    ],
+    '#cache' => ['tags' => array_merge($term->getCacheTags(), ['node_list'])],
+  ];
 }
 
 /**
@@ -344,6 +405,10 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
  */
 function drupal_india_connect_preprocess_node(array &$variables) {
   $node = $variables['node'];
+  if ($node->bundle() === 'session' && $variables['view_mode'] === 'card') {
+    _drupal_india_connect_session_card($variables);
+    return;
+  }
   if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
     return;
   }
@@ -366,4 +431,44 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     // The view shows the current user's own evaluation, if any.
     '#cache' => ['contexts' => ['user']],
   ];
+}
+
+/**
+ * Plain-text values for node--session--card.html.twig.
+ *
+ * Read from the entity rather than rendered fields: sessions have no card
+ * display, so content.* would come from the full default display, labels
+ * and Font Awesome icons included.
+ */
+function _drupal_india_connect_session_card(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $excerpt = trim((string) $node->get('field_synopsis')->value);
+  if ($excerpt === '' && $node->hasField('field_description')) {
+    $excerpt = trim(html_entity_decode(strip_tags((string) $node->get('field_description')->value)));
+  }
+  $excerpt = preg_replace('/\s+/', ' ', $excerpt);
+  if (mb_strlen($excerpt) > 180) {
+    $excerpt = preg_replace('/\s+\S*$/u', '', mb_substr($excerpt, 0, 180)) . '…';
+  }
+
+  $facts = [];
+  if ($level = $node->get('field_audience')->entity) {
+    $facts[] = $level->label();
+  }
+  if ($type = $node->get('field_type')->value) {
+    $labels = $node->get('field_type')->getFieldDefinition()->getSetting('allowed_values');
+    $facts[] = $labels[$type] ?? $type;
+  }
+
+  $category = $node->get('field_session_category')->entity;
+  $variables['session_card'] = [
+    'category' => $category?->label(),
+    'excerpt' => $excerpt,
+    'facts' => $facts,
+  ];
+  foreach (array_filter([$category, $level ?? NULL]) as $term) {
+    $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $term->getCacheTags());
+  }
 }
