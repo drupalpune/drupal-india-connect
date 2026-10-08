@@ -12,7 +12,6 @@ dependencies:
     - taxonomy.vocabulary.session_audience
     - taxonomy.vocabulary.session_category
     - user.role.administrator
-    - user.role.session_moderator
     - workflows.workflow.session_acceptance
   module:
     - content_moderation
@@ -560,7 +559,6 @@ display:
         type: role
         options:
           role:
-            session_moderator: session_moderator
             administrator: administrator
       cache:
         type: tag

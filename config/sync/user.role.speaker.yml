@@ -25,4 +25,3 @@ permissions:
   - 'use text format restricted_html'
   - 'view own field_speakers'
   - 'view own unpublished content'
-  - 'view session revisions'
