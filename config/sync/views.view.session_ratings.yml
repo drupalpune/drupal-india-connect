@@ -918,7 +918,7 @@ display:
         weight: -5
         expanded: false
         menu_name: admin
-        parent: config_pages.event_details
+        parent: system.admin
         context: '0'
     cache_metadata:
       max-age: -1
