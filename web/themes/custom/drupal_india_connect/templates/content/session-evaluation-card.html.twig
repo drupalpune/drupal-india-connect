@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * The current moderator's evaluation of a proposed session, in the session
+ * page sidebar. Built by _drupal_india_connect_session_evaluation_card().
+ *
+ * Available variables:
+ * - criteria: List of {label, score, percent}, in the form's question order.
+ *   Empty when the user has not evaluated the session yet.
+ * - max: Top of the rating scale.
+ * - average: Mean score as a one-decimal string, or NULL.
+ * - comments: The user's free-text comments, possibly empty.
+ * - action_url: Evaluate (no submission) or edit (submission) URL; opened
+ *   in a modal.
+ * - action_label: Button text for action_url.
+ */
+#}
+{% set dialog_options = {width: 600, title: action_label}|json_encode %}
+<section class="session-evaluation" aria-labelledby="session-evaluation-heading">
+  <div class="session-evaluation__header">
+    <h2 id="session-evaluation-heading" class="session-evaluation__heading">{{ 'Your evaluation'|t }}</h2>
+    {% if average %}
+      <p class="session-evaluation__average">
+        <span class="session-evaluation__average-value">{{ average }}</span>
+        <span class="session-evaluation__average-caption">{{ 'Avg. out of @max'|t({'@max': max}) }}</span>
+      </p>
+    {% endif %}
+  </div>
+
+  {% if criteria %}
+    <dl class="session-evaluation__criteria">
+      {% for criterion in criteria %}
+        <div class="session-evaluation__criterion">
+          <dt class="session-evaluation__label">{{ criterion.label }}</dt>
+          <dd class="session-evaluation__score">
+            <span class="session-evaluation__score-value">{{ criterion.score }}</span><span class="session-evaluation__score-max">/{{ max }}</span>
+          </dd>
+          <dd class="session-evaluation__bar" aria-hidden="true">
+            <span class="session-evaluation__bar-fill" style="--score: {{ criterion.percent }}%"></span>
+          </dd>
+        </div>
+      {% endfor %}
+    </dl>
+
+    <div class="session-evaluation__comments">
+      <h3 class="session-evaluation__label">{{ 'Comments'|t }}</h3>
+      {% if comments %}
+        <p class="session-evaluation__comments-text">{{ comments|nl2br }}</p>
+      {% else %}
+        <p class="session-evaluation__comments-text session-evaluation__comments-text--empty">{{ 'No comments added.'|t }}</p>
+      {% endif %}
+    </div>
+  {% else %}
+    <p class="session-evaluation__intro">{{ 'You have not rated this proposal yet.'|t }}</p>
+  {% endif %}
+
+  <a href="{{ action_url }}" class="use-ajax button{{ criteria ? '' : ' button--primary' }} session-evaluation__action" data-dialog-type="modal" data-dialog-options="{{ dialog_options }}">{{ action_label }}</a>
+</section>
