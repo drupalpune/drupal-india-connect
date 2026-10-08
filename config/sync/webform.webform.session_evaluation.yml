@@ -39,7 +39,7 @@ elements: |-
     '#answers': likert_ten_scale
   comments:
     '#type': textarea
-    '#title': 'Your comments'
+    '#title': Comments
     '#description': 'Optional notes on this proposal for the programme team.'
     '#rows': 4
 css: ''
