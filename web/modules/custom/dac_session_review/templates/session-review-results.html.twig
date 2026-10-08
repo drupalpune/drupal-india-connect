@@ -13,7 +13,6 @@
  * - track_label: Selected track's label, or NULL.
  * - sort, order: Current sort key and direction.
  * - max: Top of the rating scale.
- * - unreviewed: Proposed sessions in the track with no reviews yet.
  * - form_action: URL the track filter submits to.
  * - show_filter: Whether to show the track filter (administrators); session
  *   moderators are fixed to their assigned track.
@@ -58,9 +57,6 @@
     {%- else -%}
       {% trans %}{{ count }} reviewed session across all tracks{% plural count %}{{ count }} reviewed sessions across all tracks{% endtrans %}
     {%- endif -%}
-    {% if unreviewed %}
-      <span class="dac-review__pending">{% trans %}{{ unreviewed }} proposal not reviewed yet{% plural unreviewed %}{{ unreviewed }} proposals not reviewed yet{% endtrans %}</span>
-    {% endif %}
   </p>
   {% endif %}
 

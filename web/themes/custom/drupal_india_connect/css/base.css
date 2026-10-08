@@ -26,6 +26,19 @@ html {
 }
 
 /*
+ * Core Navigation marks <html> `data-admin-toolbar-body-scroll="locked"`
+ * while its sidebar is expanded, and on desktop resets `overflow: initial`
+ * through that attribute selector — which outranks the plain `html` rule
+ * above, dropping the clip and putting a horizontal scrollbar on the page.
+ * (Below 64rem core sets `overflow: clip` itself, so only desktop needs this.)
+ */
+@media (min-width: 64rem) {
+  html[data-admin-toolbar-body-scroll="locked"] {
+    overflow-x: clip;
+  }
+}
+
+/*
  * event_horizon's site-header ships with margin-bottom 1.25rem (mobile) /
  * 3.5rem (desktop); this design sits flush against the hero instead.
  */

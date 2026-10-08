@@ -43,7 +43,6 @@ function dac_session_review_theme(): array {
         'sort' => 'score',
         'order' => 'desc',
         'max' => 10,
-        'unreviewed' => 0,
         'form_action' => '',
         'show_filter' => TRUE,
         'no_track' => FALSE,

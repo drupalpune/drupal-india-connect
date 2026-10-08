@@ -120,7 +120,6 @@ class ReviewResultsController extends ControllerBase {
       '#sort' => $sort,
       '#order' => $order,
       '#max' => $max,
-      '#unreviewed' => $no_track ? 0 : $this->countUnreviewed(array_column($rows, 'nid'), $track),
       '#show_filter' => $show_filter,
       '#no_track' => $no_track,
       '#form_action' => Url::fromRoute('dac_session_review.results')->toString(),
@@ -222,27 +221,6 @@ class ReviewResultsController extends ControllerBase {
         ?: ($b['score'] <=> $a['score'])
         ?: strcasecmp($a['title'], $b['title']);
     });
-  }
-
-  /**
-   * Proposed sessions in the track that nobody has reviewed yet.
-   */
-  protected function countUnreviewed(array $reviewed_nids, string $track): int {
-    // moderation_state is a computed field, so an entity query cannot filter
-    // on it; read the state from content_moderation's own table.
-    $query = $this->database->select('node_field_data', 'n');
-    $query->join('content_moderation_state_field_data', 'm', "m.content_entity_type_id = 'node' AND m.content_entity_id = n.nid AND m.content_entity_revision_id = n.vid AND m.langcode = n.langcode");
-    $query->condition('n.type', 'session')
-      ->condition('n.default_langcode', 1)
-      ->condition('m.moderation_state', 'proposed');
-    if ($track) {
-      $query->join('node__field_session_category', 'c', 'c.entity_id = n.nid AND c.langcode = n.langcode');
-      $query->condition('c.field_session_category_target_id', $track);
-    }
-    if ($reviewed_nids) {
-      $query->condition('n.nid', $reviewed_nids, 'NOT IN');
-    }
-    return (int) $query->countQuery()->execute()->fetchField();
   }
 
   /**
