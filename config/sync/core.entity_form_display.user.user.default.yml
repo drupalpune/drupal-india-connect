@@ -8,6 +8,7 @@ dependencies:
     - field.field.user.user.field_display_name
     - field.field.user.user.field_drupal_org_username
     - field.field.user.user.field_drupal_slack_username
+    - field.field.user.user.field_moderator_category
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -53,6 +54,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_moderator_category:
+    type: options_select
+    weight: 20
+    region: content
+    settings: {  }
     third_party_settings: {  }
   language:
     weight: 0

@@ -9,12 +9,12 @@ dependencies:
     - field.field.user.user.field_display_name
     - field.field.user.user.field_drupal_org_username
     - field.field.user.user.field_drupal_slack_username
+    - field.field.user.user.field_moderator_category
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
     - path
     - svg_image
-    - text
     - user
 id: user.user.register
 targetEntityType: user
@@ -78,4 +78,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_bio: true
+  field_moderator_category: true
   language: true
