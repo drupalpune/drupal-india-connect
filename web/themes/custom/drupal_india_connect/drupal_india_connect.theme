@@ -354,12 +354,10 @@ function _drupal_india_connect_term_listing(array &$variables): void {
   $variables['#attached']['library'][] = 'drupal_india_connect/blog';
 
   $is_session_tag = $term->bundle() === 'se';
-  // taxonomy_index only holds published nodes, which is what the view lists.
-  $count = (int) \Drupal::database()->select('taxonomy_index', 'ti')
-    ->condition('ti.tid', $term->id())
-    ->countQuery()
-    ->execute()
-    ->fetchField();
+  // Count what the view actually lists, so the header always matches the
+  // cards (taxonomy_index can hold nodes that no longer load). With 24 per
+  // page a tag's sessions fit on one page, so the result is the full set.
+  $count = count($variables['view']->result);
 
   $variables['header'] = [
     '#type' => 'inline_template',
@@ -460,4 +458,18 @@ function _drupal_india_connect_session_card(array &$variables): void {
   foreach (array_filter([$category, $level ?? NULL]) as $term) {
     $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $term->getCacheTags());
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for node templates.
+ *
+ * Drops core's per-node suggestions (node__ID, node__ID__VIEW_MODE).
+ * event_horizon ships an "intentionally left blank" node--25.html.twig for
+ * a page in its own demo content; on this site nid 25 is a session, so that
+ * template blanked the session's page and its card on tag listings. Node
+ * templates here are chosen by bundle and view mode, never by ID.
+ */
+function drupal_india_connect_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  // Other modules may add non-string entries here; leave those alone.
+  $suggestions = array_filter($suggestions, fn($suggestion) => !is_string($suggestion) || !preg_match('/^node__\d+(__|$)/', $suggestion));
 }
