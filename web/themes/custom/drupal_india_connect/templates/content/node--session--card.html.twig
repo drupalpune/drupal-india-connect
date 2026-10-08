@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Session in the "card" view mode, as listed on session tag pages
+ * (views.view.taxonomy_term, /taxonomy/term/N).
+ *
+ * Sessions have no card display of their own, so without this template the
+ * view fell back to the full default display: no title, the whole
+ * description, and labelled Tags/Type fields. This uses the blog's post
+ * card (blog.css) so the two listings read as one system; the values come
+ * from drupal_india_connect_preprocess_node() as plain strings.
+ */
+#}
+{{ attach_library('drupal_india_connect/blog') }}
+{{ attach_library('drupal_india_connect/session-card') }}
+
+<article{{ attributes.addClass('dac-post-card', 'dac-session-card') }}>
+  <div class="dac-post-card__body">
+    {% if session_card.category %}
+      <p class="dac-session-card__category">{{ session_card.category }}</p>
+    {% endif %}
+
+    {{ title_prefix }}
+    <h2{{ title_attributes.addClass('dac-post-card__title') }}>
+      <a href="{{ url }}" class="dac-post-card__link" rel="bookmark">{{ label }}</a>
+    </h2>
+    {{ title_suffix }}
+
+    {% if session_card.excerpt %}
+      <p class="dac-post-card__excerpt">{{ session_card.excerpt }}</p>
+    {% endif %}
+
+    {% if session_card.facts %}
+      <ul class="dac-session-card__facts">
+        {% for fact in session_card.facts %}
+          <li class="dac-session-card__fact">{{ fact }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <span class="dac-post-card__more" aria-hidden="true">
+      {{ 'View session'|t }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+    </span>
+  </div>
+</article>

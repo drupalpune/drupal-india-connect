@@ -32,3 +32,9 @@ session-ratings:
   css:
     theme:
       css/session-ratings.css: {}
+
+session-card:
+  version: 1.x
+  css:
+    theme:
+      css/session-card.css: {}

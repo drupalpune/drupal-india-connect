@@ -329,21 +329,76 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
   if ($variables['view']->id() === 'session_ratings') {
     $variables['#attached']['library'][] = 'drupal_india_connect/session-ratings';
   }
+  if ($variables['view']->id() === 'taxonomy_term' && $variables['view']->current_display === 'page_1') {
+    _drupal_india_connect_term_listing($variables);
+  }
+}
+
+/**
+ * Gives term pages (/taxonomy/term/N) the blog listing's header and grid.
+ *
+ * In practice these are session tag pages: the tag chips on a session link
+ * here. The view printed no heading at all (the theme has no page title
+ * block), so this adds the blog's eyebrow / title / intro header, with a
+ * count, and reuses its grid by
+ * adding the dac-blog class. Rows are cards (node--session--card).
+ */
+function _drupal_india_connect_term_listing(array &$variables): void {
+  $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+  if (!$term instanceof \Drupal\taxonomy\TermInterface) {
+    return;
+  }
+
+  $variables['attributes']['class'][] = 'dac-blog';
+  $variables['attributes']['class'][] = 'dac-term';
+  $variables['#attached']['library'][] = 'drupal_india_connect/blog';
+
+  $is_session_tag = $term->bundle() === 'se';
+  // Count what the view actually lists, so the header always matches the
+  // cards (taxonomy_index can hold nodes that no longer load). With 24 per
+  // page a tag's sessions fit on one page, so the result is the full set.
+  $count = count($variables['view']->result);
+
+  $variables['header'] = [
+    '#type' => 'inline_template',
+    '#template' => '<div class="dac-blog-header">
+      <p class="dac-blog-eyebrow">{{ eyebrow }}</p>
+      <h1 class="dac-blog-title">{{ title }}</h1>
+      {% if description %}<div class="dac-blog-intro">{{ description }}</div>{% endif %}
+      <p class="dac-blog-intro dac-term__count">{{ count_text }}</p>
+    </div>',
+    '#context' => [
+      'eyebrow' => $is_session_tag ? t('Session topic') : $term->get('vid')->entity?->label(),
+      'title' => $term->label(),
+      'description' => $term->getDescription() ? ['#markup' => $term->getDescription()] : NULL,
+      'count_text' => $is_session_tag
+        ? \Drupal::translation()->formatPlural($count, '1 session on this topic.', '@count sessions on this topic.')
+        : \Drupal::translation()->formatPlural($count, '1 item.', '@count items.'),
+    ],
+    '#cache' => ['tags' => array_merge($term->getCacheTags(), ['node_list'])],
+  ];
 }
 
 /**
  * Implements hook_preprocess_HOOK() for node templates.
  *
- * Puts the session_evaluation view ("Evaluate this session" / "Your
- * Evaluation") in the session page's sidebar column, above the "Session
- * details" card. It used to be a page block, which can only sit above or
- * below the whole node, so that block placement is disabled and the same
- * view is embedded here instead. Who sees it is unchanged: the view's own
- * access restricts it to session moderators and administrators, and it
+ * Puts the moderator's "Your evaluation" card in the session page's
+ * sidebar column, above the "Session details" card. Who sees it is
+ * unchanged from when this was the session_evaluation view: that view's
+ * access still decides (session moderators and administrators), and it
  * only shows while the session is still Proposed.
+ *
+ * The card itself is built here rather than by the view because the view's
+ * webform field prints the Likert answers as one <ul> of "<b>Label:</b> 9"
+ * strings, which leaves nothing to hang a score bar on, and its edit link
+ * went to the admin-themed submission page instead of a modal.
  */
 function drupal_india_connect_preprocess_node(array &$variables) {
   $node = $variables['node'];
+  if ($node->bundle() === 'session' && $variables['view_mode'] === 'card') {
+    _drupal_india_connect_session_card($variables);
+    return;
+  }
   if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
     return;
   }
@@ -358,12 +413,156 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     return;
   }
 
-  $variables['session_evaluation'] = [
-    '#type' => 'view',
-    '#name' => 'session_evaluation',
-    '#display_id' => 'block_1',
-    '#arguments' => [\Drupal::currentUser()->id(), $node->id()],
-    // The view shows the current user's own evaluation, if any.
-    '#cache' => ['contexts' => ['user']],
+  $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
+}
+
+/**
+ * Builds the current user's evaluation card for a proposed session.
+ *
+ * Shows their ratings and comments with an "Edit evaluation" button, or an
+ * "Evaluate this session" button if they have not rated it yet. Both open
+ * the webform in a modal; the form's confirmation redirects back to the
+ * session, so the page reloads with the updated card.
+ */
+function _drupal_india_connect_session_evaluation_card(\Drupal\node\NodeInterface $node): array {
+  $webform = \Drupal\webform\Entity\Webform::load('session_evaluation');
+  $uid = \Drupal::currentUser()->id();
+  $build = [
+    '#theme' => 'session_evaluation_card',
+    '#cache' => [
+      'contexts' => ['user'],
+      'tags' => ['webform_submission_list', 'config:webform.webform.session_evaluation'],
+    ],
+    '#attached' => ['library' => ['core/drupal.dialog.ajax']],
   ];
+
+  // The session is stored as the webform's "session" element value, not as
+  // the submission's source entity, so look it up in the submission data.
+  $query = \Drupal::database()->select('webform_submission', 's');
+  $query->join('webform_submission_data', 'd', 'd.sid = s.sid');
+  $sid = $query->fields('s', ['sid'])
+    ->condition('s.webform_id', 'session_evaluation')
+    ->condition('s.uid', $uid)
+    ->condition('d.name', 'session')
+    ->condition('d.value', $node->id())
+    ->orderBy('s.sid', 'DESC')
+    ->range(0, 1)
+    ->execute()
+    ->fetchField();
+  $submission = $sid ? \Drupal\webform\Entity\WebformSubmission::load($sid) : NULL;
+
+  if (!$submission) {
+    $build['#action_url'] = \Drupal\Core\Url::fromRoute('entity.webform.canonical', ['webform' => 'session_evaluation'], [
+      'query' => ['session' => $node->id()],
+    ]);
+    $build['#action_label'] = t('Evaluate this session');
+    return $build;
+  }
+
+  // Criteria in the order the form asks them (the stored answers are keyed
+  // alphabetically), scored against the top of the Likert answer scale.
+  $element = $webform->getElement('ratings');
+  $answers_element = ['#options' => $element['#answers']];
+  $answers = \Drupal\webform\Entity\WebformOptions::getElementOptions($answers_element);
+  $max = max(array_map('intval', array_keys($answers)));
+  $data = $submission->getData();
+  $criteria = [];
+  foreach ($element['#questions'] as $question => $question_label) {
+    if (!isset($data['ratings'][$question]) || $data['ratings'][$question] === '') {
+      continue;
+    }
+    $score = (int) $data['ratings'][$question];
+    $criteria[] = [
+      'label' => $question_label,
+      'score' => $score,
+      'percent' => round($score / $max * 100),
+    ];
+  }
+
+  $build['#criteria'] = $criteria;
+  $build['#max'] = $max;
+  $build['#average'] = $criteria ? number_format(array_sum(array_column($criteria, 'score')) / count($criteria), 1) : NULL;
+  $build['#comments'] = trim((string) ($data['comments'] ?? ''));
+  // The front-end edit route, not $submission->toUrl('edit-form'), which is
+  // the admin-themed /admin/structure/webform/… page.
+  $build['#action_url'] = \Drupal\Core\Url::fromRoute('entity.webform.user.submission.edit', [
+    'webform' => 'session_evaluation',
+    'webform_submission' => $submission->id(),
+  ]);
+  $build['#action_label'] = t('Edit evaluation');
+  $build['#cache']['tags'] = array_merge($build['#cache']['tags'], $submission->getCacheTags());
+  return $build;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function drupal_india_connect_theme($existing, $type, $theme, $path) {
+  return [
+    'session_evaluation_card' => [
+      'variables' => [
+        'criteria' => [],
+        'max' => 10,
+        'average' => NULL,
+        'comments' => '',
+        'action_url' => NULL,
+        'action_label' => '',
+      ],
+      'path' => $path . '/templates/content',
+    ],
+  ];
+}
+
+/**
+ * Plain-text values for node--session--card.html.twig.
+ *
+ * Read from the entity rather than rendered fields: sessions have no card
+ * display, so content.* would come from the full default display, labels
+ * and Font Awesome icons included.
+ */
+function _drupal_india_connect_session_card(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $excerpt = trim((string) $node->get('field_synopsis')->value);
+  if ($excerpt === '' && $node->hasField('field_description')) {
+    $excerpt = trim(html_entity_decode(strip_tags((string) $node->get('field_description')->value)));
+  }
+  $excerpt = preg_replace('/\s+/', ' ', $excerpt);
+  if (mb_strlen($excerpt) > 180) {
+    $excerpt = preg_replace('/\s+\S*$/u', '', mb_substr($excerpt, 0, 180)) . '…';
+  }
+
+  $facts = [];
+  if ($level = $node->get('field_audience')->entity) {
+    $facts[] = $level->label();
+  }
+  if ($type = $node->get('field_type')->value) {
+    $labels = $node->get('field_type')->getFieldDefinition()->getSetting('allowed_values');
+    $facts[] = $labels[$type] ?? $type;
+  }
+
+  $category = $node->get('field_session_category')->entity;
+  $variables['session_card'] = [
+    'category' => $category?->label(),
+    'excerpt' => $excerpt,
+    'facts' => $facts,
+  ];
+  foreach (array_filter([$category, $level ?? NULL]) as $term) {
+    $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $term->getCacheTags());
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for node templates.
+ *
+ * Drops core's per-node suggestions (node__ID, node__ID__VIEW_MODE).
+ * event_horizon ships an "intentionally left blank" node--25.html.twig for
+ * a page in its own demo content; on this site nid 25 is a session, so that
+ * template blanked the session's page and its card on tag listings. Node
+ * templates here are chosen by bundle and view mode, never by ID.
+ */
+function drupal_india_connect_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  // Other modules may add non-string entries here; leave those alone.
+  $suggestions = array_filter($suggestions, fn($suggestion) => !is_string($suggestion) || !preg_match('/^node__\d+(__|$)/', $suggestion));
 }
