@@ -1,0 +1,26 @@
+uuid: ac062d03-1fd3-43d2-b29c-c37007d56d90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_moderator_category
+    - taxonomy.vocabulary.session_category
+  module:
+    - user
+id: user.user.field_moderator_category
+field_name: field_moderator_category
+entity_type: user
+bundle: user
+label: 'Session category'
+description: 'Session moderators only see sessions in this category on the Session Ratings page.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      session_category: session_category
+    auto_create: false
+field_type: entity_reference

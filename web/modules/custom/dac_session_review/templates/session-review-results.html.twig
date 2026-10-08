@@ -15,6 +15,9 @@
  * - max: Top of the rating scale.
  * - unreviewed: Proposed sessions in the track with no reviews yet.
  * - form_action: URL the track filter submits to.
+ * - show_filter: Whether to show the track filter (administrators); session
+ *   moderators are fixed to their assigned track.
+ * - no_track: TRUE for a moderator with no track assigned.
  */
 #}
 {% macro sort_header(header, class) %}
@@ -30,6 +33,7 @@
     <p class="dac-review__intro">{{ 'Average moderator scores for every reviewed session, out of @max. Highest average first; select a column heading to sort by it.'|t({'@max': max}) }}</p>
   </div>
 
+  {% if show_filter %}
   <form class="dac-review__filter" method="get" action="{{ form_action }}">
     <div class="dac-review__field">
       <label for="dac-review-track" class="dac-review__label">{{ 'Track'|t }}</label>
@@ -44,7 +48,9 @@
     <input type="hidden" name="order" value="{{ order }}">
     <button type="submit" class="button button--primary dac-review__submit">{{ 'Show sessions'|t }}</button>
   </form>
+  {% endif %}
 
+  {% if not no_track %}
   {% set count = rows|length %}
   <p class="dac-review__summary">
     {% if track_label %}
@@ -56,6 +62,7 @@
       <span class="dac-review__pending">{% trans %}{{ unreviewed }} proposal not reviewed yet{% plural unreviewed %}{{ unreviewed }} proposals not reviewed yet{% endtrans %}</span>
     {% endif %}
   </p>
+  {% endif %}
 
   {% if rows %}
     <div class="dac-review__table-wrap">
@@ -103,7 +110,9 @@
     </div>
   {% else %}
     <p class="dac-review__empty">
-      {% if track_label %}
+      {% if no_track %}
+        {{ 'No track has been assigned to you yet. Ask an organiser to set your session category.'|t }}
+      {% elseif track_label %}
         {{ 'No sessions in @track have been reviewed yet.'|t({'@track': track_label}) }}
       {% else %}
         {{ 'No sessions have been reviewed yet.'|t }}

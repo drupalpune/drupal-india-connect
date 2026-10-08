@@ -52,6 +52,20 @@ class ReviewResultsController extends ControllerBase {
       $track = '';
     }
 
+    // Session moderators only see their assigned track (the admin-only
+    // "Session category" on their account) and get no track filter; the
+    // ?track= parameter is ignored for them. See _dac_session_review_track().
+    $assigned = _dac_session_review_track($this->currentUser());
+    $show_filter = $assigned === NULL;
+    $no_track = FALSE;
+    if (!$show_filter) {
+      $track = (string) $assigned;
+      if (!isset($tracks[$track])) {
+        $track = '';
+        $no_track = TRUE;
+      }
+    }
+
     $sort_options = self::SORTS;
     foreach (array_keys($questions) as $delta) {
       $sort_options['q' . $delta] = 'desc';
@@ -62,7 +76,7 @@ class ReviewResultsController extends ControllerBase {
     }
     $order = $request->query->get('order') === 'asc' ? 'asc' : ($request->query->get('order') === 'desc' ? 'desc' : $sort_options[$sort]);
 
-    $rows = $this->buildRows($questions, $track);
+    $rows = $no_track ? [] : $this->buildRows($questions, $track);
     $this->sortRows($rows, $sort, $order);
 
     // Rank always follows the overall average, whatever the table is sorted
@@ -89,7 +103,7 @@ class ReviewResultsController extends ControllerBase {
       $headers[$key] = [
         'label' => $label,
         'url' => Url::fromRoute('dac_session_review.results', [], [
-          'query' => array_filter(['track' => $track, 'sort' => $key, 'order' => $next]),
+          'query' => array_filter(['track' => $show_filter ? $track : '', 'sort' => $key, 'order' => $next]),
         ])->toString(),
         'active' => $active,
         'order' => $active ? $order : NULL,
@@ -106,12 +120,14 @@ class ReviewResultsController extends ControllerBase {
       '#sort' => $sort,
       '#order' => $order,
       '#max' => $max,
-      '#unreviewed' => $this->countUnreviewed(array_column($rows, 'nid'), $track),
+      '#unreviewed' => $no_track ? 0 : $this->countUnreviewed(array_column($rows, 'nid'), $track),
+      '#show_filter' => $show_filter,
+      '#no_track' => $no_track,
       '#form_action' => Url::fromRoute('dac_session_review.results')->toString(),
       '#attached' => ['library' => ['dac_session_review/review-results']],
       '#cache' => [
-        'contexts' => ['url.query_args', 'user.permissions'],
-        'tags' => ['webform_submission_list', 'node_list', 'taxonomy_term_list', 'config:webform.webform.session_evaluation'],
+        'contexts' => ['url.query_args', 'user.permissions', 'user'],
+        'tags' => ['webform_submission_list', 'node_list', 'taxonomy_term_list', 'config:webform.webform.session_evaluation', 'user:' . $this->currentUser()->id()],
       ],
     ];
   }
