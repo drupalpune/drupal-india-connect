@@ -713,13 +713,13 @@ h2.eh-heading,
 }
 
 /*
- * "Your evaluation" card (moderators only), above the Session details card.
+ * "Your evaluation" card (moderators only), last in the session sidebar.
  * Same panel as Session details, but on the sky tint so the private,
  * reviewer-only card reads as separate from the public session facts.
  * Each criterion is a label/score row over a thin score bar.
  */
 .session-detail__evaluation {
-  margin-block-end: var(--sp1);
+  margin-block-start: var(--sp1);
 }
 
 .session-evaluation {
@@ -864,11 +864,11 @@ h2.eh-heading,
 }
 
 /*
- * "Other evaluations" card, under "Your evaluation": the same panel as
- * Session details (white, hairline, 3px primary top accent), so the
- * viewer's own sky-tinted card stays the odd one out. One row per other
- * moderator: initials avatar (round, like speaker portraits), name, score
- * and a thin score bar beneath.
+ * "Other evaluations" card, between Session details and "Your evaluation":
+ * the same panel as Session details (white, hairline, 3px primary top
+ * accent), so the viewer's own sky-tinted card stays the odd one out. One
+ * row per other moderator: initials avatar (round, like speaker portraits),
+ * name, score and a thin score bar beneath.
  */
 .session-others {
   padding: var(--sp1-5);

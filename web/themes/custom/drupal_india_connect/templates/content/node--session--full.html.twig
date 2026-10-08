@@ -50,15 +50,6 @@
     </div>
 
     <div class="session-detail__sidebar">
-      {% if session_evaluation %}
-        <div class="session-detail__evaluation">{{ session_evaluation }}</div>
-      {% endif %}
-
-      {% set other_evaluations = session_other_evaluations|render %}
-      {% if other_evaluations|trim is not empty %}
-        <div class="session-detail__evaluation">{{ other_evaluations }}</div>
-      {% endif %}
-
       <aside class="session-metadata" aria-labelledby="session-meta-heading">
         <h2 id="session-meta-heading" class="session-metadata__heading">Session details</h2>
 
@@ -93,6 +84,17 @@
           {% endfor %}
         </dl>
       </aside>
+
+      {# Reviewer cards (moderators and admins, Proposed sessions only), under
+         the public details: other moderators' scores, then your own. #}
+      {% set other_evaluations = session_other_evaluations|render %}
+      {% if other_evaluations|trim is not empty %}
+        <div class="session-detail__evaluation">{{ other_evaluations }}</div>
+      {% endif %}
+
+      {% if session_evaluation %}
+        <div class="session-detail__evaluation">{{ session_evaluation }}</div>
+      {% endif %}
     </div>
   </div>
 
