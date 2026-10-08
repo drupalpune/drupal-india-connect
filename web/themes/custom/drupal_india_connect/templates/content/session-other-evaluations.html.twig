@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Other moderators' evaluations of a proposed session, in the session page
+ * sidebar between Session details and "Your evaluation". Built by
+ * _drupal_india_connect_session_other_evaluations().
+ *
+ * Available variables:
+ * - evaluations: List of {name, initials, score, percent}, oldest first.
+ * - average: Mean score across them, as a one-decimal string.
+ * - max: Top of the rating scale.
+ */
+#}
+<section class="session-others" aria-labelledby="session-others-heading">
+  <div class="session-others__header">
+    <h2 id="session-others-heading" class="session-others__heading">{{ 'Other evaluations'|t }}</h2>
+    <p class="session-others__count">
+      {% set count = evaluations|length %}
+      {% trans %}{{ count }} moderator{% plural count %}{{ count }} moderators{% endtrans %}
+    </p>
+  </div>
+
+  <ul class="session-others__list">
+    {% for evaluation in evaluations %}
+      <li class="session-others__item">
+        <span class="session-others__avatar" aria-hidden="true">{{ evaluation.initials }}</span>
+        <span class="session-others__name">{{ evaluation.name }}</span>
+        <span class="session-others__score">
+          <span class="session-others__score-value">{{ evaluation.score }}</span><span class="session-others__score-max">/{{ max }}</span>
+        </span>
+        <span class="session-others__bar" aria-hidden="true"><span class="session-others__bar-fill" style="--score: {{ evaluation.percent }}%"></span></span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if evaluations|length > 1 %}
+    <p class="session-others__average">
+      <span class="session-others__average-label">{{ 'Average across moderators'|t }}</span>
+      <span class="session-others__average-value">{{ average }}<span class="session-others__score-max">/{{ max }}</span></span>
+    </p>
+  {% endif %}
+</section>
