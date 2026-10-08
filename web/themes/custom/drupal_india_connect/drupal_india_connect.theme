@@ -414,6 +414,83 @@ function drupal_india_connect_preprocess_node(array &$variables) {
   }
 
   $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
+  $variables['session_other_evaluations'] = _drupal_india_connect_session_other_evaluations($node);
+}
+
+/**
+ * Builds the "Other evaluations" card for a proposed session.
+ *
+ * Lists every other evaluator of the session (the viewer's own evaluation
+ * is in their "Your evaluation" card) with their average score, oldest
+ * first, and the average across them. Empty until someone else has rated.
+ */
+function _drupal_india_connect_session_other_evaluations(\Drupal\node\NodeInterface $node): array {
+  $build = [
+    '#cache' => [
+      'contexts' => ['user'],
+      'tags' => ['webform_submission_list', 'config:webform.webform.session_evaluation'],
+    ],
+  ];
+
+  // As in the evaluation card: the session is the "session" element value.
+  $query = \Drupal::database()->select('webform_submission', 's');
+  $query->join('webform_submission_data', 'd', "d.sid = s.sid AND d.name = 'session'");
+  $query->join('webform_submission_data', 'r', "r.sid = s.sid AND r.name = 'ratings'");
+  $query->fields('s', ['sid', 'uid', 'created'])
+    ->fields('r', ['value'])
+    ->condition('s.webform_id', 'session_evaluation')
+    ->condition('s.in_draft', 0)
+    ->condition('s.uid', \Drupal::currentUser()->id(), '<>')
+    ->condition('d.value', $node->id())
+    ->condition('r.value', '', '<>')
+    ->orderBy('s.created')
+    ->orderBy('s.sid');
+
+  $by_submission = [];
+  foreach ($query->execute() as $record) {
+    $by_submission[$record->sid]['uid'] = (int) $record->uid;
+    $by_submission[$record->sid]['scores'][] = (int) $record->value;
+  }
+  if (!$by_submission) {
+    return $build;
+  }
+
+  $webform = \Drupal\webform\Entity\Webform::load('session_evaluation');
+  $answers_element = ['#options' => $webform->getElement('ratings')['#answers']];
+  $max = max(array_map('intval', array_keys(\Drupal\webform\Entity\WebformOptions::getElementOptions($answers_element))));
+
+  $accounts = \Drupal\user\Entity\User::loadMultiple(array_column($by_submission, 'uid'));
+  $evaluations = [];
+  $all = [];
+  foreach ($by_submission as $submission) {
+    $account = $accounts[$submission['uid']] ?? NULL;
+    $name = $account
+      ? (trim((string) ($account->hasField('field_display_name') ? $account->get('field_display_name')->value : '')) ?: $account->getDisplayName())
+      : t('Former moderator');
+    $score = array_sum($submission['scores']) / count($submission['scores']);
+    $all = array_merge($all, $submission['scores']);
+    // Up to two initials for the avatar, from the first two words.
+    $initials = '';
+    foreach (array_slice(preg_split('/\s+/u', trim((string) $name)), 0, 2) as $word) {
+      $initials .= mb_strtoupper(mb_substr($word, 0, 1));
+    }
+    $evaluations[] = [
+      'name' => $name,
+      'initials' => $initials,
+      'score' => number_format($score, 1),
+      'percent' => round($score / $max * 100),
+    ];
+    if ($account) {
+      $build['#cache']['tags'] = array_merge($build['#cache']['tags'], $account->getCacheTags());
+    }
+  }
+
+  return $build + [
+    '#theme' => 'session_other_evaluations',
+    '#evaluations' => $evaluations,
+    '#average' => number_format(array_sum($all) / count($all), 1),
+    '#max' => $max,
+  ];
 }
 
 /**
@@ -499,6 +576,14 @@ function _drupal_india_connect_session_evaluation_card(\Drupal\node\NodeInterfac
  */
 function drupal_india_connect_theme($existing, $type, $theme, $path) {
   return [
+    'session_other_evaluations' => [
+      'variables' => [
+        'evaluations' => [],
+        'average' => NULL,
+        'max' => 10,
+      ],
+      'path' => $path . '/templates/content',
+    ],
     'session_evaluation_card' => [
       'variables' => [
         'criteria' => [],
