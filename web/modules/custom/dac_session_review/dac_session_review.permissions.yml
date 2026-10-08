@@ -1,0 +1,4 @@
+view session review results:
+  title: 'View session review results'
+  description: 'See every reviewed session with its average moderator scores. Shows how other moderators rated, so do not give this to session moderators.'
+  restrict access: true

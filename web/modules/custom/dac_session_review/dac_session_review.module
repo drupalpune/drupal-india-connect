@@ -24,3 +24,25 @@ function dac_session_review_form_node_form_alter(array &$form, FormStateInterfac
   }
   $form['meta']['author']['#access'] = \Drupal::currentUser()->hasPermission('administer nodes');
 }
+
+/**
+ * Implements hook_theme().
+ */
+function dac_session_review_theme(): array {
+  return [
+    'session_review_results' => [
+      'variables' => [
+        'rows' => [],
+        'headers' => [],
+        'tracks' => [],
+        'track' => '',
+        'track_label' => NULL,
+        'sort' => 'score',
+        'order' => 'desc',
+        'max' => 10,
+        'unreviewed' => 0,
+        'form_action' => '',
+      ],
+    ],
+  ];
+}
