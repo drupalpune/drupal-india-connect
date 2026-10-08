@@ -1,7 +1,9 @@
 name: 'DrupalAsia Connect session review'
 type: module
-description: 'Keeps session authors hidden from session moderators, so proposals are rated on their content.'
+description: 'Blind review for session proposals, and the review results page for organisers.'
 package: 'DrupalAsia Connect'
 core_version_requirement: ^11
 dependencies:
   - drupal:node
+  - drupal:taxonomy
+  - webform:webform

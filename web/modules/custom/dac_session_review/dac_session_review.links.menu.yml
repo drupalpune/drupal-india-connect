@@ -1,0 +1,6 @@
+dac_session_review.results:
+  title: 'Review results'
+  description: 'Reviewed sessions by track, ranked by average moderator score.'
+  route_name: dac_session_review.results
+  parent: system.admin
+  weight: -4

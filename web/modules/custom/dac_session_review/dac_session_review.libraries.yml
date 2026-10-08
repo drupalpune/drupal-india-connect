@@ -1,0 +1,5 @@
+review-results:
+  version: 1.x
+  css:
+    theme:
+      css/review-results.css: {}

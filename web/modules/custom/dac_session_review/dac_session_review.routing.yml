@@ -1,0 +1,7 @@
+dac_session_review.results:
+  path: '/sessions/review-results'
+  defaults:
+    _controller: '\Drupal\dac_session_review\Controller\ReviewResultsController::page'
+    _title: 'Review results'
+  requirements:
+    _permission: 'view session review results'

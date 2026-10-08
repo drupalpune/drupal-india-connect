@@ -1,0 +1,113 @@
+{#
+/**
+ * @file
+ * Review results (/sessions/review-results): reviewed sessions in a track,
+ * ranked by average moderator score. Built by ReviewResultsController.
+ *
+ * Available variables:
+ * - rows: Sessions, each with rank, title, url, track, state, state_label,
+ *   reviews, criteria_display (one per question), score_display, percent.
+ * - headers: Sortable columns keyed by sort key: label, url, active, order.
+ * - tracks: Track (session category) labels keyed by term ID.
+ * - track: Selected term ID, or '' for all tracks.
+ * - track_label: Selected track's label, or NULL.
+ * - sort, order: Current sort key and direction.
+ * - max: Top of the rating scale.
+ * - unreviewed: Proposed sessions in the track with no reviews yet.
+ * - form_action: URL the track filter submits to.
+ */
+#}
+{% macro sort_header(header, class) %}
+  <th scope="col" class="dac-review__th {{ class }}{{ header.active ? ' is-active' }}"{% if header.active %} aria-sort="{{ header.order == 'asc' ? 'ascending' : 'descending' }}"{% endif %}>
+    <a href="{{ header.url }}" class="dac-review__sort{{ header.active ? ' dac-review__sort--' ~ header.order }}">{{ header.label }}</a>
+  </th>
+{% endmacro %}
+
+<div class="dac-review">
+  <div class="dac-review__header">
+    <p class="dac-review__eyebrow">{{ 'Session review'|t }}</p>
+    <h1 class="dac-review__title">{{ 'Review results'|t }}</h1>
+    <p class="dac-review__intro">{{ 'Average moderator scores for every reviewed session, out of @max. Highest average first; select a column heading to sort by it.'|t({'@max': max}) }}</p>
+  </div>
+
+  <form class="dac-review__filter" method="get" action="{{ form_action }}">
+    <div class="dac-review__field">
+      <label for="dac-review-track" class="dac-review__label">{{ 'Track'|t }}</label>
+      <select id="dac-review-track" name="track" class="dac-review__select">
+        <option value="">{{ 'All tracks'|t }}</option>
+        {% for id, label in tracks %}
+          <option value="{{ id }}"{{ id == track ? ' selected' }}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <input type="hidden" name="sort" value="{{ sort }}">
+    <input type="hidden" name="order" value="{{ order }}">
+    <button type="submit" class="button button--primary dac-review__submit">{{ 'Show sessions'|t }}</button>
+  </form>
+
+  {% set count = rows|length %}
+  <p class="dac-review__summary">
+    {% if track_label %}
+      {% trans %}{{ count }} reviewed session in {{ track_label }}{% plural count %}{{ count }} reviewed sessions in {{ track_label }}{% endtrans %}
+    {%- else -%}
+      {% trans %}{{ count }} reviewed session across all tracks{% plural count %}{{ count }} reviewed sessions across all tracks{% endtrans %}
+    {%- endif -%}
+    {% if unreviewed %}
+      <span class="dac-review__pending">{% trans %}{{ unreviewed }} proposal not reviewed yet{% plural unreviewed %}{{ unreviewed }} proposals not reviewed yet{% endtrans %}</span>
+    {% endif %}
+  </p>
+
+  {% if rows %}
+    <div class="dac-review__table-wrap">
+      <table class="dac-review__table">
+        <thead>
+          <tr>
+            <th scope="col" class="dac-review__th dac-review__col-rank"><span class="visually-hidden">{{ 'Rank'|t }}</span>#</th>
+            {{ _self.sort_header(headers.title, 'dac-review__col-session') }}
+            {{ _self.sort_header(headers.reviews, 'dac-review__col-num') }}
+            {% for key, header in headers %}
+              {% if key starts with 'q' %}
+                {{ _self.sort_header(header, 'dac-review__col-num') }}
+              {% endif %}
+            {% endfor %}
+            {{ _self.sort_header(headers.score, 'dac-review__col-score') }}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr class="dac-review__row">
+              <td class="dac-review__rank">{{ row.rank }}</td>
+              <td class="dac-review__session">
+                <a href="{{ row.url }}" class="dac-review__session-link">{{ row.title }}</a>
+                <span class="dac-review__meta">
+                  {% if not track_label and row.track %}
+                    <span class="dac-review__track">{{ row.track }}</span>
+                  {% endif %}
+                  {% if row.state_label %}
+                    <span class="dac-review__state dac-review__state--{{ row.state|clean_class }}">{{ row.state_label }}</span>
+                  {% endif %}
+                </span>
+              </td>
+              <td class="dac-review__num">{{ row.reviews }}</td>
+              {% for value in row.criteria_display %}
+                <td class="dac-review__num">{{ value }}</td>
+              {% endfor %}
+              <td class="dac-review__score">
+                <span class="dac-review__score-value">{{ row.score_display }}</span>
+                <span class="dac-review__bar" aria-hidden="true"><span class="dac-review__bar-fill" style="--score: {{ row.percent }}%"></span></span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="dac-review__empty">
+      {% if track_label %}
+        {{ 'No sessions in @track have been reviewed yet.'|t({'@track': track_label}) }}
+      {% else %}
+        {{ 'No sessions have been reviewed yet.'|t }}
+      {% endif %}
+    </p>
+  {% endif %}
+</div>
