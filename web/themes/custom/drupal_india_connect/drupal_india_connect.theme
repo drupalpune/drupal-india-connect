@@ -334,13 +334,16 @@ function drupal_india_connect_preprocess_views_view(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK() for node templates.
  *
- * Puts the session_evaluation view ("Evaluate this session" / "Your
- * Evaluation") in the session page's sidebar column, above the "Session
- * details" card. It used to be a page block, which can only sit above or
- * below the whole node, so that block placement is disabled and the same
- * view is embedded here instead. Who sees it is unchanged: the view's own
- * access restricts it to session moderators and administrators, and it
+ * Puts the moderator's "Your evaluation" card in the session page's
+ * sidebar column, above the "Session details" card. Who sees it is
+ * unchanged from when this was the session_evaluation view: that view's
+ * access still decides (session moderators and administrators), and it
  * only shows while the session is still Proposed.
+ *
+ * The card itself is built here rather than by the view because the view's
+ * webform field prints the Likert answers as one <ul> of "<b>Label:</b> 9"
+ * strings, which leaves nothing to hang a score bar on, and its edit link
+ * went to the admin-themed submission page instead of a modal.
  */
 function drupal_india_connect_preprocess_node(array &$variables) {
   $node = $variables['node'];
@@ -358,12 +361,102 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     return;
   }
 
-  $variables['session_evaluation'] = [
-    '#type' => 'view',
-    '#name' => 'session_evaluation',
-    '#display_id' => 'block_1',
-    '#arguments' => [\Drupal::currentUser()->id(), $node->id()],
-    // The view shows the current user's own evaluation, if any.
-    '#cache' => ['contexts' => ['user']],
+  $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
+}
+
+/**
+ * Builds the current user's evaluation card for a proposed session.
+ *
+ * Shows their ratings and comments with an "Edit evaluation" button, or an
+ * "Evaluate this session" button if they have not rated it yet. Both open
+ * the webform in a modal; the form's confirmation redirects back to the
+ * session, so the page reloads with the updated card.
+ */
+function _drupal_india_connect_session_evaluation_card(\Drupal\node\NodeInterface $node): array {
+  $webform = \Drupal\webform\Entity\Webform::load('session_evaluation');
+  $uid = \Drupal::currentUser()->id();
+  $build = [
+    '#theme' => 'session_evaluation_card',
+    '#cache' => [
+      'contexts' => ['user'],
+      'tags' => ['webform_submission_list', 'config:webform.webform.session_evaluation'],
+    ],
+    '#attached' => ['library' => ['core/drupal.dialog.ajax']],
+  ];
+
+  // The session is stored as the webform's "session" element value, not as
+  // the submission's source entity, so look it up in the submission data.
+  $query = \Drupal::database()->select('webform_submission', 's');
+  $query->join('webform_submission_data', 'd', 'd.sid = s.sid');
+  $sid = $query->fields('s', ['sid'])
+    ->condition('s.webform_id', 'session_evaluation')
+    ->condition('s.uid', $uid)
+    ->condition('d.name', 'session')
+    ->condition('d.value', $node->id())
+    ->orderBy('s.sid', 'DESC')
+    ->range(0, 1)
+    ->execute()
+    ->fetchField();
+  $submission = $sid ? \Drupal\webform\Entity\WebformSubmission::load($sid) : NULL;
+
+  if (!$submission) {
+    $build['#action_url'] = \Drupal\Core\Url::fromRoute('entity.webform.canonical', ['webform' => 'session_evaluation'], [
+      'query' => ['session' => $node->id()],
+    ]);
+    $build['#action_label'] = t('Evaluate this session');
+    return $build;
+  }
+
+  // Criteria in the order the form asks them (the stored answers are keyed
+  // alphabetically), scored against the top of the Likert answer scale.
+  $element = $webform->getElement('ratings');
+  $answers_element = ['#options' => $element['#answers']];
+  $answers = \Drupal\webform\Entity\WebformOptions::getElementOptions($answers_element);
+  $max = max(array_map('intval', array_keys($answers)));
+  $data = $submission->getData();
+  $criteria = [];
+  foreach ($element['#questions'] as $question => $question_label) {
+    if (!isset($data['ratings'][$question]) || $data['ratings'][$question] === '') {
+      continue;
+    }
+    $score = (int) $data['ratings'][$question];
+    $criteria[] = [
+      'label' => $question_label,
+      'score' => $score,
+      'percent' => round($score / $max * 100),
+    ];
+  }
+
+  $build['#criteria'] = $criteria;
+  $build['#max'] = $max;
+  $build['#average'] = $criteria ? number_format(array_sum(array_column($criteria, 'score')) / count($criteria), 1) : NULL;
+  $build['#comments'] = trim((string) ($data['comments'] ?? ''));
+  // The front-end edit route, not $submission->toUrl('edit-form'), which is
+  // the admin-themed /admin/structure/webform/… page.
+  $build['#action_url'] = \Drupal\Core\Url::fromRoute('entity.webform.user.submission.edit', [
+    'webform' => 'session_evaluation',
+    'webform_submission' => $submission->id(),
+  ]);
+  $build['#action_label'] = t('Edit evaluation');
+  $build['#cache']['tags'] = array_merge($build['#cache']['tags'], $submission->getCacheTags());
+  return $build;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function drupal_india_connect_theme($existing, $type, $theme, $path) {
+  return [
+    'session_evaluation_card' => [
+      'variables' => [
+        'criteria' => [],
+        'max' => 10,
+        'average' => NULL,
+        'comments' => '',
+        'action_url' => NULL,
+        'action_label' => '',
+      ],
+      'path' => $path . '/templates/content',
+    ],
   ];
 }
