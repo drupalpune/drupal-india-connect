@@ -99,6 +99,20 @@ function dac_session_review_views_pre_view(ViewExecutable $view, string $display
 }
 
 /**
+ * Implements hook_views_data_alter().
+ */
+function dac_session_review_views_data_alter(array &$data): void {
+  $data['node_field_data']['dac_user_seeded_random'] = [
+    'title' => t('Random (fixed per user)'),
+    'help' => t('Shuffles content differently for each user, but keeps that order across pages and visits, so paging neither repeats nor skips items.'),
+    'sort' => [
+      'id' => 'dac_user_seeded_random',
+      'field' => 'nid',
+    ],
+  ];
+}
+
+/**
  * Implements hook_views_query_alter().
  *
  * Limits every display of the Session Ratings view (the "to rate" list and

@@ -10,6 +10,7 @@ dependencies:
     - user.role.administrator
     - user.role.session_moderator
   module:
+    - dac_session_review
     - node
     - taxonomy
     - user
@@ -310,22 +311,19 @@ display:
           field: area
           plugin_id: text
       sorts:
-        created:
-          id: created
+        dac_user_seeded_random:
+          id: dac_user_seeded_random
           table: node_field_data
-          field: created
+          field: dac_user_seeded_random
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+          plugin_id: dac_user_seeded_random
           order: ASC
           expose:
             label: ''
             field_identifier: ''
           exposed: false
-          granularity: second
       arguments:
         uid:
           id: uid
@@ -565,7 +563,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: '<header class="dac-ratings__header"><p class="dac-ratings__eyebrow">Session review</p><h1 class="dac-ratings__title">Rate proposed sessions</h1><p class="dac-ratings__intro">Score each session from 1 to 10 on importance of topic, originality and authority. Once you rate a session it moves to “Already rated by you”, where you can change your scores.</p></header>'
+          content: '<header class="dac-ratings__header"><p class="dac-ratings__eyebrow">Session review</p><h1 class="dac-ratings__title">Rate proposed sessions</h1><p class="dac-ratings__intro">Score each session from 1 to 10 on relevance/track alignment, originality, practicality and compelling pitch. Once you rate a session it moves to “Already rated by you”, where you can change your scores.</p></header>'
           tokenize: false
         result:
           id: result
@@ -588,7 +586,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_session_category'
   attachment_1:
@@ -886,7 +884,7 @@ display:
         - url
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_session_category'
   page_1:
@@ -929,6 +927,6 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_session_category'

@@ -33,14 +33,18 @@ elements: |-
     '#type': webform_likert
     '#title': Ratings
     '#questions':
-      'Importance of topic': 'Importance of topic'
+      'Relevance/Track Alignment': 'Relevance/Track Alignment'
       Originality: Originality
-      Authority: Authority
+      Practicality: Practicality
+      'Compelling Pitch': 'Compelling Pitch'
     '#answers': likert_ten_scale
+    '#required': true
+    '#required_error': 'Score every criterion before submitting.'
   comments:
     '#type': textarea
     '#title': 'Your comments'
-    '#description': 'Optional notes on this proposal for the programme team.'
+    '#description': 'Notes on this proposal for the programme team.'
+    '#required': true
     '#rows': 4
 css: ''
 javascript: ''
