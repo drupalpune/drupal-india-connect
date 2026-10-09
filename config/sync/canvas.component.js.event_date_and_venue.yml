@@ -1,0 +1,183 @@
+uuid: f4bdd55f-f963-4557-b4ab-0bc2640a8bbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.event_date_and_venue
+  module:
+    - link
+active_version: 9e6cc3b42151e7c3
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '28–30 January 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        days:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday – Saturday'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        venue:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'IIT Bombay, Powai, Mumbai, India'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        mapLabel:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'View location'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        mapUrl:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'https://maps.app.goo.gl/G3S2RcNGnoXkxGfd9'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  16223d10bb5cadcb:
+    settings:
+      prop_field_definitions:
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '28–30 January 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        days:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday – Saturday'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        venue:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'IIT Bombay'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        location:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Powai, Mumbai, India'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        mapUrl:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 16
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://maps.app.goo.gl/G3S2RcNGnoXkxGfd9'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri
+    fallback_metadata:
+      slot_definitions: {  }
+  e5f2866a4a37216c:
+    settings:
+      prop_field_definitions:
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '28–30 January 2027'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        days:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday – Saturday'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  8fe3be948e0194e1:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Event Date and Venue'
+id: js.event_date_and_venue
+provider: null
+source: js
+source_local_id: event_date_and_venue

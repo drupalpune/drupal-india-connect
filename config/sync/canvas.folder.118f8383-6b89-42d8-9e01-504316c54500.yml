@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.js.event_date_and_venue
     - canvas.component.sdc.event_horizon.site-header
     - canvas.component.sdc.event_horizon.site-hero
     - canvas.component.sdc.event_horizon.site-hero-details
@@ -12,6 +13,7 @@ name: Other
 configEntityTypeId: component
 weight: 0
 items:
+  - js.event_date_and_venue
   - sdc.event_horizon.site-header
   - sdc.event_horizon.site-hero
   - sdc.event_horizon.site-hero-details

@@ -1,0 +1,375 @@
+uuid: fc5248b6-88d1-4191-8283-019bc8321049
+langcode: en
+status: true
+dependencies: {  }
+machineName: event_date_and_venue
+name: 'Event Date and Venue'
+required: {  }
+props:
+  date:
+    type: string
+    title: date
+    examples:
+      - '28–30 January 2027'
+  days:
+    type: string
+    title: days
+    examples:
+      - 'Thursday – Saturday'
+  venue:
+    type: string
+    title: venue
+    examples:
+      - 'IIT Bombay, Powai, Mumbai, India'
+  mapLabel:
+    type: string
+    title: mapLabel
+    examples:
+      - 'View location'
+  mapUrl:
+    type: string
+    title: mapUrl
+    examples:
+      - 'https://maps.app.goo.gl/G3S2RcNGnoXkxGfd9'
+slots: {  }
+js:
+  original: |
+
+    export default function EventDateVenue({
+      date = "28–30 January 2027",
+      days = "Thursday – Saturday",
+      venue = "IIT Bombay, Powai, Mumbai, India",
+      mapLabel = "View location",
+      mapUrl = "https://www.google.com/maps/search/?api=1&query=IIT+Bombay+Powai",
+    }) {
+      return (
+        <section className="dac-event-details" aria-label="Event date and venue">
+          <div className="dac-event-details__inner">
+            <div className="dac-event-details__item">
+              <div className="dac-event-details__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="5" width="18" height="16" rx="2"/>
+                  <path d="M8 3v4M16 3v4M3 10h18"/>
+                </svg>
+              </div>
+              <div className="dac-event-details__content">
+                <div className="dac-event-details__title">{date}</div>
+                <div className="dac-event-details__subtitle">{days}</div>
+              </div>
+            </div>
+
+            <div className="dac-event-details__item">
+              <div className="dac-event-details__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="2.5"/>
+                </svg>
+              </div>
+              <div className="dac-event-details__content">
+                <div className="dac-event-details__title">{venue}</div>
+                <div className="dac-event-details__subtitle">{location}</div>
+                {mapUrl && (
+              <a
+                className="dac-event-details__link"
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {mapLabel} <span aria-hidden="true">↗</span>
+              </a>
+            )}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+  compiled: |
+    import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+    export default function EventDateVenue({ date = "28–30 January 2027", days = "Thursday – Saturday", venue = "IIT Bombay, Powai, Mumbai, India", mapLabel = "View location", mapUrl = "https://www.google.com/maps/search/?api=1&query=IIT+Bombay+Powai" }) {
+        return /*#__PURE__*/ _jsx("section", {
+            className: "dac-event-details",
+            "aria-label": "Event date and venue",
+            children: /*#__PURE__*/ _jsxs("div", {
+                className: "dac-event-details__inner",
+                children: [
+                    /*#__PURE__*/ _jsxs("div", {
+                        className: "dac-event-details__item",
+                        children: [
+                            /*#__PURE__*/ _jsx("div", {
+                                className: "dac-event-details__icon",
+                                "aria-hidden": "true",
+                                children: /*#__PURE__*/ _jsxs("svg", {
+                                    viewBox: "0 0 24 24",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    strokeWidth: "1.8",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    children: [
+                                        /*#__PURE__*/ _jsx("rect", {
+                                            x: "3",
+                                            y: "5",
+                                            width: "18",
+                                            height: "16",
+                                            rx: "2"
+                                        }),
+                                        /*#__PURE__*/ _jsx("path", {
+                                            d: "M8 3v4M16 3v4M3 10h18"
+                                        })
+                                    ]
+                                })
+                            }),
+                            /*#__PURE__*/ _jsxs("div", {
+                                className: "dac-event-details__content",
+                                children: [
+                                    /*#__PURE__*/ _jsx("div", {
+                                        className: "dac-event-details__title",
+                                        children: date
+                                    }),
+                                    /*#__PURE__*/ _jsx("div", {
+                                        className: "dac-event-details__subtitle",
+                                        children: days
+                                    })
+                                ]
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxs("div", {
+                        className: "dac-event-details__item",
+                        children: [
+                            /*#__PURE__*/ _jsx("div", {
+                                className: "dac-event-details__icon",
+                                "aria-hidden": "true",
+                                children: /*#__PURE__*/ _jsxs("svg", {
+                                    viewBox: "0 0 24 24",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    strokeWidth: "1.8",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    children: [
+                                        /*#__PURE__*/ _jsx("path", {
+                                            d: "M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
+                                        }),
+                                        /*#__PURE__*/ _jsx("circle", {
+                                            cx: "12",
+                                            cy: "10",
+                                            r: "2.5"
+                                        })
+                                    ]
+                                })
+                            }),
+                            /*#__PURE__*/ _jsxs("div", {
+                                className: "dac-event-details__content",
+                                children: [
+                                    /*#__PURE__*/ _jsx("div", {
+                                        className: "dac-event-details__title",
+                                        children: venue
+                                    }),
+                                    /*#__PURE__*/ _jsx("div", {
+                                        className: "dac-event-details__subtitle",
+                                        children: location
+                                    }),
+                                    mapUrl && /*#__PURE__*/ _jsxs("a", {
+                                        className: "dac-event-details__link",
+                                        href: mapUrl,
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        children: [
+                                            mapLabel,
+                                            " ",
+                                            /*#__PURE__*/ _jsx("span", {
+                                                "aria-hidden": "true",
+                                                children: "↗"
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            })
+        });
+    }
+css:
+  original: |
+
+    /* DrupalAsia Connect — Event Date & Venue */
+
+    .dac-event-details {
+      --dac-accent: #ff7900;
+      --dac-text: #101626;
+      --dac-muted: #525866;
+
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+      container-type: inline-size;
+    }
+
+    .dac-event-details *,
+    .dac-event-details *::before,
+    .dac-event-details *::after {
+      box-sizing: border-box;
+    }
+
+    /* No box, border, background or outer spacing */
+    .dac-event-details__inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    /* Date and venue */
+    .dac-event-details__item {
+      display: flex;
+      align-items: center;
+      flex: 0 1 auto;
+      min-width: 0;
+      gap: 12px;
+
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .dac-event-details__item + .dac-event-details__item {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    /* Orange outline icons */
+    .dac-event-details__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+
+      color: var(--dac-accent);
+      background: transparent;
+      border: none;
+      border-radius: 0;
+    }
+
+    .dac-event-details__icon svg {
+      display: block;
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Text */
+    .dac-event-details__content {
+      min-width: 0;
+    }
+
+    .dac-event-details .dac-event-details__title {
+      margin: 0;
+      padding: 0;
+
+      color: var(--dac-text);
+      font-family: inherit;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      overflow-wrap: anywhere;
+    }
+
+    .dac-event-details .dac-event-details__subtitle {
+      margin: 3px 0 0;
+      padding: 0;
+
+      color: var(--dac-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-transform: none;
+    }
+
+    /* Location link, without auto margin */
+    .dac-event-details .dac-event-details__link {
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: 6px;
+
+      margin: 0;
+      padding: 0;
+
+      color: var(--dac-accent);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 1.5;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dac-event-details__link:hover {
+      text-decoration: underline;
+    }
+
+    .dac-event-details__link:focus-visible {
+      outline: 2px solid var(--dac-accent);
+      outline-offset: 4px;
+    }
+
+    /* Narrow Canvas containers */
+    @container (max-width: 680px) {
+      .dac-event-details__inner {
+        gap: 16px 24px;
+      }
+
+      .dac-event-details .dac-event-details__title {
+        font-size: 18px;
+      }
+    }
+
+    /* Mobile layout */
+    @container (max-width: 500px) {
+      .dac-event-details__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 16px;
+      }
+
+      .dac-event-details__item {
+        width: 100%;
+      }
+
+      .dac-event-details .dac-event-details__link {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  compiled: |-
+    /*! tailwindcss v4.1.13 | MIT License | https://tailwindcss.com */
+    .dac-event-details{--dac-accent:#ff7900;--dac-text:#101626;--dac-muted:#525866;width:100%;min-width:0;margin:0;padding:0;font-family:inherit;container-type:inline-size}.dac-event-details *,.dac-event-details :before,.dac-event-details :after{box-sizing:border-box}.dac-event-details__inner{width:100%;min-width:0;max-width:none;box-shadow:none;background:0 0;border:none;border-radius:0;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:24px;margin:0;padding:0;display:flex;overflow:visible}.dac-event-details__item{border:0;flex:0 auto;align-items:center;gap:12px;min-width:0;margin:0;padding:0;display:flex}.dac-event-details__item+.dac-event-details__item{border:0;margin:0;padding:0}.dac-event-details__icon{width:28px;height:28px;color:var(--dac-accent);background:0 0;border:none;border-radius:0;flex:0 0 28px;justify-content:center;align-items:center;display:flex}.dac-event-details__icon svg{width:26px;height:26px;display:block}.dac-event-details__content{min-width:0}.dac-event-details .dac-event-details__title{color:var(--dac-text);letter-spacing:-.02em;text-transform:none;overflow-wrap:anywhere;margin:0;padding:0;font-family:inherit;font-size:20px;font-weight:700;line-height:1.35}.dac-event-details .dac-event-details__subtitle{color:var(--dac-muted);text-transform:none;margin:3px 0 0;padding:0;font-family:inherit;font-size:14px;font-weight:400;line-height:1.5}.dac-event-details .dac-event-details__link{color:var(--dac-accent);white-space:nowrap;flex:none;align-items:center;gap:6px;margin:0;padding:0;font-family:inherit;font-size:15px;font-weight:650;line-height:1.5;text-decoration:none;display:inline-flex}.dac-event-details__link:hover{text-decoration:underline}.dac-event-details__link:focus-visible{outline:2px solid var(--dac-accent);outline-offset:4px}@container (max-width:680px){.dac-event-details__inner{gap:16px 24px}.dac-event-details .dac-event-details__title{font-size:18px}}@container (max-width:500px){.dac-event-details__inner{flex-flow:column;align-items:flex-start;gap:16px}.dac-event-details__item{width:100%}.dac-event-details .dac-event-details__link{margin:0;font-size:14px}}
+dataDependencies: {  }
