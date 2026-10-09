@@ -1,29 +1,702 @@
 uuid: 08b359a8-9b28-4ef7-853a-1907a7f1d508
 langcode: en
-status: false
+status: true
 dependencies: {  }
 machineName: speaker_showcase
-name: 'Speaker Showcase'
-required: {  }
-props: {  }
+name: 'Speaker Card'
+required:
+  - domain
+  - designation
+  - name
+  - avatar
+props:
+  avatar:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: avatar
+    examples:
+      -
+        src: 'https://placehold.co/600x600.png?alternateWidths=https%3A%2F%2Fplacehold.co%2F%7Bwidth%7Dx%7Bheight%7D.png'
+        alt: 'Example image placeholder'
+        width: 600
+        height: 600
+  name:
+    type: string
+    title: name
+    examples:
+      - 'Speaker name'
+  designation:
+    type: string
+    title: designation
+    examples:
+      - Designation
+  description:
+    type: string
+    title: description
+    examples:
+      - Description
+  domain:
+    type: string
+    title: domain
+    examples:
+      - 'Talks About'
+  sessionTitle:
+    type: string
+    title: sessionTitle
+    examples:
+      - 'Session Title'
+  drupalUrl:
+    type: string
+    format: uri
+    title: drupal_url
+    examples:
+      - 'https://www.drupal.org/u/dries'
+  linkedinUrl:
+    type: string
+    format: uri
+    title: linkedin_url
+    examples:
+      - 'https://www.linkedin.com/in/dries'
 slots: {  }
 js:
   original: |
-    // See https://project.pages.drupalcode.org/canvas/ for documentation on how to build a code component
 
-    const Component = ({
-      text = "Speaker Showcase",
-    }) => {
+    /**
+     * DrupalAsia Connect — Speaker Card
+     * Adapted from drupal_india_connect:people-card
+     */
+
+    export default function SpeakerCard({
+      avatar = null,
+      name = "Speaker Name",
+      designation = "",
+      description = "",
+      domain = "",
+      session_title = "",
+      drupal_url = "",
+      linkedin_url = "",
+    }) {
+      const imageSrc =
+        typeof avatar === "string"
+          ? avatar
+          : avatar?.src || "";
+
+      const imageAlt =
+        typeof avatar === "object" && avatar?.alt
+          ? avatar.alt
+          : name;
+
+      const initial = name
+        ? name.charAt(0).toUpperCase()
+        : "";
+
       return (
-        <div className="text-3xl">
-          {text}
-        </div>
-      );
-    };
+        <article className="people-card dac-speaker-card">
+          <div className="people-card__avatar">
+            {imageSrc ? (
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                width={avatar?.width || 128}
+                height={avatar?.height || 128}
+                className="people-card__avatar-image"
+                loading="lazy"
+              />
+            ) : (
+              <span
+                className="people-card__avatar-fallback"
+                aria-hidden="true"
+              >
+                {initial}
+              </span>
+            )}
+          </div>
 
-    export default Component;
-  compiled: ''
+          <div className="people-card__body">
+            {name && (
+              <h3 className="people-card__name">
+                {name}
+              </h3>
+            )}
+
+            {designation && (
+              <p className="people-card__designation">
+                {designation}
+              </p>
+            )}
+
+            {domain && (
+              <span className="dac-speaker-card__domain">
+                {domain}
+              </span>
+            )}
+
+            {description && (
+              <div className="people-card__description">
+                {description}
+              </div>
+            )}
+
+            {session_title && (
+              <div className="dac-speaker-card__session">
+                <span className="dac-speaker-card__session-label">
+                  SESSION
+                </span>
+                <p>{session_title}</p>
+              </div>
+            )}
+
+            {(drupal_url || linkedin_url) && (
+              <div className="people-card__links">
+                {drupal_url && (
+                  <a
+                    href={drupal_url}
+                    className="people-card__link people-card__link--drupal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${name} on Drupal.org`}
+                  >
+                    <svg
+                      viewBox="0 0 142 180"
+                      fill="currentColor"
+                      className="people-card__link-icon"
+                      aria-hidden="true"
+                    >
+                      <path d="M71 0C62 23 13 63 4 99c-13 51 26 81 67 81s80-30 67-81C129 63 80 23 71 0Z" />
+                    </svg>
+                  </a>
+                )}
+
+                {linkedin_url && (
+                  <a
+                    href={linkedin_url}
+                    className="people-card__link people-card__link--linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${name} on LinkedIn`}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      width="16"
+                      height="16"
+                      aria-hidden="true"
+                    >
+                      <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52C22 2.68 21.31 2 20.45 2ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8v-4.64c0-1.11-.02-2.54-1.55-2.54-1.56 0-1.8 1.21-1.8 2.46v4.72H9.5V9.2h2.83v1.3h.04c.4-.75 1.36-1.55 2.8-1.55 3 0 3.58 1.98 3.58 4.55v5.25Z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    }
+  compiled: |
+    import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+    /**
+     * DrupalAsia Connect — Speaker Card
+     * Adapted from drupal_india_connect:people-card
+     */ export default function SpeakerCard({ avatar = null, name = "Speaker Name", designation = "", description = "", domain = "", session_title = "", drupal_url = "", linkedin_url = "" }) {
+        const imageSrc = typeof avatar === "string" ? avatar : (avatar === null || avatar === void 0 ? void 0 : avatar.src) || "";
+        const imageAlt = typeof avatar === "object" && (avatar === null || avatar === void 0 ? void 0 : avatar.alt) ? avatar.alt : name;
+        const initial = name ? name.charAt(0).toUpperCase() : "";
+        return /*#__PURE__*/ _jsxs("article", {
+            className: "people-card dac-speaker-card",
+            children: [
+                /*#__PURE__*/ _jsx("div", {
+                    className: "people-card__avatar",
+                    children: imageSrc ? /*#__PURE__*/ _jsx("img", {
+                        src: imageSrc,
+                        alt: imageAlt,
+                        width: (avatar === null || avatar === void 0 ? void 0 : avatar.width) || 128,
+                        height: (avatar === null || avatar === void 0 ? void 0 : avatar.height) || 128,
+                        className: "people-card__avatar-image",
+                        loading: "lazy"
+                    }) : /*#__PURE__*/ _jsx("span", {
+                        className: "people-card__avatar-fallback",
+                        "aria-hidden": "true",
+                        children: initial
+                    })
+                }),
+                /*#__PURE__*/ _jsxs("div", {
+                    className: "people-card__body",
+                    children: [
+                        name && /*#__PURE__*/ _jsx("h3", {
+                            className: "people-card__name",
+                            children: name
+                        }),
+                        designation && /*#__PURE__*/ _jsx("p", {
+                            className: "people-card__designation",
+                            children: designation
+                        }),
+                        domain && /*#__PURE__*/ _jsx("span", {
+                            className: "dac-speaker-card__domain",
+                            children: domain
+                        }),
+                        description && /*#__PURE__*/ _jsx("div", {
+                            className: "people-card__description",
+                            children: description
+                        }),
+                        session_title && /*#__PURE__*/ _jsxs("div", {
+                            className: "dac-speaker-card__session",
+                            children: [
+                                /*#__PURE__*/ _jsx("span", {
+                                    className: "dac-speaker-card__session-label",
+                                    children: "SESSION"
+                                }),
+                                /*#__PURE__*/ _jsx("p", {
+                                    children: session_title
+                                })
+                            ]
+                        }),
+                        (drupal_url || linkedin_url) && /*#__PURE__*/ _jsxs("div", {
+                            className: "people-card__links",
+                            children: [
+                                drupal_url && /*#__PURE__*/ _jsx("a", {
+                                    href: drupal_url,
+                                    className: "people-card__link people-card__link--drupal",
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                    "aria-label": `View ${name} on Drupal.org`,
+                                    children: /*#__PURE__*/ _jsx("svg", {
+                                        viewBox: "0 0 142 180",
+                                        fill: "currentColor",
+                                        className: "people-card__link-icon",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ _jsx("path", {
+                                            d: "M71 0C62 23 13 63 4 99c-13 51 26 81 67 81s80-30 67-81C129 63 80 23 71 0Z"
+                                        })
+                                    })
+                                }),
+                                linkedin_url && /*#__PURE__*/ _jsx("a", {
+                                    href: linkedin_url,
+                                    className: "people-card__link people-card__link--linkedin",
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                    "aria-label": `View ${name} on LinkedIn`,
+                                    children: /*#__PURE__*/ _jsx("svg", {
+                                        viewBox: "0 0 24 24",
+                                        fill: "currentColor",
+                                        width: "16",
+                                        height: "16",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ _jsx("path", {
+                                            d: "M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52C22 2.68 21.31 2 20.45 2ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8v-4.64c0-1.11-.02-2.54-1.55-2.54-1.56 0-1.8 1.21-1.8 2.46v4.72H9.5V9.2h2.83v1.3h.04c.4-.75 1.36-1.55 2.8-1.55 3 0 3.58 1.98 3.58 4.55v5.25Z"
+                                        })
+                                    })
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ]
+        });
+    }
 css:
-  original: ''
-  compiled: ''
+  original: |
+
+    /**
+     * DrupalAsia Connect — Speaker Card
+     *
+     * Based on:
+     * drupal_india_connect:people-card
+     *
+     * Includes all base styles and AI Summit extensions.
+     */
+
+    /* =========================================
+       1. CARD CONTAINER
+       ========================================= */
+
+    .people-card.dac-speaker-card {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp0-75, 0.75rem);
+
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+
+      padding:
+        var(--sp2, 2rem)
+        var(--sp1-5, 1.5rem);
+
+      text-align: center;
+      border: solid 2px transparent;
+      border-radius: 0.75rem;
+
+      background:
+        linear-gradient(
+          var(--color--white, #fff),
+          var(--color--white, #fff)
+        ) padding-box,
+        linear-gradient(
+          135deg,
+          color-mix(
+            in srgb,
+            var(--primary, #0678be) 45%,
+            var(--color--white, #fff)
+          ),
+          color-mix(
+            in srgb,
+            var(--secondary, #f18b35) 45%,
+            var(--color--white, #fff)
+          )
+        ) border-box;
+
+      box-shadow:
+        0 1px 2px rgb(0 0 0 / 0.06),
+        0 1px 3px rgb(0 0 0 / 0.1);
+    }
+
+    /* =========================================
+       2. SPEAKER AVATAR
+       ========================================= */
+
+    .dac-speaker-card .people-card__avatar {
+      flex-shrink: 0;
+      width: 8rem;
+      height: 8rem;
+
+      overflow: hidden;
+      border-radius: 50%;
+      background-color:
+        var(--color--sky-94, #e5f3fc);
+    }
+
+    .dac-speaker-card .people-card__avatar-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .dac-speaker-card .people-card__avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: 100%;
+
+      color: var(--color--night-5, #14213d);
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+
+    /* =========================================
+       3. CARD BODY
+       ========================================= */
+
+    .dac-speaker-card .people-card__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+
+      gap: var(--sp0-25, 0.25rem);
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* =========================================
+       4. NAME & DESIGNATION
+       ========================================= */
+
+    .dac-speaker-card .people-card__name {
+      margin: 0;
+
+      color: var(--color--night-5, #14213d);
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .dac-speaker-card .people-card__designation {
+      margin: 0;
+
+      color: var(--color--night-50, #566273);
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    /* =========================================
+       5. AI DOMAIN
+       ========================================= */
+
+    .dac-speaker-card__domain {
+      display: inline-block;
+      max-width: 100%;
+
+      margin-top: var(--sp0-75, 0.75rem);
+      padding: 0.375rem 0.75rem;
+
+      background-color:
+        var(--color--sky-94, #e5f3fc);
+
+      color: var(--color--night-5, #14213d);
+
+      border-radius: 0.375rem;
+
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    /* =========================================
+       6. DESCRIPTION
+       ========================================= */
+
+    .dac-speaker-card .people-card__description {
+      margin-top: var(--sp0-25, 0.25rem);
+
+      color: var(--color--night-30, #344054);
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .dac-speaker-card .people-card__description p,
+    .dac-speaker-card .people-card__description ul,
+    .dac-speaker-card .people-card__description ol {
+      margin: 0;
+    }
+
+    .dac-speaker-card
+    .people-card__description > * + * {
+      margin-top: var(--sp0-5, 0.5rem);
+    }
+
+    .dac-speaker-card
+    .people-card__description ul,
+    .dac-speaker-card
+    .people-card__description ol {
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+
+    .dac-speaker-card
+    .people-card__description li + li {
+      margin-top: var(--sp0-25, 0.25rem);
+    }
+
+    .dac-speaker-card
+    .people-card__description .text-align-left {
+      text-align: left;
+    }
+
+    .dac-speaker-card
+    .people-card__description .text-align-center {
+      text-align: center;
+    }
+
+    .dac-speaker-card
+    .people-card__description .text-align-right {
+      text-align: right;
+    }
+
+    .dac-speaker-card
+    .people-card__description .text-align-justify {
+      text-align: justify;
+    }
+
+    .dac-speaker-card
+    .people-card__description a {
+      color: var(--secondary, #0678be);
+
+      text-decoration: underline;
+      text-decoration-color: color-mix(
+        in srgb,
+        var(--secondary, #0678be) 40%,
+        transparent
+      );
+    }
+
+    .dac-speaker-card
+    .people-card__description a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    .dac-speaker-card
+    .people-card__description a:focus-visible {
+      outline: solid 2px
+        var(--focus-ring-color, #0678be);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* =========================================
+       7. SESSION DETAILS
+       ========================================= */
+
+    .dac-speaker-card__session {
+      width: 100%;
+
+      margin-top: var(--sp1, 1rem);
+      padding-top: var(--sp1, 1rem);
+
+      border-top: 1px solid
+        color-mix(
+          in srgb,
+          var(--color--night-50, #566273) 20%,
+          transparent
+        );
+    }
+
+    .dac-speaker-card__session-label {
+      display: block;
+
+      color: var(--secondary, #f18b35);
+
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dac-speaker-card__session p {
+      margin: var(--sp0-25, 0.25rem) 0 0;
+
+      color: var(--color--night-5, #14213d);
+
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       8. PROFILE LINKS
+       ========================================= */
+
+    .dac-speaker-card .people-card__links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: var(--sp0-5, 0.5rem);
+
+      margin-top: auto;
+      padding-top: var(--sp0-75, 0.75rem);
+    }
+
+    .dac-speaker-card .people-card__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+
+      color: var(--color--white, #fff);
+      border-radius: 50%;
+
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .dac-speaker-card .people-card__link-icon {
+      display: block;
+      width: 0.9rem;
+      height: 1.14rem;
+    }
+
+    .dac-speaker-card
+    .people-card__link--drupal {
+      background-color: #0678be;
+    }
+
+    .dac-speaker-card
+    .people-card__link--drupal:hover {
+      background-color: color-mix(
+        in lab,
+        #0678be 80%,
+        black 20%
+      );
+    }
+
+    .dac-speaker-card
+    .people-card__link--linkedin {
+      background-color: #0a66c2;
+    }
+
+    .dac-speaker-card
+    .people-card__link--linkedin:hover {
+      background-color: color-mix(
+        in lab,
+        #0a66c2 80%,
+        black 20%
+      );
+    }
+
+    .dac-speaker-card
+    .people-card__link:focus-visible {
+      outline: solid 2px
+        var(--focus-ring-color, #0678be);
+      outline-offset: 3px;
+    }
+
+    /* =========================================
+       9. RESPONSIVE BEHAVIOUR
+       ========================================= */
+
+    /* Match the original component's
+       container-aware heading size. */
+
+    @container style(--md: true) {
+      .dac-speaker-card .people-card__name {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Narrow card containers */
+
+    @container (max-width: 280px) {
+      .people-card.dac-speaker-card {
+        padding: 1.25rem 0.75rem;
+      }
+
+      .dac-speaker-card .people-card__avatar {
+        width: 6rem;
+        height: 6rem;
+      }
+
+      .dac-speaker-card .people-card__name {
+        font-size: 1rem;
+      }
+    }
+
+    /* Mobile viewport fallback */
+
+    @media (max-width: 480px) {
+      .people-card.dac-speaker-card {
+        padding: 1.5rem 1rem;
+      }
+
+      .dac-speaker-card .people-card__name {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* =========================================
+       10. REDUCED MOTION
+       ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      .dac-speaker-card .people-card__link {
+        transition: none;
+      }
+    }
+  compiled: |-
+    /*! tailwindcss v4.1.13 | MIT License | https://tailwindcss.com */
+    .people-card.dac-speaker-card{box-sizing:border-box;align-items:center;gap:var(--sp0-75,.75rem);width:100%;min-width:0;height:100%;padding:var(--sp2,2rem)var(--sp1-5,1.5rem);text-align:center;background:linear-gradient(var(--color--white,#fff),var(--color--white,#fff))padding-box,linear-gradient(135deg,var(--primary,#0678be),var(--secondary,#f18b35))border-box;border:2px solid #0000;border-radius:.75rem;flex-direction:column;display:flex}@supports (color:color-mix(in lab, red, red)){.people-card.dac-speaker-card{background:linear-gradient(var(--color--white,#fff),var(--color--white,#fff))padding-box,linear-gradient(135deg,color-mix(in srgb,var(--primary,#0678be)45%,var(--color--white,#fff)),color-mix(in srgb,var(--secondary,#f18b35)45%,var(--color--white,#fff)))border-box}}.people-card.dac-speaker-card{box-shadow:0 1px 2px #0000000f,0 1px 3px #0000001a}.dac-speaker-card .people-card__avatar{background-color:var(--color--sky-94,#e5f3fc);border-radius:50%;flex-shrink:0;width:8rem;height:8rem;overflow:hidden}.dac-speaker-card .people-card__avatar-image{object-fit:cover;object-position:center;width:100%;height:100%;display:block}.dac-speaker-card .people-card__avatar-fallback{width:100%;height:100%;color:var(--color--night-5,#14213d);justify-content:center;align-items:center;font-size:2.5rem;font-weight:700;display:flex}.dac-speaker-card .people-card__body{align-items:center;gap:var(--sp0-25,.25rem);flex-direction:column;flex:1;width:100%;min-width:0;display:flex}.dac-speaker-card .people-card__name{color:var(--color--night-5,#14213d);overflow-wrap:anywhere;margin:0;font-size:1.125rem;font-weight:700;line-height:1.35}.dac-speaker-card .people-card__designation{color:var(--color--night-50,#566273);overflow-wrap:anywhere;margin:0;font-size:.875rem;font-weight:400;line-height:1.5}.dac-speaker-card__domain{max-width:100%;margin-top:var(--sp0-75,.75rem);background-color:var(--color--sky-94,#e5f3fc);color:var(--color--night-5,#14213d);overflow-wrap:anywhere;border-radius:.375rem;padding:.375rem .75rem;font-size:.75rem;font-weight:600;line-height:1.4;display:inline-block}.dac-speaker-card .people-card__description{margin-top:var(--sp0-25,.25rem);color:var(--color--night-30,#344054);font-size:.875rem;font-weight:400;line-height:1.5}.dac-speaker-card .people-card__description p,.dac-speaker-card .people-card__description ul,.dac-speaker-card .people-card__description ol{margin:0}.dac-speaker-card .people-card__description>*+*{margin-top:var(--sp0-5,.5rem)}.dac-speaker-card .people-card__description ul,.dac-speaker-card .people-card__description ol{text-align:left;padding-left:1.25rem}.dac-speaker-card .people-card__description li+li{margin-top:var(--sp0-25,.25rem)}.dac-speaker-card .people-card__description .text-align-left{text-align:left}.dac-speaker-card .people-card__description .text-align-center{text-align:center}.dac-speaker-card .people-card__description .text-align-right{text-align:right}.dac-speaker-card .people-card__description .text-align-justify{text-align:justify}.dac-speaker-card .people-card__description a{color:var(--secondary,#0678be);text-decoration:underline;-webkit-text-decoration-color:var(--secondary,#0678be);-webkit-text-decoration-color:var(--secondary,#0678be);text-decoration-color:var(--secondary,#0678be)}@supports (color:color-mix(in lab, red, red)){.dac-speaker-card .people-card__description a{-webkit-text-decoration-color:color-mix(in srgb,var(--secondary,#0678be)40%,transparent);-webkit-text-decoration-color:color-mix(in srgb,var(--secondary,#0678be)40%,transparent);text-decoration-color:color-mix(in srgb,var(--secondary,#0678be)40%,transparent)}}.dac-speaker-card .people-card__description a:hover{text-decoration-color:currentColor}.dac-speaker-card .people-card__description a:focus-visible{outline:solid 2px var(--focus-ring-color,#0678be);outline-offset:2px;border-radius:2px}.dac-speaker-card__session{width:100%;margin-top:var(--sp1,1rem);padding-top:var(--sp1,1rem);border-top:1px solid var(--color--night-50,#566273)}@supports (color:color-mix(in lab, red, red)){.dac-speaker-card__session{border-top:1px solid color-mix(in srgb,var(--color--night-50,#566273)20%,transparent)}}.dac-speaker-card__session-label{color:var(--secondary,#f18b35);letter-spacing:.08em;text-transform:uppercase;font-size:.6875rem;font-weight:700;display:block}.dac-speaker-card__session p{margin:var(--sp0-25,.25rem)0 0;color:var(--color--night-5,#14213d);font-size:.875rem;font-weight:600;line-height:1.5}.dac-speaker-card .people-card__links{justify-content:center;align-items:center;gap:var(--sp0-5,.5rem);padding-top:var(--sp0-75,.75rem);flex-wrap:wrap;margin-top:auto;display:flex}.dac-speaker-card .people-card__link{width:2rem;height:2rem;color:var(--color--white,#fff);border-radius:50%;flex-shrink:0;justify-content:center;align-items:center;text-decoration:none;transition:background-color .2s;display:inline-flex}.dac-speaker-card .people-card__link-icon{width:.9rem;height:1.14rem;display:block}.dac-speaker-card .people-card__link--drupal{background-color:#0678be}.dac-speaker-card .people-card__link--drupal:hover{background-color:lab(38.2288% -7.95749 -45.2777)}.dac-speaker-card .people-card__link--linkedin{background-color:#0a66c2}.dac-speaker-card .people-card__link--linkedin:hover{background-color:lab(34.0449% 3.77455 -55.9166)}.dac-speaker-card .people-card__link:focus-visible{outline:solid 2px var(--focus-ring-color,#0678be);outline-offset:3px}@container style(--md:true){.dac-speaker-card .people-card__name{font-size:1.25rem}}@container (max-width:280px){.people-card.dac-speaker-card{padding:1.25rem .75rem}.dac-speaker-card .people-card__avatar{width:6rem;height:6rem}.dac-speaker-card .people-card__name{font-size:1rem}}@media (max-width:480px){.people-card.dac-speaker-card{padding:1.5rem 1rem}.dac-speaker-card .people-card__name{font-size:1.125rem}}@media (prefers-reduced-motion:reduce){.dac-speaker-card .people-card__link{transition:none}}
 dataDependencies: {  }
