@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - canvas.component.js.event_date_and_venue
+    - canvas.component.js.speaker_showcase
     - canvas.component.sdc.event_horizon.site-header
     - canvas.component.sdc.event_horizon.site-hero
     - canvas.component.sdc.event_horizon.site-hero-details
@@ -14,6 +15,7 @@ configEntityTypeId: component
 weight: 0
 items:
   - js.event_date_and_venue
+  - js.speaker_showcase
   - sdc.event_horizon.site-header
   - sdc.event_horizon.site-hero
   - sdc.event_horizon.site-hero-details
