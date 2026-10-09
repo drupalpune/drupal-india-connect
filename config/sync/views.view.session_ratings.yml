@@ -905,7 +905,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: '<p class="dac-ratings__done">You have rated every proposed session. When the whole team has finished, <a href="/admin/content/session-moderation">moderate the sessions in bulk</a>, which also notifies the session creators of your decisions.</p>'
+          content: '<p class="dac-ratings__done">No more sessions to review. You have rated every proposed session.</p>'
           tokenize: false
       defaults:
         empty: false
