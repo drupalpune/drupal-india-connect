@@ -1,14 +1,11 @@
 uuid: 7d7626ab-baba-447f-986a-97f63d5614e9
 langcode: en
 status: true
-dependencies:
-  module:
-    - dac_session_review
+dependencies: {  }
 _core:
   default_config_hash: WhnvxL-itb3Pg6CUoes2qtukwtiBm6D5bpazhUd0E6E
 id: session_moderator
 label: 'Session moderator'
 weight: 2
 is_admin: null
-permissions:
-  - 'view session review results'
+permissions: {  }
