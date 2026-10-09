@@ -413,6 +413,18 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     return;
   }
 
+  // Track moderators only evaluate sessions in their own track (as on the
+  // Session Ratings page); organisers rate every track.
+  $track = function_exists('_dac_session_review_track') ? _dac_session_review_track(\Drupal::currentUser()) : NULL;
+  if ($track !== NULL) {
+    $variables['#cache']['contexts'][] = 'user';
+    $variables['#cache']['tags'][] = 'user:' . \Drupal::currentUser()->id();
+    $category = $node->hasField('field_session_category') ? (int) $node->get('field_session_category')->target_id : 0;
+    if (!$track || $category !== $track) {
+      return;
+    }
+  }
+
   $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
   // Track moderators rate independently; only organisers (who can rate
   // every track) see the other moderators' scores here.
