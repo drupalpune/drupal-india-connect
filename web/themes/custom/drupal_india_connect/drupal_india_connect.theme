@@ -414,7 +414,12 @@ function drupal_india_connect_preprocess_node(array &$variables) {
   }
 
   $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
-  $variables['session_other_evaluations'] = _drupal_india_connect_session_other_evaluations($node);
+  // Track moderators rate independently; only organisers (who can rate
+  // every track) see the other moderators' scores here.
+  $variables['#cache']['contexts'][] = 'user.permissions';
+  if (\Drupal::currentUser()->hasPermission('rate sessions in all tracks')) {
+    $variables['session_other_evaluations'] = _drupal_india_connect_session_other_evaluations($node);
+  }
 }
 
 /**
