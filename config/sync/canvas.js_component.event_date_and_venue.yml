@@ -42,6 +42,8 @@ js:
       mapLabel = "View location",
       mapUrl = "https://www.google.com/maps/search/?api=1&query=IIT+Bombay+Powai",
     }) {
+      // Only http(s) links: the URL is editor input and lands in an href.
+      const safeMapUrl = /^https?:\/\//i.test(mapUrl || "") ? mapUrl : null;
       return (
         <section className="dac-event-details" aria-label="Event date and venue">
           <div className="dac-event-details__inner">
@@ -69,11 +71,10 @@ js:
               </div>
               <div className="dac-event-details__content">
                 <div className="dac-event-details__title">{venue}</div>
-                <div className="dac-event-details__subtitle">{location}</div>
-                {mapUrl && (
+                {safeMapUrl && (
               <a
                 className="dac-event-details__link"
-                href={mapUrl}
+                href={safeMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -89,6 +90,8 @@ js:
   compiled: |
     import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
     export default function EventDateVenue({ date = "28–30 January 2027", days = "Thursday – Saturday", venue = "IIT Bombay, Powai, Mumbai, India", mapLabel = "View location", mapUrl = "https://www.google.com/maps/search/?api=1&query=IIT+Bombay+Powai" }) {
+        // Only http(s) links: the URL is editor input and lands in an href.
+        const safeMapUrl = /^https?:\/\//i.test(mapUrl || "") ? mapUrl : null;
         return /*#__PURE__*/ _jsx("section", {
             className: "dac-event-details",
             "aria-label": "Event date and venue",
@@ -169,13 +172,9 @@ js:
                                         className: "dac-event-details__title",
                                         children: venue
                                     }),
-                                    /*#__PURE__*/ _jsx("div", {
-                                        className: "dac-event-details__subtitle",
-                                        children: location
-                                    }),
-                                    mapUrl && /*#__PURE__*/ _jsxs("a", {
+                                    safeMapUrl && /*#__PURE__*/ _jsxs("a", {
                                         className: "dac-event-details__link",
-                                        href: mapUrl,
+                                        href: safeMapUrl,
                                         target: "_blank",
                                         rel: "noopener noreferrer",
                                         children: [
