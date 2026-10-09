@@ -1,0 +1,29 @@
+uuid: 08b359a8-9b28-4ef7-853a-1907a7f1d508
+langcode: en
+status: false
+dependencies: {  }
+machineName: speaker_showcase
+name: 'Speaker Showcase'
+required: {  }
+props: {  }
+slots: {  }
+js:
+  original: |
+    // See https://project.pages.drupalcode.org/canvas/ for documentation on how to build a code component
+
+    const Component = ({
+      text = "Speaker Showcase",
+    }) => {
+      return (
+        <div className="text-3xl">
+          {text}
+        </div>
+      );
+    };
+
+    export default Component;
+  compiled: ''
+css:
+  original: ''
+  compiled: ''
+dataDependencies: {  }
