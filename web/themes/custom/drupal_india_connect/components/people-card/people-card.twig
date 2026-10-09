@@ -24,8 +24,19 @@
       <p class="people-card__designation">{{ designation }}</p>
     {% endif %}
 
+    {% if domain is not empty %}
+      <span class="people-card__domain">{{ domain }}</span>
+    {% endif %}
+
     {% if description is not empty %}
       <div class="people-card__description">{{ description }}</div>
+    {% endif %}
+
+    {% if session_title is not empty %}
+      <div class="people-card__session">
+        <span class="people-card__session-label">{{ 'Session'|t }}</span>
+        <p class="people-card__session-title">{{ session_title }}</p>
+      </div>
     {% endif %}
 
     {% if drupal_url is not empty or linkedin_url is not empty %}
