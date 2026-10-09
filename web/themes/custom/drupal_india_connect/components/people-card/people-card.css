@@ -186,3 +186,41 @@
 .people-card__link--linkedin:hover {
   background-color: color-mix(in lab, #0a66c2 80%, black 20%);
 }
+
+/* Optional event/speaker metadata. Hidden when the matching prop is empty. */
+.people-card__domain {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: var(--sp0-5);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  background-color: var(--color--sky-94);
+  color: var(--color--night-5);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.people-card__session {
+  width: 100%;
+  margin-top: var(--sp0-75);
+  padding-top: var(--sp0-75);
+  border-top: 1px solid color-mix(in srgb, var(--color--night-50) 20%, transparent);
+}
+
+.people-card__session-label {
+  color: var(--secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.people-card__session-title {
+  margin: var(--sp0-25) 0 0;
+  color: var(--color--night-5);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
