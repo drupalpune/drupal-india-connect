@@ -1,0 +1,30 @@
+{#
+  The headings travel to each row as CSS custom properties, so the stacked
+  mobile layout can label every cell without the row needing to know them.
+#}
+{% set headings = [column_1, column_2, column_3, column_4]|filter(h => h is not empty) %}
+{% set templates = {
+  1: '1fr',
+  2: 'minmax(10rem, 1fr) 2fr',
+  3: 'minmax(10rem, 1.2fr) 1fr 1.6fr',
+  4: 'minmax(10rem, 1.2fr) 0.9fr 0.9fr 2fr',
+} %}
+{% set label_vars = [] %}
+{% for heading in headings %}
+  {% set label_vars = label_vars|merge(['--data-table-label-' ~ loop.index ~ ': "' ~ heading|replace({'\\': '\\\\', '"': '\\"'}) ~ '"']) %}
+{% endfor %}
+
+<div class="data-table" role="table"{% if caption is not empty %} aria-label="{{ caption }}"{% endif %}
+  style="--data-table-columns: {{ templates[headings|length] }}; {{ label_vars|join('; ') }};">
+  <div class="data-table__header" role="rowgroup">
+    <div class="data-table__header-row" role="row">
+      {% for heading in headings %}
+        <span class="data-table__header-cell" role="columnheader">{{ heading }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="data-table__rows" role="rowgroup">
+    {% block rows %}{% endblock %}
+  </div>
+</div>

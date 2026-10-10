@@ -1,0 +1,109 @@
+uuid: 5cde61ee-20c5-4ff8-86bb-5ef06adb31c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - options
+  theme:
+    - drupal_india_connect
+active_version: cb38abf68404c5ad
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        name:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Rodas An Ecotel Boutique Hotel, Powai'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        distance:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '~2.5 km'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        address:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Central Ave, Hiranandani Gardens, Powai, Mumbai 400076'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        description:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Browse stays near the venue, sorted by popularity.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        variant:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: place
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        link_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'View on Google Maps'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        link_url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://maps.app.goo.gl/qM5bA9d1nZN7Dpcq9'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Place Card'
+id: sdc.drupal_india_connect.place-card
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:place-card'

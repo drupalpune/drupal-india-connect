@@ -1,0 +1,116 @@
+/*
+ * Same card shell as program-day-card and key-date-card: hairline border,
+ * 12px radius, white fill, a 4px accent rule on top.
+ */
+.info-card {
+  --card-accent: var(--primary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp0-5);
+  height: 100%;
+  padding: var(--sp1-5);
+  border: solid 1px var(--color--night-90);
+  border-top-width: 4px;
+  border-top-color: var(--card-accent);
+  border-radius: 0.75rem;
+  background-color: var(--color--white);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+
+  @container style(--md: true) {
+    padding: var(--sp2);
+  }
+}
+
+.info-card--primary-dark {
+  --card-accent: var(--color--primary-20);
+}
+
+.info-card--secondary {
+  --card-accent: var(--secondary);
+}
+
+.info-card__marker {
+  color: var(--card-accent);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.info-card__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  color: var(--card-accent);
+  background-color: var(--color--sky-97);
+}
+
+.info-card__pill {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  color: var(--color--primary-30);
+  background-color: var(--color--sky-94);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.info-card__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.info-card__body {
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.info-card__body > * + * {
+  margin-top: var(--sp0-75);
+}
+
+.info-card__body > :first-child {
+  margin-top: 0;
+}
+
+.info-card__body > :last-child {
+  margin-bottom: 0;
+}
+
+.info-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-25);
+  margin-top: auto;
+  padding-top: var(--sp0-5);
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.info-card__link:hover {
+  text-decoration: underline;
+}
+
+.info-card__link:focus-visible {
+  outline: solid 2px currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

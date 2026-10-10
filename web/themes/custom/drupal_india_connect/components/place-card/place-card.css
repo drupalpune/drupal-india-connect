@@ -1,0 +1,95 @@
+.place-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-75);
+  height: 100%;
+  padding: var(--sp1-5);
+  border: solid 1px var(--color--night-90);
+  border-radius: 0.75rem;
+  background-color: var(--color--white);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.place-card--link {
+  border-color: var(--color--sky-90);
+  background-color: var(--color--sky-97);
+  box-shadow: none;
+}
+
+.place-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp0-75);
+}
+
+.place-card__name {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.place-card__distance {
+  flex-shrink: 0;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  color: var(--color--primary-30);
+  background-color: var(--color--sky-94);
+  font-weight: 700;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.place-card__address,
+.place-card__description {
+  margin: 0;
+  color: var(--color--night-40);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.place-card__address {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp0-5);
+}
+
+.place-card__address .ph-icon {
+  flex-shrink: 0;
+  margin-top: 0.0625rem;
+  color: var(--primary);
+}
+
+/*
+ * Pushed to the bottom so links line up across a row of cards whose
+ * names and addresses wrap to different heights.
+ */
+.place-card__link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--sp0-25);
+  margin-top: auto;
+  padding: 0.5rem 0.875rem;
+  border: solid 2px var(--color--sky-90);
+  border-radius: 6px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.place-card__link:hover {
+  border-color: var(--primary);
+  background-color: var(--color--white);
+}
+
+.place-card__link:focus-visible {
+  outline: solid 2px currentColor;
+  outline-offset: 2px;
+}

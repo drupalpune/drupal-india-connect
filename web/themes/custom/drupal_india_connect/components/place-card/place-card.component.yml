@@ -1,0 +1,55 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Place Card'
+description: 'A place or listing to visit: a name, an optional distance pill, an address (with a map pin) or a short description, and a link such as "View on Google Maps". One card per hotel, so editors can add, remove and reorder hotels freely. Leave the address and distance blank and fill in the description to use it as a link-out card (e.g. Booking.com or Airbnb). Place several inside a Section''s main slot (set its columns) or a Grid.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: Name
+      examples:
+        - 'Rodas An Ecotel Boutique Hotel, Powai'
+    distance:
+      type: string
+      title: Distance
+      description: 'Free text, e.g. "~2.5 km". Leave blank to hide the pill.'
+      examples:
+        - '~2.5 km'
+    address:
+      type: string
+      title: Address
+      examples:
+        - 'Central Ave, Hiranandani Gardens, Powai, Mumbai 400076'
+    description:
+      type: string
+      title: Description
+      description: 'Short line shown when there is no address, e.g. for a booking site.'
+      examples:
+        - 'Browse stays near the venue, sorted by popularity.'
+    variant:
+      type: string
+      title: Style
+      enum:
+        - place
+        - link
+      meta:enum:
+        place: 'Place (white card)'
+        link: 'Link-out (tinted card)'
+      default: place
+      examples:
+        - place
+    link_label:
+      type: string
+      title: 'Link label'
+      examples:
+        - 'View on Google Maps'
+    link_url:
+      type: string
+      title: 'Link URL'
+      format: uri-reference
+      examples:
+        - 'https://maps.app.goo.gl/qM5bA9d1nZN7Dpcq9'

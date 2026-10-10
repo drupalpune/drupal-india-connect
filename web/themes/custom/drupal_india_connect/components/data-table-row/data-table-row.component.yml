@@ -1,0 +1,30 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Data Table Row'
+description: 'One row of a Data Table. Cells match the table''s column headings in order; fill in as many cells as the table has headings. The first cell is shown in bold as the row''s name. Text is rendered as given.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - cell_1
+  properties:
+    cell_1:
+      type: string
+      title: 'Cell 1'
+      examples:
+        - 'Ride-hailing (Uber, Ola)'
+    cell_2:
+      type: string
+      title: 'Cell 2'
+      examples:
+        - '25–45 min'
+    cell_3:
+      type: string
+      title: 'Cell 3'
+      examples:
+        - '₹300–₹550'
+    cell_4:
+      type: string
+      title: 'Cell 4'
+      examples:
+        - 'Easiest option. Book in the app after landing.'

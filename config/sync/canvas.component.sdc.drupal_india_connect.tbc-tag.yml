@@ -1,0 +1,30 @@
+uuid: 1da5c284-544c-4c9c-8233-86326838931a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: 79c87579d3fb13ef
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: TBC
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'TBC Tag'
+id: sdc.drupal_india_connect.tbc-tag
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:tbc-tag'

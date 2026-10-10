@@ -1,0 +1,40 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Data Table'
+description: 'A responsive table with up to four editable column headings and a slot of Data Table Rows. Renders as a bordered table from the --md container breakpoint up and as stacked, labeled cards below it. Fill in a heading for every column the rows use: the column count comes from how many headings are filled in, and each row''s cells are matched to the headings in order.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - column_1
+  properties:
+    caption:
+      type: string
+      title: 'Caption (screen readers)'
+      description: 'Describes the table for assistive technology; not shown visually.'
+      examples:
+        - 'Ways to get from the airport to IIT Bombay'
+    column_1:
+      type: string
+      title: 'Column 1 heading'
+      examples:
+        - Option
+    column_2:
+      type: string
+      title: 'Column 2 heading'
+      examples:
+        - 'Typical time'
+    column_3:
+      type: string
+      title: 'Column 3 heading'
+      examples:
+        - 'Approx. cost'
+    column_4:
+      type: string
+      title: 'Column 4 heading'
+      examples:
+        - Notes
+slots:
+  rows:
+    title: Rows
+    description: 'Place Data Table Row components here, one per row.'

@@ -1,0 +1,32 @@
+{% set accent_key = accent|default('primary') %}
+
+<div class="info-card info-card--{{ accent_key }}">
+  {% if marker is not empty %}
+    <span class="info-card__marker">{{ marker }}</span>
+  {% elseif icon is not empty %}
+    <span class="info-card__icon">
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: icon, icon_size: 'small' } only %}
+    </span>
+  {% endif %}
+
+  {% if pill is not empty %}
+    <span class="info-card__pill">{{ pill }}</span>
+  {% endif %}
+
+  <h3 class="info-card__title">{{ title }}</h3>
+
+  {% if body is not empty %}
+    <div class="info-card__body">{{ body }}</div>
+  {% endif %}
+
+  {% if tbc %}
+    {% include 'drupal_india_connect:tbc-tag' only %}
+  {% endif %}
+
+  {% if link_label is not empty and link_url is not empty %}
+    <a href="{{ link_url }}" class="info-card__link">
+      {{ link_label }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+    </a>
+  {% endif %}
+</div>

@@ -3,15 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.drupal_india_connect.data-table
+    - canvas.component.sdc.drupal_india_connect.data-table-row
     - canvas.component.sdc.drupal_india_connect.divider
     - canvas.component.sdc.drupal_india_connect.event-overview-card
     - canvas.component.sdc.drupal_india_connect.grid
     - canvas.component.sdc.drupal_india_connect.hero-banner
+    - canvas.component.sdc.drupal_india_connect.info-card
     - canvas.component.sdc.drupal_india_connect.key-date-card
     - canvas.component.sdc.drupal_india_connect.milestone-row
     - canvas.component.sdc.drupal_india_connect.milestone-table
     - canvas.component.sdc.drupal_india_connect.partners-band
     - canvas.component.sdc.drupal_india_connect.people-card
+    - canvas.component.sdc.drupal_india_connect.place-card
     - canvas.component.sdc.drupal_india_connect.program-day-card
     - canvas.component.sdc.drupal_india_connect.program-detail-row
     - canvas.component.sdc.drupal_india_connect.program-highlight-tile
@@ -19,6 +23,7 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.spacer
     - canvas.component.sdc.drupal_india_connect.sponsor-tier
     - canvas.component.sdc.drupal_india_connect.story-card
+    - canvas.component.sdc.drupal_india_connect.tbc-tag
     - canvas.component.sdc.drupal_india_connect.text-countdown
     - canvas.component.sdc.drupal_india_connect.text-media
     - canvas.component.sdc.drupal_india_connect.venue-location
@@ -26,15 +31,19 @@ name: 'Drupal Connect'
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.drupal_india_connect.data-table
+  - sdc.drupal_india_connect.data-table-row
   - sdc.drupal_india_connect.divider
   - sdc.drupal_india_connect.event-overview-card
   - sdc.drupal_india_connect.grid
   - sdc.drupal_india_connect.hero-banner
+  - sdc.drupal_india_connect.info-card
   - sdc.drupal_india_connect.key-date-card
   - sdc.drupal_india_connect.milestone-row
   - sdc.drupal_india_connect.milestone-table
   - sdc.drupal_india_connect.partners-band
   - sdc.drupal_india_connect.people-card
+  - sdc.drupal_india_connect.place-card
   - sdc.drupal_india_connect.program-day-card
   - sdc.drupal_india_connect.program-detail-row
   - sdc.drupal_india_connect.program-highlight-tile
@@ -42,6 +51,7 @@ items:
   - sdc.drupal_india_connect.spacer
   - sdc.drupal_india_connect.sponsor-tier
   - sdc.drupal_india_connect.story-card
+  - sdc.drupal_india_connect.tbc-tag
   - sdc.drupal_india_connect.text-countdown
   - sdc.drupal_india_connect.text-media
   - sdc.drupal_india_connect.venue-location
