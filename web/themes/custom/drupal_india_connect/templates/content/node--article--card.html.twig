@@ -37,9 +37,9 @@
     </time>
 
     {{ title_prefix }}
-    <h2{{ title_attributes.addClass('dac-post-card__title') }}>
+    <h{{ heading_level }}{{ title_attributes.addClass('dac-post-card__title') }}>
       <a href="{{ url }}" class="dac-post-card__link" rel="bookmark">{{ label }}</a>
-    </h2>
+    </h{{ heading_level }}>
     {{ title_suffix }}
 
     {% if excerpt is not empty %}
