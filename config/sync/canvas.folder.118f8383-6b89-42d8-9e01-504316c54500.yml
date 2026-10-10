@@ -5,6 +5,7 @@ dependencies:
   config:
     - canvas.component.js.event_date_and_venue
     - canvas.component.js.speaker_showcase
+    - canvas.component.marker.page_content
     - canvas.component.sdc.event_horizon.site-header
     - canvas.component.sdc.event_horizon.site-hero
     - canvas.component.sdc.event_horizon.site-hero-details
@@ -16,6 +17,7 @@ weight: 0
 items:
   - js.event_date_and_venue
   - js.speaker_showcase
+  - marker.page_content
   - sdc.event_horizon.site-header
   - sdc.event_horizon.site-hero
   - sdc.event_horizon.site-hero-details
