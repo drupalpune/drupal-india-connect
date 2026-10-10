@@ -73,6 +73,28 @@ function _dac_session_review_track(AccountInterface $account): ?int {
 }
 
 /**
+ * Whether a session is the user's own, so they must not evaluate it.
+ *
+ * A session is someone's own if they are one of its speakers or submitted
+ * it. Submitting only counts for non-admins: organisers enter sessions on
+ * speakers' behalf and still need to rate those.
+ */
+function _dac_session_review_is_own_session(AccountInterface $account, int $nid): bool {
+  if (!$nid || $account->isAnonymous()) {
+    return FALSE;
+  }
+  $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+  if (!$node || $node->bundle() !== 'session') {
+    return FALSE;
+  }
+  $uid = (int) $account->id();
+  if ($node->hasField('field_speakers') && in_array($uid, array_map('intval', array_column($node->get('field_speakers')->getValue(), 'target_id')), TRUE)) {
+    return TRUE;
+  }
+  return (int) $node->getOwnerId() === $uid && !$account->hasPermission('administer nodes');
+}
+
+/**
  * Implements hook_views_pre_view().
  *
  * On the Session Ratings page, tells a limited user which track they are
@@ -144,6 +166,25 @@ function dac_session_review_views_query_alter(ViewExecutable $view, QueryPluginB
       : ['field' => 'sid', 'value' => reset($own)];
   }
 
+  // Nobody is offered their own sessions to rate.
+  $account = \Drupal::currentUser();
+  $mine = \Drupal::database()->select('node__field_speakers', 'sp')
+    ->fields('sp', ['entity_id'])
+    ->condition('sp.field_speakers_target_id', $account->id())
+    ->condition('sp.deleted', 0)
+    ->execute()
+    ->fetchCol();
+  if (!$account->hasPermission('administer nodes')) {
+    $mine = array_merge($mine, \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->condition('type', 'session')
+      ->condition('uid', $account->id())
+      ->execute());
+  }
+  if ($mine) {
+    $query->addWhere(0, 'node_field_data.nid', array_values(array_unique($mine)), 'NOT IN');
+  }
+
   $track = _dac_session_review_track(\Drupal::currentUser());
   if ($track === NULL) {
     return;
@@ -183,7 +224,35 @@ function dac_session_review_webform_submission_form_alter(array &$form, FormStat
     return;
   }
   $form['#cache']['contexts'][] = 'user.permissions';
+  $form['#cache']['contexts'][] = 'user';
+  $form['#cache']['contexts'][] = 'url.query_args:session';
+
+  // Never let anyone evaluate their own session, whether they arrive with it
+  // prefilled (?session=) or pick it in the field.
+  $session = $form['elements']['session']['#default_value'] ?? NULL;
+  $session = is_array($session) ? reset($session) : $session;
+  $nid = (int) (is_object($session) ? $session->id() : $session);
+  if (_dac_session_review_is_own_session(\Drupal::currentUser(), $nid)) {
+    $form = [
+      '#cache' => $form['#cache'],
+      'message' => [
+        '#markup' => '<p>' . t('You cannot evaluate a session you submitted or are speaking in.') . '</p>',
+      ],
+    ];
+    return;
+  }
+  $form['#validate'][] = '_dac_session_review_not_own_session_validate';
+
   if (!\Drupal::currentUser()->hasPermission('rate sessions in all tracks') && !empty($form['elements']['session']['#default_value'])) {
     $form['elements']['session']['#disabled'] = TRUE;
+  }
+}
+
+/**
+ * Form validation: rejects an evaluation of the submitter's own session.
+ */
+function _dac_session_review_not_own_session_validate(array &$form, FormStateInterface $form_state): void {
+  if (_dac_session_review_is_own_session(\Drupal::currentUser(), (int) $form_state->getValue('session'))) {
+    $form_state->setErrorByName('session', t('You cannot evaluate a session you submitted or are speaking in.'));
   }
 }
