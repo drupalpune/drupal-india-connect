@@ -338,6 +338,29 @@ h2.eh-heading,
 }
 
 /*
+ * The desktop nav takes over at 1100px, but with six top-level items it
+ * does not fit at event_horizon's spacing until ~1300px. In between, the
+ * items shrink: labels and "Submit a Session" wrap onto two lines, and
+ * each submenu toggle wraps under its label where it cannot be seen.
+ * Tighten the link padding in that range and stop items shrinking, so the
+ * row stays on one line. Wider screens keep the theme's spacing.
+ */
+@media (min-width: 1100px) and (max-width: 1299.98px) {
+  .primary-nav__menu-item--level-1 {
+    flex-shrink: 0;
+  }
+
+  .primary-nav__menu-link--level-1 {
+    padding-inline: 0.625rem;
+    white-space: nowrap;
+  }
+
+  .site-header__register-link {
+    white-space: nowrap;
+  }
+}
+
+/*
  * event_horizon sizes the hero title at clamp(4rem, 2.5rem + 10vw, 13rem),
  * which is roughly double the design's H1 step. "DRUPALASIA" is a long
  * single word, so at wide viewports it outgrows its grid column and gets
