@@ -11,7 +11,7 @@ dependencies:
     - field.field.user.user.field_drupal_slack_username
     - field.field.user.user.field_moderator_category
     - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - image.style.1_1_300x300_focal_point_webp
   module:
     - svg_image
     - user
@@ -35,7 +35,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail
+      image_style: 1_1_300x300_focal_point_webp
       image_loading:
         attribute: lazy
       svg_attributes:
