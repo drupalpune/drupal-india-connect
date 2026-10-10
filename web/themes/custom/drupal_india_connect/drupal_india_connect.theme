@@ -451,7 +451,15 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     }
   }
 
-  $variables['session_evaluation'] = _drupal_india_connect_session_evaluation_card($node);
+  // Nobody evaluates their own session.
+  if (function_exists('_dac_session_review_is_own_session')) {
+    $variables['#cache']['contexts'][] = 'user';
+    if (_dac_session_review_is_own_session(\Drupal::currentUser(), (int) $node->id())) {
+      return;
+    }
+  }
+
+  $variables['session_evaluation'] =_drupal_india_connect_session_evaluation_card($node);
   // Track moderators rate independently; only organisers (who can rate
   // every track) see the other moderators' scores here.
   $variables['#cache']['contexts'][] = 'user.permissions';
