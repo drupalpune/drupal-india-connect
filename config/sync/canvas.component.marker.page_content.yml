@@ -1,0 +1,15 @@
+uuid: 66ea2c00-177b-4f7f-8151-bc12405114ef
+langcode: en
+status: true
+dependencies: {  }
+active_version: 3b12c0b99a6caecc
+versioned_properties:
+  active:
+    settings: {  }
+    fallback_metadata:
+      slot_definitions: null
+label: 'Page content'
+id: marker.page_content
+provider: canvas
+source: marker
+source_local_id: page_content
