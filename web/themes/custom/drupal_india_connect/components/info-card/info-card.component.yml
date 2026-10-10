@@ -1,0 +1,61 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Info Card'
+description: 'A general-purpose content card: an optional marker (a short number such as "01", or a Phosphor icon), an optional pill, a title, a rich-text body, an optional TBC tag and an optional link. Used for travel tips, numbered checklists and day summaries. Place several inside a Section''s main slot (set its columns) or a Grid. Set "Still to be confirmed" to show a TBC tag after the body, for details the organisers have not confirmed yet.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    marker:
+      type: string
+      title: 'Number marker'
+      description: 'Short number shown above the title, e.g. "01". Leave blank to use an icon or no marker.'
+    icon:
+      type: string
+      title: Icon
+      description: 'Phosphor icon name, used when Number marker is blank. Must exist in icons/phosphor/regular/, e.g. "map-pin", "airplane-tilt", "train", "subway".'
+    pill:
+      type: string
+      title: Pill
+      description: 'Short label shown as a pill, e.g. "Nearest airport" or "Day 1 · Imagine".'
+    title:
+      type: string
+      title: Title
+      examples:
+        - Visa
+    body:
+      type: string
+      title: Body
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>Visitors from outside India generally need a visa. Check the official portal for your nationality and apply well ahead.</p>'
+    tbc:
+      type: boolean
+      title: 'Still to be confirmed'
+      description: 'Shows a TBC tag after the body.'
+      default: false
+    accent:
+      type: string
+      title: 'Accent'
+      description: 'Colour of the top rule and marker. Spend secondary on at most one card per group.'
+      enum:
+        - primary
+        - primary-dark
+        - secondary
+      meta:enum:
+        primary: 'Primary blue'
+        primary-dark: 'Dark blue'
+        secondary: 'Secondary orange'
+      default: primary
+      examples:
+        - primary
+    link_label:
+      type: string
+      title: 'Link label'
+    link_url:
+      type: string
+      title: 'Link URL'
+      format: uri-reference

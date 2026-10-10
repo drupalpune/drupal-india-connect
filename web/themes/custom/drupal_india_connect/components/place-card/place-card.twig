@@ -1,0 +1,26 @@
+{% set variant_key = variant|default('place') %}
+
+<article class="place-card place-card--{{ variant_key }}">
+  <div class="place-card__top">
+    <h3 class="place-card__name">{{ name }}</h3>
+    {% if distance is not empty %}
+      <span class="place-card__distance">{{ distance }}</span>
+    {% endif %}
+  </div>
+
+  {% if address is not empty %}
+    <p class="place-card__address">
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'map-pin', icon_size: 'extra-small' } only %}
+      <span>{{ address }}</span>
+    </p>
+  {% elseif description is not empty %}
+    <p class="place-card__description">{{ description }}</p>
+  {% endif %}
+
+  {% if link_label is not empty and link_url is not empty %}
+    <a href="{{ link_url }}" class="place-card__link">
+      {{ link_label }}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-square-out', icon_size: 'extra-small' } only %}
+    </a>
+  {% endif %}
+</article>

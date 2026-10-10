@@ -1,0 +1,81 @@
+uuid: 70898180-f4a0-4f5a-a2ea-34fd872735ec
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: 3798e3fb6fffe3c1
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        caption:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Ways to get from the airport to IIT Bombay'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        column_1:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Option
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        column_2:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Typical time'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        column_3:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Approx. cost'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        column_4:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Notes
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions:
+        rows:
+          title: Rows
+          description: 'Place Data Table Row components here, one per row.'
+label: 'Data Table'
+id: sdc.drupal_india_connect.data-table
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:data-table'

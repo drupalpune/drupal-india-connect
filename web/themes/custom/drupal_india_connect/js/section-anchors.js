@@ -1,6 +1,6 @@
 /**
  * @file
- * Assigns anchor ids to the homepage's Canvas sections.
+ * Assigns anchor ids to Canvas sections (the homepage, Travel & Stay).
  *
  * The design's header nav is a set of same-page anchors (#about, #cfp,
  * #tickets, ...). Those ids cannot be authored as content: Canvas runs
@@ -28,6 +28,13 @@
     questions: 'faq',
     'be first to know': 'notify',
     news: 'news',
+    // Travel & Stay page (/travel-and-stay). The hero's two buttons point
+    // at #reach and #stay.
+    'iit bombay, powai': 'venue',
+    'nearest airport & transfers': 'reach',
+    'hotels near iit bombay': 'stay',
+    'before you fly': 'plan',
+    'quick answers': 'faq',
   };
 
   // Views block class => anchor id. Only used as a fallback: landing on the

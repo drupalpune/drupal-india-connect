@@ -1,0 +1,66 @@
+uuid: 89f3351f-0e43-4dd1-8021-41e61304ef36
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: 6349a20715252840
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        cell_1:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Ride-hailing (Uber, Ola)'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cell_2:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '25–45 min'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cell_3:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: ₹300–₹550
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cell_4:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Easiest option. Book in the app after landing.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Data Table Row'
+id: sdc.drupal_india_connect.data-table-row
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:data-table-row'

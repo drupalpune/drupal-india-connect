@@ -1,0 +1,14 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'TBC Tag'
+description: 'A small dashed "TBC" tag that flags a detail the organisers have not confirmed yet. Rich text cannot carry it (the Canvas text formats strip <span>), so place this next to the text it qualifies, e.g. in a Group or an Accordion''s content slot. The Info Card has its own "Still to be confirmed" switch for the same tag.'
+group: Drupal Connect
+status: stable
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+      default: TBC
+      examples:
+        - TBC

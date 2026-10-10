@@ -1,0 +1,55 @@
+/*
+ * Same bordered-grid approach as milestone-table: one outer border, cells
+ * carry the padding so header and rows share identical column tracks.
+ */
+.data-table {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px var(--color--night-90);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: var(--color--white);
+}
+
+.data-table__header {
+  /* Kept in the accessibility tree; only hidden visually on narrow screens,
+     where each cell carries its own label instead. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@container style(--md: true) {
+  .data-table__header {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    border-block-end: solid 1px var(--color--night-90);
+    background-color: var(--color--sky-97);
+  }
+
+  .data-table__header-row {
+    display: grid;
+    grid-template-columns: var(--data-table-columns);
+  }
+
+  .data-table__header-cell {
+    padding: var(--sp0-75) var(--sp1);
+    color: var(--color--night-40);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+.data-table__rows {
+  display: flex;
+  flex-direction: column;
+}

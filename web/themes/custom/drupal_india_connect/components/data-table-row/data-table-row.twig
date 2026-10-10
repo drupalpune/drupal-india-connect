@@ -1,0 +1,11 @@
+{% set cells = [cell_1, cell_2, cell_3, cell_4] %}
+{% set last = 1 %}
+{% for cell in cells %}{% if cell is not empty %}{% set last = loop.index %}{% endif %}{% endfor %}
+
+<div class="data-table-row" role="row">
+  {% for cell in cells|slice(0, last) %}
+    <div class="data-table-row__cell data-table-row__cell--{{ loop.index }}" role="{{ loop.first ? 'rowheader' : 'cell' }}">
+      {{ cell }}
+    </div>
+  {% endfor %}
+</div>
