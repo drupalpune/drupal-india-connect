@@ -45,6 +45,8 @@ function dac_session_review_theme(): array {
         'max' => 10,
         'form_action' => '',
         'show_filter' => TRUE,
+        'all_label' => NULL,
+        'own_tracks' => FALSE,
         'no_track' => FALSE,
       ],
     ],
@@ -52,24 +54,60 @@ function dac_session_review_theme(): array {
 }
 
 /**
- * The session category a user's Session Ratings list is limited to.
+ * The session categories a user's Session Ratings list is limited to.
  *
- * Moderators are assigned one track (session category) in their account's
- * admin-only "Session category" field and only see that track's sessions.
+ * Moderators are assigned one or two tracks (session categories) in their
+ * account's admin-only "Session category" field and only see those tracks'
+ * sessions.
  *
- * @return int|null
- *   NULL if the user sees every track; the category term ID otherwise, or
- *   0 if they are limited but have no category assigned yet.
+ * @return int[]|null
+ *   NULL if the user sees every track; the category term IDs otherwise, or
+ *   an empty array if they are limited but have no category assigned yet.
  */
-function _dac_session_review_track(AccountInterface $account): ?int {
+function _dac_session_review_tracks(AccountInterface $account): ?array {
   if ($account->hasPermission('rate sessions in all tracks')) {
     return NULL;
   }
   $user = \Drupal::entityTypeManager()->getStorage('user')->load($account->id());
   if (!$user || !$user->hasField('field_moderator_category')) {
-    return 0;
+    return [];
   }
-  return (int) $user->get('field_moderator_category')->target_id;
+  return array_values(array_filter(array_map('intval', array_column($user->get('field_moderator_category')->getValue(), 'target_id'))));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_form.
+ *
+ * Session moderators must have at least one track. Making the field
+ * required would force organisers to pick one for every account, speakers
+ * included, so it is only enforced for the Session moderator role. The
+ * maximum of two is the field's cardinality.
+ */
+function dac_session_review_form_user_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  if (isset($form['field_moderator_category'])) {
+    $form['#validate'][] = '_dac_session_review_moderator_category_validate';
+  }
+}
+
+/**
+ * Form validation: a session moderator needs at least one track.
+ */
+function _dac_session_review_moderator_category_validate(array &$form, FormStateInterface $form_state): void {
+  if (($form['field_moderator_category']['#access'] ?? TRUE) === FALSE) {
+    return;
+  }
+  // The roles element is only on the form for users who may assign roles;
+  // otherwise the account keeps the roles it has.
+  $roles = $form_state->hasValue('roles')
+    ? array_values(array_filter((array) $form_state->getValue('roles')))
+    : $form_state->getFormObject()->getEntity()->getRoles();
+  if (!in_array('session_moderator', $roles, TRUE)) {
+    return;
+  }
+  $tracks = array_filter(array_column((array) $form_state->getValue('field_moderator_category'), 'target_id'));
+  if (!$tracks) {
+    $form_state->setErrorByName('field_moderator_category', t('Session moderators need at least one session category.'));
+  }
 }
 
 /**
@@ -97,7 +135,7 @@ function _dac_session_review_is_own_session(AccountInterface $account, int $nid)
 /**
  * Implements hook_views_pre_view().
  *
- * On the Session Ratings page, tells a limited user which track they are
+ * On the Session Ratings page, tells a limited user which tracks they are
  * rating, or that they have none yet.
  */
 function dac_session_review_views_pre_view(ViewExecutable $view, string $display_id, array &$args): void {
@@ -105,15 +143,17 @@ function dac_session_review_views_pre_view(ViewExecutable $view, string $display
     return;
   }
   $view->element['#cache']['contexts'][] = 'user';
-  $track = _dac_session_review_track(\Drupal::currentUser());
-  if ($track === NULL) {
+  $tracks = _dac_session_review_tracks(\Drupal::currentUser());
+  if ($tracks === NULL) {
     return;
   }
 
-  $term = $track ? \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($track) : NULL;
-  $message = $term
-    ? t('Showing sessions in your track: <strong>@track</strong>.', ['@track' => $term->label()])
-    : t('No track has been assigned to you yet, so there are no sessions to rate. Ask an organiser to set your session category.');
+  $labels = array_map(fn($term) => $term->label(), $tracks ? \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadMultiple($tracks) : []);
+  $message = match (count($labels)) {
+    0 => t('No track has been assigned to you yet, so there are no sessions to rate. Ask an organiser to set your session category.'),
+    1 => t('Showing sessions in your track: <strong>@track</strong>.', ['@track' => reset($labels)]),
+    default => t('Showing sessions in your tracks: <strong>@tracks</strong>.', ['@tracks' => implode(', ', $labels)]),
+  };
   $view->addHandler($display_id, 'header', 'views', 'area_text_custom', [
     'content' => '<p class="dac-track-note">' . $message . '</p>',
     'empty' => TRUE,
@@ -138,7 +178,7 @@ function dac_session_review_views_data_alter(array &$data): void {
  * Implements hook_views_query_alter().
  *
  * Limits every display of the Session Ratings view (the "to rate" list and
- * the attached "Already rated by you" list) to the user's track. Done in
+ * the attached "Already rated by you" list) to the user's tracks. Done in
  * the query rather than through the exposed Category filter, so it holds
  * whatever is passed in the URL.
  */
@@ -185,17 +225,17 @@ function dac_session_review_views_query_alter(ViewExecutable $view, QueryPluginB
     $query->addWhere(0, 'node_field_data.nid', array_values(array_unique($mine)), 'NOT IN');
   }
 
-  $track = _dac_session_review_track(\Drupal::currentUser());
-  if ($track === NULL) {
+  $tracks = _dac_session_review_tracks(\Drupal::currentUser());
+  if ($tracks === NULL) {
     return;
   }
-  if (!$track) {
+  if (!$tracks) {
     $query->addWhereExpression(0, '1 = 0');
     return;
   }
   $in_track = \Drupal::database()->select('node__field_session_category', 'c')
     ->fields('c', ['entity_id'])
-    ->condition('c.field_session_category_target_id', $track)
+    ->condition('c.field_session_category_target_id', $tracks, 'IN')
     ->condition('c.deleted', 0);
   $query->addWhere(0, 'node_field_data.nid', $in_track, 'IN');
 }
@@ -204,11 +244,12 @@ function dac_session_review_views_query_alter(ViewExecutable $view, QueryPluginB
  * Implements hook_form_FORM_ID_alter() for views_exposed_form.
  *
  * Hides the Category filter (the only exposed filter) from users limited
- * to one track; it could only ever narrow their list to nothing.
+ * to their own tracks; it lists every track, most of which could only
+ * narrow their list to nothing.
  */
 function dac_session_review_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   $view = $form_state->get('view');
-  if ($view && $view->id() === 'session_ratings' && _dac_session_review_track(\Drupal::currentUser()) !== NULL) {
+  if ($view && $view->id() === 'session_ratings' && _dac_session_review_tracks(\Drupal::currentUser()) !== NULL) {
     $form['#access'] = FALSE;
   }
 }

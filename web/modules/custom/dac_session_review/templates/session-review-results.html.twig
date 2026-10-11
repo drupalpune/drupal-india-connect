@@ -8,14 +8,19 @@
  * - rows: Sessions, each with rank, title, url, track, state, state_label,
  *   reviews, criteria_display (one per question), score_display, percent.
  * - headers: Sortable columns keyed by sort key: label, url, active, order.
- * - tracks: Track (session category) labels keyed by term ID.
+ * - tracks: Track (session category) labels keyed by term ID; for a session
+ *   moderator, only their assigned tracks.
  * - track: Selected term ID, or '' for all tracks.
  * - track_label: Selected track's label, or NULL.
  * - sort, order: Current sort key and direction.
  * - max: Top of the rating scale.
  * - form_action: URL the track filter submits to.
- * - show_filter: Whether to show the track filter (administrators); session
- *   moderators are fixed to their assigned track.
+ * - show_filter: Whether to show the track filter: administrators, and
+ *   session moderators with two tracks (limited to those); a moderator with
+ *   one track is fixed to it.
+ * - all_label: Label of the filter's "every track" option.
+ * - own_tracks: TRUE for a session moderator, whose "every track" is just
+ *   their assigned ones.
  * - no_track: TRUE for a moderator with no track assigned.
  */
 #}
@@ -37,7 +42,7 @@
     <div class="dac-review__field">
       <label for="dac-review-track" class="dac-review__label">{{ 'Track'|t }}</label>
       <select id="dac-review-track" name="track" class="dac-review__select">
-        <option value="">{{ 'All tracks'|t }}</option>
+        <option value="">{{ all_label ?: 'All tracks'|t }}</option>
         {% for id, label in tracks %}
           <option value="{{ id }}"{{ id == track ? ' selected' }}>{{ label }}</option>
         {% endfor %}
@@ -54,6 +59,8 @@
   <p class="dac-review__summary">
     {% if track_label %}
       {% trans %}{{ count }} reviewed session in {{ track_label }}{% plural count %}{{ count }} reviewed sessions in {{ track_label }}{% endtrans %}
+    {%- elseif own_tracks -%}
+      {% trans %}{{ count }} reviewed session across your tracks{% plural count %}{{ count }} reviewed sessions across your tracks{% endtrans %}
     {%- else -%}
       {% trans %}{{ count }} reviewed session across all tracks{% plural count %}{{ count }} reviewed sessions across all tracks{% endtrans %}
     {%- endif -%}
