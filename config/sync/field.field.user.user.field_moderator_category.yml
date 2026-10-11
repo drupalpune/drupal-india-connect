@@ -12,7 +12,7 @@ field_name: field_moderator_category
 entity_type: user
 bundle: user
 label: 'Session category'
-description: 'Session moderators only see sessions in this category on the Session Ratings page.'
+description: 'Session moderators only see sessions in these categories on the Session Ratings and Review results pages. Session moderators need at least one and can have at most two.'
 required: false
 translatable: true
 default_value: {  }

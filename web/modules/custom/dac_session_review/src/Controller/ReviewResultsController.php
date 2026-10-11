@@ -47,24 +47,23 @@ class ReviewResultsController extends ControllerBase {
     foreach ($this->entityTypeManager()->getStorage('taxonomy_term')->loadTree('session_category', 0, 1, TRUE) as $term) {
       $tracks[$term->id()] = $term->label();
     }
-    $track = (string) $request->query->get('track', '');
+
+    // Session moderators only see their assigned tracks (the admin-only
+    // "Session category" on their account): the filter offers just those,
+    // and is hidden when there is only one. See _dac_session_review_tracks().
+    $assigned = _dac_session_review_tracks($this->currentUser());
+    if ($assigned !== NULL) {
+      $tracks = array_intersect_key($tracks, array_flip($assigned));
+    }
+    $show_filter = $assigned === NULL || count($tracks) > 1;
+    $no_track = !$tracks;
+
+    $track = $show_filter ? (string) $request->query->get('track', '') : (string) array_key_first($tracks);
     if (!isset($tracks[$track])) {
       $track = '';
     }
-
-    // Session moderators only see their assigned track (the admin-only
-    // "Session category" on their account) and get no track filter; the
-    // ?track= parameter is ignored for them. See _dac_session_review_track().
-    $assigned = _dac_session_review_track($this->currentUser());
-    $show_filter = $assigned === NULL;
-    $no_track = FALSE;
-    if (!$show_filter) {
-      $track = (string) $assigned;
-      if (!isset($tracks[$track])) {
-        $track = '';
-        $no_track = TRUE;
-      }
-    }
+    // The tracks the table is limited to; empty means every track.
+    $limit = $track !== '' ? [$track] : ($assigned === NULL ? [] : array_keys($tracks));
 
     $sort_options = self::SORTS;
     foreach (array_keys($questions) as $delta) {
@@ -76,7 +75,7 @@ class ReviewResultsController extends ControllerBase {
     }
     $order = $request->query->get('order') === 'asc' ? 'asc' : ($request->query->get('order') === 'desc' ? 'desc' : $sort_options[$sort]);
 
-    $rows = $no_track ? [] : $this->buildRows($questions, $track);
+    $rows = $no_track ? [] : $this->buildRows($questions, $limit);
     $this->sortRows($rows, $sort, $order);
 
     // Rank always follows the overall average, whatever the table is sorted
@@ -121,6 +120,8 @@ class ReviewResultsController extends ControllerBase {
       '#order' => $order,
       '#max' => $max,
       '#show_filter' => $show_filter,
+      '#all_label' => $assigned === NULL ? $this->t('All tracks') : $this->t('All my tracks'),
+      '#own_tracks' => $assigned !== NULL,
       '#no_track' => $no_track,
       '#form_action' => Url::fromRoute('dac_session_review.results')->toString(),
       '#attached' => ['library' => ['dac_session_review/review-results']],
@@ -132,9 +133,14 @@ class ReviewResultsController extends ControllerBase {
   }
 
   /**
-   * One row per reviewed session in the track, with average scores.
+   * One row per reviewed session in the given tracks, with average scores.
+   *
+   * @param string[] $questions
+   *   The evaluation's rating questions.
+   * @param array $tracks
+   *   Session category term IDs to limit to; empty for every track.
    */
-  protected function buildRows(array $questions, string $track): array {
+  protected function buildRows(array $questions, array $tracks): array {
     $query = $this->database->select('webform_submission', 's');
     $query->join('webform_submission_data', 'd', 'd.sid = s.sid');
     $query->fields('s', ['sid'])
@@ -171,7 +177,7 @@ class ReviewResultsController extends ControllerBase {
         continue;
       }
       $category = $node->get('field_session_category')->entity;
-      if ($track && (!$category || (string) $category->id() !== $track)) {
+      if ($tracks && (!$category || !in_array((string) $category->id(), array_map('strval', $tracks), TRUE))) {
         continue;
       }
 
