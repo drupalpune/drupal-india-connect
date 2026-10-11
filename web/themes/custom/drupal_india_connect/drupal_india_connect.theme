@@ -440,13 +440,17 @@ function drupal_india_connect_preprocess_node(array &$variables) {
   }
 
   // Track moderators only evaluate sessions in their own track (as on the
-  // Session Ratings page); organisers rate every track.
-  $track = function_exists('_dac_session_review_track') ? _dac_session_review_track(\Drupal::currentUser()) : NULL;
-  if ($track !== NULL) {
+  // Session Ratings page); organisers rate every track. Without the helper
+  // there is no way to tell which, so nobody gets the card.
+  if (!function_exists('_dac_session_review_tracks')) {
+    return;
+  }
+  $tracks = _dac_session_review_tracks(\Drupal::currentUser());
+  if ($tracks !== NULL) {
     $variables['#cache']['contexts'][] = 'user';
     $variables['#cache']['tags'][] = 'user:' . \Drupal::currentUser()->id();
     $category = $node->hasField('field_session_category') ? (int) $node->get('field_session_category')->target_id : 0;
-    if (!$track || $category !== $track) {
+    if (!in_array($category, $tracks, TRUE)) {
       return;
     }
   }
