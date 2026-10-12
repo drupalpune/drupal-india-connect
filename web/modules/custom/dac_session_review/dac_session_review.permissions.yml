@@ -6,3 +6,7 @@ view session review results:
 rate sessions in all tracks:
   title: 'Rate sessions in all tracks'
   description: 'See every session on the Session Ratings page. Without it, a user only sees sessions in the category set in their "Session category" field.'
+
+access session ratings:
+  title: 'Access the Session Ratings page'
+  description: 'Rate session proposals. Granted to the Session moderator role, which also gives the role a permission set of its own: pages cached per permissions would otherwise show a speaker who is also a moderator the plain speaker version, without the Session Ratings link.'
