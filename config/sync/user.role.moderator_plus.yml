@@ -1,0 +1,14 @@
+uuid: 7a8295f6-c17b-4615-ba6a-de00496bff1f
+langcode: en
+status: true
+dependencies:
+  module:
+    - dac_session_review
+    - field_permissions
+id: moderator_plus
+label: Moderator+
+weight: 4
+is_admin: false
+permissions:
+  - 'access session ratings'
+  - 'view field_speakers'
