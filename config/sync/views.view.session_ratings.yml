@@ -7,8 +7,6 @@ dependencies:
     - node.type.session
     - system.menu.admin
     - taxonomy.vocabulary.session_category
-    - user.role.administrator
-    - user.role.session_moderator
   module:
     - dac_session_review
     - node
@@ -296,11 +294,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            session_moderator: session_moderator
-            administrator: administrator
+          perm: 'access session ratings'
       cache:
         type: tag
         options: {  }
@@ -586,7 +582,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_session_category'
   attachment_1:
@@ -884,7 +880,7 @@ display:
         - url
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_session_category'
   page_1:
@@ -927,6 +923,6 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_session_category'
