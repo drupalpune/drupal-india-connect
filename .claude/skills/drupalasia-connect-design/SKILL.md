@@ -45,3 +45,11 @@ anything:
    hero is a custom component. Check
    `web/themes/custom/drupal_india_connect/` before assuming a pattern here
    is what ships. See `CLAUDE.md` for the traps in this codebase.
+4. **Reuse before you build.** Before designing a section or writing CSS,
+   find the component, token or existing page band that already does it
+   (`web/themes/custom/drupal_india_connect/components/`,
+   `web/themes/contrib/event_horizon/components/`, the homepage and
+   `scripts/build-travel-page.php`). A quote is the `blockquote` component,
+   a numbered point is `info-card`, a closing band is `cta`. Extend a
+   component with an optional prop rather than adding a near-copy. See
+   "Reuse before you build" in `CLAUDE.md`.
