@@ -75,8 +75,13 @@
   }
 }
 
+/*
+ * The card is always a white surface, so its copy sets its own colour. It
+ * used `var(--text-body)`, which nothing defines: the colour was inherited,
+ * and on a dark section band that made it white on white.
+ */
 .info-card__body {
-  color: var(--text-body);
+  color: var(--color--night-5);
   font-size: 1rem;
   line-height: 1.6;
 }

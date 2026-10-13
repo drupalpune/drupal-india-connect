@@ -1,6 +1,7 @@
 /**
  * @file
- * Assigns anchor ids to Canvas sections (the homepage, Travel & Stay).
+ * Assigns anchor ids to Canvas sections (the homepage, Travel & Stay,
+ * AI Summit).
  *
  * The design's header nav is a set of same-page anchors (#about, #cfp,
  * #tickets, ...). Those ids cannot be authored as content: Canvas runs
@@ -23,6 +24,9 @@
     'why attend': 'why-attend',
     'the programme is yours to write': 'cfp',
     'ticket tiers': 'tickets',
+    // The tickets band's current heading. The main menu's Tickets link and
+    // the AI Summit page's ticket buttons point at /#tickets.
+    'choose your experience': 'tickets',
     'iit bombay, mumbai': 'venue',
     'founding sponsors': 'sponsors',
     questions: 'faq',
@@ -35,6 +39,12 @@
     'hotels near iit bombay': 'stay',
     'before you fly': 'plan',
     'quick answers': 'faq',
+    // AI Summit page (/ai-summit). The hero's "Explore the programme" button
+    // points at #programme.
+    'beyond the tools. into the real world.': 'why-attend',
+    'ai across domains': 'domains',
+    'voices of the frontier': 'speakers',
+    'how the day takes shape': 'programme',
   };
 
   // Views block class => anchor id. Only used as a fallback: landing on the
