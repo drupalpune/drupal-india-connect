@@ -40,7 +40,7 @@
     'before you fly': 'plan',
     'quick answers': 'faq',
     // AI Summit page (/ai-summit). The hero's "Explore the programme" button
-    // points at #programme. Built by scripts/build-ai-summit-page.php.
+    // points at #programme.
     'beyond the tools. into the real world.': 'why-attend',
     'ai across domains': 'domains',
     'voices of the frontier': 'speakers',
