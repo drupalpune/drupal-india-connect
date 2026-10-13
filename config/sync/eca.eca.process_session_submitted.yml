@@ -30,8 +30,19 @@ events:
     successors:
       -
         id: Activity_19fq9j3
-        condition: ''
-conditions: {  }
+        condition: Condition_not_invited
+conditions:
+  Condition_not_invited:
+    plugin: eca_entity_field_value
+    label: 'Not an invited session?'
+    configuration:
+      negate: true
+      expected_value: '1'
+      field_name: field_is_invited
+      operator: equal
+      type: value
+      case: false
+      entity: ''
 gateways: {  }
 actions:
   Activity_0nm31kg:

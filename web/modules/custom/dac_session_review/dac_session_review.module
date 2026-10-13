@@ -172,6 +172,13 @@ function dac_session_review_views_data_alter(array &$data): void {
       'field' => 'nid',
     ],
   ];
+
+  // Sessions saved before "Invited session" existed have no row for it, so
+  // an "Invited session = No" filter has to treat NULL as No, or Session
+  // Ratings and Session Moderation would drop every older session.
+  if (isset($data['node__field_is_invited']['field_is_invited_value']['filter'])) {
+    $data['node__field_is_invited']['field_is_invited_value']['filter']['accept null'] = TRUE;
+  }
 }
 
 /**

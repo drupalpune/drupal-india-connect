@@ -38,6 +38,12 @@ conditions:
       operator: equal
       type: value
       case: false
+  Condition_notice_cannot_invite:
+    plugin: eca_current_user_permission
+    label: 'Cannot mark sessions as invited?'
+    configuration:
+      negate: true
+      permission: 'create field_is_invited'
 gateways: {  }
 actions:
   Activity_notice_query:
@@ -61,7 +67,7 @@ actions:
     successors:
       -
         id: Activity_notice_message
-        condition: ''
+        condition: Condition_notice_cannot_invite
   Activity_notice_message:
     label: 'Show submission count'
     plugin: action_message_action
