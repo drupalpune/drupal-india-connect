@@ -212,8 +212,9 @@
   color: var(--secondary);
 }
 
+/* night-50 on the sky-94 pill is 3.2:1, under AA for 12px text; night-30 is 7.6:1. */
 .people-card__domain-label {
-  color: var(--color--night-50);
+  color: var(--color--night-30);
   font-weight: 500;
 }
 
