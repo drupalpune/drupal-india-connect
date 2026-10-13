@@ -8,9 +8,11 @@
  * (speakers, time, track, room, level, type, tags) into a labelled
  * <aside> beside the description, per the design reference at
  * https://events.drupal.org/rotterdam2026/session/ — the fields that only
- * matter during CFP review (code of conduct, speaking experience, session
- * consent) stay hidden in core.entity_view_display.node.session.default,
- * so the data is still on the entity, just not rendered here.
+ * matter during CFP review (code of conduct, session consent) stay hidden
+ * in core.entity_view_display.node.session.default, so the data is still
+ * on the entity, just not rendered here. Speaking experience is hidden
+ * there too but rendered below the description, for administrators
+ * and Moderator+ only, from the `speaking_experience` preprocess variable.
  */
 #}
 {%
@@ -46,6 +48,29 @@
 
       {% if content.field_description %}
         {{ content.field_description }}
+      {% endif %}
+
+      {# Built in _drupal_india_connect_speaking_experience(): one item per
+         line of the CFP's speaking-experience textarea. Only set for
+         administrators and Moderator+ (drupal_india_connect_preprocess_node()). #}
+      {% if speaking_experience %}
+        <section class="speaking-experience" aria-labelledby="speaking-experience-heading">
+          <div class="speaking-experience__header">
+            <h2 id="speaking-experience-heading" class="speaking-experience__heading">{{ 'Speaking experience'|t }}</h2>
+            {% if speaking_experience.spoken_at_drupal_events %}
+              <span class="speaking-experience__badge">{{ 'Has spoken at a DrupalCamp or DrupalCon'|t }}</span>
+            {% endif %}
+          </div>
+          {% if speaking_experience.items %}
+            <ul class="speaking-experience__list">
+              {% for item in speaking_experience.items %}
+                <li class="speaking-experience__item">{{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="speaking-experience__empty">{{ 'The speaker hasn’t shared any previous speaking experience.'|t }}</p>
+          {% endif %}
+        </section>
       {% endif %}
     </div>
 

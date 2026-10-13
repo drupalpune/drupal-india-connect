@@ -430,6 +430,12 @@ function drupal_india_connect_preprocess_node(array &$variables) {
   }
 
   $variables['#cache']['contexts'][] = 'user.roles';
+
+  // Speaking experience is CFP data written for reviewers: only
+  // administrators and Moderator+ see it.
+  if (array_intersect(['administrator', 'moderator_plus'], \Drupal::currentUser()->getRoles())) {
+    $variables['speaking_experience'] = _drupal_india_connect_speaking_experience($node);
+  }
   if (!$node->hasField('moderation_state') || $node->get('moderation_state')->value !== 'proposed') {
     return;
   }
@@ -470,6 +476,50 @@ function drupal_india_connect_preprocess_node(array &$variables) {
   if (\Drupal::currentUser()->hasPermission('rate sessions in all tracks')) {
     $variables['session_other_evaluations'] = _drupal_india_connect_session_other_evaluations($node);
   }
+}
+
+/**
+ * Builds the "Speaking experience" section for a session page.
+ *
+ * field_speaking_experience_detail is a plain textarea from the CFP form;
+ * speakers mostly put one talk per line, sometimes with a "-" or "1."
+ * marker and a bare URL. Each non-empty line becomes a list item (markers
+ * stripped, text escaped, URLs linked; a line that is only a URL joins
+ * the item above it). field_speaking_experience is the
+ * form's "Have you spoken at a DrupalCamp or DrupalCon?" Yes/No.
+ */
+function _drupal_india_connect_speaking_experience(\Drupal\node\NodeInterface $node): array {
+  $items = [];
+  if ($node->hasField('field_speaking_experience_detail')) {
+    $text = (string) $node->get('field_speaking_experience_detail')->value;
+    foreach (preg_split('/\R/u', $text) as $line) {
+      $line = trim(preg_replace('/^\s*(?:[-*\x{2022}\x{2013}]|\d+[.)])\s+/u', '', $line));
+      if ($line === '') {
+        continue;
+      }
+      $html = preg_replace_callback(
+        '~https?://[^\s<>"]+[^\s<>".,;:!?)\]\'’]~iu',
+        fn($m) => '<a href="' . $m[0] . '" target="_blank" rel="noopener nofollow">' . $m[0] . '</a>',
+        \Drupal\Component\Utility\Html::escape($line)
+      );
+      // A bare link on its own line belongs to the talk above it.
+      if ($items && preg_match('~^https?://\S+$~i', $line)) {
+        $items[array_key_last($items)] .= '<br>' . $html;
+        continue;
+      }
+      $items[] = $html;
+    }
+    $items = array_map([Markup::class, 'create'], $items);
+  }
+
+  $spoken = $node->hasField('field_speaking_experience') && !$node->get('field_speaking_experience')->isEmpty()
+    ? (bool) $node->get('field_speaking_experience')->value
+    : NULL;
+
+  return [
+    'items' => $items,
+    'spoken_at_drupal_events' => $spoken,
+  ];
 }
 
 /**
