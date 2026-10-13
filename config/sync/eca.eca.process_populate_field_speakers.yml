@@ -29,8 +29,14 @@ events:
     successors:
       -
         id: Activity_0xy2j38
-        condition: ''
-conditions: {  }
+        condition: Condition_cannot_invite
+conditions:
+  Condition_cannot_invite:
+    plugin: eca_current_user_permission
+    label: 'Cannot mark sessions as invited?'
+    configuration:
+      negate: true
+      permission: 'create field_is_invited'
 gateways: {  }
 actions:
   Activity_0xy2j38:

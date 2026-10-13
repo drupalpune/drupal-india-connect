@@ -1,0 +1,23 @@
+uuid: b32c6203-04d9-40d3-81de-26e8cb0cd7ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_invited
+    - node.type.session
+id: node.session.field_is_invited
+field_name: field_is_invited
+entity_type: node
+bundle: session
+label: 'Invited session'
+description: 'Check this for an invited talk (e.g. AI Summit). Invited sessions skip community review: they are left out of Session Ratings and Session Moderation, and send no CfP emails. Publish them with Force Publish.'
+required: false
+translatable: false
+default_value:
+  -
+    value: false
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -37,6 +37,16 @@ conditions:
       operator: atleast
       type: numeric
       case: false
+  Condition_not_invited:
+    plugin: eca_entity_field_value
+    configuration:
+      negate: true
+      expected_value: '1'
+      field_name: field_is_invited
+      operator: equal
+      type: value
+      case: false
+      entity: ''
 gateways: {  }
 actions:
   Activity_block_query:
@@ -50,7 +60,7 @@ actions:
     successors:
       -
         id: Activity_block_count
-        condition: ''
+        condition: Condition_not_invited
   Activity_block_count:
     label: 'Count active sessions'
     plugin: eca_count
