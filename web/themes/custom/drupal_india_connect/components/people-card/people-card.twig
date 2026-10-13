@@ -1,6 +1,13 @@
 {% set initial = name is not empty ? name|first|upper : '' %}
 
-<div class="people-card">
+{#
+  With a speaker page the card is a teaser for it: the photo and name link
+  there, and the description is cut to 3 lines (people-card--linked). The
+  photo link is out of the tab order and hidden from screen readers, so the
+  name is the only link to the profile they meet.
+#}
+<div class="people-card{{ speaker_url is not empty ? ' people-card--linked' }}">
+  {% if speaker_url is not empty %}<a href="{{ speaker_url }}" class="people-card__avatar-link" tabindex="-1" aria-hidden="true">{% endif %}
   <div class="people-card__avatar">
     {% if avatar.src is not empty %}
       {% include 'canvas:image' ignore missing with {
@@ -14,10 +21,17 @@
       <span class="people-card__avatar-fallback" aria-hidden="true">{{ initial }}</span>
     {% endif %}
   </div>
+  {% if speaker_url is not empty %}</a>{% endif %}
 
   <div class="people-card__body">
     {% if name is not empty %}
-      <h3 class="people-card__name">{{ name }}</h3>
+      <h3 class="people-card__name">
+        {%- if speaker_url is not empty -%}
+          <a href="{{ speaker_url }}" class="people-card__name-link">{{ name }}</a>
+        {%- else -%}
+          {{ name }}
+        {%- endif -%}
+      </h3>
     {% endif %}
 
     {% if designation is not empty %}
@@ -25,7 +39,11 @@
     {% endif %}
 
     {% if domain is not empty %}
-      <span class="people-card__domain">{{ domain }}</span>
+      <p class="people-card__domain">
+        {% include 'drupal_india_connect:icon' ignore missing with { icon: 'microphone', icon_size: 'extra-small' } only %}
+        <span class="people-card__domain-label">{{ 'Speaking on'|t }}</span>
+        <span class="people-card__domain-value">{{ domain }}</span>
+      </p>
     {% endif %}
 
     {% if description is not empty %}
@@ -35,7 +53,13 @@
     {% if session_title is not empty %}
       <div class="people-card__session">
         <span class="people-card__session-label">{{ 'Session'|t }}</span>
-        <p class="people-card__session-title">{{ session_title }}</p>
+        <p class="people-card__session-title">
+          {%- if session_url is not empty -%}
+            <a href="{{ session_url }}" class="people-card__session-link">{{ session_title }}</a>
+          {%- else -%}
+            {{ session_title }}
+          {%- endif -%}
+        </p>
       </div>
     {% endif %}
 

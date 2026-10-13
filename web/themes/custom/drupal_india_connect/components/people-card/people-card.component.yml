@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'People Card'
-description: 'A person''s photo, name, designation, an optional domain, rich-text description and session title, and optional Drupal.org and LinkedIn profile links.'
+description: 'A person''s photo, name, designation, an optional domain, rich-text description and session title, and optional Drupal.org and LinkedIn profile links. With a speaker page URL the photo and name link to it and the description is cut to 3 lines.'
 group: Drupal Connect
 status: stable
 props:
@@ -34,7 +34,7 @@ props:
     domain:
       type: string
       title: Domain
-      description: 'Optional area of expertise or event domain.'
+      description: 'Area the speaker will address (shown as ''Speaking on'')'
       examples:
         - 'Drupal Core'
     session_title:
@@ -43,6 +43,16 @@ props:
       description: 'Optional confirmed session title.'
       examples:
         - 'The State of Drupal'
+    session_url:
+      type: string
+      title: 'Session page URL'
+      description: 'Optional. Links the session title to its page. Only used when a session title is set.'
+      format: uri-reference
+    speaker_url:
+      type: string
+      title: 'Speaker page URL'
+      description: 'Optional. Links the photo and name to the full speaker profile, and shortens the description to 3 lines.'
+      format: uri-reference
     drupal_url:
       type: string
       title: 'Drupal.org profile URL'
