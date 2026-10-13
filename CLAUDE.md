@@ -28,6 +28,31 @@ or `phpunit` to run.
   rejected at the remote. Undo a bad push with a revert commit, not
   `push --force` (which would just fail).
 
+## Reuse before you build
+
+Applies to every change: code, config, theme components, CSS, Canvas
+content. **Before adding anything new, find what already does the job and
+use it, extend it, or copy its pattern.** Most "new" things here already
+exist once, and the copies drift (the session page carries the same panel
+CSS three times, and a fourth was proposed).
+
+Where to look first:
+
+| Adding… | Check first |
+| --- | --- |
+| A theme component or markup | `web/themes/custom/drupal_india_connect/components/` and `web/themes/contrib/event_horizon/components/` (Canvas lists them as `canvas.component.sdc.*` in `config/sync`). Then how an existing page uses them: homepage (`canvas_page` 1) and `scripts/build-travel-page.php`. |
+| CSS | Tokens only (`--color--*`, `--sp*`, `--focus-ring-color`); grep `css/` and `components/` for the same declarations (border + top accent, eyebrow type, pill) and share the existing class instead of copying it. Confirm a `var(--x)` is actually defined: `info-card` used `--text-body`, which nothing defines, and broke on dark bands. |
+| A field | A sibling field with the same job on that bundle (`field_is_invited` mirrors `field_is_training`: type, form widget, field permissions). |
+| A View | A display on the existing view before a new view; copy filters from neighbouring handlers. |
+| ECA behaviour | A condition or action on the existing model before a new model; grep `config/sync/eca.eca.*` for how a plugin is already configured. |
+| PHP | The custom module's existing hooks (one `hook_views_data_alter()` per module, not two) and helpers in the `.theme` file. |
+| A contrib fix | Whether the module already supports it, then `patches/`. |
+
+If nothing fits, **extend the reusable thing with optional props or
+options**, not a page-specific variant, and keep existing output unchanged
+(diff the rendered markup before/after). Say what you checked and reused in
+the PR description.
+
 ## Deployment is tag-based
 
 `.github/workflows/deploy.yml` only fires on a semver tag push (`1.2.3` or
