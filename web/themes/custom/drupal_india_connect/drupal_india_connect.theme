@@ -431,9 +431,9 @@ function drupal_india_connect_preprocess_node(array &$variables) {
 
   $variables['#cache']['contexts'][] = 'user.roles';
 
-  // Speaking experience is CFP data written for reviewers: only Moderator+
-  // sees it.
-  if (in_array('moderator_plus', \Drupal::currentUser()->getRoles(), TRUE)) {
+  // Speaking experience is CFP data written for reviewers: only
+  // administrators and Moderator+ see it.
+  if (array_intersect(['administrator', 'moderator_plus'], \Drupal::currentUser()->getRoles())) {
     $variables['speaking_experience'] = _drupal_india_connect_speaking_experience($node);
   }
   if (!$node->hasField('moderation_state') || $node->get('moderation_state')->value !== 'proposed') {

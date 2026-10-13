@@ -11,8 +11,8 @@
  * matter during CFP review (code of conduct, session consent) stay hidden
  * in core.entity_view_display.node.session.default, so the data is still
  * on the entity, just not rendered here. Speaking experience is hidden
- * there too but rendered below the description, for Moderator+ users
- * only, from the `speaking_experience` preprocess variable.
+ * there too but rendered below the description, for administrators
+ * and Moderator+ only, from the `speaking_experience` preprocess variable.
  */
 #}
 {%
@@ -52,7 +52,7 @@
 
       {# Built in _drupal_india_connect_speaking_experience(): one item per
          line of the CFP's speaking-experience textarea. Only set for
-         Moderator+ users (drupal_india_connect_preprocess_node()). #}
+         administrators and Moderator+ (drupal_india_connect_preprocess_node()). #}
       {% if speaking_experience %}
         <section class="speaking-experience" aria-labelledby="speaking-experience-heading">
           <div class="speaking-experience__header">
