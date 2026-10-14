@@ -41,6 +41,7 @@ permissions:
   - 'use klaro'
   - 'use text format restricted_html'
   - 'use text format webform_default'
+  - 'view field_program'
   - 'view field_r'
   - 'view field_time_slot'
   - 'view media'
