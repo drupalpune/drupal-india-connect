@@ -1,0 +1,178 @@
+uuid: 21aae75e-68de-430e-9979-82ddfb86874c
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.people-card
+    - canvas.component.sdc.drupal_india_connect.spacer
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - field.field.media.image.field_media_image
+    - field.field.media.svg_image.field_media_svg_image
+    - filter.format.canvas_html_block
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - media.type.svg_image
+  content:
+    - 'file:file:4ed0ff7d-3477-4c7f-b670-01e99b929c60'
+    - 'file:file:7dda3f39-661d-4aeb-959b-2031659e793a'
+    - 'file:file:d798e18b-fb97-4b12-9012-1fded01130de'
+    - 'file:file:e4f9a18b-094f-44c2-9850-20c208835b02'
+    - 'media:image:62719b4e-fb2f-4abc-8cfc-8e1fcc1e5de6'
+    - 'media:image:6cfd385d-f0f9-48dd-8d3f-bd7250119498'
+    - 'media:image:723d6e41-3678-46a5-8b83-5dc03791120c'
+    - 'media:image:925b7a1b-01f0-4003-ba21-78325fe0b1c3'
+  module:
+    - file
+    - link
+    - media
+    - options
+    - text
+id: programteam
+label: 'Program team'
+component_tree:
+  '0:79a6c239-2c0a-4f77-a6bb-f39ed8a60c76':
+    uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '0'
+      padding_block_end: '0'
+      background_color: accent
+      full_width: true
+      dark_background: false
+      section_header: true
+      section_footer: false
+  '0:header_slot:0:f93d06be-00a8-40e6-8185-a30a87e17ffa':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: header_slot
+    uuid: f93d06be-00a8-40e6-8185-a30a87e17ffa
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: xs
+  '0:header_slot:1:5bbea68a-c3e3-483b-9ed4-3b94e5bd0400':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: header_slot
+    uuid: 5bbea68a-c3e3-483b-9ed4-3b94e5bd0400
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The people behind the summit'
+      tone: accent
+  '0:header_slot:2:8b04682c-baf4-4d00-a930-df644f216e30':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: header_slot
+    uuid: 8b04682c-baf4-4d00-a930-df644f216e30
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'The people behind the summit'
+      level: 2
+      text_size: heading-responsive-4xl
+      text_color: default
+      align: left
+      style: default
+      margin_top: sm
+  '0:header_slot:3:6d059272-e706-42c5-afbc-f0a4cb9ce3d7':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: header_slot
+    uuid: 6d059272-e706-42c5-afbc-f0a4cb9ce3d7
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>The program is being shaped by community members bringing different perspectives together, reaching out to practitioners, and making room for meaningful conversations.</p>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+  '0:main_slot:0:5103a520-69d4-4192-89ff-f27befc399c5':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: main_slot
+    uuid: 5103a520-69d4-4192-89ff-f27befc399c5
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 1519424a0339be90
+    inputs:
+      columns: 4
+      gap: '24'
+  '0:main_slot:0:grid_slot:0:331011dc-60ef-47d5-8f47-c988c2289c79':
+    parent_uuid: 5103a520-69d4-4192-89ff-f27befc399c5
+    slot: grid_slot
+    uuid: 331011dc-60ef-47d5-8f47-c988c2289c79
+    component_id: sdc.drupal_india_connect.people-card
+    component_version: 272b7f6899181813
+    inputs:
+      avatar:
+        target_id: '7'
+      name: 'Mohit Aghera'
+      drupal_url:
+        uri: 'https://www.drupal.org/u/mohit_aghera'
+        options: {  }
+      linkedin_url:
+        uri: 'https://www.linkedin.com/in/mohitaghera/'
+        options: {  }
+  '0:main_slot:0:grid_slot:1:029f067c-a871-4668-9ac3-d4f6d163b0ab':
+    parent_uuid: 5103a520-69d4-4192-89ff-f27befc399c5
+    slot: grid_slot
+    uuid: 029f067c-a871-4668-9ac3-d4f6d163b0ab
+    component_id: sdc.drupal_india_connect.people-card
+    component_version: 272b7f6899181813
+    inputs:
+      avatar:
+        target_id: '19'
+      name: 'Rahul Shinde'
+      drupal_url:
+        uri: 'https://www.drupal.org/u/rahulshinde'
+        options: {  }
+      linkedin_url:
+        uri: 'https://www.linkedin.com/in/shinderahul/'
+        options: {  }
+  '0:main_slot:0:grid_slot:2:555c8848-d8fa-4bdf-9ea1-234459d70807':
+    parent_uuid: 5103a520-69d4-4192-89ff-f27befc399c5
+    slot: grid_slot
+    uuid: 555c8848-d8fa-4bdf-9ea1-234459d70807
+    component_id: sdc.drupal_india_connect.people-card
+    component_version: 272b7f6899181813
+    inputs:
+      avatar:
+        target_id: '12'
+      name: 'Ruturaj Chaubey'
+      designation: 'Website Team, Program Team'
+      drupal_url:
+        uri: 'https://www.drupal.org/u/ruturaj-chaubey'
+        options: {  }
+      linkedin_url:
+        uri: 'https://www.linkedin.com/in/ruturaj-chaubey/'
+        options: {  }
+  '0:main_slot:0:grid_slot:3:a2d5a25b-a730-471e-84ce-77f2e3d7981c':
+    parent_uuid: 5103a520-69d4-4192-89ff-f27befc399c5
+    slot: grid_slot
+    uuid: a2d5a25b-a730-471e-84ce-77f2e3d7981c
+    component_id: sdc.drupal_india_connect.people-card
+    component_version: 272b7f6899181813
+    inputs:
+      avatar:
+        target_id: '6'
+      name: 'Nikita Aswani'
+      drupal_url:
+        uri: 'https://www.drupal.org/u/nikitaaswani'
+        options: {  }
+      linkedin_url:
+        uri: 'https://www.linkedin.com/in/nikita-aswani/'
+        options: {  }
+  '0:main_slot:1:5cb96cf9-dd0f-4b84-ab63-519f6d28afa9':
+    parent_uuid: 79a6c239-2c0a-4f77-a6bb-f39ed8a60c76
+    slot: main_slot
+    uuid: 5cb96cf9-dd0f-4b84-ab63-519f6d28afa9
+    component_id: sdc.drupal_india_connect.spacer
+    component_version: d83b87a148d92563
+    inputs:
+      size: xs
