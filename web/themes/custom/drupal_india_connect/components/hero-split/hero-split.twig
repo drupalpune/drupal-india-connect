@@ -46,7 +46,23 @@
   </div>
 
   {% set aside_content %}{% block aside %}{% endblock %}{% endset %}
-  {% if aside_content|trim is not empty %}
+  {% if image.src is not empty %}
+    <figure class="dac-hero-split__media">
+      {% include 'canvas:image' ignore missing with {
+        src: image.src,
+        alt: image.alt,
+        class: 'dac-hero-split__image',
+        width: image.width,
+        height: image.height,
+      } only %}
+      {% if image_tag_title is not empty or image_tag_text is not empty %}
+        <figcaption class="dac-hero-split__tag">
+          {% if image_tag_title is not empty %}<b>{{ image_tag_title }}</b>{% endif %}
+          {% if image_tag_text is not empty %}<span>{{ image_tag_text }}</span>{% endif %}
+        </figcaption>
+      {% endif %}
+    </figure>
+  {% elseif aside_content|trim is not empty %}
     <div class="dac-hero-split__aside">{{ aside_content }}</div>
   {% endif %}
 </section>

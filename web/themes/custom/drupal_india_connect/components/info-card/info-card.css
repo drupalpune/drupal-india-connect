@@ -25,6 +25,22 @@
   }
 }
 
+/* Plain: no card shell, for short tips beside a heavier element. */
+.info-card.info-card--plain {
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.info-card--plain .info-card__body {
+  color: var(--color--night-30);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
 .info-card--primary-dark {
   --card-accent: var(--color--primary-20);
 }

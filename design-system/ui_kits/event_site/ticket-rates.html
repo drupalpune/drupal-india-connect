@@ -1,4 +1,4 @@
-<!-- @dsCard group="Event site" viewport="1400x900" name="Tickets & registration" subtitle="Registration landing page (issue #111): compare tickets, DrupalEasy benefit, programme, travel, FAQ" -->
+<!-- @dsCard group="Event site" viewport="1400x900" name="Tickets & registration" subtitle="Registration landing page (issue #111): tickets with the DrupalEasy offer, travel, FAQ" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -52,7 +52,6 @@
   .band { padding-block: var(--sp4); }
   @media (min-width: 700px) { .band { padding-block: 5.5rem; } }
   .band--tint { background: var(--surface-band-tint); }
-  .band--navy { color: var(--text-on-dark-body); background: var(--surface-band-dark); }
 
   /* Eyebrow: 12px, 700, tracked uppercase, secondary colour, 2px lead-in rule. */
   .eyebrow {
@@ -62,19 +61,18 @@
     letter-spacing: var(--type-eyebrow-tracking); line-height: 1.2; text-transform: uppercase;
   }
   .eyebrow::before { width: 1.5rem; height: 2px; background: currentColor; content: ""; }
-  .band--navy .eyebrow { color: var(--text-on-dark-accent); }
-  .band--navy .eyebrow::before { background: var(--color--secondary-50); }
 
   .h2 {
     color: var(--dac-navy);
     font-size: var(--type-h2-minor); font-weight: 700; line-height: 1.05;
     letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance;
   }
-  .band--navy .h2 { color: var(--color--white); }
   .lede { max-width: 44rem; font-size: 1.125rem; line-height: 1.55; text-wrap: pretty; }
   @media (min-width: 700px) { .lede { font-size: 1.25rem; } }
   .section-head { display: flex; flex-direction: column; gap: var(--sp1); margin-bottom: var(--sp2-5); }
   .section-head--split { gap: var(--sp1-5); }
+  .deadline-note { padding-left: var(--sp1); border-left: 3px solid var(--color--secondary-50); color: var(--color--night-30); font-size: 1rem; }
+  .deadline-note b { color: var(--color--night-5); }
   @media (min-width: 1000px) {
     .section-head--split { flex-direction: row; align-items: flex-end; justify-content: space-between; }
     .section-head--split > :first-child { display: flex; flex-direction: column; gap: var(--sp1); max-width: 46rem; }
@@ -131,7 +129,7 @@
   .hero { padding-block: var(--sp3) var(--sp4); }
   @media (min-width: 700px) { .hero { padding-block: var(--sp5); } }
   .hero__grid { display: grid; gap: var(--sp3); align-items: center; }
-  @media (min-width: 1000px) { .hero__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); gap: var(--sp4); } }
+  @media (min-width: 1000px) { .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--sp4); } }
   .hero__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp1-5); }
   /* The built hero sets the title in the logo's sentence case (see readme). */
   .hero__title { color: var(--dac-navy); font-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.75rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.02em; text-wrap: balance; }
@@ -143,26 +141,13 @@
   .fact dt { color: var(--color--night-5); font-weight: 700; }
   .fact dd { font-size: 0.9375rem; line-height: 1.45; }
 
-  /* The three-day pass: a navy panel standing in for event photography. */
-  .pass { position: relative; overflow: hidden; padding: var(--sp2); border-radius: var(--radius-xl); color: var(--text-on-dark-body); background: var(--dac-navy); }
-  @media (min-width: 700px) { .pass { padding: var(--sp3); } }
-  .pass__label { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-  .pass__title { margin-top: var(--sp1); color: var(--color--white); font-size: clamp(2rem, 1.25rem + 2.4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
-  .pass__title span { color: var(--color--secondary-50); }
-  .pass__days { display: grid; gap: var(--sp0-5); margin-top: var(--sp2); padding: 0; list-style: none; }
-  .pass__day { display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--sp1); align-items: baseline; padding-block: var(--sp0-75); border-top: 1px solid color-mix(in srgb, var(--color--white) 14%, transparent); }
-  .pass__day b { color: var(--color--white); font-size: 1.125rem; }
-  .pass__day span { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-on-dark-accent); }
-  .pass__day:nth-child(3) span { color: var(--color--secondary-60); }
-  .pass__day em { display: block; font-style: normal; font-size: 0.9375rem; }
+  /* Event photography, square-cornered like every hero element. A navy tag
+     on the photo keeps the dates and venue in the first screen. */
+  .hero__media { position: relative; margin: 0; }
+  .hero__media img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 40%; filter: contrast(1.08) saturate(1.05); }
+  .hero__tag { position: absolute; left: 0; bottom: 0; display: flex; flex-direction: column; gap: 0.125rem; padding: var(--sp1) var(--sp1-5); border-top: 3px solid var(--color--secondary-50); color: var(--text-on-dark-body); background: var(--dac-navy); font-size: 0.9375rem; line-height: 1.4; }
+  .hero__tag b { color: var(--color--white); font-size: 1.125rem; }
 
-  /* Early Bird strip */
-  .deadline { color: var(--text-on-dark-body); background: var(--dac-navy); }
-  .deadline__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp1) var(--sp2); padding-block: var(--sp1-5); }
-  .deadline__text { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp0-5) var(--sp1); }
-  .deadline__label { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-  .deadline__value { color: var(--color--white); font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .deadline a { color: var(--color--white); }
 
   /* ------------------------------------------------------------------ */
   /* Cards                                                               */
@@ -370,6 +355,13 @@
   .ticket__includes-item .i { flex-shrink: 0; color: var(--ticket-accent); }
   .ticket__includes-item--excluded .i { color: var(--color--night-60); }
 
+  /* Quiet ticket: a light price panel, so only the featured ticket carries
+     navy and the row of four reads as one calm group. */
+  .ticket--quiet .ticket__footer { border-top: 1px solid var(--border-hairline); background-color: var(--color--sky-97); }
+  .ticket--quiet .ticket__price { color: var(--color--night-5); font-size: 2.25rem; }
+  .ticket--quiet .ticket__availability,
+  .ticket--quiet .ticket__price-note { color: var(--text-muted); }
+
   /* Featured ticket: the same component with a `featured` modifier, for the
      one ticket a group recommends. Orange is already spent on its accent
      rule, so the badge reuses it; the lift is the system's one shadow. On
@@ -405,8 +397,14 @@
     .ticket--featured .ticket__footer { justify-content: center; padding: var(--sp2-5); }
   }
 
-  .guidance { display: grid; gap: var(--sp1-5); margin-top: var(--sp3); padding: var(--sp2); border-radius: var(--radius-xl); background: var(--color--white); border: 1px solid var(--border-hairline); }
-  @media (min-width: 1000px) { .guidance { grid-template-columns: 1fr auto; align-items: center; } }
+  /* Guidance and the DrupalEasy offer: plain text under a hairline, not
+     another card, so the tickets stay the only boxes in this band. */
+  .guidance { display: grid; gap: var(--sp2) var(--sp4); margin-top: var(--sp4); padding-top: var(--sp3); border-top: 1px solid var(--border-hairline); }
+  @media (min-width: 1000px) { .guidance { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .guidance > div { display: flex; flex-direction: column; gap: var(--sp0-75); }
+  .guidance p { max-width: 38rem; }
+  .guidance__note { max-width: 56rem; margin-top: var(--sp2); }
+  .guidance__note a { color: inherit; }
 
   /* ------------------------------------------------------------------ */
   /* DrupalEasy offer                                                    */
@@ -444,6 +442,11 @@
   .venue address { margin-top: var(--sp1); font-style: normal; }
   .venue .tbc { color: var(--text-on-dark-accent); border-color: color-mix(in srgb, var(--color--white) 30%, transparent); }
   .venue__actions { display: flex; flex-wrap: wrap; gap: var(--sp0-75); }
+  .tips { display: grid; gap: var(--sp2) var(--sp3); align-content: start; padding-block: var(--sp1); }
+  @media (min-width: 700px) { .tips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .tip { display: flex; flex-direction: column; gap: var(--sp0-5); }
+  .tip .h3 { margin-top: var(--sp0-25); font-size: 1.125rem; }
+  .tip p { font-size: 0.9375rem; line-height: 1.55; }
 
   /* ------------------------------------------------------------------ */
   /* FAQ (native details: keyboard operable without script)              */
@@ -462,24 +465,6 @@
   /* ------------------------------------------------------------------ */
   .callout { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp1-5); padding: var(--sp2); border: 1px dashed var(--color--night-70); border-radius: var(--radius-xl); background: var(--surface-card); }
   .callout__copy { flex: 1 1 22rem; display: flex; flex-direction: column; gap: var(--sp0-5); }
-
-  /* ------------------------------------------------------------------ */
-  /* Closing band with ticket stub                                       */
-  /* ------------------------------------------------------------------ */
-  .closing__grid { display: grid; gap: var(--sp3); align-items: center; }
-  @media (min-width: 1000px) { .closing__grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: var(--sp4); } }
-  .closing__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp1-5); }
-  .closing__title { color: var(--color--white); font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem); font-weight: 700; line-height: 0.95; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance; }
-  .closing__actions { display: flex; flex-wrap: wrap; gap: var(--sp1); margin-top: var(--sp0-5); }
-  .stub { position: relative; padding: var(--sp2) var(--sp2) 0; border: 1px solid color-mix(in srgb, var(--color--white) 14%, transparent); border-radius: var(--radius-xl); background: color-mix(in srgb, var(--color--white) 7%, transparent); }
-  .stub__title { margin-bottom: var(--sp1); color: var(--color--white); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
-  .stub__row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp0-25) var(--sp1); padding-block: var(--sp0-75); border-top: 1px solid color-mix(in srgb, var(--color--white) 12%, transparent); }
-  .stub__row dt { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
-  .stub__row dd { color: var(--color--white); font-weight: 600; text-align: end; }
-  .stub__note { position: relative; margin: var(--sp1) calc(-1 * var(--sp2)) 0; padding: var(--sp1) var(--sp2); border-top: 2px dashed color-mix(in srgb, var(--color--white) 25%, transparent); font-size: 0.875rem; }
-  .stub__note::before, .stub__note::after { position: absolute; top: -0.8125rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--dac-navy); content: ""; }
-  .stub__note::before { left: -0.8125rem; }
-  .stub__note::after { right: -0.8125rem; }
 
   /* ------------------------------------------------------------------ */
   /* Footer                                                              */
@@ -538,76 +523,22 @@
           <a class="btn btn--primary btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Buy tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
           <a class="btn btn--outline btn--lg" href="#tickets">Compare tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></svg></a>
         </div>
-        <dl class="facts">
-          <div class="fact"><dt>Dates</dt><dd>28–30 January 2027</dd></div>
-          <div class="fact"><dt>Tickets from</dt><dd>₹2,500 per attendee</dd></div>
-          <div class="fact fact--accent"><dt>Early Bird</dt><dd>Until 10 December 2026, or until sold out</dd></div>
-        </dl>
       </div>
-      <div class="pass" aria-label="The three days">
-        <p class="pass__label">Imagine · Discover · Build</p>
-        <p class="pass__title">Three days. One connected <span>community.</span></p>
-        <ol class="pass__days">
-          <li class="pass__day"><span>28 Jan</span><div><b>Imagine</b><em>AI Summit</em></div></li>
-          <li class="pass__day"><span>29 Jan</span><div><b>Discover</b><em>Drupal Conference</em></div></li>
-          <li class="pass__day"><span>30 Jan</span><div><b>Build</b><em>Contribution &amp; Innovation</em></div></li>
-        </ol>
-      </div>
+      <figure class="hero__media">
+        <img src="../../assets/photos/community-group.webp" alt="A large group of Drupal community members waving at the camera in a conference hall" width="1600" height="1069" loading="eager">
+        <figcaption class="hero__tag"><b>28–30 January 2027</b><span>IIT Bombay, Powai, Mumbai</span></figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- Early Bird deadline strip -->
-  <div class="deadline" role="region" aria-label="Early Bird deadline">
-    <div class="deadline__inner container">
-      <p class="deadline__text">
-        <span class="deadline__label">Early Bird ends</span>
-        <span class="deadline__value" data-deadline="2026-12-10T23:59:00+05:30" data-ended="Early Bird has ended. Check KonfHub for current prices.">10 December 2026, 11:59 PM IST</span>
-      </p>
-      <a class="link-arrow" href="#tickets">See Early Bird tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-    </div>
-  </div>
-
-  <!-- 2. Experiences -->
-  <section class="band" aria-labelledby="fit-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Find your fit</p>
-        <h2 class="h2" id="fit-title">One event. Different ways to join.</h2>
-        <p class="lede">Whether AI is your focus, Drupal is your everyday work, or you want the entire experience, choose the pass that matches your plans.</p>
-      </div>
-      <div class="grid grid--3">
-        <article class="card">
-          <span class="card__marker">01</span>
-          <span class="pill">Imagine</span>
-          <h3 class="h3">Explore AI</h3>
-          <p class="card__body">A dedicated summit connecting practical AI applications, decision-makers and the open ecosystem.</p>
-          <a class="link-arrow" href="#ticket-ai-summit-only">See AI Summit options <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-        </article>
-        <article class="card">
-          <span class="card__marker">02</span>
-          <span class="pill">Discover</span>
-          <h3 class="h3">Go deeper with Drupal</h3>
-          <p class="card__body">Conference sessions, ideas and real-world lessons across Drupal, digital experiences and the open web.</p>
-          <a class="link-arrow" href="#ticket-conference-only">See conference passes <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-        </article>
-        <article class="card card--accent">
-          <span class="card__marker">03</span>
-          <span class="pill">Connect</span>
-          <h3 class="h3">Make more of the trip</h3>
-          <p class="card__body">Add networking to spend more time with the practitioners and people shaping the ecosystem.</p>
-          <a class="link-arrow" href="#ticket-full-combo">Explore combination passes <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Tickets -->
+  <!-- 2. Tickets -->
   <section class="band band--tint" id="tickets" aria-labelledby="tickets-title">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Published Early Bird rates</p>
         <h2 class="h2" id="tickets-title">Choose your ticket</h2>
         <p class="lede">Simple choices, transparent inclusions, and a direct path to secure checkout on KonfHub.</p>
+        <p class="deadline-note"><b>Early Bird prices run until 10 December 2026, 11:59 PM IST,</b> or until sold out.</p>
       </div>
 
       <article class="ticket ticket--accent-secondary ticket--featured" id="ticket-full-combo">
@@ -627,7 +558,6 @@
         </div>
         <footer class="ticket__footer">
           <div class="ticket__price-block">
-            <p class="ticket__availability">Early Bird until 10 December 2026, 11:59 PM IST, or until sold out</p>
             <p class="ticket__price">₹7,000</p>
             <p class="ticket__price-note">per attendee</p>
           </div>
@@ -636,9 +566,8 @@
       </article>
 
       <div class="grid grid--4">
-        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-conference">
+        <article class="ticket ticket--accent-primary-50 ticket--quiet" id="ticket-ai-summit-conference">
           <div class="ticket__body">
-            <p class="ticket__eyebrow">Early Bird</p>
             <h3 class="ticket__heading">AI Summit + Conference</h3>
             <p class="ticket__text">Take part in the summit and continue into the Drupal conference programme.</p>
             <p class="ticket__benefit">DrupalEasy subscribers: 15% discount</p>
@@ -653,16 +582,14 @@
           </div>
           <footer class="ticket__footer">
             <div class="ticket__price-block">
-              <p class="ticket__availability">Early Bird until 10 December 2026, 11:59 PM IST, or until sold out</p>
               <p class="ticket__price">₹5,500</p>
               <p class="ticket__price-note">per attendee</p>
             </div>
             <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118786%7C1%3B">Get this ticket<span class="visually-hidden">: AI Summit + Conference</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
           </footer>
         </article>
-        <article class="ticket ticket--accent-primary-50" id="ticket-conference-networking">
+        <article class="ticket ticket--accent-primary-50 ticket--quiet" id="ticket-conference-networking">
           <div class="ticket__body">
-            <p class="ticket__eyebrow">Early Bird</p>
             <h3 class="ticket__heading">Conference + Networking</h3>
             <p class="ticket__text">Two conference days and an extra opportunity to connect with the community.</p>
             <div class="ticket__includes">
@@ -676,16 +603,14 @@
           </div>
           <footer class="ticket__footer">
             <div class="ticket__price-block">
-              <p class="ticket__availability">Early Bird until 10 December 2026, 11:59 PM IST, or until sold out</p>
               <p class="ticket__price">₹5,000</p>
               <p class="ticket__price-note">per attendee</p>
             </div>
             <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118787%7C1%3B">Get this ticket<span class="visually-hidden">: Conference + Networking</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
           </footer>
         </article>
-        <article class="ticket ticket--accent-primary-50" id="ticket-conference-only">
+        <article class="ticket ticket--accent-primary-50 ticket--quiet" id="ticket-conference-only">
           <div class="ticket__body">
-            <p class="ticket__eyebrow">Early Bird</p>
             <h3 class="ticket__heading">Conference Only</h3>
             <p class="ticket__text">For those coming for Drupal, digital experiences, contribution and community.</p>
             <p class="ticket__benefit">DrupalEasy subscribers: 10% discount</p>
@@ -700,16 +625,14 @@
           </div>
           <footer class="ticket__footer">
             <div class="ticket__price-block">
-              <p class="ticket__availability">Early Bird until 10 December 2026, 11:59 PM IST, or until sold out</p>
               <p class="ticket__price">₹2,500</p>
               <p class="ticket__price-note">per attendee</p>
             </div>
             <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118735%7C1%3B">Get this ticket<span class="visually-hidden">: Conference Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
           </footer>
         </article>
-        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-only">
+        <article class="ticket ticket--accent-primary-50 ticket--quiet" id="ticket-ai-summit-only">
           <div class="ticket__body">
-            <p class="ticket__eyebrow">Single-day experience</p>
             <h3 class="ticket__heading">AI Summit Only</h3>
             <p class="ticket__text">A focused day on where AI is creating meaningful change, beyond the hype.</p>
             <div class="ticket__includes">
@@ -735,48 +658,19 @@
       <div class="guidance">
         <div>
           <h3 class="h3">Not sure which ticket to choose?</h3>
-          <p style="margin-top: var(--sp0-5)">The Full Combo offers the broadest access. If you are coming mainly for the Drupal conference, Conference Only is the simplest choice. Workshops are booked separately and are not included in any ticket.</p>
-          <p class="small" style="margin-top: var(--sp0-75)">These are the rates currently published for DrupalAsia Connect India 2027. Ticket eligibility, availability, the final total, processing fees and any applicable taxes are confirmed at checkout on KonfHub.</p>
+          <p>The Full Combo offers the broadest access. If you are coming mainly for the Drupal conference, Conference Only is the simplest choice. Workshops are booked separately and are not included in any ticket.</p>
         </div>
-        <a class="btn btn--outline" href="https://konfhub.com/drupalasia-connect-india-2027">View all options on KonfHub <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+        <div>
+          <h3 class="h3">More value with DrupalEasy</h3>
+          <p>DrupalEasy subscribers can save on two DrupalAsia Connect India 2027 ticket categories. The benefit applies to AI Summit + Conference (15% off) and Conference Only (10% off).</p>
+          <p class="small">Coupon details will be shared before or during the event. The ticket prices shown do not include these discounts.</p>
+        </div>
       </div>
+      <p class="guidance__note small">These are the rates currently published for DrupalAsia Connect India 2027. Ticket eligibility, availability, the final total, processing fees and any applicable taxes are confirmed at checkout on <a href="https://konfhub.com/drupalasia-connect-india-2027">KonfHub</a>.</p>
     </div>
   </section>
 
-  <!-- 4. DrupalEasy benefit -->
-  <section class="band" aria-labelledby="offer-title">
-    <div class="offer container">
-      <div class="offer__copy">
-        <p class="eyebrow">Subscriber benefit</p>
-        <h2 class="h2" id="offer-title">More value with DrupalEasy</h2>
-        <p class="lede">DrupalEasy subscribers can save on two DrupalAsia Connect India 2027 ticket categories.</p>
-        <p class="small">The benefit applies only to these two ticket categories. Coupon details will be shared before or during the event. The ticket prices shown do not include these discounts.</p>
-      </div>
-      <div class="grid grid--2">
-        <div class="offer__tile"><b>15%<small> off</small></b><span class="h3">AI Summit + Conference</span><p>On the AI Summit + Conference combo ticket.</p></div>
-        <div class="offer__tile"><b>10%<small> off</small></b><span class="h3">Conference Only</span><p>On the Conference-only ticket.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Programme -->
-  <section class="band band--tint" aria-labelledby="programme-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Programme at a glance</p>
-        <h2 class="h2" id="programme-title">Imagine. Discover. Build.</h2>
-        <p class="lede">The event moves from new possibilities to practical knowledge to collaborative action.</p>
-      </div>
-      <div class="grid grid--3">
-        <article class="day"><p class="day__date">Day 1 · Thursday 28 January</p><h3 class="day__title">Imagine</h3><p class="day__sub">AI Summit</p><p>Explore AI across enterprise, government, education and the open ecosystem through practitioner-led perspectives.</p></article>
-        <article class="day day--discover"><p class="day__date">Day 2 · Friday 29 January</p><h3 class="day__title">Discover</h3><p class="day__sub">Drupal Conference</p><p>Keynotes, Drupal and Drupal AI sessions, technical conversations, and the future of digital experiences.</p></article>
-        <article class="day day--build"><p class="day__date">Day 3 · Saturday 30 January</p><h3 class="day__title">Build</h3><p class="day__sub">Contribution &amp; Innovation</p><p>Contribute, collaborate, mentor and take ideas toward working solutions with the community.</p></article>
-      </div>
-      <p class="after-grid"><a class="btn btn--outline" href="https://drupalasia.org/program-at-a-glance">Explore the full programme <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a></p>
-    </div>
-  </section>
-
-  <!-- 6. Travel -->
+  <!-- 3. Travel -->
   <section class="band" aria-labelledby="travel-title">
     <div class="container">
       <div class="section-head">
@@ -797,17 +691,17 @@
             <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Victor+Menezes+Convention+Centre%2C+IIT+Bombay%2C+Powai%2C+Mumbai">Open in Google Maps <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M128,24A72,72,0,1,0,200,96c0,68.18-60.82,114.73-67.11,119.22a8,8,0,0,1-9.78,0C116.82,210.73,56,164.18,56,96A72,72,0,0,0,128,24Zm0,176.37C148.67,183.53,184,147,184,96a56,56,0,0,0-112,0C72,147,107.33,183.53,128,200.37ZM112,96a16,16,0,1,1,16,16A16,16,0,0,1,112,96Z"/></svg></a>
           </div>
         </div>
-        <div class="grid grid--2">
-          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M152,96a24,24,0,1,0,24,24A24,24,0,0,0,152,96Zm0,32a8,8,0,1,1,8-8A8,8,0,0,1,152,128Zm78.31-93.79a8,8,0,0,0-8.53-8.53A168.43,168.43,0,0,0,123.04,68.25L100,91.29a16,16,0,0,0-3.77,16.29l-22.1,22.09a16,16,0,0,0-4.24,14.31L56,168l24,24,24.02-13.89a16,16,0,0,0,14.31-4.24l22.09-22.1a16,16,0,0,0,16.29-3.77l23.04-23.04A168.43,168.43,0,0,0,230.31,34.21ZM182.6,170.13,127.85,184,112,168.15l13.87-54.75A152.49,152.49,0,0,1,214.43,56,152.49,152.49,0,0,1,182.6,170.13ZM88,56a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H80A8,8,0,0,1,88,56ZM56,96a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H48A8,8,0,0,1,56,96Zm64,104a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16h48A8,8,0,0,1,120,200Z"/></svg></span><h3 class="h3">Arriving by air</h3><p>Fly into Mumbai (BOM), then continue to the campus by cab or public transport.</p></div>
-          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M128,24A72,72,0,1,0,200,96c0,68.18-60.82,114.73-67.11,119.22a8,8,0,0,1-9.78,0C116.82,210.73,56,164.18,56,96A72,72,0,0,0,128,24Zm0,176.37C148.67,183.53,184,147,184,96a56,56,0,0,0-112,0C72,147,107.33,183.53,128,200.37ZM112,96a16,16,0,1,1,16,16A16,16,0,0,1,112,96Z"/></svg></span><h3 class="h3">Stay near campus</h3><p>Browse accommodation in Powai, Vikhroli and the surrounding neighbourhoods.</p></div>
-          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><h3 class="h3">Campus entry</h3><p>Carry your registration confirmation and a government-issued photo ID. Entry details will be shared before the event.</p><span class="tbc">TBC</span></div>
-          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.44l-5.8,3.87a8,8,0,0,1-8.91-13.31l16-10.67A8,8,0,0,1,112,120Z"/></svg></span><h3 class="h3">January in Mumbai</h3><p>Expect typically pleasant, dry weather, and allow extra travel time for traffic.</p></div>
+        <div class="tips">
+          <div class="tip"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M152,96a24,24,0,1,0,24,24A24,24,0,0,0,152,96Zm0,32a8,8,0,1,1,8-8A8,8,0,0,1,152,128Zm78.31-93.79a8,8,0,0,0-8.53-8.53A168.43,168.43,0,0,0,123.04,68.25L100,91.29a16,16,0,0,0-3.77,16.29l-22.1,22.09a16,16,0,0,0-4.24,14.31L56,168l24,24,24.02-13.89a16,16,0,0,0,14.31-4.24l22.09-22.1a16,16,0,0,0,16.29-3.77l23.04-23.04A168.43,168.43,0,0,0,230.31,34.21ZM182.6,170.13,127.85,184,112,168.15l13.87-54.75A152.49,152.49,0,0,1,214.43,56,152.49,152.49,0,0,1,182.6,170.13ZM88,56a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H80A8,8,0,0,1,88,56ZM56,96a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H48A8,8,0,0,1,56,96Zm64,104a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16h48A8,8,0,0,1,120,200Z"/></svg></span><h3 class="h3">Arriving by air</h3><p>Fly into Mumbai (BOM), then continue to the campus by cab or public transport.</p></div>
+          <div class="tip"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M128,24A72,72,0,1,0,200,96c0,68.18-60.82,114.73-67.11,119.22a8,8,0,0,1-9.78,0C116.82,210.73,56,164.18,56,96A72,72,0,0,0,128,24Zm0,176.37C148.67,183.53,184,147,184,96a56,56,0,0,0-112,0C72,147,107.33,183.53,128,200.37ZM112,96a16,16,0,1,1,16,16A16,16,0,0,1,112,96Z"/></svg></span><h3 class="h3">Stay near campus</h3><p>Browse accommodation in Powai, Vikhroli and the surrounding neighbourhoods.</p></div>
+          <div class="tip"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><h3 class="h3">Campus entry</h3><p>Carry your registration confirmation and a government-issued photo ID. Entry details will be shared before the event.</p><span class="tbc">TBC</span></div>
+          <div class="tip"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.44l-5.8,3.87a8,8,0,0,1-8.91-13.31l16-10.67A8,8,0,0,1,112,120Z"/></svg></span><h3 class="h3">January in Mumbai</h3><p>Expect typically pleasant, dry weather, and allow extra travel time for traffic.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. FAQ -->
+  <!-- 4. FAQ -->
   <section class="band band--tint" aria-labelledby="faq-title">
     <div class="container">
       <div class="section-head">
@@ -827,49 +721,6 @@
     </div>
   </section>
 
-  <!-- 8. Registration Team -->
-  <section class="band" aria-labelledby="team-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">The volunteers behind the experience</p>
-        <h2 class="h2" id="team-title">Meet the Registration Team</h2>
-        <p class="lede">The registration experience is supported by our community volunteers. Registration team profiles will be featured here once their assignments are confirmed.</p>
-      </div>
-      <div class="callout">
-        <span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M256,136a8,8,0,0,1-8,8H232v16a8,8,0,0,1-16,0V144H200a8,8,0,0,1,0-16h16V112a8,8,0,0,1,16,0v16h16A8,8,0,0,1,256,136Zm-57.87,58.85a8,8,0,0,1-12.26,10.3C165.75,181.19,138.09,168,108,168s-57.75,13.19-77.87,37.15a8,8,0,0,1-12.25-10.3c14.94-17.78,33.52-30.41,54.17-37.17a68,68,0,1,1,71.9,0C164.6,164.44,183.18,177.07,198.13,194.85ZM108,152a52,52,0,1,0-52-52A52.06,52.06,0,0,0,108,152Z"/></svg></span>
-        <div class="callout__copy">
-          <h3 class="h3">The people behind DrupalAsia Connect</h3>
-          <p>Meet the organisers and volunteers across every workstream on the Meet the Team page.</p>
-        </div>
-        <a class="btn btn--outline" href="https://drupalasia.org/meet-the-team">Meet the event team <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. Closing call to action -->
-  <section class="band band--navy" aria-labelledby="closing-title">
-    <div class="closing__grid container">
-      <div class="closing__copy">
-        <p class="eyebrow">See you in Mumbai</p>
-        <h2 class="closing__title" id="closing-title">Your seat in the community awaits.</h2>
-        <p class="lede">Choose your experience, plan your visit and join the conversations shaping what comes next for Drupal, AI and the open web.</p>
-        <div class="closing__actions">
-          <a class="btn btn--accent btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Get your ticket on KonfHub <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-          <a class="btn btn--ghost btn--lg" href="https://drupalasia.org/travel-and-stay">Plan your visit <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-        </div>
-      </div>
-      <aside class="stub" aria-label="DrupalAsia Connect India 2027">
-        <p class="stub__title">DrupalAsia Connect India 2027</p>
-        <dl>
-          <div class="stub__row"><dt>Dates</dt><dd>28–30 January 2027</dd></div>
-          <div class="stub__row"><dt>Venue</dt><dd>IIT Bombay, Powai, Mumbai</dd></div>
-          <div class="stub__row"><dt>Tickets from</dt><dd>₹2,500 per attendee</dd></div>
-          <div class="stub__row"><dt>Early Bird</dt><dd>Until 10 December 2026</dd></div>
-        </dl>
-        <p class="stub__note">Secure checkout on KonfHub</p>
-      </aside>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer">
@@ -894,21 +745,6 @@
 </div>
 
 <script>
-  // Early Bird countdown: the static date stays if script never runs.
-  (() => {
-    const el = document.querySelector('[data-deadline]');
-    if (!el) return;
-    const end = Date.parse(el.dataset.deadline);
-    const tick = () => {
-      const ms = end - Date.now();
-      if (ms <= 0) { el.textContent = el.dataset.ended; return; }
-      const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
-      el.textContent = `in ${d} ${d === 1 ? 'day' : 'days'}, ${h} h ${String(m).padStart(2, '0')} min · 10 December, 11:59 PM IST`;
-      setTimeout(tick, 30000);
-    };
-    tick();
-  })();
-
   // Phone sticky bar: shown after the first screen, hidden while another
   // KonfHub link or the footer is on screen. No requestAnimationFrame, so it
   // also works when the page opens in a background tab.

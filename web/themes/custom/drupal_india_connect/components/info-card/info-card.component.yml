@@ -56,6 +56,13 @@ props:
       default: primary
       examples:
         - primary
+    plain:
+      type: boolean
+      title: 'Plain (no card)'
+      description: 'Optional. Drops the border, fill and accent rule, leaving icon, title and text. For a list of short tips beside a heavier element.'
+      default: false
+      examples:
+        - false
     link_label:
       type: string
       title: 'Link label'
