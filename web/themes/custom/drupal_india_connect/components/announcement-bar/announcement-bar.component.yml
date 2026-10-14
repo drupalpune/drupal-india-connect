@@ -16,6 +16,7 @@ props:
       title: Message link
       description: 'Optional. Makes the message itself a link, e.g. a .ics file so "Save the date" adds the event to a calendar.'
       type: string
+      format: uri-reference
       examples:
         - '/themes/custom/drupal_india_connect/calendar/drupalasia-connect-india-2027.ics'
     detail:
