@@ -1,0 +1,60 @@
+uuid: c37b9f26-79f3-4eba-82b2-a65209ba32a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+  theme:
+    - drupal_india_connect
+active_version: eae6b290b1e7deb0
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Get tickets'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        url:
+          required: true
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://konfhub.com/drupalasia-connect-india-2027'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+        note:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Early Bird from ₹2,500'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Sticky call to action'
+id: sdc.drupal_india_connect.sticky-cta
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:sticky-cta'

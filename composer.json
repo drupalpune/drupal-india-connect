@@ -133,7 +133,8 @@
         "patches": {
             "drupal/event_horizon": {
                 "Allow WYSIWYG/rich-text description in Image card component (issue #37)": "patches/event_horizon-image-card-wysiwyg.patch",
-                "Add an 'Original (no crop)' aspect ratio to the Image component": "patches/event_horizon-image-original-ratio.patch"
+                "Add an 'Original (no crop)' aspect ratio to the Image component": "patches/event_horizon-image-original-ratio.patch",
+                "Keep hero-side-by-side's image on the right on desktop when its mobile order is reversed": "patches/event_horizon-hero-sbs-mobile-reverse-img-right.patch"
             }
         },
         "drupal-scaffold": {

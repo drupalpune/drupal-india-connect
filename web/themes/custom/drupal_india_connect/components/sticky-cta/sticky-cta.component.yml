@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Sticky call to action'
+description: 'A small bar pinned to the bottom of the screen on phones, with one primary action (e.g. "Get tickets") and a short note. Appears once the visitor scrolls past the first screen and hides while another link to the same site (e.g. a ticket checkout button) is in view, so it never repeats a button the visitor can already see. Hidden from 700px up and without JavaScript. Place once per page, anywhere in the tree.'
+group: Layout
+props:
+  type: object
+  required:
+    - label
+    - url
+  properties:
+    label:
+      title: 'Button label'
+      type: string
+      examples:
+        - 'Get tickets'
+    url:
+      title: 'Button link'
+      type: string
+      format: uri-reference
+      examples:
+        - 'https://konfhub.com/drupalasia-connect-india-2027'
+    note:
+      title: Note
+      description: 'Optional short line beside the button, e.g. a starting price or deadline.'
+      type: string
+      examples:
+        - 'Early Bird from ₹2,500'
+libraryOverrides:
+  js:
+    sticky-cta.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

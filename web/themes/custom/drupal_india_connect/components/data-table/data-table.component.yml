@@ -14,6 +14,19 @@ props:
       description: 'Describes the table for assistive technology; not shown visually.'
       examples:
         - 'Ways to get from the airport to IIT Bombay'
+    heading:
+      type: string
+      title: 'Visible heading'
+      description: 'Optional. Shown above the table as an h3.'
+      examples:
+        - 'Compare at a glance'
+    hide_on_mobile:
+      type: boolean
+      title: 'Hide on phones'
+      description: 'Optional. Hides the table (and its heading) below 700px. Only for a table that summarises content already shown elsewhere on the page.'
+      default: false
+      examples:
+        - false
     column_1:
       type: string
       title: 'Column 1 heading'

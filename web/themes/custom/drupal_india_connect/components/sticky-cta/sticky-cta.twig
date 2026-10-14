@@ -1,0 +1,21 @@
+{#
+  Mobile sticky call to action. Rendered hidden; sticky-cta.js reveals it
+  only on narrow screens, after the first screen, and while no other call
+  to action is in view.
+#}
+{% if label and url %}
+  <div class="dac-sticky-cta" data-dac-sticky-cta hidden>
+    <div class="dac-sticky-cta__inner">
+      {% if note %}
+        <p class="dac-sticky-cta__note">{{ note }}</p>
+      {% endif %}
+      {% include 'event_horizon:button' ignore missing with {
+        label: label,
+        href: url,
+        variant: 'primary',
+        size: 'medium',
+        icon: 'arrow-right',
+      } only %}
+    </div>
+  </div>
+{% endif %}

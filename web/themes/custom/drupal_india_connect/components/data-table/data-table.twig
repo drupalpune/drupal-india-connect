@@ -14,6 +14,14 @@
   {% set label_vars = label_vars|merge(['--data-table-label-' ~ loop.index ~ ': "' ~ heading|replace({'\\': '\\\\', '"': '\\"'}) ~ '"']) %}
 {% endfor %}
 
+{# Wrapper only when the optional props are used, so existing tables render unchanged. #}
+{% set wrapped = heading is not empty or hide_on_mobile %}
+{% if wrapped %}
+<div class="data-table-wrap{{ hide_on_mobile ? ' data-table-wrap--hide-on-mobile' }}">
+  {% if heading is not empty %}
+    <h3 class="data-table__heading">{{ heading }}</h3>
+  {% endif %}
+{% endif %}
 <div class="data-table" role="table"{% if caption is not empty %} aria-label="{{ caption }}"{% endif %}
   style="--data-table-columns: {{ templates[headings|length] }}; {{ label_vars|join('; ') }};">
   <div class="data-table__header" role="rowgroup">
@@ -28,3 +36,6 @@
     {% block rows %}{% endblock %}
   </div>
 </div>
+{% if wrapped %}
+</div>
+{% endif %}

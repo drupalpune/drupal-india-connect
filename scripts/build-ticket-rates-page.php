@@ -134,7 +134,7 @@ $button = fn(string $label, string $uri, string $variant = 'primary') => [
 $hero = $add('sdc.event_horizon.hero-side-by-side', 'Hero - Tickets & registration', [
   'hero_flex_gap' => 'large',
   'justify_content' => 'center',
-  'hero_flex_direction_mobile' => 'vertical',
+  'hero_flex_direction_mobile' => 'vertical-reverse',
   'padding_block_start' => '0',
   'padding_block_end' => '0',
   'image_size' => '4:3',
@@ -171,7 +171,7 @@ $add('sdc.event_horizon.button', 'Button - Compare tickets', $button('Compare ti
 $facts = $add('drupal_india_connect.grid', 'Grid - Hero facts', ['columns' => 3, 'gap' => '24'], $s, 'footer_slot');
 foreach ([
   ['Dates', '28–30 January 2027', 'primary'],
-  ['Venue', 'IIT Bombay · Powai, Mumbai', 'primary'],
+  ['Tickets from', '₹2,500 per attendee', 'primary'],
   ['Early Bird', 'Until 23 October 2026, or until sold out', 'secondary'],
 ] as [$caption, $text, $accent]) {
   $add('drupal_india_connect.fact', "Fact - $caption", [
@@ -213,7 +213,28 @@ foreach ([
 $s = $add('sdc.event_horizon.section', 'Section - Tickets', $section([
   'section_footer' => TRUE,
 ]));
-$header($s, 'Tickets', 'Published Early Bird rates', 'Choose your ticket', 'Simple choices, transparent inclusions, and a direct path to secure checkout on KonfHub.');
+$g = $add('sdc.event_horizon.group', 'Group - Tickets title', $group('column', 'sm'), $s, 'header_slot');
+$add('drupal_india_connect.eyebrow', 'Eyebrow - Published Early Bird rates', ['text' => 'Published Early Bird rates', 'tone' => 'accent'], $g, 'group_slot');
+$add('sdc.event_horizon.heading', 'Heading - Choose your ticket', [
+  'heading_text' => 'Choose your ticket',
+  'level' => 2,
+  'text_size' => 'heading-responsive-3xl',
+  'text_color' => 'default',
+  'align' => 'left',
+], $g, 'group_slot');
+$add('sdc.event_horizon.text', 'Text - Tickets intro', [
+  'text' => $html('<p>Simple choices, transparent inclusions, and a direct path to secure checkout on KonfHub.</p>'),
+  'text_size' => 'text-lg',
+  'text_color' => 'default',
+], $g, 'group_slot');
+// Counts down to the Early Bird cutoff and swaps to the finished text after it.
+$add('drupal_india_connect.countdown', 'Countdown - Early Bird ends', [
+  'target' => '2026-10-23T23:59:00+05:30',
+  'eyebrow' => 'Early Bird ends in',
+  'label' => '23 October 2026, 11:59 PM IST',
+  'finished_text' => 'Early Bird has ended. Check KonfHub for current prices.',
+  'variant' => 'light',
+], $s, 'header_slot');
 $grid = $add('drupal_india_connect.grid', 'Grid - Ticket cards', ['columns' => 3, 'gap' => '24'], $s, 'main_slot');
 foreach ([
   [
@@ -223,7 +244,7 @@ foreach ([
     'includes' => 'AI Summit (28 Jan) · Conference (29–30 Jan) · Networking',
     'price' => '₹7,000',
     'availability' => $early_bird,
-    'cta_label' => 'Choose Full Combo',
+    'cta_label' => 'Get Full Combo',
     'cta_url' => $link($checkout('118788')),
     'accent' => 'secondary',
   ],
@@ -236,7 +257,7 @@ foreach ([
     'benefit' => 'DrupalEasy subscribers: 15% discount',
     'price' => '₹5,500',
     'availability' => $early_bird,
-    'cta_label' => 'Choose this pass',
+    'cta_label' => 'Get AI Summit + Conference',
     'cta_url' => $link($checkout('118786')),
     'accent' => 'primary-50',
   ],
@@ -248,7 +269,7 @@ foreach ([
     'excludes' => 'AI Summit not included',
     'price' => '₹5,000',
     'availability' => $early_bird,
-    'cta_label' => 'Choose this pass',
+    'cta_label' => 'Get Conference + Networking',
     'cta_url' => $link($checkout('118787')),
     'accent' => 'primary-50',
   ],
@@ -261,7 +282,7 @@ foreach ([
     'benefit' => 'DrupalEasy subscribers: 10% discount',
     'price' => '₹2,500',
     'availability' => $early_bird,
-    'cta_label' => 'Choose this pass',
+    'cta_label' => 'Get Conference Only',
     'cta_url' => $link($checkout('118735')),
     'accent' => 'primary-50',
   ],
@@ -273,14 +294,33 @@ foreach ([
     'excludes' => 'Conference and networking not included',
     'price' => '₹5,000',
     'availability' => 'Check current availability on KonfHub',
-    'cta_label' => 'Choose this pass',
+    'cta_label' => 'Get AI Summit Only',
     'cta_url' => $link($checkout('118733')),
     'accent' => 'primary-50',
   ],
 ] as $ticket) {
   $add('drupal_india_connect.ticket', "Ticket - {$ticket['title']}", $ticket + ['price_note' => 'per attendee', 'includes_list' => TRUE], $grid, 'grid_slot');
 }
-$foot = $add('sdc.event_horizon.group', 'Group - Ticket guidance', $group('column', 'sm'), $s, 'footer_slot');
+$foot = $add('sdc.event_horizon.group', 'Group - Ticket guidance', $group('column', 'md', ['equal_children' => TRUE]), $s, 'footer_slot');
+// Desktop only: on phones the stacked ticket cards above already say this.
+$table = $add('drupal_india_connect.data-table', 'Data table - Ticket comparison', [
+  'heading' => 'Compare at a glance',
+  'hide_on_mobile' => TRUE,
+  'caption' => 'What each ticket includes',
+  'column_1' => 'Ticket',
+  'column_2' => 'AI Summit · 28 Jan',
+  'column_3' => 'Conference · 29–30 Jan',
+  'column_4' => 'Networking',
+], $foot, 'group_slot');
+foreach ([
+  ['Full Combo · ₹7,000', '✓ Included', '✓ Included', '✓ Included'],
+  ['AI Summit + Conference · ₹5,500', '✓ Included', '✓ Included', '— Not included'],
+  ['Conference + Networking · ₹5,000', '— Not included', '✓ Included', '✓ Included'],
+  ['Conference Only · ₹2,500', '— Not included', '✓ Included', '— Not included'],
+  ['AI Summit Only · ₹5,000', '✓ Included', '— Not included', '— Not included'],
+] as [$a, $b, $c, $d]) {
+  $add('drupal_india_connect.data-table-row', "Row - $a", ['cell_1' => $a, 'cell_2' => $b, 'cell_3' => $c, 'cell_4' => $d], $table, 'rows');
+}
 $add('sdc.event_horizon.heading', 'Heading - Not sure which ticket to choose?', [
   'heading_text' => 'Not sure which ticket to choose?',
   'level' => 3,
@@ -460,6 +500,13 @@ $cta = $add('sdc.event_horizon.cta', 'CTA - Your seat in the community awaits', 
   'overlay_opacity' => '0%',
 ]);
 $add('sdc.event_horizon.button', 'Button - Get your ticket on KonfHub', $button('Get your ticket on KonfHub', $konfhub, 'primary-inverted'), $cta, 'actions');
+
+// Phones only: keeps a way to buy within reach on a long page.
+$add('drupal_india_connect.sticky-cta', 'Sticky CTA - Get tickets', [
+  'label' => 'Get tickets',
+  'url' => $link($konfhub),
+  'note' => 'Early Bird from ₹2,500',
+]);
 
 // ---------------------------------------------------------------------------
 // Save, with the guards from CLAUDE.md.
