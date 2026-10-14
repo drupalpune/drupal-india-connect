@@ -87,6 +87,27 @@
   line-height: 1.5;
 }
 
+.ticket__excludes {
+  margin: var(--sp0-25) 0 0;
+  color: var(--color--night-30);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Matches info-card's pill; that CSS only loads with an info-card. */
+.ticket__benefit {
+  display: inline-flex;
+  align-self: flex-start;
+  margin: var(--sp1) 0 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  color: var(--color--primary-30);
+  background-color: var(--color--sky-94);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
 .ticket__footer {
   display: flex;
   flex-direction: column;

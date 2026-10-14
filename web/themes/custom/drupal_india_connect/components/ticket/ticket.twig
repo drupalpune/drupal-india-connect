@@ -14,10 +14,17 @@
       <p class="ticket__text">{{ text }}</p>
     {% endif %}
 
+    {% if benefit is not empty %}
+      <p class="ticket__benefit">{{ benefit }}</p>
+    {% endif %}
+
     {% if includes is not empty %}
       <div class="ticket__includes">
         <span class="ticket__includes-label">{{ 'Includes'|t }}</span>
         <p class="ticket__includes-value">{{ includes }}</p>
+        {% if excludes is not empty %}
+          <p class="ticket__excludes">{{ excludes }}</p>
+        {% endif %}
       </div>
     {% endif %}
   </div>

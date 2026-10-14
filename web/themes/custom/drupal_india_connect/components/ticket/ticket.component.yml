@@ -32,6 +32,18 @@ props:
       description: 'Compact included-experience summary, e.g. "AI Summit · Conference".'
       examples:
         - 'Conference · Day 2 & Day 3'
+    excludes:
+      type: string
+      title: 'Not included'
+      description: 'Optional. What this ticket does not cover, shown under Includes, e.g. "Networking not included".'
+      examples:
+        - 'Networking not included'
+    benefit:
+      type: string
+      title: 'Benefit label'
+      description: 'Optional. A secondary label for an offer that applies to this ticket only, e.g. a subscriber discount.'
+      examples:
+        - 'DrupalEasy subscribers: 15% discount'
     price:
       type: string
       title: Price

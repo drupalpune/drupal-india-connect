@@ -27,6 +27,9 @@
     // The tickets band's current heading. The main menu's Tickets link and
     // the AI Summit page's ticket buttons point at /#tickets.
     'choose your experience': 'tickets',
+    // Tickets & Registration page: the hero's "Compare tickets" button and
+    // the experience cards point at #tickets.
+    'choose your ticket': 'tickets',
     'iit bombay, mumbai': 'venue',
     'founding sponsors': 'sponsors',
     questions: 'faq',
