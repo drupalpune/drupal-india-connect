@@ -32,6 +32,13 @@ props:
       description: 'Compact included-experience summary, e.g. "AI Summit · Conference".'
       examples:
         - 'Conference · Day 2 & Day 3'
+    includes_list:
+      type: boolean
+      title: 'Show includes as a checklist'
+      description: 'Optional. Splits Includes on " · " and lists each item with a check mark. Off keeps the single line.'
+      default: false
+      examples:
+        - false
     excludes:
       type: string
       title: 'Not included'

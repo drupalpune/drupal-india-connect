@@ -87,6 +87,30 @@
   line-height: 1.5;
 }
 
+.ticket__includes-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+  margin: var(--sp0-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticket__includes-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  color: var(--color--night-5);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.ticket__includes-item > * {
+  flex-shrink: 0;
+  color: var(--ticket-accent);
+}
+
 .ticket__excludes {
   margin: var(--sp0-25) 0 0;
   color: var(--color--night-30);

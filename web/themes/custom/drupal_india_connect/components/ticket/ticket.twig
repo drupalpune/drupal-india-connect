@@ -21,7 +21,18 @@
     {% if includes is not empty %}
       <div class="ticket__includes">
         <span class="ticket__includes-label">{{ 'Includes'|t }}</span>
-        <p class="ticket__includes-value">{{ includes }}</p>
+        {% if includes_list %}
+          <ul class="ticket__includes-list">
+            {% for item in includes|split(' · ') %}
+              <li class="ticket__includes-item">
+                {% include 'drupal_india_connect:icon' ignore missing with { icon: 'check', icon_size: 'extra-small' } only %}
+                {{ item }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="ticket__includes-value">{{ includes }}</p>
+        {% endif %}
         {% if excludes is not empty %}
           <p class="ticket__excludes">{{ excludes }}</p>
         {% endif %}
