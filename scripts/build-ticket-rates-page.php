@@ -135,10 +135,10 @@ $button = fn(string $label, string $uri, string $variant = 'primary') => [
 ];
 
 // ---------------------------------------------------------------------------
-// 1. Hero: copy, buttons and the three facts beside a community photo,
-// then the Early Bird strip.
+// 1. Hero: copy and buttons beside a community photo, then the Early Bird
+// strip.
 // ---------------------------------------------------------------------------
-$hero = $add('drupal_india_connect.hero-split', 'Hero - Tickets & registration', [
+$add('drupal_india_connect.hero-split', 'Hero - Tickets & registration', [
   'eyebrow' => 'Tickets & registration',
   'title' => 'Choose your experience.',
   'title_highlight' => "Be part of what's next.",
@@ -151,21 +151,6 @@ $hero = $add('drupal_india_connect.hero-split', 'Hero - Tickets & registration',
   'image_tag_title' => '28–30 January 2027',
   'image_tag_text' => 'IIT Bombay, Powai, Mumbai',
 ]);
-$facts = $add('drupal_india_connect.grid', 'Grid - Hero facts', ['columns' => 3, 'gap' => '16'], $hero, 'facts');
-foreach ([
-  ['Dates', '28–30 January 2027', 'primary'],
-  ['Tickets from', '₹2,500 per attendee', 'primary'],
-  ['Early Bird', 'Until 10 December 2026, or until sold out', 'secondary'],
-] as [$caption, $text, $accent]) {
-  $add('drupal_india_connect.fact', "Fact - $caption", [
-    'title' => $caption,
-    'text' => $text,
-    'accent' => $accent,
-    'layout' => 'stack',
-    'tone' => 'plain',
-  ], $facts, 'grid_slot');
-}
-
 // Counts down to the Early Bird cutoff and swaps to the finished text after it.
 $add('drupal_india_connect.countdown', 'Countdown - Early Bird ends', [
   'target' => '2026-12-10T23:59:00+05:30',
