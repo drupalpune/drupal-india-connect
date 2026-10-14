@@ -1,0 +1,226 @@
+/*
+ * Closing call to action. Navy band (--neutral-dark), per the design system:
+ * light blue-grey body copy and pale blue eyebrow on navy, orange reserved
+ * for the one primary action, translucent white for the only panel.
+ */
+.dac-closing-cta {
+  /* Full-bleed, the same way event_horizon's full-width sections break out. */
+  position: relative;
+  right: 50%;
+  left: 50%;
+  width: calc(100vw - var(--scrollbar-width));
+  margin-right: calc((var(--scrollbar-width) / 2) - 50vw);
+  margin-left: calc((var(--scrollbar-width) / 2) - 50vw);
+  padding-block: var(--sp4);
+  color: var(--color--sky-90);
+  background-color: var(--neutral-dark);
+
+  @container style(--md: true) {
+    padding-block: var(--sp5);
+  }
+}
+
+.dac-closing-cta__inner {
+  display: grid;
+  gap: var(--sp3);
+  align-items: center;
+
+  @container style(--lg: true) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: var(--sp4);
+  }
+}
+
+.dac-closing-cta--no-stub .dac-closing-cta__inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.dac-closing-cta__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp1-5);
+}
+
+/* The brand eyebrow: small, tracked uppercase with a 2px lead-in rule. */
+.dac-closing-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-75);
+  margin: 0;
+  color: var(--color--sky-80);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dac-closing-cta__eyebrow::before {
+  width: 2rem;
+  height: 2px;
+  background-color: var(--color--secondary-50);
+  content: "";
+}
+
+.dac-closing-cta__heading {
+  margin: 0;
+  color: var(--color--white);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.dac-closing-cta__text {
+  max-width: 38rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.dac-closing-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp1);
+  margin-top: var(--sp0-5);
+}
+
+.dac-closing-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  padding: 0.9375rem 1.75rem;
+  border: solid 2px transparent;
+  border-radius: 0.375rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Navy on orange: white on this orange is under 4.5:1 at this size. */
+.dac-closing-cta__button--primary {
+  color: var(--color--primary-20);
+  background-color: var(--color--secondary-50);
+}
+
+.dac-closing-cta__button--primary:hover {
+  background-color: var(--color--secondary-60);
+}
+
+.dac-closing-cta__button--secondary {
+  color: var(--color--white);
+  border-color: color-mix(in srgb, var(--color--white) 40%, transparent);
+}
+
+.dac-closing-cta__button--secondary:hover {
+  border-color: var(--color--white);
+}
+
+.dac-closing-cta__button:focus-visible {
+  outline: solid 2px var(--color--white);
+  outline-offset: 3px;
+  border-radius: 0.375rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dac-closing-cta__button {
+    transition: none;
+  }
+}
+
+/*
+ * The ticket stub: a translucent white panel with a dashed perforation and
+ * two notches cut from the band colour.
+ */
+.dac-closing-cta__stub {
+  position: relative;
+  padding: var(--sp1-5) var(--sp1-5) 0;
+  border: solid 1px color-mix(in srgb, var(--color--white) 14%, transparent);
+  border-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--color--white) 7%, transparent);
+
+  @container style(--md: true) {
+    padding: var(--sp2) var(--sp2) 0;
+  }
+}
+
+.dac-closing-cta__stub-title {
+  margin: 0 0 var(--sp1);
+  color: var(--color--white);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dac-closing-cta__details {
+  margin: 0;
+}
+
+.dac-closing-cta__detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp0-25) var(--sp1);
+  padding-block: var(--sp0-75);
+  border-top: solid 1px color-mix(in srgb, var(--color--white) 12%, transparent);
+}
+
+.dac-closing-cta__detail dt {
+  color: var(--color--sky-80);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dac-closing-cta__detail dd {
+  margin: 0;
+  color: var(--color--white);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  text-align: end;
+}
+
+.dac-closing-cta__stub-note {
+  position: relative;
+  margin: var(--sp1) calc(-1 * var(--sp1-5)) 0;
+  padding: var(--sp1) var(--sp1-5);
+  border-top: dashed 2px color-mix(in srgb, var(--color--white) 25%, transparent);
+  font-size: 0.875rem;
+
+  @container style(--md: true) {
+    margin-inline: calc(-1 * var(--sp2));
+    padding-inline: var(--sp2);
+  }
+}
+
+/* Notches where the perforation meets the panel edges. */
+.dac-closing-cta__stub-note::before,
+.dac-closing-cta__stub-note::after {
+  position: absolute;
+  top: -0.8125rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--neutral-dark);
+  content: "";
+}
+
+.dac-closing-cta__stub-note::before {
+  left: -0.8125rem;
+}
+
+.dac-closing-cta__stub-note::after {
+  right: -0.8125rem;
+}

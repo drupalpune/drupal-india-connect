@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.drupal_india_connect.closing-cta
     - canvas.component.sdc.drupal_india_connect.sticky-cta
     - canvas.component.sdc.event_horizon.accordion
     - canvas.component.sdc.event_horizon.accordion-container
@@ -14,6 +15,7 @@ name: Layout
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.drupal_india_connect.closing-cta
   - sdc.drupal_india_connect.sticky-cta
   - sdc.event_horizon.accordion
   - sdc.event_horizon.accordion-container

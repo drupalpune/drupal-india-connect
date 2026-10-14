@@ -301,26 +301,7 @@ foreach ([
 ] as $ticket) {
   $add('drupal_india_connect.ticket', "Ticket - {$ticket['title']}", $ticket + ['price_note' => 'per attendee', 'includes_list' => TRUE], $grid, 'grid_slot');
 }
-$foot = $add('sdc.event_horizon.group', 'Group - Ticket guidance', $group('column', 'md', ['equal_children' => TRUE]), $s, 'footer_slot');
-// Desktop only: on phones the stacked ticket cards above already say this.
-$table = $add('drupal_india_connect.data-table', 'Data table - Ticket comparison', [
-  'heading' => 'Compare at a glance',
-  'hide_on_mobile' => TRUE,
-  'caption' => 'What each ticket includes',
-  'column_1' => 'Ticket',
-  'column_2' => 'AI Summit · 28 Jan',
-  'column_3' => 'Conference · 29–30 Jan',
-  'column_4' => 'Networking',
-], $foot, 'group_slot');
-foreach ([
-  ['Full Combo · ₹7,000', '✓ Included', '✓ Included', '✓ Included'],
-  ['AI Summit + Conference · ₹5,500', '✓ Included', '✓ Included', '— Not included'],
-  ['Conference + Networking · ₹5,000', '— Not included', '✓ Included', '✓ Included'],
-  ['Conference Only · ₹2,500', '— Not included', '✓ Included', '— Not included'],
-  ['AI Summit Only · ₹5,000', '✓ Included', '— Not included', '— Not included'],
-] as [$a, $b, $c, $d]) {
-  $add('drupal_india_connect.data-table-row', "Row - $a", ['cell_1' => $a, 'cell_2' => $b, 'cell_3' => $c, 'cell_4' => $d], $table, 'rows');
-}
+$foot = $add('sdc.event_horizon.group', 'Group - Ticket guidance', $group('column', 'sm'), $s, 'footer_slot');
 $add('sdc.event_horizon.heading', 'Heading - Not sure which ticket to choose?', [
   'heading_text' => 'Not sure which ticket to choose?',
   'level' => 3,
@@ -491,15 +472,25 @@ $add('drupal_india_connect.info-card', 'Info card - The people behind DrupalAsia
 // ---------------------------------------------------------------------------
 // 9. Closing CTA.
 // ---------------------------------------------------------------------------
-$cta = $add('sdc.event_horizon.cta', 'CTA - Your seat in the community awaits', [
-  'heading_text' => 'Your seat in the community awaits.',
-  'level' => 2,
+$add('drupal_india_connect.closing-cta', 'Closing CTA - Your seat in the community awaits', [
+  'eyebrow' => 'See you in Mumbai',
+  'heading' => 'Your seat in the community awaits.',
   'text' => 'Choose your experience, plan your visit and join the conversations shaping what comes next for Drupal, AI and the open web.',
-  'text_align' => 'center',
-  'background_color' => 'secondary',
-  'overlay_opacity' => '0%',
+  'primary_label' => 'Get your ticket on KonfHub',
+  'primary_url' => $link($konfhub),
+  'secondary_label' => 'Plan your visit',
+  'secondary_url' => $link('internal:/travel-and-stay'),
+  'stub_title' => 'DrupalAsia Connect India 2027',
+  'detail_1_label' => 'Dates',
+  'detail_1_value' => '28–30 January 2027',
+  'detail_2_label' => 'Venue',
+  'detail_2_value' => 'IIT Bombay, Powai, Mumbai',
+  'detail_3_label' => 'Tickets from',
+  'detail_3_value' => '₹2,500 per attendee',
+  'detail_4_label' => 'Early Bird',
+  'detail_4_value' => 'Until 23 October 2026',
+  'stub_note' => 'Secure checkout on KonfHub',
 ]);
-$add('sdc.event_horizon.button', 'Button - Get your ticket on KonfHub', $button('Get your ticket on KonfHub', $konfhub, 'primary-inverted'), $cta, 'actions');
 
 // Phones only: keeps a way to buy within reach on a long page.
 $add('drupal_india_connect.sticky-cta', 'Sticky CTA - Get tickets', [

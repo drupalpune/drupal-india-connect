@@ -1,0 +1,62 @@
+{#
+  Closing call to action: navy band, copy and actions on one side, an
+  optional ticket-stub panel of event details on the other.
+#}
+{% set details = [
+  { label: detail_1_label, value: detail_1_value },
+  { label: detail_2_label, value: detail_2_value },
+  { label: detail_3_label, value: detail_3_value },
+  { label: detail_4_label, value: detail_4_value },
+]|filter(d => d.value is not empty) %}
+{# An absolute link is treated as leaving the site, and says so with its icon. #}
+{% set primary_external = primary_url starts with 'http' %}
+
+<section class="dac-closing-cta{{ details is empty ? ' dac-closing-cta--no-stub' }}">
+  <div class="dac-closing-cta__inner container">
+    <div class="dac-closing-cta__copy">
+      {% if eyebrow %}
+        <p class="dac-closing-cta__eyebrow">{{ eyebrow }}</p>
+      {% endif %}
+      <h2 class="dac-closing-cta__heading">{{ heading }}</h2>
+      {% if text %}
+        <p class="dac-closing-cta__text">{{ text }}</p>
+      {% endif %}
+
+      {% if (primary_label and primary_url) or (secondary_label and secondary_url) %}
+        <div class="dac-closing-cta__actions">
+          {% if primary_label and primary_url %}
+            <a class="dac-closing-cta__button dac-closing-cta__button--primary" href="{{ primary_url }}">
+              {{ primary_label }}
+              {% include 'drupal_india_connect:icon' ignore missing with { icon: primary_external ? 'arrow-square-out' : 'arrow-right', icon_size: 'extra-small' } only %}
+            </a>
+          {% endif %}
+          {% if secondary_label and secondary_url %}
+            <a class="dac-closing-cta__button dac-closing-cta__button--secondary" href="{{ secondary_url }}">
+              {{ secondary_label }}
+              {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if details is not empty %}
+      <aside class="dac-closing-cta__stub" aria-label="{{ stub_title|default('Event details'|t) }}">
+        {% if stub_title %}
+          <p class="dac-closing-cta__stub-title">{{ stub_title }}</p>
+        {% endif %}
+        <dl class="dac-closing-cta__details">
+          {% for detail in details %}
+            <div class="dac-closing-cta__detail">
+              {% if detail.label %}<dt>{{ detail.label }}</dt>{% endif %}
+              <dd>{{ detail.value }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+        {% if stub_note %}
+          <p class="dac-closing-cta__stub-note">{{ stub_note }}</p>
+        {% endif %}
+      </aside>
+    {% endif %}
+  </div>
+</section>

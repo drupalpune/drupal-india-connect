@@ -1,0 +1,98 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Closing call to action'
+description: 'Full-width navy band that closes a page: eyebrow, large heading, short text, one primary action and an optional secondary link, with an optional "ticket stub" panel of up to four label/value details (dates, venue, price...). Use once, at the end of a page.'
+group: Layout
+props:
+  type: object
+  required:
+    - heading
+  properties:
+    eyebrow:
+      title: Eyebrow
+      type: string
+      examples:
+        - 'See you in Mumbai'
+    heading:
+      title: Heading
+      type: string
+      examples:
+        - 'Your seat in the community awaits.'
+    text:
+      title: Text
+      type: string
+      examples:
+        - 'Choose your experience, plan your visit and join the conversations shaping what comes next for Drupal, AI and the open web.'
+    primary_label:
+      title: 'Primary button label'
+      type: string
+      examples:
+        - 'Get your ticket on KonfHub'
+    primary_url:
+      title: 'Primary button link'
+      type: string
+      format: uri-reference
+      examples:
+        - 'https://konfhub.com/drupalasia-connect-india-2027'
+    secondary_label:
+      title: 'Secondary link label'
+      type: string
+      examples:
+        - 'Plan your visit'
+    secondary_url:
+      title: 'Secondary link'
+      type: string
+      format: uri-reference
+      examples:
+        - '/travel-and-stay'
+    stub_title:
+      title: 'Stub title'
+      description: 'Heading of the details panel. The panel only shows when at least one detail is filled in.'
+      type: string
+      examples:
+        - 'DrupalAsia Connect India 2027'
+    detail_1_label:
+      title: 'Detail 1 label'
+      type: string
+      examples:
+        - Dates
+    detail_1_value:
+      title: 'Detail 1 value'
+      type: string
+      examples:
+        - '28–30 January 2027'
+    detail_2_label:
+      title: 'Detail 2 label'
+      type: string
+      examples:
+        - Venue
+    detail_2_value:
+      title: 'Detail 2 value'
+      type: string
+      examples:
+        - 'IIT Bombay, Powai, Mumbai'
+    detail_3_label:
+      title: 'Detail 3 label'
+      type: string
+      examples:
+        - 'Tickets from'
+    detail_3_value:
+      title: 'Detail 3 value'
+      type: string
+      examples:
+        - '₹2,500 per attendee'
+    detail_4_label:
+      title: 'Detail 4 label'
+      type: string
+      examples:
+        - 'Early Bird'
+    detail_4_value:
+      title: 'Detail 4 value'
+      type: string
+      examples:
+        - 'Until 23 October 2026'
+    stub_note:
+      title: 'Stub note'
+      description: 'Small line under the perforation, e.g. where checkout happens.'
+      type: string
+      examples:
+        - 'Secure checkout on KonfHub'
