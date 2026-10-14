@@ -6,7 +6,11 @@
 {% if message %}
   <div{{ attributes.addClass(classes) }} role="region" aria-label="{{ 'Event announcement'|t }}">
     <div class="eh-announcement-bar__inner container">
-      <span class="eh-announcement-bar__message">{{ message }}</span>
+      {% if message_url %}
+        <a class="eh-announcement-bar__message eh-announcement-bar__message--link" href="{{ message_url }}">{{ message }}</a>
+      {% else %}
+        <span class="eh-announcement-bar__message">{{ message }}</span>
+      {% endif %}
       {% if detail %}
         <span class="eh-announcement-bar__separator" aria-hidden="true">&bull;</span>
         <span class="eh-announcement-bar__detail">{{ detail }}</span>
