@@ -15,6 +15,8 @@
         const target = Date.parse(el.dataset.target);
         if (Number.isNaN(target)) return;
 
+        // Strip variant: one line of text in place of the digit tiles.
+        const text = el.querySelector('[data-eh-countdown-text]');
         const units = el.querySelector('.eh-countdown__units');
         const finished = el.querySelector('[data-eh-countdown-finished]');
         const out = {};
@@ -23,6 +25,7 @@
         });
 
         function complete() {
+          if (text) text.textContent = el.dataset.finishedText || '';
           if (units) units.hidden = true;
           if (finished) {
             finished.textContent = el.dataset.finishedText || '';
@@ -38,6 +41,16 @@
             return;
           }
           const secs = Math.floor(remaining / 1000);
+          if (text) {
+            const days = Drupal.formatPlural(Math.floor(secs / 86400), '1 day', '@count days');
+            text.textContent = Drupal.t('in @days, @hours h @minutes min · @label', {
+              '@days': days,
+              '@hours': Math.floor((secs % 86400) / 3600),
+              '@minutes': pad(Math.floor((secs % 3600) / 60)),
+              '@label': el.dataset.label || '',
+            });
+            return;
+          }
           if (out.days) out.days.textContent = String(Math.floor(secs / 86400));
           if (out.hours) out.hours.textContent = pad(Math.floor((secs % 86400) / 3600));
           if (out.minutes) out.minutes.textContent = pad(Math.floor((secs % 3600) / 60));

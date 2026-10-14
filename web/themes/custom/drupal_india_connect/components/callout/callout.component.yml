@@ -1,0 +1,55 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Callout
+description: 'A full-width panel with a short heading, a line or two of text, an optional small note, an optional icon and one outline button on the right. "solid" is a white card for guidance under a grid; "dashed" marks a placeholder for content still to come.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - heading
+  properties:
+    icon:
+      type: string
+      title: Icon
+      description: 'Optional Phosphor icon name from icons/phosphor/regular/, e.g. "users-three".'
+      examples:
+        - 'users-three'
+    heading:
+      type: string
+      title: Heading
+      examples:
+        - 'Not sure which ticket to choose?'
+    text:
+      type: string
+      title: Text
+      examples:
+        - 'The Full Combo offers the broadest access.'
+    note:
+      type: string
+      title: Note
+      description: 'Optional small print under the text.'
+      examples:
+        - 'Final totals are confirmed at checkout.'
+    cta_label:
+      type: string
+      title: 'Button label'
+      examples:
+        - 'View all options on KonfHub'
+    cta_url:
+      type: string
+      title: 'Button link'
+      format: uri-reference
+      examples:
+        - 'https://konfhub.com/drupalasia-connect-india-2027'
+    style:
+      type: string
+      title: Style
+      enum:
+        - solid
+        - dashed
+      meta:enum:
+        solid: 'Solid (white card)'
+        dashed: 'Dashed (placeholder)'
+      default: solid
+      examples:
+        - solid

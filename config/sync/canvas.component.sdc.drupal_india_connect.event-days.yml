@@ -1,0 +1,162 @@
+uuid: 27300b3e-4d3d-4de4-94a7-4974779d334b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: b3b845c683028b93
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Imagine · Discover · Build'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Three days. One connected'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        title_highlight:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: community.
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '28 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_title:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Imagine
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_subtitle:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'AI Summit'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '29 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_title:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Discover
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_subtitle:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Drupal Conference'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '30 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_title:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Build
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_subtitle:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Contribution & Innovation'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Event days'
+id: sdc.drupal_india_connect.event-days
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:event-days'

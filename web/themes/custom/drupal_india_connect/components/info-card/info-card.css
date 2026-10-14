@@ -41,6 +41,23 @@
   letter-spacing: -0.02em;
 }
 
+/* A figure with a unit, e.g. "15% off": stat-sized number, smaller unit. */
+.info-card__marker--stat {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
+}
+
+/* One step darker than the rule, as the design system's stat figures are. */
+.info-card--secondary .info-card__marker--stat {
+  color: var(--color--secondary-40);
+}
+
+.info-card__marker-suffix {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
 .info-card__icon {
   display: inline-grid;
   place-items: center;

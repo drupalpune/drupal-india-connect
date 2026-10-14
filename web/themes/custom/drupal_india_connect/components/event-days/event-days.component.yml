@@ -1,0 +1,71 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Event days'
+description: 'Navy panel summing up the event in a line and up to three dated days (date, title, subtitle). The third day is marked in orange as the closing day. Made for the Aside slot of Hero (split); it stands in for event photography.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    label:
+      type: string
+      title: Label
+      examples:
+        - 'Imagine · Discover · Build'
+    title:
+      type: string
+      title: Title
+      examples:
+        - 'Three days. One connected'
+    title_highlight:
+      type: string
+      title: 'Title highlight'
+      description: 'Optional closing word(s) of the title, set in orange.'
+      examples:
+        - 'community.'
+    day_1_date:
+      type: string
+      title: 'Day 1 date'
+      examples:
+        - '28 Jan'
+    day_1_title:
+      type: string
+      title: 'Day 1 title'
+      examples:
+        - 'Imagine'
+    day_1_subtitle:
+      type: string
+      title: 'Day 1 subtitle'
+      examples:
+        - 'AI Summit'
+    day_2_date:
+      type: string
+      title: 'Day 2 date'
+      examples:
+        - '29 Jan'
+    day_2_title:
+      type: string
+      title: 'Day 2 title'
+      examples:
+        - 'Discover'
+    day_2_subtitle:
+      type: string
+      title: 'Day 2 subtitle'
+      examples:
+        - 'Drupal Conference'
+    day_3_date:
+      type: string
+      title: 'Day 3 date'
+      examples:
+        - '30 Jan'
+    day_3_title:
+      type: string
+      title: 'Day 3 title'
+      examples:
+        - 'Build'
+    day_3_subtitle:
+      type: string
+      title: 'Day 3 subtitle'
+      examples:
+        - 'Contribution & Innovation'

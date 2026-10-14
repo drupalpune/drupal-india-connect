@@ -12,6 +12,10 @@ props:
       type: string
       title: 'Number marker'
       description: 'Short number shown above the title, e.g. "01". Leave blank to use an icon or no marker.'
+    marker_suffix:
+      type: string
+      title: 'Marker suffix'
+      description: 'Optional smaller word after the marker, e.g. "off" after "15%". Setting it shows the marker at stat size.'
     icon:
       type: string
       title: Icon

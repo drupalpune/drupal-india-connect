@@ -55,3 +55,31 @@ props:
       format: uri-reference
       examples:
         - 'https://maps.app.goo.gl/9YENwPB4UySgwoxRA'
+    secondary_cta_label:
+      type: string
+      title: 'Second button label'
+      description: 'Optional second action, e.g. "Open in Google Maps".'
+    secondary_cta_url:
+      type: string
+      title: 'Second button link'
+      format: uri-reference
+    tbc:
+      type: boolean
+      title: 'Description to be confirmed'
+      description: 'Optional. Adds a TBC tag after the description.'
+      default: false
+      examples:
+        - false
+    variant:
+      type: string
+      title: Style
+      description: 'default = text beside the map or image. panel = a navy panel with no media, for a column beside other cards.'
+      enum:
+        - default
+        - panel
+      meta:enum:
+        default: 'Text with map or image'
+        panel: 'Navy panel, no media'
+      default: default
+      examples:
+        - default

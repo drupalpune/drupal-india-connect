@@ -111,6 +111,15 @@
   color: var(--ticket-accent);
 }
 
+.ticket__includes-item--excluded {
+  color: var(--color--night-50);
+  font-weight: 400;
+}
+
+.ticket__includes-item--excluded > * {
+  color: var(--color--night-60);
+}
+
 .ticket__excludes {
   margin: var(--sp0-25) 0 0;
   color: var(--color--night-30);
@@ -167,6 +176,64 @@
 
 .ticket__footer .eh-button {
   align-self: flex-start;
+}
+
+/*
+ * Featured: the one ticket a group recommends. Orange is already spent on
+ * its accent rule, so the badge reuses it (navy text: white on this orange
+ * is under 4.5:1); the lift is the design system's one card shadow. On wide
+ * screens it runs full width with the price panel on the right.
+ */
+.ticket__badge {
+  display: inline-flex;
+  align-self: flex-start;
+  margin: 0 0 var(--sp1);
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.25rem;
+  color: var(--neutral-dark);
+  background-color: var(--color--secondary-50);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ticket--featured {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.ticket--featured .ticket__price {
+  font-size: 3.25rem;
+}
+
+@container style(--lg: true) {
+  .ticket--featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  }
+
+  .ticket--featured .ticket__body {
+    padding: var(--sp2-5);
+  }
+
+  .ticket--featured .ticket__heading {
+    font-size: 2.5rem;
+  }
+
+  .ticket--featured .ticket__text {
+    max-width: 40ch;
+    font-size: 1.0625rem;
+  }
+
+  .ticket--featured .ticket__includes-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--sp0-75) var(--sp2);
+  }
+
+  .ticket--featured .ticket__footer {
+    justify-content: center;
+    padding: var(--sp2-5);
+  }
 }
 
 @container style(--sm: true) {

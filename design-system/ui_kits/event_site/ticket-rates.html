@@ -6,8 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tickets & Registration · DrupalAsia Connect India 2027</title>
 <meta name="description" content="Compare tickets for DrupalAsia Connect India 2027, 28–30 January 2027 at IIT Bombay, Mumbai, and register on KonfHub.">
-<!-- Tokens only: fonts, derived colour ramps, spacing, radii. Every component
-     on this page is written below, not taken from css/components/. -->
+<!-- Tokens only: fonts, derived colour ramps, spacing, radii. Components are
+     written below, not taken from css/components/. The ticket cards are the
+     theme's existing ticket component (drupal_india_connect:ticket), copied
+     in so this page stays standalone. -->
 <link rel="stylesheet" href="../../tokens/typography.css">
 <link rel="stylesheet" href="../../tokens/colors.css">
 <link rel="stylesheet" href="../../tokens/spacing.css">
@@ -183,42 +185,225 @@
   .tbc { display: inline-flex; align-self: flex-start; padding: 0.125rem 0.5rem; border: 1px solid var(--color--night-80); border-radius: var(--radius-sm); color: var(--color--night-35); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 
   /* ------------------------------------------------------------------ */
-  /* Tickets                                                             */
+  /* Tickets: the theme's ticket component (drupal_india_connect:ticket),  */
+  /* copied from components/ticket/ticket.css. Keep the two in step.     */
   /* ------------------------------------------------------------------ */
-  .ticket { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border-hairline); border-top: 3px solid var(--color--primary-50); border-radius: var(--radius-xl); background: var(--surface-card); }
-  .ticket__main { display: flex; flex: 1; flex-direction: column; gap: var(--sp0-75); padding: var(--sp1-5); }
-  .ticket__phase { color: var(--color--primary-50); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-  .ticket__name { color: var(--color--night-5); font-size: 1.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
-  .ticket__summary { font-size: 0.9375rem; line-height: 1.5; }
-  .ticket__list { display: grid; gap: var(--sp0-5); margin-top: var(--sp0-5); padding: var(--sp1) 0 0; border-top: 1px solid var(--border-hairline); list-style: none; }
-  .ticket__list li { display: flex; align-items: flex-start; gap: var(--sp0-5); font-size: 0.9375rem; line-height: 1.35; }
-  .ticket__list .yes { color: var(--color--night-5); font-weight: 600; }
-  .ticket__list .yes .i { color: var(--color--primary-50); }
-  .ticket__list .no { color: var(--color--night-50); }
-  .ticket__list .no .i { color: var(--color--night-60); }
-  .ticket__buy { display: flex; flex-direction: column; gap: var(--sp1); padding: var(--sp1-5); border-top: 1px dashed var(--color--night-80); background: var(--color--sky-97); }
-  .price { display: flex; align-items: baseline; gap: var(--sp0-5); color: var(--dac-navy); }
-  .price b { font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  .price span { color: var(--text-muted); font-size: 0.875rem; }
-  .ticket__note { color: var(--text-muted); font-size: 0.8125rem; line-height: 1.4; }
-  /* Four across: subgrid so every card's price row starts on the same line. */
-  @media (min-width: 1000px) {
-    .grid--tickets { grid-template-rows: auto auto; }
-    .grid--tickets > .ticket { display: grid; grid-row: span 2; grid-template-rows: subgrid; gap: 0; }
+  .ticket {
+    --ticket-accent: var(--primary);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    overflow: hidden;
+    background-color: var(--color--white);
+    border: solid 1px var(--border-hairline, var(--color--night-90));
+    border-top: solid 3px var(--ticket-accent);
+    border-radius: 0.75rem;
   }
 
-  /* Full Combo: same card, wider, with an orange rule. Understated on purpose. */
-  .ticket--featured { border-top-color: var(--color--secondary-50); margin-bottom: var(--grid-gap); }
-  .ticket--featured .ticket__phase { color: var(--color--secondary-40); }
-  @media (min-width: 1000px) {
-    .ticket--featured { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.9fr); }
-    .ticket--featured .ticket__main { padding: var(--sp2); }
-    .ticket--featured .ticket__includes { padding: var(--sp2); align-self: center; }
-    .ticket--featured .ticket__includes .ticket__list { margin: 0; padding: 0; border: 0; }
-    .ticket--featured .ticket__buy { justify-content: center; padding: var(--sp2); border-top: 0; border-left: 1px dashed var(--color--night-80); }
-    .ticket--featured .ticket__name { font-size: 2rem; }
+  .ticket--accent-secondary {
+    --ticket-accent: var(--secondary);
   }
-  @media (max-width: 999.98px) { .ticket--featured .ticket__includes { padding: 0 var(--sp1-5) var(--sp1-5); } }
+
+  .ticket--accent-primary-50 {
+    --ticket-accent: var(--color--primary-50);
+  }
+
+  .ticket--accent-primary-60 {
+    --ticket-accent: var(--color--primary-60);
+  }
+
+  .ticket--accent-neutral {
+    --ticket-accent: var(--color--night-50);
+  }
+
+  .ticket__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--sp1-5);
+  }
+
+  .ticket__eyebrow {
+    margin: 0 0 var(--sp0-75);
+    color: var(--ticket-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .ticket__heading {
+    margin: 0;
+    color: var(--color--night-5);
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .ticket__text {
+    margin: var(--sp1) 0 0;
+    color: var(--color--night-30);
+    font-size: 1rem;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .ticket__includes {
+    margin-top: var(--sp1-5);
+    padding-top: var(--sp1);
+    border-top: solid 1px var(--border-hairline, var(--color--night-90));
+  }
+
+  .ticket__includes-label {
+    display: block;
+    margin-bottom: var(--sp0-25);
+    color: var(--color--night-40);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .ticket__includes-value {
+    margin: 0;
+    color: var(--color--night-5);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .ticket__includes-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp0-5);
+    margin: var(--sp0-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ticket__includes-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp0-5);
+    color: var(--color--night-5);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ticket__includes-item > * {
+    flex-shrink: 0;
+    color: var(--ticket-accent);
+  }
+
+  .ticket__includes-item--excluded {
+    color: var(--color--night-50);
+    font-weight: 400;
+  }
+
+  .ticket__includes-item--excluded > * {
+    color: var(--color--night-60);
+  }
+
+  .ticket__excludes {
+    margin: var(--sp0-25) 0 0;
+    color: var(--color--night-30);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Matches info-card's pill; that CSS only loads with an info-card. */
+  .ticket__benefit {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: var(--sp1) 0 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    color: var(--color--primary-30);
+    background-color: var(--color--sky-94);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ticket__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp1-5);
+    padding: var(--sp1-5);
+    background-color: var(--neutral-dark);
+  }
+
+  .ticket__availability {
+    margin: 0 0 var(--sp0-5);
+    color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ticket__price {
+    margin: 0;
+    color: var(--text-on-neutral-dark);
+    font-size: 2.75rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .ticket__price-note {
+    margin: var(--sp0-25) 0 0;
+    color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .ticket__footer .btn {
+    align-self: flex-start;
+  }
+  .ticket__includes-item .i { flex-shrink: 0; color: var(--ticket-accent); }
+  .ticket__includes-item--excluded .i { color: var(--color--night-60); }
+
+  /* Featured ticket: the same component with a `featured` modifier, for the
+     one ticket a group recommends. Orange is already spent on its accent
+     rule, so the badge reuses it; the lift is the system's one shadow. On
+     wide screens the card runs full width with the price panel on the right. */
+  .ticket__badge {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: var(--sp0-25);
+    margin: 0 0 var(--sp1);
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-xs);
+    color: var(--dac-navy);
+    background-color: var(--color--secondary-50);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .ticket--featured {
+    margin-bottom: var(--grid-gap);
+    box-shadow: var(--shadow-card);
+  }
+  .ticket--featured .ticket__price { font-size: 3.25rem; }
+  @media (min-width: 1000px) {
+    .ticket--featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    }
+    .ticket--featured .ticket__body { padding: var(--sp2-5); }
+    .ticket--featured .ticket__heading { font-size: 2.5rem; }
+    .ticket--featured .ticket__text { max-width: 40ch; font-size: 1.0625rem; }
+    .ticket--featured .ticket__includes-list { flex-direction: row; flex-wrap: wrap; gap: var(--sp0-75) var(--sp2); }
+    .ticket--featured .ticket__footer { justify-content: center; padding: var(--sp2-5); }
+  }
 
   .guidance { display: grid; gap: var(--sp1-5); margin-top: var(--sp3); padding: var(--sp2); border-radius: var(--radius-xl); background: var(--color--white); border: 1px solid var(--border-hairline); }
   @media (min-width: 1000px) { .guidance { grid-template-columns: 1fr auto; align-items: center; } }
@@ -350,8 +535,8 @@
         <h1 class="hero__title" id="hero-title">Choose your experience. <span>Be part of what's next.</span></h1>
         <p class="lede">Three days to imagine new possibilities, discover what's being built and build together with the Drupal and open-source community.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Register on KonfHub <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-          <a class="btn btn--outline btn--lg" href="#tickets">Compare tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          <a class="btn btn--primary btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Buy tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+          <a class="btn btn--outline btn--lg" href="#tickets">Compare tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></svg></a>
         </div>
         <dl class="facts">
           <div class="fact"><dt>Dates</dt><dd>28–30 January 2027</dd></div>
@@ -425,82 +610,125 @@
         <p class="lede">Simple choices, transparent inclusions, and a direct path to secure checkout on KonfHub.</p>
       </div>
 
-      <article class="ticket ticket--featured" id="ticket-full-combo" aria-labelledby="t-full">
-        <div class="ticket__main">
-          <p class="ticket__phase">Complete experience · Early Bird</p>
-          <h3 class="ticket__name" id="t-full">Full Combo</h3>
-          <p class="ticket__summary">One pass for the AI Summit, the conference and the networking experience. The broadest access we offer.</p>
+      <article class="ticket ticket--accent-secondary ticket--featured" id="ticket-full-combo">
+        <div class="ticket__body">
+          <p class="ticket__badge">Broadest access</p>
+          <p class="ticket__eyebrow">Complete experience</p>
+          <h3 class="ticket__heading">Full Combo</h3>
+          <p class="ticket__text">One pass for the AI Summit, the conference and the networking experience.</p>
+          <div class="ticket__includes">
+            <span class="ticket__includes-label">Includes</span>
+            <ul class="ticket__includes-list">
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking</li>
+            </ul>
+          </div>
         </div>
-        <div class="ticket__includes">
-          <ul class="ticket__list" aria-label="What Full Combo includes">
-            <li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit · 28 January</li>
-            <li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference · 29–30 January</li>
-            <li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking experience</li>
-          </ul>
-        </div>
-        <div class="ticket__buy">
-          <p class="price"><b>₹7,000</b><span>per attendee</span></p>
-          <a class="btn btn--primary btn--block" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118788%7C1%3B">Get Full Combo <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-          <p class="ticket__note">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out.</p>
-        </div>
+        <footer class="ticket__footer">
+          <div class="ticket__price-block">
+            <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+            <p class="ticket__price">₹7,000</p>
+            <p class="ticket__price-note">per attendee</p>
+          </div>
+          <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118788%7C1%3B">Get Full Combo <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </footer>
       </article>
 
-      <div class="grid grid--4 grid--tickets">
-        <article class="ticket" id="ticket-ai-summit-conference" aria-labelledby="t-ai-summit-conference">
-          <div class="ticket__main">
-            <p class="ticket__phase">Early Bird</p>
-            <h3 class="ticket__name" id="t-ai-summit-conference">AI Summit + Conference</h3>
-            <p class="ticket__summary">Take part in the summit and continue into the Drupal conference programme.</p>
-            <span class="pill pill--offer">DrupalEasy subscribers: 15% off</span>
-            <ul class="ticket__list" aria-label="What AI Summit + Conference includes"><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit · 28 January</li><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference · 29–30 January</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li></ul>
+      <div class="grid grid--4">
+        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-conference">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">AI Summit + Conference</h3>
+            <p class="ticket__text">Take part in the summit and continue into the Drupal conference programme.</p>
+            <p class="ticket__benefit">DrupalEasy subscribers: 15% discount</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
           </div>
-          <div class="ticket__buy">
-            <p class="price"><b>₹5,500</b><span>per attendee</span></p>
-            <a class="btn btn--primary btn--block" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118786%7C1%3B">Choose this pass<span class="visually-hidden">: AI Summit + Conference</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-            <p class="ticket__note">Early Bird until 23 October 2026, or until sold out.</p>
-          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹5,500</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118786%7C1%3B">Get this ticket<span class="visually-hidden">: AI Summit + Conference</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
         </article>
-        <article class="ticket" id="ticket-conference-networking" aria-labelledby="t-conference-networking">
-          <div class="ticket__main">
-            <p class="ticket__phase">Early Bird</p>
-            <h3 class="ticket__name" id="t-conference-networking">Conference + Networking</h3>
-            <p class="ticket__summary">Two conference days and an extra opportunity to connect with the community.</p>
-            
-            <ul class="ticket__list" aria-label="What Conference + Networking includes"><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference · 29–30 January</li><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking experience</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li></ul>
+        <article class="ticket ticket--accent-primary-50" id="ticket-conference-networking">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">Conference + Networking</h3>
+            <p class="ticket__text">Two conference days and an extra opportunity to connect with the community.</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li>
+              </ul>
+            </div>
           </div>
-          <div class="ticket__buy">
-            <p class="price"><b>₹5,000</b><span>per attendee</span></p>
-            <a class="btn btn--primary btn--block" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118787%7C1%3B">Choose this pass<span class="visually-hidden">: Conference + Networking</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-            <p class="ticket__note">Early Bird until 23 October 2026, or until sold out.</p>
-          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹5,000</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118787%7C1%3B">Get this ticket<span class="visually-hidden">: Conference + Networking</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
         </article>
-        <article class="ticket" id="ticket-conference-only" aria-labelledby="t-conference-only">
-          <div class="ticket__main">
-            <p class="ticket__phase">Early Bird</p>
-            <h3 class="ticket__name" id="t-conference-only">Conference Only</h3>
-            <p class="ticket__summary">For those coming for Drupal, digital experiences, contribution and community.</p>
-            <span class="pill pill--offer">DrupalEasy subscribers: 10% off</span>
-            <ul class="ticket__list" aria-label="What Conference Only includes"><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference · 29–30 January</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li></ul>
+        <article class="ticket ticket--accent-primary-50" id="ticket-conference-only">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">Conference Only</h3>
+            <p class="ticket__text">For those coming for Drupal, digital experiences, contribution and community.</p>
+            <p class="ticket__benefit">DrupalEasy subscribers: 10% discount</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
           </div>
-          <div class="ticket__buy">
-            <p class="price"><b>₹2,500</b><span>per attendee</span></p>
-            <a class="btn btn--primary btn--block" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118735%7C1%3B">Choose this pass<span class="visually-hidden">: Conference Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-            <p class="ticket__note">Early Bird until 23 October 2026, or until sold out.</p>
-          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹2,500</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118735%7C1%3B">Get this ticket<span class="visually-hidden">: Conference Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
         </article>
-        <article class="ticket" id="ticket-ai-summit-only" aria-labelledby="t-ai-summit-only">
-          <div class="ticket__main">
-            <p class="ticket__phase">Single-day experience</p>
-            <h3 class="ticket__name" id="t-ai-summit-only">AI Summit Only</h3>
-            <p class="ticket__summary">A focused day on where AI is creating meaningful change, beyond the hype.</p>
-            
-            <ul class="ticket__list" aria-label="What AI Summit Only includes"><li class="yes"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit · 28 January</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Conference not included</li><li class="no"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li></ul>
+        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-only">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Single-day experience</p>
+            <h3 class="ticket__heading">AI Summit Only</h3>
+            <p class="ticket__text">A focused day on where AI is creating meaningful change, beyond the hype.</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Conference not included</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
           </div>
-          <div class="ticket__buy">
-            <p class="price"><b>₹5,000</b><span>per attendee</span></p>
-            <a class="btn btn--primary btn--block" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118733%7C1%3B">Choose this pass<span class="visually-hidden">: AI Summit Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
-            <p class="ticket__note">Check current availability on KonfHub.</p>
-          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Check current availability on KonfHub</p>
+              <p class="ticket__price">₹5,000</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118733%7C1%3B">Get this ticket<span class="visually-hidden">: AI Summit Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
         </article>
       </div>
 

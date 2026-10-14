@@ -1,0 +1,52 @@
+{#
+  Page hero: copy and actions on the left, a slotted panel on the right.
+  Buttons are event_horizon's, so they match every other button on the site.
+  A button that jumps within the page (#anchor) points down instead of right.
+#}
+<section class="dac-hero-split">
+  <div class="dac-hero-split__copy">
+    {% include 'drupal_india_connect:eyebrow' ignore missing with { text: eyebrow, tone: 'accent' } only %}
+
+    <h1 class="dac-hero-split__title">
+      {{- title -}}
+      {%- if title_highlight is not empty %} <span class="dac-hero-split__highlight">{{ title_highlight }}</span>{% endif -%}
+    </h1>
+
+    {% if lede is not empty %}
+      <p class="dac-hero-split__lede">{{ lede }}</p>
+    {% endif %}
+
+    {% if (primary_label and primary_url) or (secondary_label and secondary_url) %}
+      <div class="dac-hero-split__actions">
+        {% if primary_label and primary_url %}
+          {% include 'event_horizon:button' ignore missing with {
+            label: primary_label,
+            href: primary_url,
+            variant: 'primary',
+            size: 'large',
+            icon: primary_url starts with '#' ? 'arrow-down' : 'arrow-right',
+          } only %}
+        {% endif %}
+        {% if secondary_label and secondary_url %}
+          {% include 'event_horizon:button' ignore missing with {
+            label: secondary_label,
+            href: secondary_url,
+            variant: 'secondary-inverted',
+            size: 'large',
+            icon: secondary_url starts with '#' ? 'arrow-down' : 'arrow-right',
+          } only %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% set facts_content %}{% block facts %}{% endblock %}{% endset %}
+    {% if facts_content|trim is not empty %}
+      <div class="dac-hero-split__facts">{{ facts_content }}</div>
+    {% endif %}
+  </div>
+
+  {% set aside_content %}{% block aside %}{% endblock %}{% endset %}
+  {% if aside_content|trim is not empty %}
+    <div class="dac-hero-split__aside">{{ aside_content }}</div>
+  {% endif %}
+</section>

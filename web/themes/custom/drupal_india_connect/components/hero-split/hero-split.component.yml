@@ -1,0 +1,61 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Hero (split)'
+description: 'Page hero with copy on the left and a panel of your choice on the right: eyebrow, an h1 whose closing phrase can be set in blue, an intro line, up to two buttons (a link to a #section on the same page gets a down arrow), a Facts slot under the buttons (e.g. a Grid of Facts) and an Aside slot (e.g. Event days). Use once, at the top of a page.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow
+      examples:
+        - 'Tickets & registration'
+    title:
+      type: string
+      title: Title
+      description: 'The h1, in sentence case.'
+      examples:
+        - 'Choose your experience.'
+    title_highlight:
+      type: string
+      title: 'Title highlight'
+      description: 'Optional closing phrase of the h1, set in blue.'
+      examples:
+        - "Be part of what's next."
+    lede:
+      type: string
+      title: Intro
+      examples:
+        - "Three days to imagine new possibilities, discover what's being built and build together with the Drupal and open-source community."
+    primary_label:
+      type: string
+      title: 'Primary button label'
+      examples:
+        - 'Register on KonfHub'
+    primary_url:
+      type: string
+      title: 'Primary button link'
+      format: uri-reference
+      examples:
+        - 'https://konfhub.com/drupalasia-connect-india-2027'
+    secondary_label:
+      type: string
+      title: 'Secondary button label'
+      examples:
+        - 'Compare tickets'
+    secondary_url:
+      type: string
+      title: 'Secondary button link'
+      format: uri-reference
+      examples:
+        - '#tickets'
+slots:
+  facts:
+    title: Facts
+    description: 'Shown under the buttons, e.g. a Grid of Fact components.'
+  aside:
+    title: Aside
+    description: 'The right-hand panel, e.g. an Event days component.'

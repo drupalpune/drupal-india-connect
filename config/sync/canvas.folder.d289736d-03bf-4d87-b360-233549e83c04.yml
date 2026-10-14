@@ -3,12 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.drupal_india_connect.callout
     - canvas.component.sdc.drupal_india_connect.data-table
     - canvas.component.sdc.drupal_india_connect.data-table-row
     - canvas.component.sdc.drupal_india_connect.divider
+    - canvas.component.sdc.drupal_india_connect.event-days
     - canvas.component.sdc.drupal_india_connect.event-overview-card
     - canvas.component.sdc.drupal_india_connect.grid
     - canvas.component.sdc.drupal_india_connect.hero-banner
+    - canvas.component.sdc.drupal_india_connect.hero-split
     - canvas.component.sdc.drupal_india_connect.info-card
     - canvas.component.sdc.drupal_india_connect.key-date-card
     - canvas.component.sdc.drupal_india_connect.milestone-row
@@ -31,12 +34,15 @@ name: 'Drupal Connect'
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.drupal_india_connect.callout
   - sdc.drupal_india_connect.data-table
   - sdc.drupal_india_connect.data-table-row
   - sdc.drupal_india_connect.divider
+  - sdc.drupal_india_connect.event-days
   - sdc.drupal_india_connect.event-overview-card
   - sdc.drupal_india_connect.grid
   - sdc.drupal_india_connect.hero-banner
+  - sdc.drupal_india_connect.hero-split
   - sdc.drupal_india_connect.info-card
   - sdc.drupal_india_connect.key-date-card
   - sdc.drupal_india_connect.milestone-row

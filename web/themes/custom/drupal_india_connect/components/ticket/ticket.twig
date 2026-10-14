@@ -1,7 +1,11 @@
 {% set accent_key = accent|default('primary-50') %}
 
-<article class="ticket ticket--accent-{{ accent_key }}">
+<article class="ticket ticket--accent-{{ accent_key }}{{ featured ? ' ticket--featured' }}"{% if anchor is not empty %} id="{{ anchor|clean_id }}"{% endif %}>
   <div class="ticket__body">
+    {% if badge is not empty %}
+      <p class="ticket__badge">{{ badge }}</p>
+    {% endif %}
+
     {% if eyebrow is not empty %}
       <p class="ticket__eyebrow">{{ eyebrow }}</p>
     {% endif %}
@@ -29,12 +33,20 @@
                 {{ item }}
               </li>
             {% endfor %}
+            {% if excludes is not empty %}
+              {% for item in excludes|split(' · ') %}
+                <li class="ticket__includes-item ticket__includes-item--excluded">
+                  {% include 'drupal_india_connect:icon' ignore missing with { icon: 'x', icon_size: 'extra-small' } only %}
+                  {{ item }}
+                </li>
+              {% endfor %}
+            {% endif %}
           </ul>
         {% else %}
           <p class="ticket__includes-value">{{ includes }}</p>
-        {% endif %}
-        {% if excludes is not empty %}
-          <p class="ticket__excludes">{{ excludes }}</p>
+          {% if excludes is not empty %}
+            <p class="ticket__excludes">{{ excludes }}</p>
+          {% endif %}
         {% endif %}
       </div>
     {% endif %}
@@ -53,8 +65,11 @@
     </div>
 
     {% if cta_url is not empty %}
+      {# A generic label ("Get this ticket") names its ticket for screen readers. #}
+      {% set cta_text = cta_label|default('Get this ticket'|t) %}
+      {% set cta_markup %}{{ cta_text }}{% if title is not empty and title not in (cta_text ~ '') %}<span class="visually-hidden">: {{ title }}</span>{% endif %}{% endset %}
       {% include 'event_horizon:button' ignore missing with {
-        label: cta_label|default('Get this ticket'|t),
+        label: cta_markup,
         href: cta_url,
         variant: 'primary',
         size: 'medium',

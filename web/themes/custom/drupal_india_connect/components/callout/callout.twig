@@ -1,0 +1,30 @@
+{#
+  One-line panel: optional icon, heading and text, one outline button.
+#}
+<div class="dac-callout dac-callout--{{ style|default('solid') }}">
+  {% if icon is not empty %}
+    <span class="dac-callout__icon">
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: icon, icon_size: 'small' } only %}
+    </span>
+  {% endif %}
+
+  <div class="dac-callout__copy">
+    <h3 class="dac-callout__heading">{{ heading }}</h3>
+    {% if text is not empty %}
+      <p class="dac-callout__text">{{ text }}</p>
+    {% endif %}
+    {% if note is not empty %}
+      <p class="dac-callout__note">{{ note }}</p>
+    {% endif %}
+  </div>
+
+  {% if cta_label and cta_url %}
+    {% include 'event_horizon:button' ignore missing with {
+      label: cta_label,
+      href: cta_url,
+      variant: 'secondary-inverted',
+      size: 'medium',
+      icon: 'arrow-right',
+    } only %}
+  {% endif %}
+</div>

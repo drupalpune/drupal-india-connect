@@ -33,6 +33,21 @@ props:
       default: '24'
       examples:
         - '24'
+    tablet_columns:
+      type: string
+      title: 'Columns on tablet'
+      description: 'Optional. Columns from 500px to 999px wide. "auto" keeps the usual step-up (2, then 3 from 700px). Use "2" so four items never leave one alone on a row, or "1" to stack items that each need room, such as a panel beside a nested grid.'
+      enum:
+        - auto
+        - '1'
+        - '2'
+      meta:enum:
+        auto: 'Auto (default)'
+        '1': '1 column'
+        '2': '2 columns'
+      default: auto
+      examples:
+        - auto
 slots:
   grid_slot:
     title: 'Grid items'

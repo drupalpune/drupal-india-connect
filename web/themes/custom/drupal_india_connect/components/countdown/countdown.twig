@@ -9,6 +9,25 @@
   'eh-countdown--' ~ (variant|default('dark')),
 ]|filter(v => v) %}
 
+{% if variant == 'strip' %}
+  {# One line of text instead of digit tiles; the date alone without JS. #}
+  <div{{ attributes.addClass(classes) }} data-eh-countdown data-target="{{ target }}" data-finished-text="{{ finished_text|default('We are underway.'|t) }}" data-label="{{ label }}" role="region" aria-label="{{ eyebrow|default('Countdown'|t) }}">
+    <div class="eh-countdown__strip container">
+      <p class="eh-countdown__strip-text">
+        {% if eyebrow %}
+          <span class="eh-countdown__eyebrow">{{ eyebrow }}</span>
+        {% endif %}
+        <span class="eh-countdown__strip-value" data-eh-countdown-text>{{ label }}</span>
+      </p>
+      {% if link_label and link_url %}
+        <a class="eh-countdown__strip-link" href="{{ link_url }}">
+          {{ link_label }}
+          {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
 <div{{ attributes.addClass(classes) }} data-eh-countdown data-target="{{ target }}" data-finished-text="{{ finished_text|default('We are underway.'|t) }}">
   <div class="eh-countdown__intro">
     {% if eyebrow %}
@@ -35,3 +54,4 @@
 
   <p class="eh-countdown__finished" hidden="hidden" data-eh-countdown-finished></p>
 </div>
+{% endif %}

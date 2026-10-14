@@ -14,10 +14,14 @@
  *   ddev drush php:script scripts/build-ticket-rates-page.php rebuild
  *
  * Deploys are code-only, so this has to be run against each environment's
- * database after the release carrying the ticket component's `excludes` and
- * `benefit` props has shipped. Back up the database first.
+ * database after the release carrying the components it uses has shipped:
+ * hero-split, event-days and callout, and the ticket (`excludes`, `benefit`,
+ * `featured`, `badge`, `anchor`), countdown (`strip`), venue-location
+ * (`panel`) and info-card (`marker_suffix`) options. Back up the database
+ * first.
  *
- * Copy is taken from the issue's prototype (drupalasia_ticket_rates_redesign
+ * Layout and copy follow design-system/ui_kits/event_site/ticket-rates.html,
+ * itself built from the issue's prototype (drupalasia_ticket_rates_redesign
  * .html). Ticket prices, the Early Bird deadline and KonfHub checkout links
  * are the ones published on /ticket-rates-details at the time of writing;
  * the registration team still has to confirm them against KonfHub. The
@@ -128,47 +132,20 @@ $button = fn(string $label, string $uri, string $variant = 'primary') => [
 ];
 
 // ---------------------------------------------------------------------------
-// 1. Hero: the AI Summit page's side-by-side hero, with the community photo
-// the homepage hero uses.
+// 1. Hero: copy, buttons and the three facts beside the navy "three days"
+// panel, then the Early Bird strip.
 // ---------------------------------------------------------------------------
-$hero = $add('sdc.event_horizon.hero-side-by-side', 'Hero - Tickets & registration', [
-  'hero_flex_gap' => 'large',
-  'justify_content' => 'center',
-  'hero_flex_direction_mobile' => 'vertical-reverse',
-  'padding_block_start' => '0',
-  'padding_block_end' => '0',
-  'image_size' => '4:3',
-  'image_position' => 'right',
-  'image_radius' => 'small',
-  'media' => $media('public://2026-08/54945363309_e8224e51e0_k.jpg'),
+$hero = $add('drupal_india_connect.hero-split', 'Hero - Tickets & registration', [
+  'eyebrow' => 'Tickets & registration',
+  'title' => 'Choose your experience.',
+  'title_highlight' => "Be part of what's next.",
+  'lede' => "Three days to imagine new possibilities, discover what's being built and build together with the Drupal and open-source community.",
+  'primary_label' => 'Buy tickets',
+  'primary_url' => $link($konfhub),
+  'secondary_label' => 'Compare tickets',
+  'secondary_url' => $link('#tickets'),
 ]);
-$s = $add('sdc.event_horizon.section', 'Section - Hero', $section([
-  'margin_block_start' => '48',
-  'margin_block_end' => '48',
-  'padding_block_start' => '0',
-  'padding_block_end' => '0',
-  'full_width' => FALSE,
-  'section_footer' => TRUE,
-]), $hero, 'hero_slot');
-$g = $add('sdc.event_horizon.group', 'Group - Hero title', $group('column', 'sm'), $s, 'header_slot');
-$add('drupal_india_connect.eyebrow', 'Eyebrow - Tickets & registration', ['text' => 'Tickets & registration', 'tone' => 'accent'], $g, 'group_slot');
-$add('sdc.event_horizon.heading', "Heading - Choose your experience. Be part of what's next.", [
-  'heading_text' => "Choose your experience. Be part of what's next.",
-  'level' => 1,
-  'text_size' => 'heading-responsive-5xl',
-  'text_color' => 'primary',
-  'align' => 'left',
-], $g, 'group_slot');
-$g = $add('sdc.event_horizon.group', 'Group - Hero intro', $group('column', 'md'), $s, 'main_slot');
-$add('sdc.event_horizon.text', 'Text - Hero intro', [
-  'text' => $html("<p>Three days to imagine new possibilities, discover what's being built and build together with the Drupal and open-source community.</p>"),
-  'text_size' => 'text-lg',
-  'text_color' => 'default',
-], $g, 'group_slot');
-$buttons = $add('sdc.event_horizon.group', 'Group - Hero buttons', $group('row', 'sm'), $g, 'group_slot');
-$add('sdc.event_horizon.button', 'Button - Register on KonfHub', $button('Register on KonfHub', $konfhub), $buttons, 'group_slot');
-$add('sdc.event_horizon.button', 'Button - Compare tickets', $button('Compare tickets', '#tickets', 'secondary'), $buttons, 'group_slot');
-$facts = $add('drupal_india_connect.grid', 'Grid - Hero facts', ['columns' => 3, 'gap' => '24'], $s, 'footer_slot');
+$facts = $add('drupal_india_connect.grid', 'Grid - Hero facts', ['columns' => 3, 'gap' => '16'], $hero, 'facts');
 foreach ([
   ['Dates', '28–30 January 2027', 'primary'],
   ['Tickets from', '₹2,500 per attendee', 'primary'],
@@ -182,20 +159,44 @@ foreach ([
     'tone' => 'plain',
   ], $facts, 'grid_slot');
 }
+$add('drupal_india_connect.event-days', 'Event days - Three days', [
+  'label' => 'Imagine · Discover · Build',
+  'title' => 'Three days. One connected',
+  'title_highlight' => 'community.',
+  'day_1_date' => '28 Jan',
+  'day_1_title' => 'Imagine',
+  'day_1_subtitle' => 'AI Summit',
+  'day_2_date' => '29 Jan',
+  'day_2_title' => 'Discover',
+  'day_2_subtitle' => 'Drupal Conference',
+  'day_3_date' => '30 Jan',
+  'day_3_title' => 'Build',
+  'day_3_subtitle' => 'Contribution & Innovation',
+], $hero, 'aside');
+
+// Counts down to the Early Bird cutoff and swaps to the finished text after it.
+$add('drupal_india_connect.countdown', 'Countdown - Early Bird ends', [
+  'target' => '2026-10-23T23:59:00+05:30',
+  'eyebrow' => 'Early Bird ends',
+  'label' => '23 October 2026, 11:59 PM IST',
+  'finished_text' => 'Early Bird has ended. Check KonfHub for current prices.',
+  'variant' => 'strip',
+  'link_label' => 'See Early Bird tickets',
+  'link_url' => $link('#tickets'),
+]);
 
 // ---------------------------------------------------------------------------
 // 2. Choose your experience.
 // ---------------------------------------------------------------------------
 $s = $add('sdc.event_horizon.section', 'Section - Find your fit', $section([
   'columns' => '33-33-33',
-  'background_color' => 'accent',
 ]));
 $header($s, 'Find your fit', 'Find your fit', 'One event. Different ways to join.', 'Whether AI is your focus, Drupal is your everyday work, or you want the entire experience, choose the pass that matches your plans.');
 foreach ([
-  ['01', 'Imagine', 'Explore AI', 'A dedicated summit connecting practical AI applications, decision-makers and the open ecosystem.', 'See AI Summit options'],
-  ['02', 'Discover', 'Go deeper with Drupal', 'Conference sessions, ideas and real-world lessons across Drupal, digital experiences and the open web.', 'See conference passes'],
-  ['03', 'Connect', 'Make more of the trip', 'Add networking to spend more time with the practitioners and people shaping the ecosystem.', 'Explore combination passes'],
-] as [$num, $pill, $title, $body, $cta]) {
+  ['01', 'Imagine', 'Explore AI', 'A dedicated summit connecting practical AI applications, decision-makers and the open ecosystem.', 'See AI Summit options', '#ticket-ai-summit-only'],
+  ['02', 'Discover', 'Go deeper with Drupal', 'Conference sessions, ideas and real-world lessons across Drupal, digital experiences and the open web.', 'See conference passes', '#ticket-conference-only'],
+  ['03', 'Connect', 'Make more of the trip', 'Add networking to spend more time with the practitioners and people shaping the ecosystem.', 'Explore combination passes', '#ticket-full-combo'],
+] as [$num, $pill, $title, $body, $cta, $target]) {
   $add('drupal_india_connect.info-card', "Info card - $num $title", [
     'marker' => $num,
     'pill' => $pill,
@@ -203,14 +204,16 @@ foreach ([
     'body' => $html("<p>$body</p>"),
     'accent' => $num === '03' ? 'secondary' : 'primary',
     'link_label' => $cta,
-    'link_url' => $link('#tickets'),
+    'link_url' => $link($target),
   ], $s, 'main_slot');
 }
 
 // ---------------------------------------------------------------------------
-// 3. Compare tickets, with the ticket guidance in the footer.
+// 3. Compare tickets: Full Combo featured on its own, the other four across,
+// and the ticket guidance in the footer.
 // ---------------------------------------------------------------------------
 $s = $add('sdc.event_horizon.section', 'Section - Tickets', $section([
+  'background_color' => 'accent',
   'section_footer' => TRUE,
 ]));
 $g = $add('sdc.event_horizon.group', 'Group - Tickets title', $group('column', 'sm'), $s, 'header_slot');
@@ -227,16 +230,7 @@ $add('sdc.event_horizon.text', 'Text - Tickets intro', [
   'text_size' => 'text-lg',
   'text_color' => 'default',
 ], $g, 'group_slot');
-// Counts down to the Early Bird cutoff and swaps to the finished text after it.
-$add('drupal_india_connect.countdown', 'Countdown - Early Bird ends', [
-  'target' => '2026-10-23T23:59:00+05:30',
-  'eyebrow' => 'Early Bird ends in',
-  'label' => '23 October 2026, 11:59 PM IST',
-  'finished_text' => 'Early Bird has ended. Check KonfHub for current prices.',
-  'variant' => 'light',
-], $s, 'header_slot');
-$grid = $add('drupal_india_connect.grid', 'Grid - Ticket cards', ['columns' => 3, 'gap' => '24'], $s, 'main_slot');
-foreach ([
+$tickets = [
   [
     'eyebrow' => 'Complete experience',
     'title' => 'Full Combo',
@@ -247,6 +241,9 @@ foreach ([
     'cta_label' => 'Get Full Combo',
     'cta_url' => $link($checkout('118788')),
     'accent' => 'secondary',
+    'featured' => TRUE,
+    'badge' => 'Broadest access',
+    'anchor' => 'ticket-full-combo',
   ],
   [
     'eyebrow' => 'Early Bird',
@@ -257,7 +254,9 @@ foreach ([
     'benefit' => 'DrupalEasy subscribers: 15% discount',
     'price' => '₹5,500',
     'availability' => $early_bird,
-    'cta_label' => 'Get AI Summit + Conference',
+    // Four across, the full name wraps; the ticket adds it for screen readers.
+    'cta_label' => 'Get this ticket',
+    'anchor' => 'ticket-ai-summit-conference',
     'cta_url' => $link($checkout('118786')),
     'accent' => 'primary-50',
   ],
@@ -269,7 +268,9 @@ foreach ([
     'excludes' => 'AI Summit not included',
     'price' => '₹5,000',
     'availability' => $early_bird,
-    'cta_label' => 'Get Conference + Networking',
+    // Four across, the full name wraps; the ticket adds it for screen readers.
+    'cta_label' => 'Get this ticket',
+    'anchor' => 'ticket-conference-networking',
     'cta_url' => $link($checkout('118787')),
     'accent' => 'primary-50',
   ],
@@ -278,11 +279,13 @@ foreach ([
     'title' => 'Conference Only',
     'text' => 'For those coming for Drupal, digital experiences, contribution and community.',
     'includes' => 'Conference (29–30 Jan)',
-    'excludes' => 'AI Summit and networking not included',
+    'excludes' => 'AI Summit not included · Networking not included',
     'benefit' => 'DrupalEasy subscribers: 10% discount',
     'price' => '₹2,500',
     'availability' => $early_bird,
-    'cta_label' => 'Get Conference Only',
+    // Four across, the full name wraps; the ticket adds it for screen readers.
+    'cta_label' => 'Get this ticket',
+    'anchor' => 'ticket-conference-only',
     'cta_url' => $link($checkout('118735')),
     'accent' => 'primary-50',
   ],
@@ -291,45 +294,44 @@ foreach ([
     'title' => 'AI Summit Only',
     'text' => 'A focused day on where AI is creating meaningful change, beyond the hype.',
     'includes' => 'AI Summit (28 Jan)',
-    'excludes' => 'Conference and networking not included',
+    'excludes' => 'Conference not included · Networking not included',
     'price' => '₹5,000',
     'availability' => 'Check current availability on KonfHub',
-    'cta_label' => 'Get AI Summit Only',
+    // Four across, the full name wraps; the ticket adds it for screen readers.
+    'cta_label' => 'Get this ticket',
+    'anchor' => 'ticket-ai-summit-only',
     'cta_url' => $link($checkout('118733')),
     'accent' => 'primary-50',
   ],
-] as $ticket) {
-  $add('drupal_india_connect.ticket', "Ticket - {$ticket['title']}", $ticket + ['price_note' => 'per attendee', 'includes_list' => TRUE], $grid, 'grid_slot');
+];
+$ticket_defaults = ['price_note' => 'per attendee', 'includes_list' => TRUE];
+$featured = array_shift($tickets);
+$add('drupal_india_connect.ticket', "Ticket - {$featured['title']}", $featured + $ticket_defaults, $s, 'main_slot');
+// Two by two on tablets: three across would leave one ticket alone.
+$grid = $add('drupal_india_connect.grid', 'Grid - Ticket cards', ['columns' => 4, 'gap' => '24', 'tablet_columns' => '2'], $s, 'main_slot');
+foreach ($tickets as $ticket) {
+  $add('drupal_india_connect.ticket', "Ticket - {$ticket['title']}", $ticket + $ticket_defaults, $grid, 'grid_slot');
 }
-$foot = $add('sdc.event_horizon.group', 'Group - Ticket guidance', $group('column', 'sm'), $s, 'footer_slot');
-$add('sdc.event_horizon.heading', 'Heading - Not sure which ticket to choose?', [
-  'heading_text' => 'Not sure which ticket to choose?',
-  'level' => 3,
-  'text_size' => 'heading-responsive-xl',
-  'text_color' => 'default',
-  'align' => 'left',
-], $foot, 'group_slot');
-$add('sdc.event_horizon.text', 'Text - Ticket guidance', [
-  'text' => $html('<p>The Full Combo offers the broadest access. If you are coming mainly for the Drupal conference, Conference Only is the simplest choice. Workshops are booked separately and are not included in any ticket.</p>'),
-  'text_size' => 'normal',
-  'text_color' => 'default',
-], $foot, 'group_slot');
-$add('sdc.event_horizon.text', 'Text - Ticket note', [
-  'text' => $html('<p>These are the rates currently published for DrupalAsia Connect India 2027. Ticket eligibility, availability, the final total, processing fees and any applicable taxes are confirmed at checkout on KonfHub.</p>'),
-  'text_size' => 'text-sm',
-  'text_color' => 'default',
-], $foot, 'group_slot');
+$add('drupal_india_connect.callout', 'Callout - Not sure which ticket to choose?', [
+  'heading' => 'Not sure which ticket to choose?',
+  'text' => 'The Full Combo offers the broadest access. If you are coming mainly for the Drupal conference, Conference Only is the simplest choice. Workshops are booked separately and are not included in any ticket.',
+  'note' => 'These are the rates currently published for DrupalAsia Connect India 2027. Ticket eligibility, availability, the final total, processing fees and any applicable taxes are confirmed at checkout on KonfHub.',
+  'cta_label' => 'View all options on KonfHub',
+  'cta_url' => $link($konfhub),
+  'style' => 'solid',
+], $s, 'footer_slot');
 
 // ---------------------------------------------------------------------------
 // 4. DrupalEasy subscriber benefit.
 // ---------------------------------------------------------------------------
-// Prototype layout: copy on the left, the two offers as tiles on the right.
+// Prototype layout: copy on the left, the two offers as tiles on the right,
+// stacked below 1000px (a section's 50-50 splits from 700px, which squeezes
+// the two tiles).
 $s = $add('sdc.event_horizon.section', 'Section - DrupalEasy benefit', $section([
-  'columns' => '50-50',
-  'background_color' => 'accent',
   'section_header' => FALSE,
 ]));
-$intro = $add('sdc.event_horizon.group', 'Group - DrupalEasy copy', $group('column', 'sm'), $s, 'main_slot');
+$split = $add('drupal_india_connect.grid', 'Grid - DrupalEasy layout', ['columns' => 2, 'gap' => '48', 'tablet_columns' => '1'], $s, 'main_slot');
+$intro = $add('sdc.event_horizon.group', 'Group - DrupalEasy copy', $group('column', 'sm'), $split, 'grid_slot');
 $add('drupal_india_connect.eyebrow', 'Eyebrow - Subscriber benefit', ['text' => 'Subscriber benefit', 'tone' => 'accent'], $intro, 'group_slot');
 $add('sdc.event_horizon.heading', 'Heading - More value with DrupalEasy', [
   'heading_text' => 'More value with DrupalEasy',
@@ -348,13 +350,14 @@ $add('sdc.event_horizon.text', 'Text - DrupalEasy terms', [
   'text_size' => 'text-sm',
   'text_color' => 'default',
 ], $intro, 'group_slot');
-$offers = $add('drupal_india_connect.grid', 'Grid - DrupalEasy offers', ['columns' => 2, 'gap' => '24'], $s, 'main_slot');
+$offers = $add('drupal_india_connect.grid', 'Grid - DrupalEasy offers', ['columns' => 2, 'gap' => '24'], $split, 'grid_slot');
 foreach ([
-  ['15% off', 'AI Summit + Conference', 'On the AI Summit + Conference combo ticket.'],
-  ['10% off', 'Conference Only', 'On the Conference-only ticket.'],
+  ['15%', 'AI Summit + Conference', 'On the AI Summit + Conference combo ticket.'],
+  ['10%', 'Conference Only', 'On the Conference-only ticket.'],
 ] as [$marker, $title, $body]) {
-  $add('drupal_india_connect.info-card', "Info card - DrupalEasy $marker", [
+  $add('drupal_india_connect.info-card', "Info card - DrupalEasy $marker off", [
     'marker' => $marker,
+    'marker_suffix' => 'off',
     'title' => $title,
     'body' => $html("<p>$body</p>"),
     'accent' => 'secondary',
@@ -366,13 +369,14 @@ foreach ([
 // ---------------------------------------------------------------------------
 $s = $add('sdc.event_horizon.section', 'Section - Programme at a glance', $section([
   'columns' => '33-33-33',
+  'background_color' => 'accent',
   'section_footer' => TRUE,
 ]));
 $header($s, 'Programme at a glance', 'Programme at a glance', 'Imagine. Discover. Build.', 'The event moves from new possibilities to practical knowledge to collaborative action.');
 foreach ([
-  [1, 'Jan 28', 'Imagine', 'AI Summit', 'Explore AI across enterprise, government, education and the open ecosystem through practitioner-led perspectives.', 'imagine'],
-  [2, 'Jan 29', 'Discover', 'Drupal Conference', 'Keynotes, Drupal and Drupal AI sessions, technical conversations, and the future of digital experiences.', 'discover'],
-  [3, 'Jan 30', 'Build', 'Contribution & Innovation', 'Contribute, collaborate, mentor and take ideas toward working solutions with the community.', 'build'],
+  [1, 'Thursday 28 January', 'Imagine', 'AI Summit', 'Explore AI across enterprise, government, education and the open ecosystem through practitioner-led perspectives.', 'imagine'],
+  [2, 'Friday 29 January', 'Discover', 'Drupal Conference', 'Keynotes, Drupal and Drupal AI sessions, technical conversations, and the future of digital experiences.', 'discover'],
+  [3, 'Saturday 30 January', 'Build', 'Contribution & Innovation', 'Contribute, collaborate, mentor and take ideas toward working solutions with the community.', 'build'],
 ] as [$day, $date, $title, $subtitle, $body, $theme]) {
   $add('drupal_india_connect.program-day-card', "Programme day - $title", [
     'day_number' => $day,
@@ -383,26 +387,28 @@ foreach ([
     'track_theme' => $theme,
   ], $s, 'main_slot');
 }
-$add('sdc.event_horizon.button', 'Button - Explore the full programme', $button('Explore the full programme', 'internal:/program-at-a-glance', 'secondary'), $s, 'footer_slot');
+$add('sdc.event_horizon.button', 'Button - Explore the full programme', $button('Explore the full programme', 'internal:/program-at-a-glance', 'secondary-inverted'), $s, 'footer_slot');
 
 // ---------------------------------------------------------------------------
 // 6. Travel & Stay.
 // ---------------------------------------------------------------------------
-$s = $add('sdc.event_horizon.section', 'Section - Plan your trip', $section([
-  'background_color' => 'accent',
-  'section_footer' => TRUE,
-]));
+$s = $add('sdc.event_horizon.section', 'Section - Plan your trip', $section());
 $header($s, 'Plan your trip', 'Your visit, made easier', 'Plan your trip to Mumbai', 'IIT Bombay is the gathering place. Get practical help with travel, arrival, accommodation and campus access before you book.');
+// Venue panel beside the tips from 1000px, stacked above them below that.
+$split = $add('drupal_india_connect.grid', 'Grid - Travel layout', ['columns' => 2, 'gap' => '24', 'tablet_columns' => '1'], $s, 'main_slot');
 $add('drupal_india_connect.venue-location', 'Venue location - IIT Bombay', [
+  'variant' => 'panel',
   'label' => 'Venue · Powai, Mumbai',
   'venue_name' => 'Meet us at IIT Bombay',
-  'address' => 'Victor Menezes Convention Centre, IIT Bombay, Powai, Mumbai, Maharashtra 400076',
+  'address' => 'Victor Menezes Convention Centre, Indian Institute of Technology Bombay, IIT Area, Powai, Mumbai, Maharashtra 400076',
   'description' => 'Room details will be confirmed closer to the event.',
-  'image' => $media('public://2026-08/seo-image-2564-iit_bombay-(2).jpg'),
+  'tbc' => TRUE,
   'cta_label' => 'Plan travel & accommodation',
   'cta_url' => $link('internal:/travel-and-stay'),
-], $s, 'main_slot');
-$tips = $add('drupal_india_connect.grid', 'Grid - Travel tips', ['columns' => 4, 'gap' => '24'], $s, 'footer_slot');
+  'secondary_cta_label' => 'Open in Google Maps',
+  'secondary_cta_url' => $link('https://www.google.com/maps/search/?api=1&query=Victor+Menezes+Convention+Centre%2C+IIT+Bombay%2C+Powai%2C+Mumbai'),
+], $split, 'grid_slot');
+$tips = $add('drupal_india_connect.grid', 'Grid - Travel tips', ['columns' => 2, 'gap' => '24'], $split, 'grid_slot');
 foreach ([
   ['airplane-tilt', 'Arriving by air', 'Fly into Mumbai (BOM), then continue to the campus by cab or public transport.', FALSE],
   ['map-pin', 'Stay near campus', 'Browse accommodation in Powai, Vikhroli and the surrounding neighbourhoods.', FALSE],
@@ -422,7 +428,8 @@ foreach ([
 // 7. Before you register (FAQ).
 // ---------------------------------------------------------------------------
 $s = $add('sdc.event_horizon.section', 'Section - Before you register', $section([
-  'width' => '75%',
+  'columns' => '67-33',
+  'background_color' => 'accent',
 ]));
 $header($s, 'Before you register', 'Before you register', 'Good to know', 'A few details worth checking before you complete your registration.');
 $acc = $add('sdc.event_horizon.accordion-container', 'Accordion container - FAQ', [], $s, 'main_slot');
@@ -455,18 +462,15 @@ foreach ([
 // confirm who is on it (issue #111); add a people-card grid to main_slot then,
 // following the AI Summit page's "Voices of the frontier" section.
 // ---------------------------------------------------------------------------
-$s = $add('sdc.event_horizon.section', 'Section - Registration Team', $section([
-  'background_color' => 'accent',
-]));
+$s = $add('sdc.event_horizon.section', 'Section - Registration Team', $section());
 $header($s, 'Registration Team', 'The volunteers behind the experience', 'Meet the Registration Team', 'The registration experience is supported by our community volunteers. Registration team profiles will be featured here once their assignments are confirmed.');
-$add('drupal_india_connect.info-card', 'Info card - The people behind DrupalAsia Connect', [
+$add('drupal_india_connect.callout', 'Callout - The people behind DrupalAsia Connect', [
   'icon' => 'users-three',
-  'pill' => 'Community-led event',
-  'title' => 'The people behind DrupalAsia Connect',
-  'body' => $html('<p>Meet the organisers and volunteers across every workstream on the Meet the Team page.</p>'),
-  'accent' => 'primary',
-  'link_label' => 'Meet the event team',
-  'link_url' => $link('internal:/meet-the-team'),
+  'heading' => 'The people behind DrupalAsia Connect',
+  'text' => 'Meet the organisers and volunteers across every workstream on the Meet the Team page.',
+  'cta_label' => 'Meet the event team',
+  'cta_url' => $link('internal:/meet-the-team'),
+  'style' => 'dashed',
 ], $s, 'main_slot');
 
 // ---------------------------------------------------------------------------

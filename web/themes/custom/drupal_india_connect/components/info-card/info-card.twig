@@ -2,7 +2,10 @@
 
 <div class="info-card info-card--{{ accent_key }}">
   {% if marker is not empty %}
-    <span class="info-card__marker">{{ marker }}</span>
+    <span class="info-card__marker{{ marker_suffix is not empty ? ' info-card__marker--stat' }}">
+      {{- marker -}}
+      {%- if marker_suffix is not empty %}<small class="info-card__marker-suffix"> {{ marker_suffix }}</small>{% endif -%}
+    </span>
   {% elseif icon is not empty %}
     <span class="info-card__icon">
       {% include 'drupal_india_connect:icon' ignore missing with { icon: icon, icon_size: 'small' } only %}
