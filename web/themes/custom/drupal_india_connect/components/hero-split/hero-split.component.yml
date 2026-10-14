@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Hero (split)'
-description: 'Page hero with copy on the left and a panel of your choice on the right: eyebrow, an h1 whose closing phrase can be set in blue, an intro line, up to two buttons (a link to a #section on the same page gets a down arrow), a Facts slot under the buttons (e.g. a Grid of Facts) and an Aside slot (e.g. Event days). Use once, at the top of a page.'
+description: 'Page hero with copy on the left and a panel of your choice on the right: eyebrow, an h1 whose closing phrase can be set in blue, an intro line, up to two buttons (a link to a #section on the same page gets a down arrow), a Facts slot under the buttons (e.g. a Grid of Facts) and either a photo (with an optional navy tag for dates and venue) or an Aside slot (e.g. Event days). Use once, at the top of a page.'
 group: 'Drupal Connect'
 status: stable
 props:
@@ -52,6 +52,19 @@ props:
       format: uri-reference
       examples:
         - '#tickets'
+    image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Image
+      description: 'Optional photo for the right-hand side, shown square-cornered at 4:3. When set it replaces the Aside slot.'
+      type: object
+    image_tag_title:
+      type: string
+      title: 'Image tag title'
+      description: 'Optional navy tag on the photo, e.g. the dates.'
+    image_tag_text:
+      type: string
+      title: 'Image tag text'
+      description: 'Optional second line of the tag, e.g. the venue.'
 slots:
   facts:
     title: Facts

@@ -1,6 +1,6 @@
 {% set accent_key = accent|default('primary') %}
 
-<div class="info-card info-card--{{ accent_key }}">
+<div class="info-card info-card--{{ accent_key }}{{ plain ? ' info-card--plain' }}">
   {% if marker is not empty %}
     <span class="info-card__marker{{ marker_suffix is not empty ? ' info-card__marker--stat' }}">
       {{- marker -}}
