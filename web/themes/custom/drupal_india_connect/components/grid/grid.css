@@ -45,3 +45,17 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
+
+/*
+ * Optional tablet override (500-999px). Last in the file so it wins over the
+ * step-up above at the same specificity; from 1000px the full count applies.
+ */
+@container style(--sm: true) and style(--lg: false) {
+  .component-grid--tablet-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .component-grid--tablet-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

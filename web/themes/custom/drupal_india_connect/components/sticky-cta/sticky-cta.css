@@ -1,0 +1,53 @@
+/*
+ * Pinned to the bottom of the viewport on phones. Sits below the mobile nav
+ * drawer (z-index 102) so an open menu still covers it.
+ */
+.dac-sticky-cta {
+  position: fixed;
+  z-index: 90;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--sp0-75) var(--sp1) calc(var(--sp0-75) + env(safe-area-inset-bottom, 0px));
+  border-top: solid 1px var(--color--night-90);
+  background-color: var(--color--white);
+  box-shadow: 0 -4px 16px color-mix(in srgb, var(--color--night-5) 10%, transparent);
+  transition: transform 0.2s ease;
+
+  @container style(--md: true) {
+    display: none;
+  }
+}
+
+.dac-sticky-cta[hidden] {
+  display: none;
+}
+
+.dac-sticky-cta.is-offscreen {
+  transform: translateY(110%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dac-sticky-cta {
+    transition: none;
+  }
+}
+
+.dac-sticky-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp1);
+}
+
+.dac-sticky-cta__note {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.dac-sticky-cta .eh-button {
+  flex-shrink: 0;
+}

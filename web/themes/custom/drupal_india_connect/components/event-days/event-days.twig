@@ -1,0 +1,33 @@
+{#
+  The event in three dated days, on a navy panel.
+#}
+{% set days = [
+  { date: day_1_date, title: day_1_title, subtitle: day_1_subtitle },
+  { date: day_2_date, title: day_2_title, subtitle: day_2_subtitle },
+  { date: day_3_date, title: day_3_title, subtitle: day_3_subtitle },
+]|filter(d => d.title is not empty) %}
+
+<div class="dac-event-days">
+  {% if label is not empty %}
+    <p class="dac-event-days__label">{{ label }}</p>
+  {% endif %}
+  <p class="dac-event-days__title">
+    {{- title -}}
+    {%- if title_highlight is not empty %} <span>{{ title_highlight }}</span>{% endif -%}
+  </p>
+  {% if days is not empty %}
+    <ol class="dac-event-days__list">
+      {% for day in days %}
+        <li class="dac-event-days__day">
+          <span class="dac-event-days__date">{{ day.date }}</span>
+          <div>
+            <b class="dac-event-days__name">{{ day.title }}</b>
+            {% if day.subtitle is not empty %}
+              <span class="dac-event-days__subtitle">{{ day.subtitle }}</span>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+</div>

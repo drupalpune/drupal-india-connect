@@ -95,6 +95,68 @@
   }
 }
 
+/*
+ * Strip treatment: a full-width navy bar, broken out of the content column
+ * the same way event_horizon's full-width sections (and closing-cta) are.
+ */
+.eh-countdown--strip {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  display: block;
+  width: calc(100vw - var(--scrollbar-width));
+  margin-right: calc((var(--scrollbar-width) / 2) - 50vw);
+  margin-left: calc((var(--scrollbar-width) / 2) - 50vw);
+  padding: 0;
+  color: var(--color--sky-90);
+  background-color: var(--neutral-dark);
+}
+
+.eh-countdown__strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp1) var(--sp2);
+  padding-block: var(--sp1-5);
+}
+
+.eh-countdown__strip-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp0-5) var(--sp1);
+  margin: 0;
+}
+
+.eh-countdown--strip .eh-countdown__eyebrow {
+  color: var(--color--sky-80);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+}
+
+.eh-countdown__strip-value {
+  color: var(--color--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.eh-countdown__strip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  color: var(--color--white);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.eh-countdown__strip-link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color--secondary-50);
+  text-underline-offset: 0.2em;
+}
+
 /*  Stack on small screens. */
 @media (max-width: 43.75rem) {
   .eh-countdown__units {

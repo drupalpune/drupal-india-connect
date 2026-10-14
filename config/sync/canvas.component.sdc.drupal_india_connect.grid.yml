@@ -6,9 +6,52 @@ dependencies:
     - options
   theme:
     - drupal_india_connect
-active_version: 1519424a0339be90
+active_version: 923784572492017e
 versioned_properties:
   active:
+    settings:
+      prop_field_definitions:
+        columns:
+          required: true
+          field_type: list_float
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: '3'
+          expression: ℹ︎list_float␟value
+          derived_schema_metadata: {  }
+        gap:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '24'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        tablet_columns:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: auto
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        grid_slot:
+          title: 'Grid items'
+  1519424a0339be90:
     settings:
       prop_field_definitions:
         columns:

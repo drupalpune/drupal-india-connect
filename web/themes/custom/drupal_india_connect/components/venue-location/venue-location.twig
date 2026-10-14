@@ -1,6 +1,8 @@
 {% set has_cta = cta_label is not empty %}
+{% set has_secondary = secondary_cta_label is not empty and secondary_cta_url is not empty %}
+{% set is_panel = variant == 'panel' %}
 
-<div class="venue-location">
+<div class="venue-location{{ is_panel ? ' venue-location--panel' }}">
   <div class="venue-location__content">
     <span class="venue-location__label">{{ label|default('Venue') }}</span>
 
@@ -12,19 +14,36 @@
       <p class="venue-location__address">{{ address }}</p>
     {% endif %}
 
-    {% if description is not empty %}
-      <div class="venue-location__description">{{ description }}</div>
+    {% if description is not empty or tbc %}
+      <div class="venue-location__description">
+        {{ description }}
+        {% if tbc %}
+          {% include 'drupal_india_connect:tbc-tag' only %}
+        {% endif %}
+      </div>
     {% endif %}
 
-    {% if has_cta %}
-      <a href="{{ cta_url|default('#') }}" class="venue-location__cta">
-        {{ cta_label }}
-        {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
-      </a>
+    {% if has_cta or has_secondary %}
+      <div class="venue-location__actions">
+        {% if has_cta %}
+          <a href="{{ cta_url|default('#') }}" class="venue-location__cta">
+            {{ cta_label }}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+          </a>
+        {% endif %}
+        {% if has_secondary %}
+          <a href="{{ secondary_cta_url }}" class="venue-location__cta venue-location__cta--secondary">
+            {{ secondary_cta_label }}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'map-pin', icon_size: 'extra-small' } only %}
+          </a>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
 
-  {% if map_embed_url is not empty %}
+  {% if is_panel %}
+    {# The panel stands alone: no map or image. #}
+  {% elseif map_embed_url is not empty %}
     <div class="venue-location__media">
       <iframe
         src="{{ map_embed_url }}"

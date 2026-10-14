@@ -1,0 +1,65 @@
+/*
+ * Split hero. Sentence case and a navy title with the closing phrase in
+ * blue, as the homepage hero sets it (see design-system/readme.md).
+ */
+.dac-hero-split {
+  display: grid;
+  gap: var(--sp3);
+  align-items: center;
+  padding-block: var(--sp3) var(--sp4);
+
+  @container style(--md: true) {
+    padding-block: var(--sp5);
+  }
+
+  @container style(--lg: true) {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+    gap: var(--sp4);
+  }
+}
+
+.dac-hero-split__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp1-5);
+}
+
+.dac-hero-split__title {
+  margin: 0;
+  color: var(--neutral-dark);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.dac-hero-split__highlight {
+  color: var(--color--primary-50);
+}
+
+.dac-hero-split__lede {
+  max-width: 44rem;
+  margin: 0;
+  color: var(--color--night-30);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+
+  @container style(--md: true) {
+    font-size: 1.25rem;
+  }
+}
+
+.dac-hero-split__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp0-75);
+}
+
+.dac-hero-split__facts {
+  width: 100%;
+  margin-top: var(--sp0-5);
+}

@@ -1,0 +1,78 @@
+/*
+ * Navy panel: pale blue labels, white type, orange on the title's closing
+ * word and the closing day, translucent white rules.
+ */
+.dac-event-days {
+  position: relative;
+  overflow: hidden;
+  padding: var(--sp2);
+  border-radius: 0.75rem;
+  color: var(--color--sky-90);
+  background-color: var(--neutral-dark);
+
+  @container style(--md: true) {
+    padding: var(--sp3);
+  }
+}
+
+.dac-event-days__label {
+  margin: 0;
+  color: var(--color--sky-80);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dac-event-days__title {
+  margin: var(--sp1) 0 0;
+  color: var(--color--white);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.25rem + 2.4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.dac-event-days__title span {
+  color: var(--color--secondary-50);
+}
+
+.dac-event-days__list {
+  display: grid;
+  gap: var(--sp0-5);
+  margin: var(--sp2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dac-event-days__day {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--sp1);
+  align-items: baseline;
+  padding-block: var(--sp0-75);
+  border-top: solid 1px color-mix(in srgb, var(--color--white) 14%, transparent);
+}
+
+.dac-event-days__date {
+  color: var(--color--sky-80);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dac-event-days__day:nth-child(3) .dac-event-days__date {
+  color: var(--color--secondary-60);
+}
+
+.dac-event-days__name {
+  display: block;
+  color: var(--color--white);
+  font-size: 1.125rem;
+}
+
+.dac-event-days__subtitle {
+  display: block;
+  font-size: 0.9375rem;
+}

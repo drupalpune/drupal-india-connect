@@ -32,12 +32,27 @@ props:
     variant:
       title: Colour treatment
       type: string
+      description: 'dark = navy band, light = white or blue tint, strip = a full-width navy bar that reads "in 9 days, 8 h 18 min · <label>" on one line, with an optional link.'
       enum:
         - dark
         - light
+        - strip
+      meta:enum:
+        dark: Dark
+        light: Light
+        strip: 'Strip (full-width bar)'
       default: dark
       examples:
         - dark
+    link_label:
+      title: 'Link label'
+      type: string
+      description: 'Strip only. Optional link at the end of the bar.'
+    link_url:
+      title: 'Link URL'
+      type: string
+      format: uri-reference
+      description: 'Strip only.'
 
 libraryOverrides:
   js:

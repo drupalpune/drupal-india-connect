@@ -1,7 +1,8 @@
 {% set col_count = columns|default(3) %}
 {% set gap_value = gap is not empty ? gap : '24' %}
 {% set gap_px = gap_value|replace({'px': '', ' ': ''}) %}
+{% set tablet = tablet_columns in ['1', '2'] ? tablet_columns : null %}
 
-<div class="component-grid component-grid--columns-{{ col_count }}" style="--grid-gap-px: {{ gap_px }}px;">
+<div class="component-grid component-grid--columns-{{ col_count }}{{ tablet ? ' component-grid--tablet-' ~ tablet }}" style="--grid-gap-px: {{ gap_px }}px;">
   {% block grid_slot %}{% endblock %}
 </div>

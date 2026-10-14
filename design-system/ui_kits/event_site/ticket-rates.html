@@ -1,0 +1,937 @@
+<!-- @dsCard group="Event site" viewport="1400x900" name="Tickets & registration" subtitle="Registration landing page (issue #111): compare tickets, DrupalEasy benefit, programme, travel, FAQ" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tickets & Registration · DrupalAsia Connect India 2027</title>
+<meta name="description" content="Compare tickets for DrupalAsia Connect India 2027, 28–30 January 2027 at IIT Bombay, Mumbai, and register on KonfHub.">
+<!-- Tokens only: fonts, derived colour ramps, spacing, radii. Components are
+     written below, not taken from css/components/. The ticket cards are the
+     theme's existing ticket component (drupal_india_connect:ticket), copied
+     in so this page stays standalone. -->
+<link rel="stylesheet" href="../../tokens/typography.css">
+<link rel="stylesheet" href="../../tokens/colors.css">
+<link rel="stylesheet" href="../../tokens/spacing.css">
+<link rel="stylesheet" href="../../tokens/layout.css">
+<style>
+  /* ------------------------------------------------------------------ */
+  /* Base                                                                */
+  /* ------------------------------------------------------------------ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { overflow-x: clip; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    color: var(--text-body);
+    background: var(--surface-page);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (min-width: 700px) { body { font-size: 1.0625rem; } }
+  img { max-width: 100%; display: block; }
+  a { color: var(--color--primary-50); }
+  ::selection { color: var(--color--white); background: var(--color--primary-80); }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: var(--radius-xs); }
+  h1, h2, h3, h4, p, ul, ol, dl, dd { margin: 0; }
+  .i { width: 1.25rem; height: 1.25rem; flex-shrink: 0; fill: currentColor; }
+  .i--sm { width: 1rem; height: 1rem; }
+  .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+
+  .container { width: 100%; max-width: var(--layout--max-width); margin-inline: auto; padding-inline: var(--sp1); }
+  @media (min-width: 700px) { .container { padding-inline: var(--sp2); } }
+
+  .skip-link { position: absolute; left: var(--sp1); top: -4rem; z-index: 200; padding: var(--sp0-5) var(--sp1); color: var(--color--white); background: var(--dac-navy); font-weight: 700; }
+  .skip-link:focus { top: var(--sp1); }
+
+  /* ------------------------------------------------------------------ */
+  /* Bands                                                               */
+  /* ------------------------------------------------------------------ */
+  .band { padding-block: var(--sp4); }
+  @media (min-width: 700px) { .band { padding-block: 5.5rem; } }
+  .band--tint { background: var(--surface-band-tint); }
+  .band--navy { color: var(--text-on-dark-body); background: var(--surface-band-dark); }
+
+  /* Eyebrow: 12px, 700, tracked uppercase, secondary colour, 2px lead-in rule. */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: var(--sp0-75);
+    color: var(--color--secondary-50);
+    font-size: var(--type-eyebrow-size); font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-tracking); line-height: 1.2; text-transform: uppercase;
+  }
+  .eyebrow::before { width: 1.5rem; height: 2px; background: currentColor; content: ""; }
+  .band--navy .eyebrow { color: var(--text-on-dark-accent); }
+  .band--navy .eyebrow::before { background: var(--color--secondary-50); }
+
+  .h2 {
+    color: var(--dac-navy);
+    font-size: var(--type-h2-minor); font-weight: 700; line-height: 1.05;
+    letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance;
+  }
+  .band--navy .h2 { color: var(--color--white); }
+  .lede { max-width: 44rem; font-size: 1.125rem; line-height: 1.55; text-wrap: pretty; }
+  @media (min-width: 700px) { .lede { font-size: 1.25rem; } }
+  .section-head { display: flex; flex-direction: column; gap: var(--sp1); margin-bottom: var(--sp2-5); }
+  .section-head--split { gap: var(--sp1-5); }
+  @media (min-width: 1000px) {
+    .section-head--split { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    .section-head--split > :first-child { display: flex; flex-direction: column; gap: var(--sp1); max-width: 46rem; }
+  }
+  .h3 { color: var(--color--night-5); font-size: 1.375rem; font-weight: 700; line-height: 1.15; }
+  .small { font-size: 0.875rem; line-height: 1.5; color: var(--text-muted); }
+
+  /* ------------------------------------------------------------------ */
+  /* Buttons                                                             */
+  /* ------------------------------------------------------------------ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--sp0-5);
+    padding: 0.875rem 1.5rem; border: 2px solid transparent; border-radius: var(--radius-md);
+    font: inherit; font-size: 1rem; font-weight: 700; line-height: 1.2; text-decoration: none; cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+  }
+  @media (min-width: 700px) { .btn--lg { padding: 0.9375rem 1.75rem; font-size: 1.125rem; } }
+  .btn--primary { color: var(--color--white); background: var(--color--primary-50); border-color: var(--color--primary-50); }
+  .btn--primary:hover { background: var(--color--primary-40); border-color: var(--color--primary-40); }
+  .btn--outline { color: var(--color--primary-50); border-color: var(--color--primary-50); background: transparent; }
+  .btn--outline:hover { color: var(--color--white); background: var(--color--primary-50); }
+  /* Orange is rationed to the one closing action. Navy text: white on this
+     orange is under 4.5:1 at button size. */
+  .btn--accent { color: var(--dac-navy); background: var(--color--secondary-50); border-color: var(--color--secondary-50); }
+  .btn--accent:hover { background: var(--color--secondary-60); border-color: var(--color--secondary-60); }
+  .btn--ghost { color: var(--color--white); border-color: color-mix(in srgb, var(--color--white) 40%, transparent); }
+  .btn--ghost:hover { border-color: var(--color--white); }
+  .btn--block { width: 100%; }
+  .link-arrow { display: inline-flex; align-items: center; gap: var(--sp0-5); font-weight: 700; text-decoration: none; }
+  .link-arrow:hover { text-decoration: underline; text-decoration-color: var(--color--secondary-50); text-underline-offset: 0.2em; }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+  /* ------------------------------------------------------------------ */
+  /* Announcement bar + header                                           */
+  /* ------------------------------------------------------------------ */
+  .announce { color: var(--color--white); background: var(--color--secondary-50); font-size: 0.9375rem; letter-spacing: 0.02em; }
+  .announce__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--sp0-75); padding-block: var(--sp0-75); text-align: center; }
+  .announce a { display: inline-flex; align-items: center; gap: var(--sp0-5); color: inherit; font-weight: 600; text-decoration: none; }
+  .announce a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .announce__sep { opacity: 0.6; }
+
+  .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-hairline); background: color-mix(in srgb, var(--surface-page) 92%, transparent); backdrop-filter: blur(10px); }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp1); min-height: 4.5rem; }
+  .site-header__logo img { width: auto; height: 3rem; }
+  .site-nav { display: none; gap: var(--sp2); }
+  .site-nav a { color: var(--color--night-5); font-weight: 600; text-decoration: none; }
+  .site-nav a[aria-current="page"] { color: var(--color--primary-50); box-shadow: inset 0 -2px 0 var(--color--secondary-50); }
+  .site-nav a:hover { color: var(--color--primary-50); }
+  @media (min-width: 1000px) { .site-nav { display: flex; } }
+
+  /* ------------------------------------------------------------------ */
+  /* Hero                                                                */
+  /* ------------------------------------------------------------------ */
+  .hero { padding-block: var(--sp3) var(--sp4); }
+  @media (min-width: 700px) { .hero { padding-block: var(--sp5); } }
+  .hero__grid { display: grid; gap: var(--sp3); align-items: center; }
+  @media (min-width: 1000px) { .hero__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); gap: var(--sp4); } }
+  .hero__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp1-5); }
+  /* The built hero sets the title in the logo's sentence case (see readme). */
+  .hero__title { color: var(--dac-navy); font-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.75rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.02em; text-wrap: balance; }
+  .hero__title span { color: var(--color--primary-50); }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--sp0-75); }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--sp1); width: 100%; margin-top: var(--sp0-5); }
+  .fact { padding-left: var(--sp1); border-left: 3px solid var(--color--primary-50); }
+  .fact--accent { border-left-color: var(--color--secondary-50); }
+  .fact dt { color: var(--color--night-5); font-weight: 700; }
+  .fact dd { font-size: 0.9375rem; line-height: 1.45; }
+
+  /* The three-day pass: a navy panel standing in for event photography. */
+  .pass { position: relative; overflow: hidden; padding: var(--sp2); border-radius: var(--radius-xl); color: var(--text-on-dark-body); background: var(--dac-navy); }
+  @media (min-width: 700px) { .pass { padding: var(--sp3); } }
+  .pass__label { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  .pass__title { margin-top: var(--sp1); color: var(--color--white); font-size: clamp(2rem, 1.25rem + 2.4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+  .pass__title span { color: var(--color--secondary-50); }
+  .pass__days { display: grid; gap: var(--sp0-5); margin-top: var(--sp2); padding: 0; list-style: none; }
+  .pass__day { display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--sp1); align-items: baseline; padding-block: var(--sp0-75); border-top: 1px solid color-mix(in srgb, var(--color--white) 14%, transparent); }
+  .pass__day b { color: var(--color--white); font-size: 1.125rem; }
+  .pass__day span { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-on-dark-accent); }
+  .pass__day:nth-child(3) span { color: var(--color--secondary-60); }
+  .pass__day em { display: block; font-style: normal; font-size: 0.9375rem; }
+
+  /* Early Bird strip */
+  .deadline { color: var(--text-on-dark-body); background: var(--dac-navy); }
+  .deadline__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp1) var(--sp2); padding-block: var(--sp1-5); }
+  .deadline__text { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp0-5) var(--sp1); }
+  .deadline__label { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  .deadline__value { color: var(--color--white); font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .deadline a { color: var(--color--white); }
+
+  /* ------------------------------------------------------------------ */
+  /* Cards                                                               */
+  /* ------------------------------------------------------------------ */
+  .grid { display: grid; gap: var(--grid-gap); }
+  @media (min-width: 700px) { .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+  .card { display: flex; flex-direction: column; gap: var(--sp0-75); padding: var(--sp1-5); border: 1px solid var(--border-hairline); border-top: 3px solid var(--color--primary-50); border-radius: var(--radius-xl); background: var(--surface-card); }
+  @media (min-width: 700px) { .card { padding: var(--sp2); } }
+  .card--accent { border-top-color: var(--color--secondary-50); }
+  .card__marker { color: var(--color--primary-50); font-size: 1.75rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+  .card--accent .card__marker { color: var(--color--secondary-50); }
+  .card__body { flex: 1; }
+  .card .link-arrow { margin-top: var(--sp0-5); }
+  .icon-chip { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--radius-lg); color: var(--color--primary-50); background: var(--dac-sky-tint); }
+
+  .pill { display: inline-flex; align-self: flex-start; align-items: center; gap: var(--sp0-25); padding: 0.25rem 0.75rem; border-radius: 999px; color: var(--color--primary-30); background: var(--dac-sky-tint); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; }
+  .pill--offer { color: var(--color--secondary-30); background: color-mix(in srgb, var(--color--secondary-50) 12%, var(--color--white)); }
+  .tbc { display: inline-flex; align-self: flex-start; padding: 0.125rem 0.5rem; border: 1px solid var(--color--night-80); border-radius: var(--radius-sm); color: var(--color--night-35); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ------------------------------------------------------------------ */
+  /* Tickets: the theme's ticket component (drupal_india_connect:ticket),  */
+  /* copied from components/ticket/ticket.css. Keep the two in step.     */
+  /* ------------------------------------------------------------------ */
+  .ticket {
+    --ticket-accent: var(--primary);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    overflow: hidden;
+    background-color: var(--color--white);
+    border: solid 1px var(--border-hairline, var(--color--night-90));
+    border-top: solid 3px var(--ticket-accent);
+    border-radius: 0.75rem;
+  }
+
+  .ticket--accent-secondary {
+    --ticket-accent: var(--secondary);
+  }
+
+  .ticket--accent-primary-50 {
+    --ticket-accent: var(--color--primary-50);
+  }
+
+  .ticket--accent-primary-60 {
+    --ticket-accent: var(--color--primary-60);
+  }
+
+  .ticket--accent-neutral {
+    --ticket-accent: var(--color--night-50);
+  }
+
+  .ticket__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--sp1-5);
+  }
+
+  .ticket__eyebrow {
+    margin: 0 0 var(--sp0-75);
+    color: var(--ticket-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .ticket__heading {
+    margin: 0;
+    color: var(--color--night-5);
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .ticket__text {
+    margin: var(--sp1) 0 0;
+    color: var(--color--night-30);
+    font-size: 1rem;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .ticket__includes {
+    margin-top: var(--sp1-5);
+    padding-top: var(--sp1);
+    border-top: solid 1px var(--border-hairline, var(--color--night-90));
+  }
+
+  .ticket__includes-label {
+    display: block;
+    margin-bottom: var(--sp0-25);
+    color: var(--color--night-40);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .ticket__includes-value {
+    margin: 0;
+    color: var(--color--night-5);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .ticket__includes-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp0-5);
+    margin: var(--sp0-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ticket__includes-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp0-5);
+    color: var(--color--night-5);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ticket__includes-item > * {
+    flex-shrink: 0;
+    color: var(--ticket-accent);
+  }
+
+  .ticket__includes-item--excluded {
+    color: var(--color--night-50);
+    font-weight: 400;
+  }
+
+  .ticket__includes-item--excluded > * {
+    color: var(--color--night-60);
+  }
+
+  .ticket__excludes {
+    margin: var(--sp0-25) 0 0;
+    color: var(--color--night-30);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Matches info-card's pill; that CSS only loads with an info-card. */
+  .ticket__benefit {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: var(--sp1) 0 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    color: var(--color--primary-30);
+    background-color: var(--color--sky-94);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ticket__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp1-5);
+    padding: var(--sp1-5);
+    background-color: var(--neutral-dark);
+  }
+
+  .ticket__availability {
+    margin: 0 0 var(--sp0-5);
+    color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ticket__price {
+    margin: 0;
+    color: var(--text-on-neutral-dark);
+    font-size: 2.75rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .ticket__price-note {
+    margin: var(--sp0-25) 0 0;
+    color: color-mix(in srgb, var(--text-on-neutral-dark) 70%, transparent);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .ticket__footer .btn {
+    align-self: flex-start;
+  }
+  .ticket__includes-item .i { flex-shrink: 0; color: var(--ticket-accent); }
+  .ticket__includes-item--excluded .i { color: var(--color--night-60); }
+
+  /* Featured ticket: the same component with a `featured` modifier, for the
+     one ticket a group recommends. Orange is already spent on its accent
+     rule, so the badge reuses it; the lift is the system's one shadow. On
+     wide screens the card runs full width with the price panel on the right. */
+  .ticket__badge {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: var(--sp0-25);
+    margin: 0 0 var(--sp1);
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-xs);
+    color: var(--dac-navy);
+    background-color: var(--color--secondary-50);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .ticket--featured {
+    margin-bottom: var(--grid-gap);
+    box-shadow: var(--shadow-card);
+  }
+  .ticket--featured .ticket__price { font-size: 3.25rem; }
+  @media (min-width: 1000px) {
+    .ticket--featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    }
+    .ticket--featured .ticket__body { padding: var(--sp2-5); }
+    .ticket--featured .ticket__heading { font-size: 2.5rem; }
+    .ticket--featured .ticket__text { max-width: 40ch; font-size: 1.0625rem; }
+    .ticket--featured .ticket__includes-list { flex-direction: row; flex-wrap: wrap; gap: var(--sp0-75) var(--sp2); }
+    .ticket--featured .ticket__footer { justify-content: center; padding: var(--sp2-5); }
+  }
+
+  .guidance { display: grid; gap: var(--sp1-5); margin-top: var(--sp3); padding: var(--sp2); border-radius: var(--radius-xl); background: var(--color--white); border: 1px solid var(--border-hairline); }
+  @media (min-width: 1000px) { .guidance { grid-template-columns: 1fr auto; align-items: center; } }
+
+  /* ------------------------------------------------------------------ */
+  /* DrupalEasy offer                                                    */
+  /* ------------------------------------------------------------------ */
+  .offer { display: grid; gap: var(--sp2); align-items: center; }
+  @media (min-width: 1000px) { .offer { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--sp4); } }
+  .offer__copy { display: flex; flex-direction: column; gap: var(--sp1); }
+  .offer__tile { display: flex; flex-direction: column; gap: var(--sp0-5); padding: var(--sp2); border: 1px solid var(--border-hairline); border-top: 3px solid var(--color--secondary-50); border-radius: var(--radius-xl); background: var(--surface-card); }
+  .offer__tile b { color: var(--color--secondary-40); font-size: var(--type-stat); font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+  .offer__tile b small { font-size: 1.25rem; font-weight: 700; letter-spacing: 0; }
+
+  /* ------------------------------------------------------------------ */
+  /* Programme                                                           */
+  /* ------------------------------------------------------------------ */
+  .day { display: flex; flex-direction: column; gap: var(--sp0-75); padding: var(--sp2); border: 1px solid var(--border-hairline); border-top: 4px solid var(--color--primary-50); border-radius: var(--radius-xl); background: var(--surface-card); }
+  .day--discover { border-top-color: var(--dac-navy); }
+  .day--build { border-top-color: var(--color--secondary-50); }
+  .day__date { color: var(--color--primary-50); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .day--discover .day__date { color: var(--dac-navy); }
+  .day--build .day__date { color: var(--color--secondary-40); }
+  .day__title { color: var(--color--night-5); font-size: 2rem; font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; }
+  .day__sub { color: var(--color--night-5); font-weight: 700; }
+  .after-grid { margin-top: var(--sp2); }
+
+  /* ------------------------------------------------------------------ */
+  /* Travel                                                              */
+  /* ------------------------------------------------------------------ */
+  .travel { display: grid; gap: var(--grid-gap); }
+  @media (min-width: 1000px) { .travel { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+  .venue { display: flex; flex-direction: column; justify-content: space-between; gap: var(--sp2); padding: var(--sp2); border-radius: var(--radius-xl); color: var(--text-on-dark-body); background: var(--dac-navy); }
+  @media (min-width: 700px) { .venue { padding: var(--sp3); } }
+  .venue .eyebrow { color: var(--text-on-dark-accent); }
+  .venue .eyebrow::before { background: var(--color--secondary-50); }
+  .venue h3 { margin-top: var(--sp1); color: var(--color--white); font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem); font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; }
+  .venue address { margin-top: var(--sp1); font-style: normal; }
+  .venue .tbc { color: var(--text-on-dark-accent); border-color: color-mix(in srgb, var(--color--white) 30%, transparent); }
+  .venue__actions { display: flex; flex-wrap: wrap; gap: var(--sp0-75); }
+
+  /* ------------------------------------------------------------------ */
+  /* FAQ (native details: keyboard operable without script)              */
+  /* ------------------------------------------------------------------ */
+  .faq { max-width: 56rem; border-top: 1px solid var(--border-hairline); }
+  .faq details { border-bottom: 1px solid var(--border-hairline); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--sp1); padding-block: var(--sp1-5); color: var(--color--night-5); font-size: 1.125rem; font-weight: 700; line-height: 1.3; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .i { color: var(--color--primary-50); transition: transform var(--dur-fast) var(--ease-standard); }
+  .faq details[open] summary .i { transform: rotate(90deg); }
+  @media (prefers-reduced-motion: reduce) { .faq summary .i { transition: none; } }
+  .faq__answer { display: flex; flex-direction: column; gap: var(--sp0-75); padding-bottom: var(--sp1-5); max-width: 46rem; }
+
+  /* ------------------------------------------------------------------ */
+  /* Team callout                                                        */
+  /* ------------------------------------------------------------------ */
+  .callout { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp1-5); padding: var(--sp2); border: 1px dashed var(--color--night-70); border-radius: var(--radius-xl); background: var(--surface-card); }
+  .callout__copy { flex: 1 1 22rem; display: flex; flex-direction: column; gap: var(--sp0-5); }
+
+  /* ------------------------------------------------------------------ */
+  /* Closing band with ticket stub                                       */
+  /* ------------------------------------------------------------------ */
+  .closing__grid { display: grid; gap: var(--sp3); align-items: center; }
+  @media (min-width: 1000px) { .closing__grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: var(--sp4); } }
+  .closing__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp1-5); }
+  .closing__title { color: var(--color--white); font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem); font-weight: 700; line-height: 0.95; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance; }
+  .closing__actions { display: flex; flex-wrap: wrap; gap: var(--sp1); margin-top: var(--sp0-5); }
+  .stub { position: relative; padding: var(--sp2) var(--sp2) 0; border: 1px solid color-mix(in srgb, var(--color--white) 14%, transparent); border-radius: var(--radius-xl); background: color-mix(in srgb, var(--color--white) 7%, transparent); }
+  .stub__title { margin-bottom: var(--sp1); color: var(--color--white); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .stub__row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp0-25) var(--sp1); padding-block: var(--sp0-75); border-top: 1px solid color-mix(in srgb, var(--color--white) 12%, transparent); }
+  .stub__row dt { color: var(--text-on-dark-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .stub__row dd { color: var(--color--white); font-weight: 600; text-align: end; }
+  .stub__note { position: relative; margin: var(--sp1) calc(-1 * var(--sp2)) 0; padding: var(--sp1) var(--sp2); border-top: 2px dashed color-mix(in srgb, var(--color--white) 25%, transparent); font-size: 0.875rem; }
+  .stub__note::before, .stub__note::after { position: absolute; top: -0.8125rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--dac-navy); content: ""; }
+  .stub__note::before { left: -0.8125rem; }
+  .stub__note::after { right: -0.8125rem; }
+
+  /* ------------------------------------------------------------------ */
+  /* Footer                                                              */
+  /* ------------------------------------------------------------------ */
+  .site-footer { padding-block: var(--sp3); border-top: 1px solid color-mix(in srgb, var(--color--white) 10%, transparent); color: var(--text-on-dark-body); background: var(--dac-navy); font-size: 0.9375rem; }
+  .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp1-5); }
+  .site-footer b { color: var(--color--white); }
+  .site-footer nav { display: flex; flex-wrap: wrap; gap: var(--sp0-5) var(--sp1-5); }
+  .site-footer a { color: var(--color--white); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+  .site-footer .small { color: var(--text-on-dark-body); }
+
+  /* ------------------------------------------------------------------ */
+  /* Sticky ticket bar: phones only, revealed by script                  */
+  /* ------------------------------------------------------------------ */
+  .sticky-buy { position: fixed; inset: auto 0 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: var(--sp1); padding: var(--sp0-75) var(--sp1) calc(var(--sp0-75) + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--border-hairline); background: var(--color--white); box-shadow: 0 -4px 16px color-mix(in srgb, var(--color--night-5) 10%, transparent); transform: translateY(110%); transition: transform var(--dur-fast) var(--ease-standard); }
+  .sticky-buy.is-shown { transform: none; }
+  .sticky-buy p { color: var(--color--night-5); font-weight: 700; font-size: 0.9375rem; line-height: 1.3; }
+  @media (min-width: 700px) { .sticky-buy { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .sticky-buy { transition: none; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" role="region" aria-label="Event announcement">
+  <div class="announce__inner container">
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=DrupalAsia%20Connect%20India%202027&amp;dates=20270128%2F20270131&amp;location=IIT%20Bombay%2C%20Powai%2C%20Mumbai%20400%20076%2C%20Maharashtra%2C%20India"><svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.44l-5.8,3.87a8,8,0,0,1-8.91-13.31l16-10.67A8,8,0,0,1,112,120Z"/></svg> Save the date — 28–30 January 2027</a>
+    <span class="announce__sep" aria-hidden="true">•</span>
+    <span>IIT Bombay</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__logo" href="https://drupalasia.org/"><img src="../../assets/logo.svg" alt="DrupalAsia Connect India 2027 home" width="180" height="120"></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="https://drupalasia.org/program-at-a-glance">Programme</a>
+      <a href="https://drupalasia.org/travel-and-stay">Travel &amp; Stay</a>
+      <a href="#tickets" aria-current="page">Tickets</a>
+    </nav>
+    <a class="btn btn--primary" href="https://konfhub.com/drupalasia-connect-india-2027">Register <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__grid container">
+      <div class="hero__copy">
+        <p class="eyebrow">Tickets &amp; registration</p>
+        <h1 class="hero__title" id="hero-title">Choose your experience. <span>Be part of what's next.</span></h1>
+        <p class="lede">Three days to imagine new possibilities, discover what's being built and build together with the Drupal and open-source community.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Buy tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+          <a class="btn btn--outline btn--lg" href="#tickets">Compare tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></svg></a>
+        </div>
+        <dl class="facts">
+          <div class="fact"><dt>Dates</dt><dd>28–30 January 2027</dd></div>
+          <div class="fact"><dt>Tickets from</dt><dd>₹2,500 per attendee</dd></div>
+          <div class="fact fact--accent"><dt>Early Bird</dt><dd>Until 23 October 2026, or until sold out</dd></div>
+        </dl>
+      </div>
+      <div class="pass" aria-label="The three days">
+        <p class="pass__label">Imagine · Discover · Build</p>
+        <p class="pass__title">Three days. One connected <span>community.</span></p>
+        <ol class="pass__days">
+          <li class="pass__day"><span>28 Jan</span><div><b>Imagine</b><em>AI Summit</em></div></li>
+          <li class="pass__day"><span>29 Jan</span><div><b>Discover</b><em>Drupal Conference</em></div></li>
+          <li class="pass__day"><span>30 Jan</span><div><b>Build</b><em>Contribution &amp; Innovation</em></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Early Bird deadline strip -->
+  <div class="deadline" role="region" aria-label="Early Bird deadline">
+    <div class="deadline__inner container">
+      <p class="deadline__text">
+        <span class="deadline__label">Early Bird ends</span>
+        <span class="deadline__value" data-deadline="2026-10-23T23:59:00+05:30" data-ended="Early Bird has ended. Check KonfHub for current prices.">23 October 2026, 11:59 PM IST</span>
+      </p>
+      <a class="link-arrow" href="#tickets">See Early Bird tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 2. Experiences -->
+  <section class="band" aria-labelledby="fit-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Find your fit</p>
+        <h2 class="h2" id="fit-title">One event. Different ways to join.</h2>
+        <p class="lede">Whether AI is your focus, Drupal is your everyday work, or you want the entire experience, choose the pass that matches your plans.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <span class="card__marker">01</span>
+          <span class="pill">Imagine</span>
+          <h3 class="h3">Explore AI</h3>
+          <p class="card__body">A dedicated summit connecting practical AI applications, decision-makers and the open ecosystem.</p>
+          <a class="link-arrow" href="#ticket-ai-summit-only">See AI Summit options <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </article>
+        <article class="card">
+          <span class="card__marker">02</span>
+          <span class="pill">Discover</span>
+          <h3 class="h3">Go deeper with Drupal</h3>
+          <p class="card__body">Conference sessions, ideas and real-world lessons across Drupal, digital experiences and the open web.</p>
+          <a class="link-arrow" href="#ticket-conference-only">See conference passes <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </article>
+        <article class="card card--accent">
+          <span class="card__marker">03</span>
+          <span class="pill">Connect</span>
+          <h3 class="h3">Make more of the trip</h3>
+          <p class="card__body">Add networking to spend more time with the practitioners and people shaping the ecosystem.</p>
+          <a class="link-arrow" href="#ticket-full-combo">Explore combination passes <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Tickets -->
+  <section class="band band--tint" id="tickets" aria-labelledby="tickets-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Published Early Bird rates</p>
+        <h2 class="h2" id="tickets-title">Choose your ticket</h2>
+        <p class="lede">Simple choices, transparent inclusions, and a direct path to secure checkout on KonfHub.</p>
+      </div>
+
+      <article class="ticket ticket--accent-secondary ticket--featured" id="ticket-full-combo">
+        <div class="ticket__body">
+          <p class="ticket__badge">Broadest access</p>
+          <p class="ticket__eyebrow">Complete experience</p>
+          <h3 class="ticket__heading">Full Combo</h3>
+          <p class="ticket__text">One pass for the AI Summit, the conference and the networking experience.</p>
+          <div class="ticket__includes">
+            <span class="ticket__includes-label">Includes</span>
+            <ul class="ticket__includes-list">
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+              <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking</li>
+            </ul>
+          </div>
+        </div>
+        <footer class="ticket__footer">
+          <div class="ticket__price-block">
+            <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+            <p class="ticket__price">₹7,000</p>
+            <p class="ticket__price-note">per attendee</p>
+          </div>
+          <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118788%7C1%3B">Get Full Combo <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </footer>
+      </article>
+
+      <div class="grid grid--4">
+        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-conference">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">AI Summit + Conference</h3>
+            <p class="ticket__text">Take part in the summit and continue into the Drupal conference programme.</p>
+            <p class="ticket__benefit">DrupalEasy subscribers: 15% discount</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
+          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹5,500</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118786%7C1%3B">Get this ticket<span class="visually-hidden">: AI Summit + Conference</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
+        </article>
+        <article class="ticket ticket--accent-primary-50" id="ticket-conference-networking">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">Conference + Networking</h3>
+            <p class="ticket__text">Two conference days and an extra opportunity to connect with the community.</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Networking</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li>
+              </ul>
+            </div>
+          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹5,000</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118787%7C1%3B">Get this ticket<span class="visually-hidden">: Conference + Networking</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
+        </article>
+        <article class="ticket ticket--accent-primary-50" id="ticket-conference-only">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Early Bird</p>
+            <h3 class="ticket__heading">Conference Only</h3>
+            <p class="ticket__text">For those coming for Drupal, digital experiences, contribution and community.</p>
+            <p class="ticket__benefit">DrupalEasy subscribers: 10% discount</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> Conference (29–30 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> AI Summit not included</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
+          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Early Bird until 23 October 2026, 11:59 PM IST, or until sold out</p>
+              <p class="ticket__price">₹2,500</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118735%7C1%3B">Get this ticket<span class="visually-hidden">: Conference Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
+        </article>
+        <article class="ticket ticket--accent-primary-50" id="ticket-ai-summit-only">
+          <div class="ticket__body">
+            <p class="ticket__eyebrow">Single-day experience</p>
+            <h3 class="ticket__heading">AI Summit Only</h3>
+            <p class="ticket__text">A focused day on where AI is creating meaningful change, beyond the hype.</p>
+            <div class="ticket__includes">
+              <span class="ticket__includes-label">Includes</span>
+              <ul class="ticket__includes-list">
+                <li class="ticket__includes-item"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg> AI Summit (28 Jan)</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Conference not included</li>
+                <li class="ticket__includes-item ticket__includes-item--excluded"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg> Networking not included</li>
+              </ul>
+            </div>
+          </div>
+          <footer class="ticket__footer">
+            <div class="ticket__price-block">
+              <p class="ticket__availability">Check current availability on KonfHub</p>
+              <p class="ticket__price">₹5,000</p>
+              <p class="ticket__price-note">per attendee</p>
+            </div>
+            <a class="btn btn--primary" href="https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId=118733%7C1%3B">Get this ticket<span class="visually-hidden">: AI Summit Only</span> <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          </footer>
+        </article>
+      </div>
+
+      <div class="guidance">
+        <div>
+          <h3 class="h3">Not sure which ticket to choose?</h3>
+          <p style="margin-top: var(--sp0-5)">The Full Combo offers the broadest access. If you are coming mainly for the Drupal conference, Conference Only is the simplest choice. Workshops are booked separately and are not included in any ticket.</p>
+          <p class="small" style="margin-top: var(--sp0-75)">These are the rates currently published for DrupalAsia Connect India 2027. Ticket eligibility, availability, the final total, processing fees and any applicable taxes are confirmed at checkout on KonfHub.</p>
+        </div>
+        <a class="btn btn--outline" href="https://konfhub.com/drupalasia-connect-india-2027">View all options on KonfHub <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DrupalEasy benefit -->
+  <section class="band" aria-labelledby="offer-title">
+    <div class="offer container">
+      <div class="offer__copy">
+        <p class="eyebrow">Subscriber benefit</p>
+        <h2 class="h2" id="offer-title">More value with DrupalEasy</h2>
+        <p class="lede">DrupalEasy subscribers can save on two DrupalAsia Connect India 2027 ticket categories.</p>
+        <p class="small">The benefit applies only to these two ticket categories. Coupon details will be shared before or during the event. The ticket prices shown do not include these discounts.</p>
+      </div>
+      <div class="grid grid--2">
+        <div class="offer__tile"><b>15%<small> off</small></b><span class="h3">AI Summit + Conference</span><p>On the AI Summit + Conference combo ticket.</p></div>
+        <div class="offer__tile"><b>10%<small> off</small></b><span class="h3">Conference Only</span><p>On the Conference-only ticket.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Programme -->
+  <section class="band band--tint" aria-labelledby="programme-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Programme at a glance</p>
+        <h2 class="h2" id="programme-title">Imagine. Discover. Build.</h2>
+        <p class="lede">The event moves from new possibilities to practical knowledge to collaborative action.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="day"><p class="day__date">Day 1 · Thursday 28 January</p><h3 class="day__title">Imagine</h3><p class="day__sub">AI Summit</p><p>Explore AI across enterprise, government, education and the open ecosystem through practitioner-led perspectives.</p></article>
+        <article class="day day--discover"><p class="day__date">Day 2 · Friday 29 January</p><h3 class="day__title">Discover</h3><p class="day__sub">Drupal Conference</p><p>Keynotes, Drupal and Drupal AI sessions, technical conversations, and the future of digital experiences.</p></article>
+        <article class="day day--build"><p class="day__date">Day 3 · Saturday 30 January</p><h3 class="day__title">Build</h3><p class="day__sub">Contribution &amp; Innovation</p><p>Contribute, collaborate, mentor and take ideas toward working solutions with the community.</p></article>
+      </div>
+      <p class="after-grid"><a class="btn btn--outline" href="https://drupalasia.org/program-at-a-glance">Explore the full programme <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a></p>
+    </div>
+  </section>
+
+  <!-- 6. Travel -->
+  <section class="band" aria-labelledby="travel-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Your visit, made easier</p>
+        <h2 class="h2" id="travel-title">Plan your trip to Mumbai</h2>
+        <p class="lede">IIT Bombay is the gathering place. Get practical help with travel, arrival, accommodation and campus access before you book.</p>
+      </div>
+      <div class="travel">
+        <div class="venue">
+          <div>
+            <p class="eyebrow">Venue · Powai, Mumbai</p>
+            <h3>Meet us at IIT Bombay</h3>
+            <address>Victor Menezes Convention Centre, Indian Institute of Technology Bombay, IIT Area, Powai, Mumbai, Maharashtra 400076</address>
+            <p style="margin-top: var(--sp0-75)">Room details will be confirmed closer to the event. <span class="tbc">TBC</span></p>
+          </div>
+          <div class="venue__actions">
+            <a class="btn btn--accent" href="https://drupalasia.org/travel-and-stay">Plan travel &amp; accommodation <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+            <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Victor+Menezes+Convention+Centre%2C+IIT+Bombay%2C+Powai%2C+Mumbai">Open in Google Maps <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M128,24A72,72,0,1,0,200,96c0,68.18-60.82,114.73-67.11,119.22a8,8,0,0,1-9.78,0C116.82,210.73,56,164.18,56,96A72,72,0,0,0,128,24Zm0,176.37C148.67,183.53,184,147,184,96a56,56,0,0,0-112,0C72,147,107.33,183.53,128,200.37ZM112,96a16,16,0,1,1,16,16A16,16,0,0,1,112,96Z"/></svg></a>
+          </div>
+        </div>
+        <div class="grid grid--2">
+          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M152,96a24,24,0,1,0,24,24A24,24,0,0,0,152,96Zm0,32a8,8,0,1,1,8-8A8,8,0,0,1,152,128Zm78.31-93.79a8,8,0,0,0-8.53-8.53A168.43,168.43,0,0,0,123.04,68.25L100,91.29a16,16,0,0,0-3.77,16.29l-22.1,22.09a16,16,0,0,0-4.24,14.31L56,168l24,24,24.02-13.89a16,16,0,0,0,14.31-4.24l22.09-22.1a16,16,0,0,0,16.29-3.77l23.04-23.04A168.43,168.43,0,0,0,230.31,34.21ZM182.6,170.13,127.85,184,112,168.15l13.87-54.75A152.49,152.49,0,0,1,214.43,56,152.49,152.49,0,0,1,182.6,170.13ZM88,56a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H80A8,8,0,0,1,88,56ZM56,96a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H48A8,8,0,0,1,56,96Zm64,104a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16h48A8,8,0,0,1,120,200Z"/></svg></span><h3 class="h3">Arriving by air</h3><p>Fly into Mumbai (BOM), then continue to the campus by cab or public transport.</p></div>
+          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M128,24A72,72,0,1,0,200,96c0,68.18-60.82,114.73-67.11,119.22a8,8,0,0,1-9.78,0C116.82,210.73,56,164.18,56,96A72,72,0,0,0,128,24Zm0,176.37C148.67,183.53,184,147,184,96a56,56,0,0,0-112,0C72,147,107.33,183.53,128,200.37ZM112,96a16,16,0,1,1,16,16A16,16,0,0,1,112,96Z"/></svg></span><h3 class="h3">Stay near campus</h3><p>Browse accommodation in Powai, Vikhroli and the surrounding neighbourhoods.</p></div>
+          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><h3 class="h3">Campus entry</h3><p>Carry your registration confirmation and a government-issued photo ID. Entry details will be shared before the event.</p><span class="tbc">TBC</span></div>
+          <div class="card"><span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.44l-5.8,3.87a8,8,0,0,1-8.91-13.31l16-10.67A8,8,0,0,1,112,120Z"/></svg></span><h3 class="h3">January in Mumbai</h3><p>Expect typically pleasant, dry weather, and allow extra travel time for traffic.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section class="band band--tint" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Before you register</p>
+        <h2 class="h2" id="faq-title">Good to know</h2>
+        <p class="lede">A few details worth checking before you complete your registration.</p>
+      </div>
+      <div class="faq">
+        <details><summary>Does my conference pass also include the AI Summit? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>No. Choose AI Summit + Conference or Full Combo for both experiences. Conference Only and Conference + Networking do not include the AI Summit.</p></div></details>
+        <details><summary>Are workshops included in the ticket price? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>No. Workshops are booked separately and are not included in any ticket. Workshop booking details will be announced.</p><span class="tbc">TBC</span></div></details>
+        <details><summary>Is networking included with every ticket? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>No. Networking is included with the Full Combo and Conference + Networking tickets. Check the ticket inclusions at checkout.</p></div></details>
+        <details><summary>When do Early Bird prices end? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>Early Bird prices run until 23 October 2026, 11:59 PM IST, or until sold out. Check KonfHub for the current status.</p></div></details>
+        <details><summary>Where do I receive my ticket? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>Registration and checkout are handled on <a href="https://konfhub.com/drupalasia-connect-india-2027">KonfHub</a>. Use your correct attendee details and keep your registration confirmation for event check-in.</p></div></details>
+        <details><summary>Where can I find travel, accommodation and venue information? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>The <a href="https://drupalasia.org/travel-and-stay">Travel &amp; Stay page</a> covers transport options, accommodation suggestions and visitor guidance. Room details and campus entry instructions will be published closer to the event.</p></div></details>
+        <details><summary>Which event policies apply? <svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></summary><div class="faq__answer"><p>Every attendee agrees to the <a href="https://drupalasia.org/code-of-conduct">Code of Conduct</a>. Refund and transfer terms will be published here once confirmed.</p><span class="tbc">TBC</span></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Registration Team -->
+  <section class="band" aria-labelledby="team-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">The volunteers behind the experience</p>
+        <h2 class="h2" id="team-title">Meet the Registration Team</h2>
+        <p class="lede">The registration experience is supported by our community volunteers. Registration team profiles will be featured here once their assignments are confirmed.</p>
+      </div>
+      <div class="callout">
+        <span class="icon-chip"><svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M256,136a8,8,0,0,1-8,8H232v16a8,8,0,0,1-16,0V144H200a8,8,0,0,1,0-16h16V112a8,8,0,0,1,16,0v16h16A8,8,0,0,1,256,136Zm-57.87,58.85a8,8,0,0,1-12.26,10.3C165.75,181.19,138.09,168,108,168s-57.75,13.19-77.87,37.15a8,8,0,0,1-12.25-10.3c14.94-17.78,33.52-30.41,54.17-37.17a68,68,0,1,1,71.9,0C164.6,164.44,183.18,177.07,198.13,194.85ZM108,152a52,52,0,1,0-52-52A52.06,52.06,0,0,0,108,152Z"/></svg></span>
+        <div class="callout__copy">
+          <h3 class="h3">The people behind DrupalAsia Connect</h3>
+          <p>Meet the organisers and volunteers across every workstream on the Meet the Team page.</p>
+        </div>
+        <a class="btn btn--outline" href="https://drupalasia.org/meet-the-team">Meet the event team <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Closing call to action -->
+  <section class="band band--navy" aria-labelledby="closing-title">
+    <div class="closing__grid container">
+      <div class="closing__copy">
+        <p class="eyebrow">See you in Mumbai</p>
+        <h2 class="closing__title" id="closing-title">Your seat in the community awaits.</h2>
+        <p class="lede">Choose your experience, plan your visit and join the conversations shaping what comes next for Drupal, AI and the open web.</p>
+        <div class="closing__actions">
+          <a class="btn btn--accent btn--lg" href="https://konfhub.com/drupalasia-connect-india-2027">Get your ticket on KonfHub <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+          <a class="btn btn--ghost btn--lg" href="https://drupalasia.org/travel-and-stay">Plan your visit <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        </div>
+      </div>
+      <aside class="stub" aria-label="DrupalAsia Connect India 2027">
+        <p class="stub__title">DrupalAsia Connect India 2027</p>
+        <dl>
+          <div class="stub__row"><dt>Dates</dt><dd>28–30 January 2027</dd></div>
+          <div class="stub__row"><dt>Venue</dt><dd>IIT Bombay, Powai, Mumbai</dd></div>
+          <div class="stub__row"><dt>Tickets from</dt><dd>₹2,500 per attendee</dd></div>
+          <div class="stub__row"><dt>Early Bird</dt><dd>Until 23 October 2026</dd></div>
+        </dl>
+        <p class="stub__note">Secure checkout on KonfHub</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <div>
+      <p><b>DrupalAsia Connect India 2027</b></p>
+      <p class="small">28–30 January 2027 · IIT Bombay, Mumbai · Hosted by Drupalers Association Pune, in association with IIT Bombay</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="https://drupalasia.org/program-at-a-glance">Programme</a>
+      <a href="https://drupalasia.org/travel-and-stay">Travel &amp; Stay</a>
+      <a href="https://drupalasia.org/code-of-conduct">Code of Conduct</a>
+      <a href="https://drupalasia.org/">Event website</a>
+    </nav>
+    <p class="small" style="flex-basis: 100%">Drupal is a registered trademark of Dries Buytaert.</p>
+  </div>
+</footer>
+
+<div class="sticky-buy" data-sticky-buy aria-hidden="true">
+  <p>Early Bird from ₹2,500</p>
+  <a class="btn btn--primary" href="https://konfhub.com/drupalasia-connect-india-2027" tabindex="-1">Get tickets <svg class="i i--sm" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></a>
+</div>
+
+<script>
+  // Early Bird countdown: the static date stays if script never runs.
+  (() => {
+    const el = document.querySelector('[data-deadline]');
+    if (!el) return;
+    const end = Date.parse(el.dataset.deadline);
+    const tick = () => {
+      const ms = end - Date.now();
+      if (ms <= 0) { el.textContent = el.dataset.ended; return; }
+      const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+      el.textContent = `in ${d} ${d === 1 ? 'day' : 'days'}, ${h} h ${String(m).padStart(2, '0')} min · 23 October, 11:59 PM IST`;
+      setTimeout(tick, 30000);
+    };
+    tick();
+  })();
+
+  // Phone sticky bar: shown after the first screen, hidden while another
+  // KonfHub link or the footer is on screen. No requestAnimationFrame, so it
+  // also works when the page opens in a background tab.
+  (() => {
+    const bar = document.querySelector('[data-sticky-buy]');
+    if (!bar || !('IntersectionObserver' in window)) return;
+    const own = bar.querySelector('a');
+    const watched = [...document.querySelectorAll('main a[href*="konfhub.com"], .site-footer')];
+    const visible = new Set();
+    const update = () => {
+      const show = window.scrollY > window.innerHeight * 0.75 && visible.size === 0;
+      bar.classList.toggle('is-shown', show);
+      bar.setAttribute('aria-hidden', String(!show));
+      own.tabIndex = show ? 0 : -1;
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target));
+      update();
+    });
+    watched.forEach((el) => io.observe(el));
+    addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
+</body>
+</html>

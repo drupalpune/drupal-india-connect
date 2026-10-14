@@ -32,6 +32,25 @@ props:
       description: 'Compact included-experience summary, e.g. "AI Summit · Conference".'
       examples:
         - 'Conference · Day 2 & Day 3'
+    includes_list:
+      type: boolean
+      title: 'Show includes as a checklist'
+      description: 'Optional. Splits Includes on " · " and lists each item with a check mark, followed by each Not included item with a cross. Off keeps the single lines.'
+      default: false
+      examples:
+        - false
+    excludes:
+      type: string
+      title: 'Not included'
+      description: 'Optional. What this ticket does not cover, shown under Includes. With the checklist on, separate items with " · ", e.g. "AI Summit not included · Networking not included".'
+      examples:
+        - 'Networking not included'
+    benefit:
+      type: string
+      title: 'Benefit label'
+      description: 'Optional. A secondary label for an offer that applies to this ticket only, e.g. a subscriber discount.'
+      examples:
+        - 'DrupalEasy subscribers: 15% discount'
     price:
       type: string
       title: Price
@@ -63,6 +82,21 @@ props:
       format: uri-reference
       examples:
         - 'https://konfhub.com/...'
+    featured:
+      type: boolean
+      title: Featured
+      description: 'Optional. Lifts this ticket and, on wide screens, lays it out full width with the price panel on the right. Place it on its own, above the grid of other tickets. Use on at most one ticket per page, with the "secondary" accent.'
+      default: false
+      examples:
+        - false
+    badge:
+      type: string
+      title: Badge
+      description: 'Optional short label above the registration phase, e.g. "Broadest access". Meant for the featured ticket.'
+    anchor:
+      type: string
+      title: 'Anchor ID'
+      description: 'Optional. Lets other links jump to this ticket, e.g. "ticket-full-combo" for #ticket-full-combo.'
     accent:
       type: string
       title: 'Accent colour'
