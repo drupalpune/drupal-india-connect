@@ -20,6 +20,7 @@ permissions:
   - 'access content'
   - 'access user profiles'
   - 'use klaro'
+  - 'view field_program'
   - 'view field_r'
   - 'view field_time_slot'
   - 'view media'
