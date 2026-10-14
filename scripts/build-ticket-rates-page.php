@@ -425,10 +425,10 @@ foreach ([
 }
 
 // ---------------------------------------------------------------------------
-// 7. Before you register (FAQ).
+// 7. Before you register (FAQ): centred at 75% width, as on Travel & Stay.
 // ---------------------------------------------------------------------------
 $s = $add('sdc.event_horizon.section', 'Section - Before you register', $section([
-  'columns' => '67-33',
+  'width' => '75%',
   'background_color' => 'accent',
 ]));
 $header($s, 'Before you register', 'Before you register', 'Good to know', 'A few details worth checking before you complete your registration.');

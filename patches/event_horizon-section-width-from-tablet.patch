@@ -1,0 +1,38 @@
+diff -ruN a/components/section/section.css b/components/section/section.css
+--- a/components/section/section.css	2026-10-14 16:35:15.686699705 +0530
++++ b/components/section/section.css	2026-10-14 16:35:15.714914958 +0530
+@@ -216,18 +216,22 @@
+     margin-left: calc((var(--scrollbar-width) / 2) - 50vw);
+   }
+ 
+-  /*  Width variants: constrain eh-section__inner within the section */
+-  &.eh-section--width-90 .eh-section__inner {
+-    max-width: 90%;
+-  }
+-  &.eh-section--width-80 .eh-section__inner {
+-    max-width: 80%;
+-  }
+-  &.eh-section--width-75 .eh-section__inner {
+-    max-width: 75%;
+-  }
+-  &.eh-section--width-50 .eh-section__inner {
+-    max-width: 50%;
++  /*  Width variants: constrain eh-section__inner within the section, from
++   *  tablet up. On phones a percentage of an already narrow screen squeezes
++   *  the content, so they use the full width there. */
++  @container style(--md: true) {
++    &.eh-section--width-90 .eh-section__inner {
++      max-width: 90%;
++    }
++    &.eh-section--width-80 .eh-section__inner {
++      max-width: 80%;
++    }
++    &.eh-section--width-75 .eh-section__inner {
++      max-width: 75%;
++    }
++    &.eh-section--width-50 .eh-section__inner {
++      max-width: 50%;
++    }
+   }
+ }
+ 
