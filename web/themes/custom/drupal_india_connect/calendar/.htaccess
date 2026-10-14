@@ -1,0 +1,3 @@
+# Serve calendar files as text/calendar so browsers hand them to the
+# visitor's calendar app instead of a generic download.
+AddType text/calendar .ics

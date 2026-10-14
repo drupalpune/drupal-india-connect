@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DrupalAsia Connect//India 2027//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:drupalasia-connect-india-2027@drupalasia.org
+DTSTAMP:20261014T000000Z
+DTSTART;VALUE=DATE:20270128
+DTEND;VALUE=DATE:20270131
+SUMMARY:DrupalAsia Connect India 2027
+DESCRIPTION:A three-day community gathering bringing people from across Asi
+ a and beyond together to learn\, share\, contribute\, and connect. https:/
+ /drupalasia.org/
+LOCATION:IIT Bombay\, Powai\, Mumbai 400 076\, Maharashtra\, India
+URL:https://drupalasia.org/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

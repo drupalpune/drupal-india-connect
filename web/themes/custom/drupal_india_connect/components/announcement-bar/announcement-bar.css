@@ -18,6 +18,34 @@
   font-weight: 600;
 }
 
+/* A linked message reads as an action: calendar icon, underline on hover. */
+.eh-announcement-bar__message--link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  color: inherit;
+  text-decoration: none;
+}
+
+.eh-announcement-bar__message--link::before {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: currentColor;
+  content: "";
+  mask: url("../../icons/phosphor/regular/calendar.svg") center / contain no-repeat;
+}
+
+.eh-announcement-bar__message--link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.eh-announcement-bar__message--link:focus-visible {
+  outline: solid 2px currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .eh-announcement-bar__detail {
   font-weight: 500;
 }
