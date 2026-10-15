@@ -1,0 +1,34 @@
+uuid: 81ff26ce-f264-4e25-9b43-56dc61a4c943
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speaker_account
+    - node.type.featured_speaker
+id: node.featured_speaker.field_speaker_account
+field_name: field_speaker_account
+entity_type: node
+bundle: featured_speaker
+label: 'Speaker account'
+description: 'User account with the speaker role. For invited speakers, an admin creates the account first (leave "Notify user" unchecked).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        speaker: speaker
+        content_editor: '0'
+        session_moderator: '0'
+        administrator: '0'
+    include_anonymous: false
+field_type: entity_reference
