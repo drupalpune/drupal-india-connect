@@ -20,6 +20,9 @@
 
 .place-card__top {
   display: flex;
+  /* In a narrow column the distance pill drops under the name rather than
+     pushing the card wider than its column. */
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--sp0-75);
