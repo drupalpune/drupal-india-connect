@@ -105,10 +105,36 @@
     }
   };
 
+  /**
+   * Publishes the real scrollbar width as --scrollbar-width.
+   *
+   * event_horizon hard-codes it to 1rem and sizes full-width bands (and this
+   * theme's closing-cta and countdown strip) as `100vw - --scrollbar-width`.
+   * Overlay scrollbars (macOS, phones) take no space, so those bands stopped
+   * 8px short of each edge, which shows as white slivers beside a coloured
+   * band. Watching <html> catches the scrollbar appearing or disappearing.
+   */
+  const trackScrollbarWidth = () => {
+    const root = document.documentElement;
+    const publish = () => {
+      root.style.setProperty(
+        '--scrollbar-width',
+        `${Math.max(0, window.innerWidth - root.clientWidth)}px`,
+      );
+    };
+    publish();
+    if (window.ResizeObserver) {
+      new ResizeObserver(publish).observe(root);
+    } else {
+      window.addEventListener('resize', publish);
+    }
+  };
+
   Drupal.behaviors.dacSectionAnchors = {
     attach(context) {
       once('dac-section-anchors', 'body', context).forEach(() => {
         trackHeaderHeight();
+        trackScrollbarWidth();
 
         // Marks an element as something a nav link scrolls to, so the CSS
         // can give it room to clear the sticky header.
