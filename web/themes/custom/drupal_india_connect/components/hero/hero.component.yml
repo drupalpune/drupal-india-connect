@@ -63,6 +63,26 @@ props:
       format: uri-reference
       examples:
         - '/#notify'
+    primary_icon:
+      title: 'Primary button icon'
+      type: string
+      description: 'Optional. Shown after the label. Leave empty for a text-only button.'
+      enum:
+        - ticket
+        - bell
+        - arrow-right
+        - calendar
+        - megaphone
+        - microphone
+        - user-plus
+      meta:enum:
+        ticket: Ticket
+        bell: 'Bell (updates)'
+        arrow-right: Arrow right
+        calendar: Calendar
+        megaphone: Megaphone
+        microphone: 'Microphone (speak)'
+        user-plus: 'User plus (sign up)'
     secondary_label:
       title: 'Secondary button label'
       type: string
@@ -74,6 +94,26 @@ props:
       format: uri-reference
       examples:
         - '/#cfp'
+    secondary_icon:
+      title: 'Secondary button icon'
+      type: string
+      description: 'Optional. Shown after the label. Leave empty for a text-only button.'
+      enum:
+        - ticket
+        - bell
+        - arrow-right
+        - calendar
+        - megaphone
+        - microphone
+        - user-plus
+      meta:enum:
+        ticket: Ticket
+        bell: 'Bell (updates)'
+        arrow-right: Arrow right
+        calendar: Calendar
+        megaphone: Megaphone
+        microphone: 'Microphone (speak)'
+        user-plus: 'User plus (sign up)'
     media:
       title: 'Teaser video'
       description: 'Leave empty to show the striped placeholder well.'

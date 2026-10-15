@@ -73,10 +73,10 @@
       {% if (primary_label and primary_url) or (secondary_label and secondary_url) %}
         <div class="eh-hero__actions">
           {% if primary_label and primary_url %}
-            <a href="{{ primary_url }}" class="eh-hero__button eh-hero__button--primary">{{ primary_label }}</a>
+            <a href="{{ primary_url }}" class="eh-hero__button eh-hero__button--primary">{{ primary_label }}{% if primary_icon %}{% include 'drupal_india_connect:icon' with { icon: primary_icon, icon_size: 'extra-small' } only %}{% endif %}</a>
           {% endif %}
           {% if secondary_label and secondary_url %}
-            <a href="{{ secondary_url }}" class="eh-hero__button eh-hero__button--secondary">{{ secondary_label }}</a>
+            <a href="{{ secondary_url }}" class="eh-hero__button eh-hero__button--secondary">{{ secondary_label }}{% if secondary_icon %}{% include 'drupal_india_connect:icon' with { icon: secondary_icon, icon_size: 'extra-small' } only %}{% endif %}</a>
           {% endif %}
         </div>
       {% endif %}
