@@ -337,21 +337,14 @@ foreach ([
 // ---------------------------------------------------------------------------
 // 7. CTA.
 // ---------------------------------------------------------------------------
-// The CTA's own background only fills the content column, so the colour sits
-// on a full-width section instead, as on the AI Summit page.
-$s = $add('sdc.event_horizon.section', 'Section - CTA See you in Mumbai', $section([
-  'background_color' => 'secondary',
-  'padding_block_start' => '0',
-  'padding_block_end' => '0',
-  'section_header' => FALSE,
-]));
 $cta = $add('sdc.event_horizon.cta', 'CTA - See you in Mumbai', [
   'heading_text' => 'See you in Mumbai',
   'level' => 2,
   'text' => 'Get updates on tickets, the programme and travel details.',
   'text_align' => 'center',
+  'background_color' => 'secondary',
   'overlay_opacity' => '0%',
-], $s, 'main_slot');
+]);
 $add('sdc.event_horizon.button', 'Button - Get event updates', $button('Get event updates', 'internal:/announcements', 'primary-inverted'), $cta, 'actions');
 
 // ---------------------------------------------------------------------------
