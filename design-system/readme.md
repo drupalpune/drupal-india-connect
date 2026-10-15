@@ -88,7 +88,8 @@ and from one very loud hero.
 
 - **One typeface: General Sans** (variable, 200–700), served locally from
   `assets/fonts/general-sans/`. No secondary family, no serif, no display
-  face.
+  face — except on AI Summit pages, which set headings in Space Grotesk (see
+  "Where the build has diverged").
 - Display type is **uppercase, weight 700, leading below 1 (0.86 in the hero,
   1.05 in section headings), tracking +0.01em**. Big type gets *negative*
   tracking at the heading steps (−0.01 to −0.03em) and *positive* tracking when
@@ -119,6 +120,8 @@ and from one very loud hero.
 - On navy, body copy goes to a light blue-grey and eyebrows to pale blue —
   never pure white for long text.
 - `::selection` is white on `--color--primary-80`.
+- AI Summit pages swap the orange for a teal; the rules above apply to it
+  unchanged (see "Where the build has diverged").
 
 ### Backgrounds and imagery
 
@@ -287,12 +290,26 @@ changed some of it deliberately, and the live theme wins:
   `site-hero-25`.
 - Type in the hero sizes against its grid column with `cqw` rather than the
   viewport, because it shares a row with the media well.
+- **AI Summit pages have their own accent and display face**, so visitors can
+  tell the summit day apart from the rest of the event. It applies to every
+  page whose URL is `/ai-summit` or starts with `/ai-summit/`
+  (`css/ai-summit.css` in the theme):
+  - The secondary ramp is re-derived as teal, `hsl(188, 85%, 40%)`, from the
+    sky family, in place of orange. Eyebrows, card accents, the closing band
+    and the announcement bar follow it; pale accent bands use its 80 step.
+    Blue, navy, the site header and the footer are unchanged.
+  - Headings, eyebrows and the announcement bar are set in **Space Grotesk**
+    (variable 300–700, Latin, self-hosted under
+    `fonts/space-grotesk/`). Body copy stays General Sans.
+  - The announcement bar announces the summit day and, on sub-pages, links
+    back to `/ai-summit`.
 
 ## Caveats
 
 - **Fonts are the real files**, copied from the theme — no Google Fonts
   substitution was needed. General Sans is licensed from Fontshare; confirm the
-  licence covers your deployment.
+  licence covers your deployment. Space Grotesk (AI Summit pages only) is under
+  the SIL Open Font Licence; its `OFL.txt` sits beside the font in the theme.
 - **The logo SVG has a white canvas baked in** (4096×2736 with a #FDFDFD
   background rect). On dark bands it needs a white plate. A trimmed-viewBox,
   transparent version would be worth producing.
