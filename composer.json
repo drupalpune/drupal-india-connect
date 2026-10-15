@@ -139,6 +139,7 @@
                 "Add an 'Original (no crop)' aspect ratio to the Image component": "patches/event_horizon-image-original-ratio.patch",
                 "Keep hero-side-by-side's image on the right on desktop when its mobile order is reversed": "patches/event_horizon-hero-sbs-mobile-reverse-img-right.patch",
                 "Add an 'arrow-down' icon to the Button component, for buttons that jump down the page": "patches/event_horizon-button-arrow-down-icon.patch",
+                "Add an 'arrows-left-right' (compare) icon to the Button component": "patches/event_horizon-button-arrows-left-right-icon.patch",
                 "Apply Section width variants (90/80/75/50%) from tablet up, full width on phones": "patches/event_horizon-section-width-from-tablet.patch"
             }
         },

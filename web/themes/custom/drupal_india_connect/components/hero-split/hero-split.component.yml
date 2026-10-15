@@ -41,6 +41,18 @@ props:
       format: uri-reference
       examples:
         - 'https://konfhub.com/drupalasia-connect-india-2027'
+    primary_icon:
+      type: string
+      title: 'Primary button icon'
+      description: 'Leave empty to pick automatically: a down arrow for a #link on this page, otherwise a right arrow.'
+      enum:
+        - arrow-right
+        - arrow-down
+        - arrows-left-right
+      meta:enum:
+        arrow-right: Arrow right
+        arrow-down: 'Arrow down (jump down the page)'
+        arrows-left-right: 'Arrows left-right (compare)'
     secondary_label:
       type: string
       title: 'Secondary button label'
@@ -52,6 +64,18 @@ props:
       format: uri-reference
       examples:
         - '#tickets'
+    secondary_icon:
+      type: string
+      title: 'Secondary button icon'
+      description: 'Leave empty to pick automatically: a down arrow for a #link on this page, otherwise a right arrow.'
+      enum:
+        - arrow-right
+        - arrow-down
+        - arrows-left-right
+      meta:enum:
+        arrow-right: Arrow right
+        arrow-down: 'Arrow down (jump down the page)'
+        arrows-left-right: 'Arrows left-right (compare)'
     image:
       $ref: json-schema-definitions://canvas.module/image
       title: Image
