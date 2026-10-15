@@ -143,13 +143,20 @@ jobs:
 
       # Commits only the changelog and the sitemap snapshot, never anything
       # else Claude or the scripts might have left in the workspace.
+      # claude-code-action points git at its own app token and revokes that
+      # token when its step ends, so push with this workflow's token instead
+      # (it has contents: write, see permissions above).
       - name: Commit CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           files="CHANGELOG.md .github/changelog/sitemap-urls.txt"
           if git diff --quiet -- $files; then
             echo "Nothing to commit"
             exit 0
           fi
+          git config --local --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- $files
