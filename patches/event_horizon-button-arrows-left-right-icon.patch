@@ -1,0 +1,30 @@
+diff -ruN a/components/button/button.component.yml b/components/button/button.component.yml
+--- a/components/button/button.component.yml	2026-10-15 11:58:51.712234067 +0530
++++ b/components/button/button.component.yml	2026-10-15 11:58:51.727313577 +0530
+@@ -57,6 +57,7 @@
+         - caret-left
+         - download
+         - user-plus
++        - arrows-left-right
+       meta:enum:
+         arrow-right: Arrow right
+         arrow-left: Arrow left
+@@ -65,6 +66,7 @@
+         caret-left: Caret left
+         download: Download
+         user-plus: User plus
++        arrows-left-right: 'Arrows left-right (compare)'
+       examples:
+         - arrow-right
+     mobile_width:
+diff -ruN a/components/button/button.twig b/components/button/button.twig
+--- a/components/button/button.twig	2026-10-15 11:58:51.712280474 +0530
++++ b/components/button/button.twig	2026-10-15 11:58:51.727354134 +0530
+@@ -22,6 +22,7 @@
+   'caret-left': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>',
+   'download': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H72a8,8,0,0,1,0,16H32v64H224V136H184a8,8,0,0,1,0-16h40A16,16,0,0,1,240,136Zm-117.66-2.34a8,8,0,0,0,11.32,0l48-48a8,8,0,0,0-11.32-11.32L136,108.69V24a8,8,0,0,0-16,0v84.69L85.66,74.34A8,8,0,0,0,74.34,85.66ZM200,168a12,12,0,1,0-12,12A12,12,0,0,0,200,168Z"/></svg>',
+   'user-plus': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M256,136a8,8,0,0,1-8,8H232v16a8,8,0,0,1-16,0V144H200a8,8,0,0,1,0-16h16V112a8,8,0,0,1,16,0v16h16A8,8,0,0,1,256,136Zm-57.87,58.85a8,8,0,0,1-12.26,10.3C165.75,181.19,138.09,168,108,168s-57.75,13.19-77.87,37.15a8,8,0,0,1-12.25-10.3c14.94-17.78,33.52-30.41,54.17-37.17a68,68,0,1,1,71.9,0C164.6,164.44,183.18,177.07,198.13,194.85ZM108,152a52,52,0,1,0-52-52A52.06,52.06,0,0,0,108,152Z"/></svg>',
++  'arrows-left-right': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,181.66l-32,32a8,8,0,0,1-11.32-11.32L188.69,184H48a8,8,0,0,1,0-16H188.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,213.66,181.66Zm-139.32-64a8,8,0,0,0,11.32-11.32L67.31,88H208a8,8,0,0,0,0-16H67.31L85.66,53.66A8,8,0,0,0,74.34,42.34l-32,32a8,8,0,0,0,0,11.32Z"/></svg>',
+ } %}
+ 
+ {% set icon_markup %}

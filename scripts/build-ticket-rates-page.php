@@ -147,6 +147,7 @@ $add('drupal_india_connect.hero-split', 'Hero - Tickets & registration', [
   'primary_url' => $link($konfhub),
   'secondary_label' => 'Compare tickets',
   'secondary_url' => $link('#tickets'),
+  'secondary_icon' => 'arrows-left-right',
   'image' => $media('public://2026-08/54945363309_e8224e51e0_k.jpg'),
   'image_tag_title' => '28–30 January 2027',
   'image_tag_text' => 'IIT Bombay, Powai, Mumbai',
