@@ -164,6 +164,18 @@ that broke production deploys.
 blocked at the remote. That protects history on the branch itself; it has
 no bearing on when a deploy happens, since only a tag push does that.
 
+## Changelog
+
+[`CHANGELOG.md`](CHANGELOG.md) is a plain-language, day-by-day record of
+what changed on the site, written for the organising team. Claude writes it
+every night at 23:00 IST (`.github/workflows/changelog.yml`) from that day's
+commits on `main`, merged PRs, closed issues and the public
+[sitemap](https://drupalasia.org/sitemap.xml), and the bot commits it
+straight to `main`. Days with no activity are skipped.
+
+To write up a missed day, or redo one: Actions → **Daily changelog** → Run
+workflow, with the date. Re-running a date replaces that day's entry.
+
 ## Before going live
 
 Still outstanding:
