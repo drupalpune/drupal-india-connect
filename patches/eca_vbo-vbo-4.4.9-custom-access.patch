@@ -1,0 +1,14 @@
+--- a/src/Plugin/Action/VboExecute.php	2026-10-15 14:33:22
++++ b/src/Plugin/Action/VboExecute.php	2026-10-15 14:33:26
+@@ -152,7 +152,10 @@
+    * {@inheritdoc}
+    */
+   public static function customAccess(AccountInterface $account, ViewExecutable $view, ?array $definition = NULL, ?array $selected_data = NULL): bool {
+-    $event = new VboCustomAccessEvent($account, $view, parent::customAccess($account, $view), $definition, $selected_data);
++    // Views Bulk Operations 4.4.9 removed the parent customAccess(), which
++    // only ever returned TRUE; keep that as the default ECA models can deny.
++    // @see https://www.drupal.org/i/3630966
++    $event = new VboCustomAccessEvent($account, $view, TRUE, $definition, $selected_data);
+     \Drupal::service('event_dispatcher')->dispatch($event, EcaVboEvents::CUSTOM_ACCESS);
+     return $event->accessGranted;
+   }

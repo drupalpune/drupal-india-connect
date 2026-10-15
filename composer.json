@@ -131,6 +131,9 @@
     "extra": {
         "enable-patching": true,
         "patches": {
+            "drupal/eca_vbo": {
+                "Fix fatal 'Call to undefined method customAccess()' with Views Bulk Operations 4.4.9 (https://www.drupal.org/i/3630966)": "patches/eca_vbo-vbo-4.4.9-custom-access.patch"
+            },
             "drupal/event_horizon": {
                 "Allow WYSIWYG/rich-text description in Image card component (issue #37)": "patches/event_horizon-image-card-wysiwyg.patch",
                 "Add an 'Original (no crop)' aspect ratio to the Image component": "patches/event_horizon-image-original-ratio.patch",
