@@ -8,6 +8,18 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-10-15 (Thursday)
+
+### Changed on the site
+- The **Tickets & Rates** page was updated. ([page](https://drupalasia.org/ticket-rates-and-details))
+- Two session pages were updated, including "Terminal-First Drupal: Engineering Architecture with Claude Code Agents" and "Zero-Surprise Drupal: How AI-Powered Proactive Auditing Transformed TAM Workflows and Boosted Customer Retention". ([page](https://drupalasia.org/events/india-2027/sessions/terminal-first-drupal-engineering-architecture-claude-code-agents))
+
+### Merged, not live yet
+- The nightly changelog now includes public page changes from the site, and its publishing step was fixed so the finished entry is saved correctly. This affects only this changelog, not the website. ([#122](https://github.com/drupalpune/drupal-india-connect/pull/122) · [#123](https://github.com/drupalpune/drupal-india-connect/pull/123))
+
+### Needs attention
+- After the fix in #123 was merged, the Daily changelog needs to be re-run by hand from the Actions tab with the date 2026-10-15, since it could not be tested before merging. ([#123](https://github.com/drupalpune/drupal-india-connect/pull/123))
+
 ## 2026-10-14 (Wednesday)
 
 Live on the site: 1.3.9, 1.3.10, 1.3.11, 1.3.12, 1.3.13
