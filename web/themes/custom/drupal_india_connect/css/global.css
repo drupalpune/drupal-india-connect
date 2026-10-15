@@ -266,6 +266,30 @@
 }
 
 /*
+ * event_horizon jumps from one column straight to the full count at 700px.
+ * A column can't shrink below its longest word plus the card's 4rem padding,
+ * so between tablet and small laptop these rows ran off the right edge
+ * (homepage "Why attend", sponsor "Why support us") or clipped card titles
+ * (AI Summit domains). Four-up rows go two-up on tablets, and padded cards
+ * take half the padding until there is room for the full amount.
+ */
+@media (min-width: 700px) and (max-width: 999.98px) {
+  .eh-section .eh-section__grid.eh-section__grid--cols-25-25-25-25 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .eh-section__grid--cols-33-33-33 > .eh-group--padding-lg {
+    padding: var(--sp2);
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .eh-section__grid--cols-25-25-25-25 > .eh-group--padding-lg {
+    padding: var(--sp2);
+  }
+}
+
+/*
  * Section headings are uppercase in this system — display type is set in
  * caps by CSS, never typed that way (see the design system's content
  * fundamentals). Card titles (h3) stay sentence case.
