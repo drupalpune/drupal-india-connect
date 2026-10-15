@@ -3,12 +3,15 @@
 # changelog workflow. Claude reads the brief and writes the CHANGELOG.md entry;
 # it never calls git or gh itself.
 #
-# Usage: changelog-gather.sh YYYY-MM-DD OUTFILE
+# Usage: changelog-gather.sh YYYY-MM-DD OUTFILE [CONTENT_FILE]
+# CONTENT_FILE is the output of changelog-sitemap.py (public content changes
+# on the live site); omit it if unavailable.
 # Needs: git history of origin/main + tags, and `gh` authenticated (GH_TOKEN).
 set -euo pipefail
 
 DAY="$1"
 OUT="$2"
+CONTENT="${3:-}"
 REPO="${GITHUB_REPOSITORY:-drupalpune/drupal-india-connect}"
 START="${DAY}T00:00:00+05:30"
 END="$(TZ=Asia/Kolkata date -d "$DAY + 1 day" +%F 2>/dev/null || TZ=Asia/Kolkata date -j -v+1d -f %F "$DAY" +%F)T00:00:00+05:30"
@@ -59,10 +62,22 @@ END="$(TZ=Asia/Kolkata date -d "$DAY + 1 day" +%F 2>/dev/null || TZ=Asia/Kolkata
     if [ -n "$last" ]; then echo "Last comment:"; echo "$last"; fi
     echo
   done
+  echo
+
+  echo "## Content changes on the live site"
+  echo "From the public sitemap: pages NEW, UPDATED (edited that day) or REMOVED (no longer public)."
+  echo "Usually edits made in the CMS, so they have no commit. Says that a page changed, not what."
+  if [ -z "$CONTENT" ] || [ ! -f "$CONTENT" ]; then
+    echo "(Not available for this run.)"
+  elif [ -s "$CONTENT" ]; then
+    cat "$CONTENT"
+  else
+    echo "(None.)"
+  fi
 } > "$OUT"
 
 # Tell the workflow whether there is anything to write about.
-if grep -qE '^- [0-9a-f]{7,} \||^### (PR|Issue) #' "$OUT"; then
+if grep -qE '^- [0-9a-f]{7,} \||^### (PR|Issue) #|^- \[' "$OUT"; then
   echo "has_activity=true"
 else
   echo "has_activity=false"

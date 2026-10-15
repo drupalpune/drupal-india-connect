@@ -17,7 +17,7 @@ Live on the site: 1.3.9, 1.3.10, 1.3.11, 1.3.12, 1.3.13
 - "Save the date" in the orange top banner now opens Google Calendar with the event filled in. ([#100](https://github.com/drupalpune/drupal-india-connect/issues/100) · [#112](https://github.com/drupalpune/drupal-india-connect/pull/112))
 
 ### Changed on the site
-- **Tickets & Registration** page redesigned: hero photo, Early Bird countdown, simpler ticket layout and a centred FAQ. Early Bird now runs until 10 December 2026. ([page](https://drupalasia.org/ticket-rates-details) · [#111](https://github.com/drupalpune/drupal-india-connect/issues/111))
+- **Tickets & Registration** page redesigned: hero photo, Early Bird countdown, simpler ticket layout and a centred FAQ. Early Bird now runs until 10 December 2026. ([page](https://drupalasia.org/ticket-rates-and-details) · [#111](https://github.com/drupalpune/drupal-india-connect/issues/111))
 - **Meet the Team** is now **Meet the Organizers**. The old link redirects to the new one. ([page](https://drupalasia.org/meet-the-organizers) · [#120](https://github.com/drupalpune/drupal-india-connect/issues/120))
 - On phones, narrow sections (like the FAQs) now use the full screen width, so questions no longer wrap over several lines. ([#114](https://github.com/drupalpune/drupal-india-connect/pull/114))
 
