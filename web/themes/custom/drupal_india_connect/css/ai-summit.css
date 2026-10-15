@@ -1,0 +1,56 @@
+/**
+ * AI Summit pages (/ai-summit and everything under it).
+ *
+ * The summit is its own day within DrupalAsia Connect, so its pages swap the
+ * rationed orange for a teal from the sky family. Eyebrows, card accent
+ * rules, pills, the closing band and the announcement bar (which announces
+ * the summit on these pages) follow, because they all read the secondary
+ * ramp; the pale accent bands take the teal tint. Blue, navy, the site
+ * header and the footer stay as they are, so the pages still read as
+ * DrupalAsia Connect.
+ *
+ * The ramp is derived exactly as in tokens/colors.css. The steps are
+ * re-declared here because they are computed where they are declared
+ * (:root); changing only the hue on a descendant would not recompute them.
+ */
+.dac-ai-summit main,
+.dac-ai-summit .eh-announcement-bar {
+  --color--secondary-hue: 188;
+  --color--secondary-saturation: 85%;
+  --color--secondary-lightness: 40;
+  --color--secondary-30: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.36 * var(--color--secondary-lightness)))));
+  --color--secondary-40: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.24 * var(--color--secondary-lightness)))));
+  --color--secondary-50: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * var(--color--secondary-lightness)));
+  --color--secondary-60: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.24 * (100 - var(--color--secondary-lightness))))));
+  --color--secondary-80: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.85 * (100 - var(--color--secondary-lightness))))));
+  --secondary: var(--color--secondary-50);
+  --text-on-neutral-dark-secondary: var(--color--secondary-60);
+}
+
+.dac-ai-summit main .eh-section--bg-accent {
+  background-color: var(--color--secondary-80);
+}
+
+/*
+ * Display font. Headings, eyebrows and the summit bar set in Space Grotesk;
+ * body copy stays General Sans. Self-hosted (OFL, fonts/space-grotesk/), one
+ * variable file for weights 300–700, Latin only, and only loaded by pages
+ * that attach this library.
+ */
+@font-face {
+  font-family: space-grotesk;
+  src: url('../fonts/space-grotesk/space-grotesk-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.dac-ai-summit {
+  --font-summit-display: space-grotesk, var(--font-sans);
+}
+
+.dac-ai-summit main :is(h1, h2, h3, h4, h5, h6),
+.dac-ai-summit main .eh-eyebrow,
+.dac-ai-summit .eh-announcement-bar {
+  font-family: var(--font-summit-display);
+}

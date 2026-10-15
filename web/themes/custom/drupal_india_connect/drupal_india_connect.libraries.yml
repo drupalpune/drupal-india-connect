@@ -28,6 +28,12 @@ blog:
     theme:
       css/blog.css: {}
 
+ai-summit:
+  version: 1.x
+  css:
+    theme:
+      css/ai-summit.css: {}
+
 session-ratings:
   version: 1.x
   css:

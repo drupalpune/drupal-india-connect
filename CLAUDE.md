@@ -157,6 +157,15 @@ The same file measures the sticky header and publishes
 `.dac-anchor-target`. Without it, anchors land with the heading behind the
 header.
 
+## AI Summit pages are styled by URL
+
+Any page at `/ai-summit` or `/ai-summit/…` gets the summit look: teal in
+place of orange, Space Grotesk headings, and a summit announcement bar
+(`drupal_india_connect_preprocess_html()`/`_page()`, `css/ai-summit.css`).
+**Giving a page an `/ai-summit/` alias opts it in; moving it out drops
+the look.** The Canvas editor preview does not show it, only the rendered
+page does.
+
 ## Config
 
 `config/sync` had drifted 35 files from the database at one point, so a
