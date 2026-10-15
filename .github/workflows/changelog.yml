@@ -132,7 +132,12 @@ jobs:
               the same homepage.
             - "Behind the scenes" is for developer-only changes worth a mention (fixes
               to the deploy, restored config, docs). Leave out pure noise.
-            - "Merged, not live yet" lists commits marked UNRELEASED.
+            - "Merged, not live yet" lists commits marked UNRELEASED that change the
+              website. Changes that touch only GitHub workflows, scripts under
+              .github/ or this changelog take effect on merge, not on release: put
+              them in "Behind the scenes" (one short bullet at most) and never in
+              "Merged, not live yet" or "Needs attention". Steps in their PR
+              descriptions, like re-running this workflow, are not team tasks.
             - "Needs attention" is only for follow-ups the brief explicitly says a
               person must do (e.g. a manual step after deploy, a setting to change in
               another system). Do not invent tasks.
