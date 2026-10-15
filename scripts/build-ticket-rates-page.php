@@ -37,7 +37,7 @@ use Drupal\Component\Uuid\Php as UuidGen;
 $alias = '/ticket-rates-details-preview';
 $konfhub = 'https://konfhub.com/drupalasia-connect-india-2027';
 $checkout = fn(string $ticket_id) => "https://konfhub.com/checkout/drupalasia-connect-india-2027?ticketId={$ticket_id}%7C1%3B";
-$early_bird = 'Early Bird · until 10 December 2026, 11:59 PM IST or until sold out';
+$early_bird = 'Early Bird · until 15 November 2026, 11:59 PM IST or until sold out';
 
 $etm = \Drupal::entityTypeManager();
 $component_storage = $etm->getStorage('component');
@@ -153,9 +153,9 @@ $add('drupal_india_connect.hero-split', 'Hero - Tickets & registration', [
 ]);
 // Counts down to the Early Bird cutoff and swaps to the finished text after it.
 $add('drupal_india_connect.countdown', 'Countdown - Early Bird ends', [
-  'target' => '2026-12-10T23:59:00+05:30',
+  'target' => '2026-11-15T23:59:00+05:30',
   'eyebrow' => 'Early Bird ends',
-  'label' => '10 December 2026, 11:59 PM IST',
+  'label' => '15 November 2026, 11:59 PM IST',
   'finished_text' => 'Early Bird has ended. Check KonfHub for current prices.',
   'variant' => 'strip',
   'link_label' => 'See Early Bird tickets',
@@ -348,7 +348,7 @@ foreach ([
   ['Does my conference pass also include the AI Summit?', '<p>No. Choose AI Summit + Conference or Full Combo for both experiences. Conference Only and Conference + Networking do not include the AI Summit.</p>', FALSE],
   ['Are workshops included in the ticket price?', '<p>No. Workshops are booked separately and are not included in any ticket. Workshop booking details will be announced.</p>', TRUE],
   ['Is networking included with every ticket?', '<p>No. Networking is included with the Full Combo and Conference + Networking tickets. Check the ticket inclusions at checkout.</p>', FALSE],
-  ['When do Early Bird prices end?', '<p>Early Bird prices run until 10 December 2026, 11:59 PM IST, or until sold out. Check KonfHub for the current status.</p>', FALSE],
+  ['When do Early Bird prices end?', '<p>Early Bird prices run until 15 November 2026, 11:59 PM IST, or until sold out. Check KonfHub for the current status.</p>', FALSE],
   ['Where do I receive my ticket?', '<p>Registration and checkout are handled on <a href="' . $konfhub . '">KonfHub</a>. Use your correct attendee details and keep your registration confirmation for event check-in.</p>', FALSE],
   ['Where can I find travel, accommodation and venue information?', '<p>The <a href="/travel-and-stay">Travel &amp; Stay page</a> covers transport options, accommodation suggestions and visitor guidance. Room details and campus entry instructions will be published closer to the event.</p>', FALSE],
   ['Which event policies apply?', '<p>Every attendee agrees to the <a href="/code-of-conduct">Code of Conduct</a>. Refund and transfer terms will be published here once confirmed.</p>', TRUE],
