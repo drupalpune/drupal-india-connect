@@ -69,6 +69,22 @@ public**, when something failed between the stash and the pop. If a deploy
 fails partway, check `git stash list` on the server and `web/.htaccess`
 before assuming the site is still behind auth.
 
+## Daily changelog
+
+`.github/workflows/changelog.yml` has Claude write `CHANGELOG.md` at 23:00
+IST and **commits straight to `main` as `github-actions[bot]`**, so local
+`main` and open branches fall behind every night. Pull before you push.
+
+- Don't hand-edit `.github/changelog/sitemap-urls.txt`: it is the previous
+  night's sitemap URL list, used to detect new and removed pages.
+- `claude-code-action` **skips itself on a branch run** when the workflow file
+  differs from `main` ("Workflow validation failed"), and the run still shows
+  green. Changes to the prompt or that workflow can only be tested after
+  merging, with a manual run for a past date.
+- The action **revokes its GitHub token when its step ends**. Any later step
+  that pushes must use `github.token` (see the commit step), or it fails with
+  `Invalid username or token`.
+
 ## Design work
 
 The brand system is at `design-system/`, fronted by the
