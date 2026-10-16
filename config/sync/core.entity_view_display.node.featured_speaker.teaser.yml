@@ -7,8 +7,10 @@ dependencies:
     - field.field.node.featured_speaker.body
     - field.field.node.featured_speaker.field_badge
     - field.field.node.featured_speaker.field_cta_link
+    - field.field.node.featured_speaker.field_designation
     - field.field.node.featured_speaker.field_events
     - field.field.node.featured_speaker.field_image
+    - field.field.node.featured_speaker.field_speaker_account
     - field.field.node.featured_speaker.field_weight
     - image.style.featured_speaker
     - node.type.featured_speaker
@@ -61,6 +63,8 @@ content:
     weight: 0
     region: content
 hidden:
+  field_designation: true
   field_events: true
+  field_speaker_account: true
   field_weight: true
   links: true

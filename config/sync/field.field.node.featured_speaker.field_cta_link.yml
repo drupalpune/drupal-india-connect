@@ -13,8 +13,8 @@ id: node.featured_speaker.field_cta_link
 field_name: field_cta_link
 entity_type: node
 bundle: featured_speaker
-label: Link
-description: 'Link to session description or speaker'
+label: 'Profile links'
+description: 'Drupal.org, LinkedIn, X, Mastodon, YouTube, … one per line'
 required: false
 translatable: true
 default_value: {  }
