@@ -1,0 +1,105 @@
+/*
+ * Sponsor tile. The tile itself (border, rounded top-right corner,
+ * grayscale-to-colour logo, the primary rule wiping in on hover) is
+ * event_horizon's sponsor-teaser.css; this only fills the grid cell and adds
+ * the placeholder, the label and the featured layout.
+ */
+.dac-sponsor-logo,
+.dac-sponsor-logo .sponsor-teaser,
+.dac-sponsor-logo .sponsor-teaser__link,
+.dac-sponsor-logo .sponsor-teaser__first {
+  height: 100%;
+}
+
+.dac-sponsor-logo .sponsor-teaser__first {
+  align-content: start;
+  overflow: hidden;
+}
+
+.dac-sponsor-logo__img {
+  display: block;
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+}
+
+/* The striped placeholder fills the logo well instead of keeping its ratio. */
+.dac-sponsor-logo .eh-media-placeholder {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.dac-sponsor-logo .eh-media-placeholder__caption {
+  padding: var(--sp0-25) var(--sp0-5);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* No website: nothing to hover towards, so no wipe and no colour change. */
+div.sponsor-teaser__link .sponsor-teaser__first::after {
+  display: none;
+}
+
+/* What a standalone sponsor backs, e.g. "Lanyards". */
+.dac-sponsor-logo__tag {
+  margin: 0;
+  padding: var(--sp0-5) var(--sp1) var(--sp0-75);
+  border-top: solid 1px var(--color--sky-90);
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/*
+ * A row of two or three is wide enough that the 256:200 logo well gets very
+ * tall; flatten it.
+ */
+@container style(--md: true) {
+  .component-grid--columns-2 .dac-sponsor-logo .sponsor-teaser__img-wrapper {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+@container style(--lg: true) {
+  .component-grid--columns-3 .dac-sponsor-logo .sponsor-teaser__img-wrapper {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/*
+ * Featured: the logo in a white well beside the sponsor's name and
+ * description on sky-86, as sponsor-teaser does for the top tier of the
+ * sponsors view.
+ */
+.dac-sponsor-logo--featured .sponsor-teaser__link {
+  border-radius: 0 1rem 0 0;
+  background-color: var(--color--sky-86);
+
+  @container style(--md: true) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+}
+
+.dac-sponsor-logo__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp0-5);
+  padding: var(--grid-gap);
+  color: var(--color--night-5);
+  line-height: 1.55;
+}
+
+.dac-sponsor-logo__name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.15;
+}
+
+.dac-sponsor-logo__text {
+  margin: 0;
+}

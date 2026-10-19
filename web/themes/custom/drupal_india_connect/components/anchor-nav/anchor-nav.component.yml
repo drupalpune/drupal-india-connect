@@ -1,0 +1,77 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Jump links'
+description: 'A row of links to sections further down the same page, under a hairline rule, e.g. the sponsor tiers under the hero. Up to ten links; a link shows only when both its label and its anchor are filled in. Anchors are ids without the #, such as a Sponsor group''s Anchor.'
+group: 'Drupal Connect'
+props:
+  type: object
+  properties:
+    label:
+      title: 'Accessible name'
+      description: 'Read out by screen readers for this list of links.'
+      type: string
+      examples:
+        - 'On this page'
+    link_1_label:
+      title: 'Link 1 label'
+      type: string
+      examples:
+        - 'Diamond'
+    link_1_anchor:
+      title: 'Link 1 anchor'
+      type: string
+      examples:
+        - 'diamond'
+    link_2_label:
+      title: 'Link 2 label'
+      type: string
+    link_2_anchor:
+      title: 'Link 2 anchor'
+      type: string
+    link_3_label:
+      title: 'Link 3 label'
+      type: string
+    link_3_anchor:
+      title: 'Link 3 anchor'
+      type: string
+    link_4_label:
+      title: 'Link 4 label'
+      type: string
+    link_4_anchor:
+      title: 'Link 4 anchor'
+      type: string
+    link_5_label:
+      title: 'Link 5 label'
+      type: string
+    link_5_anchor:
+      title: 'Link 5 anchor'
+      type: string
+    link_6_label:
+      title: 'Link 6 label'
+      type: string
+    link_6_anchor:
+      title: 'Link 6 anchor'
+      type: string
+    link_7_label:
+      title: 'Link 7 label'
+      type: string
+    link_7_anchor:
+      title: 'Link 7 anchor'
+      type: string
+    link_8_label:
+      title: 'Link 8 label'
+      type: string
+    link_8_anchor:
+      title: 'Link 8 anchor'
+      type: string
+    link_9_label:
+      title: 'Link 9 label'
+      type: string
+    link_9_anchor:
+      title: 'Link 9 anchor'
+      type: string
+    link_10_label:
+      title: 'Link 10 label'
+      type: string
+    link_10_anchor:
+      title: 'Link 10 anchor'
+      type: string

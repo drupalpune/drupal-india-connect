@@ -1,0 +1,32 @@
+/*
+ * Same-page links: plain text on a hairline, not buttons. Hover follows the
+ * system's link convention (colour to primary, secondary underline).
+ */
+.dac-anchor-nav {
+  padding-block: var(--sp1-5) var(--sp3);
+  border-top: solid 1px var(--color--night-90);
+}
+
+.dac-anchor-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp0-5) var(--sp1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dac-anchor-nav__link {
+  color: var(--color--night-5);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color--primary-50);
+    text-decoration: underline;
+    text-decoration-color: var(--color--secondary-50);
+    text-underline-offset: 0.2em;
+  }
+}

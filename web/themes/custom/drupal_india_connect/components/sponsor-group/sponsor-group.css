@@ -1,0 +1,72 @@
+/*
+ * A sponsorship tier. The 3px rule on the heading is the system's card
+ * accent turned sideways; colours match the sponsor-tier cards on Become a
+ * Sponsor (sponsor-tier.css), plus navy for a tier above those packages.
+ */
+.dac-sponsor-group {
+  --sponsor-group-accent: var(--color--primary-50);
+
+  scroll-margin-top: calc(var(--dac-header-height, 0px) + var(--sp1));
+}
+
+.dac-sponsor-group--primary-60 {
+  --sponsor-group-accent: var(--color--primary-60);
+}
+
+.dac-sponsor-group--secondary {
+  --sponsor-group-accent: var(--color--secondary-50);
+}
+
+.dac-sponsor-group--navy {
+  --sponsor-group-accent: var(--neutral-dark);
+}
+
+.dac-sponsor-group--neutral {
+  --sponsor-group-accent: var(--color--night-50);
+}
+
+/* Consecutive groups in a section: more air than the section's grid gap. */
+.dac-sponsor-group + .dac-sponsor-group {
+  margin-top: var(--sp2);
+
+  @container style(--md: true) {
+    margin-top: var(--sp3);
+  }
+}
+
+.dac-sponsor-group__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp0-5) var(--sp1-5);
+  margin-bottom: var(--sp1-5);
+  padding-left: var(--sp1);
+  border-left: solid 3px var(--sponsor-group-accent);
+}
+
+.dac-sponsor-group__title {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.dac-sponsor-group__meta {
+  margin: 0 0 0 auto;
+  color: var(--color--night-30);
+  font-size: 0.9375rem;
+}
+
+/* Groups side by side in a Grid are already spaced by the grid's gap. */
+.component-grid > .dac-sponsor-group + .dac-sponsor-group {
+  margin-top: 0;
+}
+
+/* A single tile straight in the slot (no Grid) stays logo-sized. */
+.dac-sponsor-group__content > .dac-sponsor-logo:not(.dac-sponsor-logo--featured) {
+  max-width: 22rem;
+}

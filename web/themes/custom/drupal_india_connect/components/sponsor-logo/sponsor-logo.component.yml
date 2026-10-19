@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Sponsor logo'
+description: 'One sponsor tile, linked to the sponsor''s website: event_horizon''s sponsor tile (grayscale logo that colours on hover, one rounded corner, a blue rule wiping in), usable from Canvas. Without a logo it shows a striped "Sponsor logo" placeholder. An optional label names what a standalone sponsor backs ("Lanyards"). Featured sets the logo beside the sponsor''s name and description, for the top tier. Put tiles in a Grid inside a Sponsor group.'
+group: 'Drupal Connect'
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      title: 'Sponsor name'
+      description: 'Read out by screen readers, and shown beside the logo when Featured is on.'
+      type: string
+      examples:
+        - 'Sponsor name'
+    url:
+      title: 'Website'
+      description: 'Opens in a new tab. Leave empty for an unlinked tile.'
+      type: string
+      format: uri-reference
+      examples:
+        - 'https://www.thedroptimes.com/'
+    logo:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Logo
+      description: 'A transparent PNG or SVG on a light background. Leave empty to show the placeholder until the logo arrives.'
+      type: object
+    tag:
+      title: Label
+      description: 'Optional line under the logo naming what this sponsor backs, e.g. "Lanyards".'
+      type: string
+      examples:
+        - 'Lanyards'
+    description:
+      title: Description
+      description: 'One or two lines about the sponsor. Only shown when Featured is on.'
+      type: string
+      examples:
+        - 'What the sponsor does and why they back the Drupal community in Asia.'
+    featured:
+      title: Featured
+      description: 'Wide tile with the logo beside the name and description, for the top sponsorship tier.'
+      type: boolean
+      default: false
+libraryOverrides:
+  dependencies:
+    # The tile's own styles: event_horizon's sponsor-teaser CSS.
+    - core/components.event_horizon--sponsor-teaser
