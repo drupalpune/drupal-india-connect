@@ -1,0 +1,39 @@
+{#
+  Canvas-facing version of event_horizon's sponsor tile. Its sponsor-teaser
+  component is noUi (it is the sponsor node's teaser template), so this
+  repeats its markup and takes its CSS as a library dependency (see
+  libraryOverrides in the .component.yml). Added here: the placeholder, the
+  label, the featured layout, and a plain div when there is no website.
+#}
+{% set tag_name = url is not empty ? 'a' : 'div' %}
+
+<div class="dac-sponsor-logo{{ featured ? ' dac-sponsor-logo--featured' }}">
+  <article class="sponsor-teaser">
+    <{{ tag_name }} class="sponsor-teaser__link"{% if url is not empty %} href="{{ url }}" target="_blank" rel="noopener" aria-label="{{ name }}"{% endif %}>
+      <div class="sponsor-teaser__first">
+        <div class="sponsor-teaser__img-wrapper">
+          {% if logo.src is not empty %}
+            {% include 'canvas:image' ignore missing with {
+              src: logo.src,
+              alt: url is empty ? name : '',
+              class: 'dac-sponsor-logo__img',
+              width: logo.width,
+              height: logo.height,
+            } only %}
+          {% else %}
+            {% include 'drupal_india_connect:media-placeholder' with { caption: 'Sponsor logo'|t } only %}
+          {% endif %}
+        </div>
+        {% if not featured and tag is not empty %}
+          <p class="dac-sponsor-logo__tag">{{ tag }}</p>
+        {% endif %}
+      </div>
+      {% if featured %}
+        <div class="dac-sponsor-logo__body">
+          <p class="dac-sponsor-logo__name">{{ name }}</p>
+          {% if description is not empty %}<p class="dac-sponsor-logo__text">{{ description }}</p>{% endif %}
+        </div>
+      {% endif %}
+    </{{ tag_name }}>
+  </article>
+</div>

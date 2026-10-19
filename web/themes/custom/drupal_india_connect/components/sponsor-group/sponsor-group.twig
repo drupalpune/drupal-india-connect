@@ -1,0 +1,16 @@
+{#
+  A sponsorship tier: heading with an accent rule, then the slotted tiles.
+#}
+{% set accent_value = accent in ['primary-50', 'primary-60', 'secondary', 'navy', 'neutral'] ? accent : 'primary-50' %}
+
+<div class="dac-sponsor-group dac-sponsor-group--{{ accent_value }}"{% if anchor is not empty %} id="{{ anchor|clean_id }}"{% endif %}>
+  <div class="dac-sponsor-group__head">
+    <h3 class="dac-sponsor-group__title">{{ title }}</h3>
+    {% if meta is not empty %}
+      <p class="dac-sponsor-group__meta">{{ meta }}</p>
+    {% endif %}
+  </div>
+  <div class="dac-sponsor-group__content">
+    {% block content %}{% endblock %}
+  </div>
+</div>

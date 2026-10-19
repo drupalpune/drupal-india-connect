@@ -1,0 +1,22 @@
+{#
+  Same-page links. Numbered props rather than a list, because Canvas has no
+  repeatable prop (closing-cta's details work the same way).
+#}
+{% set links = [] %}
+{% for i in 1..10 %}
+  {% set link_label = attribute(_context, 'link_' ~ i ~ '_label') %}
+  {% set link_anchor = attribute(_context, 'link_' ~ i ~ '_anchor')|trim('#')|clean_id %}
+  {% if link_label is not empty and link_anchor is not empty %}
+    {% set links = links|merge([{ label: link_label, anchor: link_anchor }]) %}
+  {% endif %}
+{% endfor %}
+
+{% if links is not empty %}
+  <nav class="dac-anchor-nav" aria-label="{{ label|default('On this page'|t) }}">
+    <ul class="dac-anchor-nav__list">
+      {% for link in links %}
+        <li><a class="dac-anchor-nav__link" href="#{{ link.anchor }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

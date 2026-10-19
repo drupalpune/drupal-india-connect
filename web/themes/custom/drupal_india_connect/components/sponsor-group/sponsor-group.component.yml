@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Sponsor group'
+description: 'One sponsorship tier on a sponsors page: an uppercase heading with a coloured rule on its left, an optional note on the right ("Standalone"), and the tier''s Sponsor logo tiles (usually in a Grid) below. Accents follow the package cards on Become a Sponsor. Groups placed one after another are spaced apart. Anchor gives the group an id for #links.'
+group: 'Drupal Connect'
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      title: Heading
+      type: string
+      examples:
+        - 'Champion sponsors'
+    meta:
+      title: Note
+      description: 'Optional short note beside the heading, e.g. "Add-on to a core package".'
+      type: string
+      examples:
+        - 'Standalone'
+    accent:
+      title: Accent
+      description: 'Colour of the rule beside the heading. Navy is for a tier above the published packages; secondary (orange) for the Presenting tier.'
+      type: string
+      enum:
+        - primary-50
+        - primary-60
+        - secondary
+        - navy
+        - neutral
+      meta:enum:
+        primary-50: 'Blue'
+        primary-60: 'Light blue'
+        secondary: 'Orange'
+        navy: 'Navy'
+        neutral: 'Grey'
+      default: primary-50
+    anchor:
+      title: Anchor
+      description: 'Optional id without the #, e.g. "champion", so links can jump to this group.'
+      type: string
+      examples:
+        - 'champion'
+slots:
+  content:
+    title: Sponsors
+    description: 'Sponsor logo tiles, usually in a Grid.'
