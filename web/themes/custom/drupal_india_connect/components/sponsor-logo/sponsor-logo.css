@@ -1,6 +1,6 @@
 /*
- * Sponsor tile. The tile itself (border, rounded top-right corner,
- * grayscale-to-colour logo, the primary rule wiping in on hover) is
+ * Sponsor tile. The tile itself (border, rounded top-right corner, the
+ * primary rule wiping in on hover) is
  * event_horizon's sponsor-teaser.css; this only fills the grid cell and adds
  * the placeholder, the label and the featured layout.
  */
@@ -21,6 +21,15 @@
   width: 100%;
   max-width: 15rem;
   height: auto;
+}
+
+/*
+ * Logos stay in full colour. sponsor-teaser keeps them grayscale until
+ * hover, as the design system describes; this page shows sponsors in their
+ * own colours instead.
+ */
+.dac-sponsor-logo .sponsor-teaser__img-wrapper {
+  filter: none;
 }
 
 /* The striped placeholder fills the logo well instead of keeping its ratio. */
