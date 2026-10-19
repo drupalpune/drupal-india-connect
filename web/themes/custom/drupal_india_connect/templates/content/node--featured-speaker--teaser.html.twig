@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Featured Speaker teaser (views.view.featured_speakers).
+ *
+ * Overrides event_horizon's template only to pass the Media Library field
+ * (field_featured_image) as the image instead of the old field_image.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'featured-speaker',
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ include('event_horizon:featured-speaker', {
+  attributes,
+  title_suffix,
+  classes,
+  link: node.field_cta_link.0.url,
+  image: content.field_featured_image,
+  badge: content.field_badge,
+  title: label,
+  body: content.body,
+}, with_context = false) }}

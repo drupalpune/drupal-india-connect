@@ -8,14 +8,13 @@ dependencies:
     - field.field.node.featured_speaker.field_cta_link
     - field.field.node.featured_speaker.field_designation
     - field.field.node.featured_speaker.field_events
-    - field.field.node.featured_speaker.field_image
+    - field.field.node.featured_speaker.field_featured_image
     - field.field.node.featured_speaker.field_speaker_account
     - field.field.node.featured_speaker.field_weight
-    - image.style.thumbnail
     - node.type.featured_speaker
   module:
     - link
-    - svg_image
+    - media_library
     - text
 _core:
   default_config_hash: VB-QluBIt7RWI8xUjS3DBZTkHr83pTD1HOIPXgct9-k
@@ -68,13 +67,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_image:
-    type: image_image
+  field_featured_image:
+    type: media_library_widget
     weight: 0
     region: content
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      media_types: {  }
     third_party_settings: {  }
   field_speaker_account:
     type: entity_reference_autocomplete

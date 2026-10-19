@@ -8,13 +8,13 @@ dependencies:
     - field.field.node.featured_speaker.field_cta_link
     - field.field.node.featured_speaker.field_designation
     - field.field.node.featured_speaker.field_events
-    - field.field.node.featured_speaker.field_image
+    - field.field.node.featured_speaker.field_featured_image
     - field.field.node.featured_speaker.field_speaker_account
     - field.field.node.featured_speaker.field_weight
     - node.type.featured_speaker
   module:
     - link
-    - svg_image
+    - media
     - text
     - user
 _core:
@@ -59,8 +59,8 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_image:
-    type: image
+  field_featured_image:
+    type: media_thumbnail
     label: above
     settings:
       image_link: ''
