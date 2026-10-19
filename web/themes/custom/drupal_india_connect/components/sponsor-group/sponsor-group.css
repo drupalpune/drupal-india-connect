@@ -69,3 +69,12 @@
 .dac-sponsor-group__content > .dac-sponsor-logo:not(.dac-sponsor-logo--featured) {
   max-width: 22rem;
 }
+
+/*
+ * Sponsor sections set their heading in sentence case, overriding the
+ * uppercase section heading in global.css for these sections only.
+ */
+.eh-section:has(.dac-sponsor-group) h2.eh-heading {
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
