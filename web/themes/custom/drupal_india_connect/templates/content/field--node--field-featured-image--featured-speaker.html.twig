@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Featured Speaker image, rendered without field wrappers.
+ *
+ * event_horizon renders field_image bare (EventHorizonHooks::
+ * themeSuggestionsFieldAlter()); this keeps the same markup inside
+ * .featured-speaker__img now that the image is field_featured_image.
+ */
+#}
+{% include 'field--bare.html.twig' %}
