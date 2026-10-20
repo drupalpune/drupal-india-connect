@@ -8,6 +8,11 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-10-21 (Wednesday)
+
+### New on the site
+- A new session page was added: "Building Intelligent Public Infrastructure: Open Source, Drupal, and AI". ([page](https://drupalasia.org/ai-summit/building-intelligent-public-infrastructure))
+
 ## 2026-10-16 (Friday)
 
 ### New on the site
