@@ -47,6 +47,18 @@
 }
 
 /*
+ * Optional: a lone last item in a 2-column grid sits centred at one column's
+ * width rather than on the left.
+ */
+@container style(--sm: true) {
+  .component-grid--columns-2.component-grid--center-last > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - var(--grid-gap-px, 1.5rem)) / 2);
+  }
+}
+
+/*
  * Optional tablet override (500-999px). Last in the file so it wins over the
  * step-up above at the same specificity; from 1000px the full count applies.
  */
