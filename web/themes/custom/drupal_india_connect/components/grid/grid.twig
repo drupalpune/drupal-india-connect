@@ -3,6 +3,6 @@
 {% set gap_px = gap_value|replace({'px': '', ' ': ''}) %}
 {% set tablet = tablet_columns in ['1', '2'] ? tablet_columns : null %}
 
-<div class="component-grid component-grid--columns-{{ col_count }}{{ tablet ? ' component-grid--tablet-' ~ tablet }}" style="--grid-gap-px: {{ gap_px }}px;">
+<div class="component-grid component-grid--columns-{{ col_count }}{{ tablet ? ' component-grid--tablet-' ~ tablet }}{{ center_last_item ? ' component-grid--center-last' }}" style="--grid-gap-px: {{ gap_px }}px;">
   {% block grid_slot %}{% endblock %}
 </div>

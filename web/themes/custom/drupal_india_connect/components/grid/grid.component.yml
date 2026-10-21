@@ -48,6 +48,11 @@ props:
       default: auto
       examples:
         - auto
+    center_last_item:
+      type: boolean
+      title: 'Centre a lone last item'
+      description: 'Optional, 2-column grids. When the item count is odd, centre the last item on its row at the same width as the others, instead of leaving it on the left.'
+      default: false
 slots:
   grid_slot:
     title: 'Grid items'
