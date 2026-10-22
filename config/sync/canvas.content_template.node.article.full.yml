@@ -148,7 +148,7 @@ component_tree:
     component_id: sdc.drupal_india_connect.eyebrow
     component_version: bef84890528d49f7
     inputs:
-      text: 'Call for speakers'
+      text: Tickets
       tone: on-dark
   '2:main_slot:1:group_slot:1:5e0bd6ed-8b1d-4f37-973e-d9b2c8ab5c68':
     parent_uuid: a7f8ed6c-3daf-4281-adc6-4d836425312f
@@ -157,7 +157,7 @@ component_tree:
     component_id: sdc.event_horizon.heading
     component_version: 43155e852c0c459f
     inputs:
-      heading_text: 'The programme is yours to write'
+      heading_text: "Be part of what's next"
       level: 2
       text_size: heading-responsive-3xl
       text_color: default
@@ -171,7 +171,7 @@ component_tree:
     component_version: 16c79c28a4108f9b
     inputs:
       text:
-        value: '<p>Propose a 45-minute talk or a 20-minute lightning talk on any track. Accepted sessions receive a free ticket to the event.</p>'
+        value: '<p>Three days with the Drupal and open-source community: the AI Summit on 28 January, then the conference on 29–30 January 2027 at IIT Bombay, Mumbai.</p>'
         format: canvas_html_block
       text_size: text-lg
       text_color: default
@@ -194,9 +194,9 @@ component_tree:
     component_version: 0ca665b3987e81dd
     inputs:
       variant: primary-inverted
-      label: 'Submit a session'
+      label: 'Buy tickets'
       href:
-        uri: 'internal:/call-for-speaker-details'
+        uri: 'internal:/ticket-rates-and-details'
         options: {  }
       size: large
       icon: arrow-right
@@ -204,3 +204,4 @@ component_tree:
       icon_first: false
       disabled: false
 exposed_slots: {  }
+page_variant: null
