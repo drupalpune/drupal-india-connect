@@ -134,7 +134,8 @@
   line-height: 1.6;
 }
 
-.dac-blog > .view-content {
+.dac-blog > .view-content,
+.speaker-detail__sessions .view-content {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp1-5);
@@ -150,7 +151,8 @@
 }
 
 /* Each unformatted-list row is a grid cell; let the card fill it. */
-.dac-blog > .view-content > .views-row {
+.dac-blog > .view-content > .views-row,
+.speaker-detail__sessions .view-content > .views-row {
   display: flex;
 }
 

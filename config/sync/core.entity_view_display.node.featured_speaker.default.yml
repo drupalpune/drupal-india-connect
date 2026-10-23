@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.featured_speaker.field_featured_image
     - field.field.node.featured_speaker.field_speaker_account
     - field.field.node.featured_speaker.field_weight
+    - image.style.featured_speaker
     - node.type.featured_speaker
   module:
     - link
@@ -61,12 +62,12 @@ content:
     region: content
   field_featured_image:
     type: media_thumbnail
-    label: above
+    label: hidden
     settings:
       image_link: ''
-      image_style: ''
+      image_style: featured_speaker
       image_loading:
-        attribute: lazy
+        attribute: eager
     third_party_settings: {  }
     weight: 0
     region: content
