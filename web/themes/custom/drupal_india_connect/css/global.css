@@ -977,6 +977,91 @@ h2.eh-heading,
 }
 
 /*
+ * Reading column for the article body (#144). The title and body sit on
+ * a ~68-character measure, centred under the full-width featured image;
+ * the closing band (.eh-section--bg-black) keeps its own layout.
+ * Scoped to the body section, so editors never need spacing in CKEditor.
+ */
+.page-node-type-article .site-main .eh-section:not(.eh-section--bg-black) :is(.eh-heading, .eh-text) {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+.page-node-type-article .site-main .eh-section:not(.eh-section--bg-black) .eh-text {
+  line-height: 1.6;
+  text-wrap: pretty;
+
+  /* event_horizon gives paragraphs no margin, so consecutive ones ran together. */
+  & p {
+    margin-block: 0 var(--sp1-5);
+  }
+
+  /* More space above a heading than below, so it reads with its own section. */
+  & h2 {
+    margin-block: var(--sp3) var(--sp0-75);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  & h3 {
+    margin-block: var(--sp2) var(--sp0-5);
+    line-height: 1.3;
+  }
+
+  & :is(h2, h3) + :is(h2, h3) {
+    margin-top: 0;
+  }
+
+  & li {
+    margin-bottom: var(--sp0-5);
+  }
+
+  & li > p {
+    margin: 0;
+  }
+
+  /*
+   * Rich-text quotes follow the Blockquote component (eh-blockquote):
+   * italic pull-quote type, but with the system's 4px left rule in the
+   * primary colour instead of event_horizon's faded currentColor one.
+   */
+  & blockquote {
+    margin-block: var(--sp2);
+    margin-inline: 0;
+    padding-inline-start: var(--sp1-5);
+    border-inline-start: solid 4px var(--color--primary-50);
+    color: var(--color--primary-20);
+    opacity: 1;
+    font-size: 1.25rem;
+    line-height: 1.4;
+
+    @container style(--md: true) {
+      font-size: 1.5rem;
+    }
+  }
+
+  & blockquote p {
+    margin: 0;
+  }
+
+  & blockquote p + p {
+    margin-top: var(--sp0-75);
+  }
+
+  /*
+   * Optional lead paragraph: the "Lead" style in the CKEditor Styles
+   * dropdown (editor.editor.content_format). One step up, per the
+   * design system's "ledes go one step up".
+   */
+  & .dac-lead {
+    margin-bottom: var(--sp2);
+    color: var(--color--night-20);
+    font-size: 1.25em;
+    line-height: 1.5;
+  }
+}
+
+/*
  * Call-for-speakers band closing the article template: a full-bleed navy
  * section (`background_color: black`, re-pointed at the logo navy above)
  * whose content stays on the article's 80% column. Follows the
