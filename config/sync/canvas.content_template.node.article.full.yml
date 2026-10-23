@@ -70,7 +70,7 @@ component_tree:
       heading_text:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:article␝title␞␟value'
-      level: 3
+      level: 1
       text_size: heading-responsive-4xl
       text_color: default
       align: center
