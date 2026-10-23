@@ -1,0 +1,122 @@
+uuid: 809dcc71-c9cc-4f64-ade7-c01d6deefade
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.callout
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.people-card
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: panelpeopleinconvo
+label: 'Panel - People In Convo'
+component_tree:
+  '0:abb4ffe5-7739-43df-a7d1-65bfb1591610':
+    uuid: abb4ffe5-7739-43df-a7d1-65bfb1591610
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      background_color: accent
+      full_width: true
+      dark_background: false
+      section_header: true
+      section_footer: true
+    label: 'Section - The panel'
+  '0:footer_slot:0:ce7aab19-e5d7-4c3b-b911-f213df595352':
+    parent_uuid: abb4ffe5-7739-43df-a7d1-65bfb1591610
+    slot: footer_slot
+    uuid: ce7aab19-e5d7-4c3b-b911-f213df595352
+    component_id: sdc.drupal_india_connect.callout
+    component_version: c7293db71045c90a
+    inputs:
+      icon: users-three
+      heading: 'Panelists to be announced: four to five voices'
+      text: 'We’re shaping a balanced discussion with practitioners from different disciplines.'
+      note: 'Names and profiles will be added as participation is confirmed.'
+      style: dashed
+    label: 'Callout - Panelists to be announced'
+  '0:header_slot:0:d964d360-d8bc-4e69-8394-5fcc029e44a5':
+    parent_uuid: abb4ffe5-7739-43df-a7d1-65bfb1591610
+    slot: header_slot
+    uuid: d964d360-d8bc-4e69-8394-5fcc029e44a5
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - The panel header'
+  '0:header_slot:0:group_slot:0:f40e3419-d26a-4fba-b613-ceb400168c8f':
+    parent_uuid: d964d360-d8bc-4e69-8394-5fcc029e44a5
+    slot: group_slot
+    uuid: f40e3419-d26a-4fba-b613-ceb400168c8f
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'People in the conversation'
+      tone: accent
+    label: 'Eyebrow - People in the conversation'
+  '0:header_slot:0:group_slot:1:54a8509b-42a0-4028-9e98-ce2066dca033':
+    parent_uuid: d964d360-d8bc-4e69-8394-5fcc029e44a5
+    slot: group_slot
+    uuid: 54a8509b-42a0-4028-9e98-ce2066dca033
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'A cross-disciplinary panel'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - A cross-disciplinary panel'
+  '0:header_slot:0:group_slot:2:e5fb8ece-b573-4eb8-817c-574e09b70284':
+    parent_uuid: d964d360-d8bc-4e69-8394-5fcc029e44a5
+    slot: group_slot
+    uuid: e5fb8ece-b573-4eb8-817c-574e09b70284
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>We are bringing together perspectives from public infrastructure, open source, AI, and governance. Panelist announcements will follow.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - The panel intro'
+  '0:main_slot:0:616bbdbe-5ab4-4aef-81d6-8d8224ecf64c':
+    parent_uuid: abb4ffe5-7739-43df-a7d1-65bfb1591610
+    slot: main_slot
+    uuid: 616bbdbe-5ab4-4aef-81d6-8d8224ecf64c
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 5cf8b99c3d91d7f9
+    inputs:
+      columns: 3
+      gap: '24'
+    label: 'Grid - Panel'
+  '0:main_slot:0:grid_slot:0:d5f3fb88-d58d-4e89-a7a3-ab4caefc0707':
+    parent_uuid: 616bbdbe-5ab4-4aef-81d6-8d8224ecf64c
+    slot: grid_slot
+    uuid: d5f3fb88-d58d-4e89-a7a3-ab4caefc0707
+    component_id: sdc.drupal_india_connect.people-card
+    component_version: 272b7f6899181813
+    inputs:
+      name: 'Piyuesh Kumar'
+      designation: 'Moderator · QED42'
+      description:
+        value: '<p>Guiding a practical conversation across technology, public systems, and citizen experience.</p>'
+        format: canvas_html_block
+    label: 'People card - Piyuesh Kumar'

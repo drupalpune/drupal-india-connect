@@ -69,6 +69,17 @@ public**, when something failed between the stash and the pop. If a deploy
 fails partway, check `git stash list` on the server and `web/.htaccess`
 before assuming the site is still behind auth.
 
+The server's PHP 8.4 CLI has **`proc_open` disabled** (account-level PHP
+selector ini). Composer's scaffold step and `drush sql:dump` both need it
+and fail with "The Process class relies on proc_open". The deploy and the
+db-sync skill run those two as `php -d disable_functions= …`; do the same
+for any other server command that shells out.
+
+**Before tagging, check live for config that exists only there**
+(`config:status` on the server, or after a `db-sync-from-live`). Editors
+create Canvas patterns and edit settings like `system.maintenance` on live,
+and the deploy's `cim` deletes or reverts anything not in `config/sync`.
+
 ## Daily changelog
 
 `.github/workflows/changelog.yml` has Claude write `CHANGELOG.md` at 23:00

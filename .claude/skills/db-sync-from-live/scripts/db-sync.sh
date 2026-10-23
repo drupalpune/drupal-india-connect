@@ -87,12 +87,18 @@ fi
 
 # --- 4. Dump the remote DB into a throwaway temp dir, never the site's own backups folder. ---
 
+# sql:dump starts mysqldump through proc_open, which shared hosts often list
+# in disable_functions (this one does, via the account's PHP selector ini).
+# Drush then fails with "Call to a member function command() on null".
+# `-d disable_functions=` lifts that for this one CLI run only. If the dump
+# fails, the trap still removes the temp dir so nothing is left behind.
 log "Dumping remote database"
 ssh "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<EOF
 set -euo pipefail
 mkdir -p '$REMOTE_TMP_DIR'
+trap '[ -s "$REMOTE_TMP_DIR/dump.sql.gz" ] || rm -rf "$REMOTE_TMP_DIR"' EXIT
 cd '$REMOTE_APP_PATH'
-PATH=\$(dirname '$remote_php'):\$PATH vendor/bin/drush sql:dump --gzip --result-file='$REMOTE_TMP_DIR/dump.sql'
+PATH=\$(dirname '$remote_php'):\$PATH '$remote_php' -d disable_functions= vendor/bin/drush.php sql:dump --gzip --result-file='$REMOTE_TMP_DIR/dump.sql'
 EOF
 
 log "Downloading dump"

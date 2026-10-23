@@ -1,0 +1,163 @@
+uuid: 283eee12-dfcc-43ad-b910-83c794d5bbfd
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.data-table
+    - canvas.component.sdc.drupal_india_connect.data-table-row
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: panelformatday2
+label: 'Panel format - Day 2 '
+component_tree:
+  '0:35e1d533-0822-47f2-8e28-369e4f546591':
+    uuid: 35e1d533-0822-47f2-8e28-369e4f546591
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      background_color: accent
+      full_width: true
+      dark_background: false
+      section_header: true
+      section_footer: false
+    label: 'Section - The format'
+  '0:header_slot:0:dc7dfe23-3963-41fb-9a6e-e4614bb033e4':
+    parent_uuid: 35e1d533-0822-47f2-8e28-369e4f546591
+    slot: header_slot
+    uuid: dc7dfe23-3963-41fb-9a6e-e4614bb033e4
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - The format header'
+  '0:header_slot:0:group_slot:0:52f716b6-4c01-4ee5-84e0-9cac27888706':
+    parent_uuid: dc7dfe23-3963-41fb-9a6e-e4614bb033e4
+    slot: group_slot
+    uuid: 52f716b6-4c01-4ee5-84e0-9cac27888706
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'The format'
+      tone: accent
+    label: 'Eyebrow - The format'
+  '0:header_slot:0:group_slot:1:1ce327fd-dd33-4c7e-9236-e4eb239b7d54':
+    parent_uuid: dc7dfe23-3963-41fb-9a6e-e4614bb033e4
+    slot: group_slot
+    uuid: 1ce327fd-dd33-4c7e-9236-e4eb239b7d54
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: '60 minutes of conversation'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - 60 minutes of conversation'
+  '0:header_slot:0:group_slot:2:9ba8aa89-2a41-4805-a40e-6b6c10a78780':
+    parent_uuid: dc7dfe23-3963-41fb-9a6e-e4614bb033e4
+    slot: group_slot
+    uuid: 9ba8aa89-2a41-4805-a40e-6b6c10a78780
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Designed as an interactive panel with space for the audience to join the discussion. The sequence may be refined with the moderator and panellists.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - The format intro'
+  '0:main_slot:0:469202c0-2b09-4087-90dd-a8d00a33f94b':
+    parent_uuid: 35e1d533-0822-47f2-8e28-369e4f546591
+    slot: main_slot
+    uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    component_id: sdc.drupal_india_connect.data-table
+    component_version: 3798e3fb6fffe3c1
+    inputs:
+      caption: 'Running order of the 60-minute panel'
+      column_1: Time
+      column_2: Segment
+      column_3: 'What we will discuss'
+    label: 'Data table - Running order'
+  '0:main_slot:0:rows:0:f89aa26e-bbd1-4040-9892-49200ccf206e':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: f89aa26e-bbd1-4040-9892-49200ccf206e
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '00–05 min'
+      cell_2: 'Setting the scene'
+      cell_3: 'What is changing in Drupal, and why does it matter now?'
+    label: 'Row - 00–05 min Setting the scene'
+  '0:main_slot:0:rows:1:ed59a574-c197-44b9-a8be-b57bf9832daf':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: ed59a574-c197-44b9-a8be-b57bf9832daf
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '05–18 min'
+      cell_2: 'The platform and the product'
+      cell_3: 'Drupal Core, Drupal CMS and architectural priorities.'
+    label: 'Row - 05–18 min The platform and the product'
+  '0:main_slot:0:rows:2:bf3f8aa0-09ed-4345-ac1d-2e60b4b141a2':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: bf3f8aa0-09ed-4345-ac1d-2e60b4b141a2
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '18–33 min'
+      cell_2: 'The next wave of experience building'
+      cell_3: 'Site building, AI and changing developer workflows.'
+    label: 'Row - 18–33 min The next wave of experience building'
+  '0:main_slot:0:rows:3:f33ef10e-2436-410a-b3b6-fe3c41239cf3':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: f33ef10e-2436-410a-b3b6-fe3c41239cf3
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '33–45 min'
+      cell_2: 'Adoption and the community'
+      cell_3: 'What Drupal needs to preserve, improve and rethink.'
+    label: 'Row - 33–45 min Adoption and the community'
+  '0:main_slot:0:rows:4:630bd079-d6b9-49e0-bcf0-aa1df91ec7ae':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: 630bd079-d6b9-49e0-bcf0-aa1df91ec7ae
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '45–55 min'
+      cell_2: 'Your questions'
+      cell_3: 'Audience Q&A with the panellists.'
+    label: 'Row - 45–55 min Your questions'
+  '0:main_slot:0:rows:5:40e83aa5-12d3-4bea-b474-e0393cef6b6e':
+    parent_uuid: 469202c0-2b09-4087-90dd-a8d00a33f94b
+    slot: rows
+    uuid: 40e83aa5-12d3-4bea-b474-e0393cef6b6e
+    component_id: sdc.drupal_india_connect.data-table-row
+    component_version: 6349a20715252840
+    inputs:
+      cell_1: '55–60 min'
+      cell_2: 'What comes next?'
+      cell_3: 'One prediction and one invitation to the community from each panellist.'
+    label: 'Row - 55–60 min What comes next?'
