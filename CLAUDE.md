@@ -70,10 +70,13 @@ fails partway, check `git stash list` on the server and `web/.htaccess`
 before assuming the site is still behind auth.
 
 The server's PHP 8.4 CLI has **`proc_open` disabled** (account-level PHP
-selector ini). Composer's scaffold step and `drush sql:dump` both need it
-and fail with "The Process class relies on proc_open". The deploy and the
-db-sync skill run those two as `php -d disable_functions= …`; do the same
-for any other server command that shells out.
+selector ini). Composer's scaffold step and most drush commands (`sql:dump`,
+`updb`, which runs its batch in a child drush) need it and fail with "The
+Process class relies on proc_open". The deploy wraps every composer/drush
+call as `php -d disable_functions= …`; do the same for anything you run
+there by hand. Test such changes locally by putting
+`disable_functions=proc_open` in an ini on `PHP_INI_SCAN_DIR`, so child
+processes are restricted as on the server.
 
 **Before tagging, check live for config that exists only there**
 (`config:status` on the server, or after a `db-sync-from-live`). Editors
