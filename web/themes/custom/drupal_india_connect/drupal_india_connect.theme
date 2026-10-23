@@ -448,12 +448,17 @@ function _drupal_india_connect_term_listing(array &$variables): void {
  *
  * On the homepage the latest-posts block sits under the section's own
  * <h2>, so its card titles drop to <h3>; /blogs has only the page <h1>
- * above them and keeps <h2>. The level is part of the render cache key so
- * the two variants of a card are cached separately.
+ * above them and keeps <h2>. The same goes for the session cards under the
+ * Featured Speaker page's "Sessions" heading. The level is part of the
+ * render cache key so the two variants of a card are cached separately.
  */
 function drupal_india_connect_preprocess_views_view_unformatted(array &$variables) {
   $view = $variables['view'];
-  if ($view->id() !== 'blog' || $view->current_display !== 'block_latest') {
+  $h3_displays = [
+    'blog' => 'block_latest',
+    'sessions_by_speaker' => 'embed_speaker_page',
+  ];
+  if (($h3_displays[$view->id()] ?? NULL) !== $view->current_display) {
     return;
   }
   foreach ($variables['rows'] as &$row) {
@@ -486,6 +491,11 @@ function drupal_india_connect_preprocess_node(array &$variables) {
 
   if ($node->bundle() === 'session' && $variables['view_mode'] === 'card') {
     _drupal_india_connect_session_card($variables);
+    return;
+  }
+
+  if ($node->bundle() === 'featured_speaker' && $variables['view_mode'] === 'full') {
+    _drupal_india_connect_featured_speaker($variables);
     return;
   }
 
@@ -765,6 +775,67 @@ function drupal_india_connect_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates/content',
     ],
   ];
+}
+
+/**
+ * Variables for node--featured-speaker--full.html.twig.
+ *
+ * - speaker_links: the profile links (field_cta_link), each with a label
+ *   and an icon picked from the link's domain.
+ * - speaker_bio: the linked account's field_bio, only when the node's own
+ *   body is empty.
+ * - speaker_sessions: the account's sessions as cards
+ *   (views.view.sessions_by_speaker, embed_speaker_page). The template
+ *   renders it and skips the section when it comes back empty, so the
+ *   view's cache tags still bubble when a first session is added.
+ */
+function _drupal_india_connect_featured_speaker(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  // Host => [icon, label]. Mastodon has no single host, so it is matched
+  // separately below. `drupal` is the custom drop in the template, not a
+  // Phosphor icon.
+  $known = [
+    'drupal.org' => ['drupal', 'Drupal.org'],
+    'linkedin.com' => ['linkedin-logo', 'LinkedIn'],
+    'x.com' => ['x-logo', 'X'],
+    'twitter.com' => ['x-logo', 'X'],
+    'youtube.com' => ['youtube-logo', 'YouTube'],
+    'youtu.be' => ['youtube-logo', 'YouTube'],
+  ];
+  $links = [];
+  foreach ($node->get('field_cta_link') as $item) {
+    $url = $item->getUrl();
+    if (!$url->isExternal()) {
+      continue;
+    }
+    $href = $url->toString();
+    $host = preg_replace('/^www\./', '', (string) parse_url($href, PHP_URL_HOST));
+    [$icon, $label] = $known[$host] ?? (str_contains($host, 'mastodon') || str_starts_with((string) parse_url($href, PHP_URL_PATH), '/@')
+      ? ['mastodon-logo', 'Mastodon']
+      : ['arrow-right', $host]);
+    $links[] = [
+      'url' => $href,
+      'label' => $item->title ?: $label,
+      'icon' => $icon,
+    ];
+  }
+  $variables['speaker_links'] = $links;
+
+  $account = $node->get('field_speaker_account')->entity;
+  if (!$account) {
+    return;
+  }
+
+  if ($node->get('body')->isEmpty() && $account->hasField('field_bio') && !$account->get('field_bio')->isEmpty()) {
+    $variables['speaker_bio'] = $account->get('field_bio')->view(['label' => 'hidden']);
+  }
+
+  $view = \Drupal\views\Views::getView('sessions_by_speaker');
+  if ($view && $view->access('embed_speaker_page')) {
+    $variables['speaker_sessions'] = $view->buildRenderable('embed_speaker_page', [$account->id()]);
+  }
 }
 
 /**

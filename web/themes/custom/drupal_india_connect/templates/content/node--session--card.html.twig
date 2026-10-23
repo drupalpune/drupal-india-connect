@@ -2,7 +2,9 @@
 /**
  * @file
  * Session in the "card" view mode, as listed on session tag pages
- * (views.view.taxonomy_term, /taxonomy/term/N).
+ * (views.view.taxonomy_term, /taxonomy/term/N) and on Featured Speaker
+ * pages (views.view.sessions_by_speaker). The title level comes from
+ * drupal_india_connect_preprocess_views_view_unformatted(): h2 by default.
  *
  * Sessions have no card display of their own, so without this template the
  * view fell back to the full default display: no title, the whole
@@ -21,9 +23,9 @@
     {% endif %}
 
     {{ title_prefix }}
-    <h2{{ title_attributes.addClass('dac-post-card__title') }}>
+    <h{{ heading_level }}{{ title_attributes.addClass('dac-post-card__title') }}>
       <a href="{{ url }}" class="dac-post-card__link" rel="bookmark">{{ label }}</a>
-    </h2>
+    </h{{ heading_level }}>
     {{ title_suffix }}
 
     {% if session_card.excerpt %}
