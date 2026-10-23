@@ -1053,6 +1053,19 @@ h2.eh-heading,
    * dropdown (editor.editor.content_format). One step up, per the
    * design system's "ledes go one step up".
    */
+  /*
+   * Section label above a heading: the "Eyebrow" style in CKEditor, which
+   * applies the Eyebrow component's own classes (eh-eyebrow--accent). It
+   * takes the heading's space above, and the heading tucks under it.
+   */
+  & .eh-eyebrow {
+    margin-block: var(--sp3) var(--sp0-5);
+  }
+
+  & .eh-eyebrow + :is(h2, h3) {
+    margin-top: 0;
+  }
+
   & .dac-lead {
     margin-bottom: var(--sp2);
     color: var(--color--night-20);

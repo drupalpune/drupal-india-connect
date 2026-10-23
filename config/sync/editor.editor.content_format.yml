@@ -57,6 +57,9 @@ settings:
         -
           label: Lead
           element: '<p class="dac-lead">'
+        -
+          label: Eyebrow
+          element: '<p class="eh-eyebrow eh-eyebrow--accent">'
     linkit_extension:
       linkit_enabled: true
       linkit_profile: default
