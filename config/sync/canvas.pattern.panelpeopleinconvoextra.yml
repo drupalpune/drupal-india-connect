@@ -1,0 +1,378 @@
+uuid: ec4cd992-ec12-4a48-b045-4d6a3c22e23c
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.drupal_india_connect.grid
+    - canvas.component.sdc.drupal_india_connect.info-card
+    - canvas.component.sdc.drupal_india_connect.media-placeholder
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: panelpeopleinconvoextra
+label: 'Panel - People in Convo - Extra'
+component_tree:
+  '0:c9b81337-8d69-404a-b6ce-3642458bd8b8':
+    uuid: c9b81337-8d69-404a-b6ce-3642458bd8b8
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 100%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      full_width: true
+      dark_background: false
+      section_header: true
+      section_footer: true
+    label: 'Section - On the stage'
+  '0:footer_slot:0:a576fd3e-895c-4586-b5cb-f257af25c353':
+    parent_uuid: c9b81337-8d69-404a-b6ce-3642458bd8b8
+    slot: footer_slot
+    uuid: a576fd3e-895c-4586-b5cb-f257af25c353
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: md
+      items_align: start
+      flex_align: start
+    label: 'Group - Moderator'
+  '0:footer_slot:0:group_slot:0:81fc5dbb-2713-4fc4-8a60-49daa4819cac':
+    parent_uuid: a576fd3e-895c-4586-b5cb-f257af25c353
+    slot: group_slot
+    uuid: 81fc5dbb-2713-4fc4-8a60-49daa4819cac
+    component_id: sdc.drupal_india_connect.info-card
+    component_version: cb76a79b379f790b
+    inputs:
+      pill: 'Proposed moderator'
+      title: 'Saheel Sikilkar'
+      body:
+        value: '<p>Proposed to guide the conversation and audience Q&amp;A. Moderator participation is subject to confirmation.</p>'
+        format: canvas_html_block
+      tbc: false
+      accent: secondary
+      plain: false
+    label: 'Info card - Saheel Sikilkar (proposed moderator)'
+  '0:footer_slot:0:group_slot:1:14e76363-e98d-4564-a212-e420f12bc0ff':
+    parent_uuid: a576fd3e-895c-4586-b5cb-f257af25c353
+    slot: group_slot
+    uuid: 14e76363-e98d-4564-a212-e420f12bc0ff
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Speaker names and affiliations will be added after participation is confirmed. The four panel positions shown above are placeholders, not confirmed bookings.</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Placeholder note'
+  '0:header_slot:0:0475d38b-1158-4a1f-b8fd-fdac4b4c2b90':
+    parent_uuid: c9b81337-8d69-404a-b6ce-3642458bd8b8
+    slot: header_slot
+    uuid: 0475d38b-1158-4a1f-b8fd-fdac4b4c2b90
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - On the stage header'
+  '0:header_slot:0:group_slot:0:623a15bf-4335-429c-be96-1f733be50660':
+    parent_uuid: 0475d38b-1158-4a1f-b8fd-fdac4b4c2b90
+    slot: group_slot
+    uuid: 623a15bf-4335-429c-be96-1f733be50660
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: bef84890528d49f7
+    inputs:
+      text: 'On the stage'
+      tone: accent
+    label: 'Eyebrow - On the stage'
+  '0:header_slot:0:group_slot:1:c8507df0-18e6-4233-a160-34705d524fa6':
+    parent_uuid: 0475d38b-1158-4a1f-b8fd-fdac4b4c2b90
+    slot: group_slot
+    uuid: c8507df0-18e6-4233-a160-34705d524fa6
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Meet the conversation'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - Meet the conversation'
+  '0:header_slot:0:group_slot:2:a3d9fe80-9a0f-4fd7-93e1-5681c7f59aee':
+    parent_uuid: 0475d38b-1158-4a1f-b8fd-fdac4b4c2b90
+    slot: group_slot
+    uuid: a3d9fe80-9a0f-4fd7-93e1-5681c7f59aee
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>Four to five panelists will bring complementary perspectives from across the Drupal ecosystem. The panelist lineup is being curated and will be announced once confirmed.</p>'
+        format: canvas_html_block
+      text_size: text-lg
+      text_color: default
+    label: 'Text - On the stage intro'
+  '0:main_slot:0:a23b7f0f-6c10-46f2-994e-ad521518b16e':
+    parent_uuid: c9b81337-8d69-404a-b6ce-3642458bd8b8
+    slot: main_slot
+    uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    component_id: sdc.drupal_india_connect.grid
+    component_version: 5cf8b99c3d91d7f9
+    inputs:
+      columns: 5
+      gap: '24'
+      tablet_columns: '2'
+      center_last_item: false
+    label: 'Grid - Panellists'
+  '0:main_slot:0:grid_slot:0:315ba978-a742-442d-bfc0-42b4c6a099bf':
+    parent_uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    slot: grid_slot
+    uuid: 315ba978-a742-442d-bfc0-42b4c6a099bf
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Panellist 01'
+  '0:main_slot:0:grid_slot:0:group_slot:0:2eaf89dc-8af5-40c0-b9c9-c8318472f5cf':
+    parent_uuid: 315ba978-a742-442d-bfc0-42b4c6a099bf
+    slot: group_slot
+    uuid: 2eaf89dc-8af5-40c0-b9c9-c8318472f5cf
+    component_id: sdc.drupal_india_connect.media-placeholder
+    component_version: 19a4cf2688997f30
+    inputs:
+      caption: 'Portrait to follow'
+      ratio: '4:3'
+    label: 'Placeholder - Panellist 01 portrait'
+  '0:main_slot:0:grid_slot:0:group_slot:1:235ba535-21ea-4787-8fbd-4db73b45b38b':
+    parent_uuid: 315ba978-a742-442d-bfc0-42b4c6a099bf
+    slot: group_slot
+    uuid: 235ba535-21ea-4787-8fbd-4db73b45b38b
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Panellist 01 - Core'
+      level: 3
+      text_size: heading-responsive-lg
+      text_color: default
+      align: left
+    label: 'Heading - Panellist 01'
+  '0:main_slot:0:grid_slot:0:group_slot:2:481e2bff-fd19-4ac6-ab9a-9428d76fd90a':
+    parent_uuid: 315ba978-a742-442d-bfc0-42b4c6a099bf
+    slot: group_slot
+    uuid: 481e2bff-fd19-4ac6-ab9a-9428d76fd90a
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>To be announced</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Panellist 01 to be announced'
+  '0:main_slot:0:grid_slot:1:e887bee9-c404-460d-a4f2-929b5f8acf22':
+    parent_uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    slot: grid_slot
+    uuid: e887bee9-c404-460d-a4f2-929b5f8acf22
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Panellist 01'
+  '0:main_slot:0:grid_slot:1:group_slot:0:2c16e242-8854-4df2-9565-21da316f6888':
+    parent_uuid: e887bee9-c404-460d-a4f2-929b5f8acf22
+    slot: group_slot
+    uuid: 2c16e242-8854-4df2-9565-21da316f6888
+    component_id: sdc.drupal_india_connect.media-placeholder
+    component_version: 19a4cf2688997f30
+    inputs:
+      caption: 'Portrait to follow'
+      ratio: '4:3'
+    label: 'Placeholder - Panellist 01 portrait'
+  '0:main_slot:0:grid_slot:1:group_slot:1:c4ac8181-b184-4ae8-b8ba-208da89ea8ca':
+    parent_uuid: e887bee9-c404-460d-a4f2-929b5f8acf22
+    slot: group_slot
+    uuid: c4ac8181-b184-4ae8-b8ba-208da89ea8ca
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Panellist 02 - Experience building'
+      level: 3
+      text_size: heading-responsive-lg
+      text_color: default
+      align: left
+    label: 'Heading - Panellist 01'
+  '0:main_slot:0:grid_slot:1:group_slot:2:89c2f091-4430-46ff-b137-b16ccc9a8b11':
+    parent_uuid: e887bee9-c404-460d-a4f2-929b5f8acf22
+    slot: group_slot
+    uuid: 89c2f091-4430-46ff-b137-b16ccc9a8b11
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>To be announced</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Panellist 01 to be announced'
+  '0:main_slot:0:grid_slot:2:b84de8bf-e6d0-4708-b3d1-ceb970a46cfa':
+    parent_uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    slot: grid_slot
+    uuid: b84de8bf-e6d0-4708-b3d1-ceb970a46cfa
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Panellist 02'
+  '0:main_slot:0:grid_slot:2:group_slot:0:cc5529bb-1e28-4659-973e-c8c90714bcdb':
+    parent_uuid: b84de8bf-e6d0-4708-b3d1-ceb970a46cfa
+    slot: group_slot
+    uuid: cc5529bb-1e28-4659-973e-c8c90714bcdb
+    component_id: sdc.drupal_india_connect.media-placeholder
+    component_version: 19a4cf2688997f30
+    inputs:
+      caption: 'Portrait to follow'
+      ratio: '4:3'
+    label: 'Placeholder - Panellist 02 portrait'
+  '0:main_slot:0:grid_slot:2:group_slot:1:57087e35-67b5-44b2-97cb-2487b57c0c2b':
+    parent_uuid: b84de8bf-e6d0-4708-b3d1-ceb970a46cfa
+    slot: group_slot
+    uuid: 57087e35-67b5-44b2-97cb-2487b57c0c2b
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Panellist 03 - Drupal AI'
+      level: 3
+      text_size: heading-responsive-lg
+      text_color: default
+      align: left
+    label: 'Heading - Panellist 02'
+  '0:main_slot:0:grid_slot:2:group_slot:2:6a5cdb39-e249-4c0b-984e-8c3e10737487':
+    parent_uuid: b84de8bf-e6d0-4708-b3d1-ceb970a46cfa
+    slot: group_slot
+    uuid: 6a5cdb39-e249-4c0b-984e-8c3e10737487
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>To be announced</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Panellist 02 to be announced'
+  '0:main_slot:0:grid_slot:3:fd253a0d-e910-457c-b1e8-796178340690':
+    parent_uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    slot: grid_slot
+    uuid: fd253a0d-e910-457c-b1e8-796178340690
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Panellist 03'
+  '0:main_slot:0:grid_slot:3:group_slot:0:897ba66a-5782-46b6-be5b-451d1fff4e3b':
+    parent_uuid: fd253a0d-e910-457c-b1e8-796178340690
+    slot: group_slot
+    uuid: 897ba66a-5782-46b6-be5b-451d1fff4e3b
+    component_id: sdc.drupal_india_connect.media-placeholder
+    component_version: 19a4cf2688997f30
+    inputs:
+      caption: 'Portrait to follow'
+      ratio: '4:3'
+    label: 'Placeholder - Panellist 03 portrait'
+  '0:main_slot:0:grid_slot:3:group_slot:1:f7affc1f-1d91-4a52-bd4b-1353d974b45b':
+    parent_uuid: fd253a0d-e910-457c-b1e8-796178340690
+    slot: group_slot
+    uuid: f7affc1f-1d91-4a52-bd4b-1353d974b45b
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Panellist 04 - Product strategy and adoption'
+      level: 3
+      text_size: heading-responsive-lg
+      text_color: default
+      align: left
+    label: 'Heading - Panellist 03'
+  '0:main_slot:0:grid_slot:3:group_slot:2:f018a4dc-a1f6-42a8-bb0e-9d31005352ca':
+    parent_uuid: fd253a0d-e910-457c-b1e8-796178340690
+    slot: group_slot
+    uuid: f018a4dc-a1f6-42a8-bb0e-9d31005352ca
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>To be announced</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Panellist 03 to be announced'
+  '0:main_slot:0:grid_slot:4:b29a762e-76ac-4a2b-92ec-f4092d0e1b2b':
+    parent_uuid: a23b7f0f-6c10-46f2-994e-ad521518b16e
+    slot: grid_slot
+    uuid: b29a762e-76ac-4a2b-92ec-f4092d0e1b2b
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Panellist 04'
+  '0:main_slot:0:grid_slot:4:group_slot:0:f3d20707-6eb4-4f6f-9836-833c9c47f43b':
+    parent_uuid: b29a762e-76ac-4a2b-92ec-f4092d0e1b2b
+    slot: group_slot
+    uuid: f3d20707-6eb4-4f6f-9836-833c9c47f43b
+    component_id: sdc.drupal_india_connect.media-placeholder
+    component_version: 19a4cf2688997f30
+    inputs:
+      caption: 'Portrait to follow'
+      ratio: '4:3'
+    label: 'Placeholder - Panellist 04 portrait'
+  '0:main_slot:0:grid_slot:4:group_slot:1:ae8ed380-ba37-46ff-8a91-629c92d19bb3':
+    parent_uuid: b29a762e-76ac-4a2b-92ec-f4092d0e1b2b
+    slot: group_slot
+    uuid: ae8ed380-ba37-46ff-8a91-629c92d19bb3
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Panellist 05 - Enterprise adopter'
+      level: 3
+      text_size: heading-responsive-lg
+      text_color: default
+      align: left
+    label: 'Heading - Panellist 04'
+  '0:main_slot:0:grid_slot:4:group_slot:2:bd506ffa-6570-476f-8bc5-f77d911638f7':
+    parent_uuid: b29a762e-76ac-4a2b-92ec-f4092d0e1b2b
+    slot: group_slot
+    uuid: bd506ffa-6570-476f-8bc5-f77d911638f7
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>To be announced</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default
+    label: 'Text - Panellist 04 to be announced'

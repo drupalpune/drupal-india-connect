@@ -132,14 +132,20 @@ jobs:
             # composer/drush run, which is where the slow failures live.
             restore_stash
 
-            composer install --no-dev --optimize-autoloader --no-interaction
+            # The account's PHP selector ini lists proc_open in
+            # disable_functions (since ~21 Oct 2026). Composer's scaffold
+            # plugin needs it to run `git check-ignore`, and drush sql:dump
+            # needs it to start mysqldump; without it both die with "The
+            # Process class relies on proc_open". `-d disable_functions=`
+            # lifts that for these CLI runs only; web PHP keeps it disabled.
+            php -d disable_functions= "$(command -v composer)" install --no-dev --optimize-autoloader --no-interaction
 
             # Snapshot the database before anything writes to it. `updb` mutates
             # live data and `cim` reverts any server-side config drift, so this
             # dump is the only way back from a bad import.
             BACKUP_DIR="$HOME/backups"
             mkdir -p "$BACKUP_DIR"
-            retry vendor/bin/drush sql:dump --gzip \
+            retry php -d disable_functions= vendor/bin/drush.php sql:dump --gzip \
               --result-file="$BACKUP_DIR/prod-predeploy-$(date +%Y%m%d-%H%M%S).sql"
 
             # Keep the 10 most recent. Each is ~3MB against 16TB free, so depth
