@@ -20,6 +20,14 @@ function drupal_india_connect_preprocess_html(array &$variables) {
     $variables['#attached']['library'][] = 'drupal_india_connect/ai-summit';
   }
   $variables['#cache']['contexts'][] = 'url.path';
+
+  // Article bodies can use the Eyebrow component's classes through the
+  // "Eyebrow" style in CKEditor (editor.editor.content_format). Attach its
+  // CSS here rather than relying on the template's CTA band using it too.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface && $node->bundle() === 'article') {
+    $variables['#attached']['library'][] = 'core/components.drupal_india_connect--eyebrow';
+  }
 }
 
 /**
