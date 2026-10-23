@@ -40,6 +40,12 @@ session-ratings:
     theme:
       css/session-ratings.css: {}
 
+speaker-detail:
+  version: 1.x
+  css:
+    theme:
+      css/speaker-detail.css: {}
+
 session-card:
   version: 1.x
   css:
