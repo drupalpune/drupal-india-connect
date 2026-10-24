@@ -8,6 +8,11 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-10-25 (Sunday)
+
+### Changed on the site
+- The public sitemap lists every page under **drupalasia.org** again instead of www.drupalasia.org. The same pages appear on both lists, so no pages were actually added or removed; only the web address form in the sitemap changed back. ([page](https://drupalasia.org/))
+
 ## 2026-10-23 (Friday)
 
 ### Changed on the site
