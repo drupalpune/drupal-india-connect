@@ -11,6 +11,8 @@
  * component row and would discard editor changes. Pass `rebuild` to do that
  * deliberately:
  *   ddev drush php:script scripts/build-program-page.php rebuild
+ * Even then it stops while the page has unpublished Canvas changes (an
+ * autosave draft): publish or discard those first.
  *
  * Day 2's times and rooms come from the program team's session plan sheet
  * ("Session plan for DrupalAsia Connect India 2027", Program Plan tab); each
@@ -260,6 +262,8 @@ $add('sdc.event_horizon.heading', 'Heading - Session schedule', [
   'align' => 'center',
 ], $section, 'main_slot');
 
+$add('drupal_india_connect.divider', 'Divider', ['padding' => 'xs'], $section, 'main_slot');
+
 $session_count = 0;
 foreach ($day2 as [, , $kind, $items]) {
   $session_count += $kind === 'sessions' ? count($items) : 0;
@@ -358,10 +362,22 @@ if (preg_match('#^/page/(\d+)$#', $existing, $m)) {
     echo "Pass 'rebuild' to replace its components (discards any editor changes).\n";
     return;
   }
+  // An open Canvas editor keeps an autosave draft keyed to the current rows.
+  // Rebuilding replaces every row (new uuids), so that draft could no longer
+  // be published, and a stale tab could write the old tree back over this.
+  $drafts = array_filter(
+    array_keys(\Drupal::keyValue('canvas.auto_save')->getAll()),
+    fn($key) => str_starts_with($key, "canvas_page:{$page->id()}:"),
+  );
+  if ($drafts) {
+    echo "canvas_page {$page->id()} has unpublished Canvas changes (" . implode(', ', $drafts) . "). Not rebuilding.\n";
+    echo "Publish or discard them in the Canvas editor and close its tabs, then run this again.\n";
+    return;
+  }
 }
 if (!$page) {
   $page = $storage->create([
-    'title' => 'Session Schedule',
+    'title' => 'Full Program',
     'description' => 'The DrupalAsia Connect India 2027 session schedule: every talk on Day 2, 29 January 2027, with track, room, time and speakers. Days 1 and 3 to be announced.',
     'path' => ['alias' => $alias],
     'status' => FALSE,
