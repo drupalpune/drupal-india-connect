@@ -1,0 +1,12 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program timeline'
+description: 'A day of the program as a vertical timeline. Holds Program timeline item rows, in order; the line runs from the first dot to the last.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  properties: {}
+slots:
+  items:
+    title: 'Timeline rows'
+    description: 'Program timeline item components, in time order.'

@@ -1,0 +1,98 @@
+{#
+  One session in the program. Neutral card; the track colour comes from the
+  shared .dac-track--* classes in global.css. The plenary variant (keynote,
+  panel, ceremony) is navy and has no speakers or details link.
+#}
+{% set is_plenary = variant == 'plenary' %}
+{% set track_class = not is_plenary and track_key is not empty ? ' dac-track--' ~ track_key : '' %}
+
+{% set minutes = 0 %}
+{% if start is not empty and end is not empty %}
+  {% set from = start|split(':') %}
+  {% set to = end|split(':') %}
+  {% set minutes = (to[0] * 60 + to[1]) - (from[0] * 60 + from[1]) %}
+{% endif %}
+
+{% set speakers = [
+  { name: speaker_1_name, url: speaker_1_url },
+  { name: speaker_2_name, url: speaker_2_url },
+  { name: speaker_3_name, url: speaker_3_url },
+]|filter(speaker => speaker.name is not empty) %}
+
+<div class="session-overview-card{{ is_plenary ? ' session-overview-card--plenary' }}{{ track_class }}">
+  <article class="session-overview-card__card">
+    <div class="session-overview-card__head">
+      {% if track is not empty %}
+        <p class="session-overview-card__track">{{ track }}</p>
+      {% endif %}
+      {% if minutes > 0 %}
+        <span class="session-overview-card__length">{{ '@count min'|t({ '@count': minutes }) }}</span>
+      {% endif %}
+    </div>
+
+    <h3 class="session-overview-card__title">
+      {%- if url is not empty and not is_plenary -%}
+        <a href="{{ url }}">{{ title }}</a>
+      {%- else -%}
+        {{ title }}
+      {%- endif -%}
+    </h3>
+
+    {% if room is not empty or minutes > 0 %}
+      <ul class="session-overview-card__meta">
+        {% if room is not empty %}
+          <li>
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'map-pin', icon_size: 'extra-small' } only %}
+            <span class="visually-hidden">{{ 'Room:'|t }} </span>{{ room }}
+          </li>
+        {% endif %}
+        {% if minutes > 0 %}
+          <li>
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'clock', icon_size: 'extra-small' } only %}
+            <span class="visually-hidden">{{ 'When:'|t }} </span>
+            <time{% if date is not empty %} datetime="{{ date }}T{{ start }}"{% endif %}>{{ start }}</time>&nbsp;–&nbsp;<time{% if date is not empty %} datetime="{{ date }}T{{ end }}"{% endif %}>{{ end }}</time>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+    {% if description is not empty %}
+      <p class="session-overview-card__desc">{{ description }}</p>
+    {% endif %}
+
+    {% if not is_plenary and (speakers is not empty or url is not empty) %}
+      <div class="session-overview-card__foot">
+        {% if speakers is not empty %}
+          <ul class="session-overview-card__speakers" aria-label="{{ speakers|length > 1 ? 'Speakers'|t : 'Speaker'|t }}">
+            {% for speaker in speakers %}
+              {% set words = speaker.name|trim|split(' ')|filter(word => word is not empty) %}
+              {% set initials = (words|first|first ~ (words|length > 1 ? words|last|first : ''))|upper %}
+              <li class="session-overview-card__speaker">
+                <span class="session-overview-card__avatar" aria-hidden="true">{{ initials }}</span>
+                <p class="session-overview-card__name">
+                  {%- if speaker.url is not empty -%}
+                    <a class="session-overview-card__name-link" href="{{ speaker.url }}" target="_blank" rel="noopener noreferrer">
+                      {{- speaker.name -}}
+                      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-square-out', icon_size: 'extra-small' } only %}
+                      <span class="visually-hidden"> {{ '(drupal.org profile, opens in a new tab)'|t }}</span>
+                    </a>
+                  {%- else -%}
+                    {{ speaker.name }}
+                  {%- endif -%}
+                </p>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if url is not empty %}
+          <a class="session-overview-card__details" href="{{ url }}">
+            {{- 'Session details'|t -}}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+            <span class="visually-hidden">: {{ title }}</span>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </article>
+</div>

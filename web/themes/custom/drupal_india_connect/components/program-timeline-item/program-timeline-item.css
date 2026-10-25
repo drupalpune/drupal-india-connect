@@ -1,0 +1,158 @@
+/**
+ * Program timeline item: time | dot on the line | content.
+ *
+ * Narrow: the line runs down the left with the time above the content.
+ * Wide (--lg): time on the left, right-aligned against the line.
+ * The dot takes the track colour from .dac-track--* (global.css).
+ */
+.program-timeline-item {
+  --dot: var(--dac-track, var(--color--primary-50));
+  --dot-top: 0.375rem;
+
+  display: grid;
+  grid-template-areas:
+    "rail time"
+    "rail body";
+  grid-template-columns: 1.25rem 1fr;
+  column-gap: var(--sp0-75);
+
+  @container style(--lg: true) {
+    --dot-top: 1.6rem;
+
+    grid-template-areas: "time rail body";
+    grid-template-columns: 8.5rem 3rem 1fr;
+    column-gap: 0;
+  }
+}
+
+.program-timeline-item__body {
+  grid-area: body;
+  min-width: 0;
+  padding-bottom: var(--sp1);
+}
+
+/* Last row of a time block: room before the next block starts. */
+.program-timeline-item--block-end .program-timeline-item__body {
+  padding-bottom: var(--sp2-5);
+}
+
+.program-timeline-item:last-child .program-timeline-item__body {
+  padding-bottom: 0;
+}
+
+/* ---------- Rail: a continuous line, one dot per row ---------- */
+
+.program-timeline-item__rail {
+  position: relative;
+  grid-area: rail;
+}
+
+.program-timeline-item__rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+  background-color: var(--color--sky-86);
+}
+
+.program-timeline-item:first-child .program-timeline-item__rail::before {
+  top: var(--dot-top);
+}
+
+.program-timeline-item:last-child .program-timeline-item__rail::before {
+  bottom: auto;
+  height: var(--dot-top);
+}
+
+.program-timeline-item__rail::after {
+  content: "";
+  position: absolute;
+  top: var(--dot-top);
+  left: calc(50% - 0.4375rem);
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background-color: var(--dot);
+  box-shadow: 0 0 0 4px var(--color--white);
+}
+
+.program-timeline-item--plenary {
+  --dot: var(--neutral-dark);
+}
+
+.program-timeline-item--break .program-timeline-item__rail::after {
+  background-color: var(--color--white);
+  box-shadow:
+    inset 0 0 0 2px var(--color--sky-86),
+    0 0 0 4px var(--color--white);
+}
+
+/* ---------- Time: start bold, end lighter, one line ---------- */
+
+.program-timeline-item__time {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.375rem;
+  grid-area: time;
+  margin: 0;
+  padding-bottom: var(--sp0-5);
+  color: var(--color--night-5);
+  font-variant-numeric: tabular-nums;
+
+  @container style(--lg: true) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding-top: calc(var(--dot-top) - 0.3rem);
+    padding-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.program-timeline-item__start {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.program-timeline-item__end {
+  color: var(--color--night-40);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.program-timeline-item--break .program-timeline-item__start {
+  color: var(--color--night-40);
+  font-weight: 700;
+}
+
+/* ---------- Break: a quiet striped strip, no card ---------- */
+
+.program-timeline-item__break {
+  display: flex;
+  align-items: center;
+  gap: var(--sp0-75);
+  margin: 0;
+  padding: var(--sp0-75) var(--sp1);
+  border-radius: 0.5rem;
+  background-image: repeating-linear-gradient(-45deg, var(--color--sky-97) 0 8px, transparent 8px 16px);
+  color: var(--color--night-20);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  @container style(--lg: true) {
+    margin-top: calc(var(--dot-top) - var(--sp));
+    padding-block: var(--sp);
+  }
+}
+
+.program-timeline-item__break span {
+  color: var(--color--night-50);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}

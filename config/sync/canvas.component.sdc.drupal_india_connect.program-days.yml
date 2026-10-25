@@ -1,0 +1,215 @@
+uuid: 0308da89-d532-42e0-8436-e0ad9b5f1b9d
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 504d63f87afc1070
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        default_day:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: '2'
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        day_1_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Day 1'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday 28 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_date_short:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thu 28 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_heading:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Thursday, 28 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_1_meta:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Day 2'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Friday 29 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_date_short:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Fri 29 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_heading:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Friday, 29 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_2_meta:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Day 3'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Saturday 30 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_date_short:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Sat 30 Jan'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_heading:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Saturday, 30 January'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        day_3_meta:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions:
+        day_1:
+          title: 'Day 1'
+          description: 'Program timeline for the day, or a callout while it is to be announced.'
+        day_2:
+          title: 'Day 2'
+          description: 'Program timeline for the day, or a callout while it is to be announced.'
+        day_3:
+          title: 'Day 3'
+          description: 'Program timeline for the day, or a callout while it is to be announced.'
+label: 'Program days'
+id: sdc.drupal_india_connect.program-days
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:program-days'

@@ -1,0 +1,44 @@
+{#
+  The program in three day tabs. Every day renders visible; program-days.js
+  reveals the tab bar and shows one day at a time, so without JavaScript the
+  days simply follow one another.
+#}
+{% set days = [
+  { n: 1, label: day_1_label, date: day_1_date, short: day_1_date_short, heading: day_1_heading, meta: day_1_meta },
+  { n: 2, label: day_2_label, date: day_2_date, short: day_2_date_short, heading: day_2_heading, meta: day_2_meta },
+  { n: 3, label: day_3_label, date: day_3_date, short: day_3_date_short, heading: day_3_heading, meta: day_3_meta },
+] %}
+
+<div class="program-days" data-program-days data-default-day="day-{{ default_day|default('1') }}">
+  <div class="program-days__tabs" role="tablist" aria-label="{{ 'Program days'|t }}" hidden>
+    {% for day in days %}
+      <button class="program-days__tab" type="button" role="tab" id="day-{{ day.n }}-tab" aria-controls="day-{{ day.n }}" aria-selected="false" tabindex="-1">
+        <span class="program-days__tab-label">{{ day.label|default('Day @n'|t({ '@n': day.n })) }}</span>
+        {% if day.date is not empty %}
+          <span class="program-days__tab-date program-days__tab-date--long">{{ day.date }}</span>
+        {% endif %}
+        {% if day.short is not empty or day.date is not empty %}
+          <span class="program-days__tab-date program-days__tab-date--short">{{ day.short|default(day.date) }}</span>
+        {% endif %}
+      </button>
+    {% endfor %}
+  </div>
+
+  {% for day in days %}
+    <section class="program-days__day" id="day-{{ day.n }}" aria-labelledby="day-{{ day.n }}-heading">
+      <div class="program-days__header">
+        <h2 class="program-days__heading" id="day-{{ day.n }}-heading">{{ day.heading|default(day.label|default('Day @n'|t({ '@n': day.n }))) }}</h2>
+        {% if day.meta is not empty %}
+          <p class="program-days__meta">{{ day.meta }}</p>
+        {% endif %}
+      </div>
+      {% if day.n == 1 %}
+        {% block day_1 %}{% endblock %}
+      {% elseif day.n == 2 %}
+        {% block day_2 %}{% endblock %}
+      {% else %}
+        {% block day_3 %}{% endblock %}
+      {% endif %}
+    </section>
+  {% endfor %}
+</div>

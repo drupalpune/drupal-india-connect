@@ -1418,3 +1418,46 @@ h2.eh-heading,
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
   margin-block: 0;
 }
+
+/*
+ * Session track colours, shared by session-overview-card (the track pill)
+ * and program-timeline-item (the timeline dot). One class per track sets:
+ *   --dac-track      dot, and the pill tint
+ *   --dac-track-ink  pill text (a darker step that reads on the tint)
+ * Blue, sky, orange and slate come from the brand ramps; green, rose and
+ * gold have no ramp yet, so they are hsl() here. No purple (brand rule).
+ */
+.dac-track--drupal-cms {
+  --dac-track: var(--color--primary-50);
+  --dac-track-ink: var(--color--primary-40);
+}
+
+.dac-track--development {
+  --dac-track: var(--color--sky-50);
+  --dac-track-ink: var(--color--ocean-30);
+}
+
+.dac-track--agency {
+  --dac-track: var(--color--secondary-50);
+  --dac-track-ink: var(--color--secondary-30);
+}
+
+.dac-track--success {
+  --dac-track: hsl(150, 55%, 38%);
+  --dac-track-ink: hsl(150, 60%, 24%);
+}
+
+.dac-track--sovereignty {
+  --dac-track: var(--color--night-40);
+  --dac-track-ink: var(--color--night-20);
+}
+
+.dac-track--community {
+  --dac-track: hsl(345, 72%, 52%);
+  --dac-track-ink: hsl(345, 65%, 36%);
+}
+
+.dac-track--ux {
+  --dac-track: hsl(42, 92%, 47%);
+  --dac-track-ink: hsl(35, 85%, 27%);
+}

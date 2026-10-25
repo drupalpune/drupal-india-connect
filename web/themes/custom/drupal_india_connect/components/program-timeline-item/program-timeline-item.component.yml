@@ -1,0 +1,83 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program timeline item'
+description: 'One row of the program timeline: start and end time, a dot on the line, and the content. Sessions and plenaries hold a Session overview card in the Content slot; a break shows its label on a striped strip and needs no content. Use inside Program timeline.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - start
+    - end
+  properties:
+    kind:
+      type: string
+      title: Kind
+      description: 'Session: dot in the track colour. Plenary: navy dot. Break: hollow dot and a striped strip.'
+      enum:
+        - session
+        - plenary
+        - break
+      meta:enum:
+        session: Session
+        plenary: Plenary
+        break: Break
+      default: session
+      examples:
+        - session
+    start:
+      type: string
+      title: 'Start time'
+      description: '24-hour, HH:MM.'
+      examples:
+        - '10:30'
+    end:
+      type: string
+      title: 'End time'
+      description: '24-hour, HH:MM.'
+      examples:
+        - '11:15'
+    date:
+      type: string
+      title: Date
+      description: 'Optional, YYYY-MM-DD. Makes the times machine-readable.'
+      examples:
+        - '2027-01-29'
+    track_key:
+      type: string
+      title: 'Track colour'
+      description: 'Colour of the dot for a session; match the card.'
+      enum:
+        - drupal-cms
+        - development
+        - agency
+        - success
+        - sovereignty
+        - community
+        - ux
+      meta:enum:
+        drupal-cms: 'Drupal CMS (blue)'
+        development: 'Development, AI and Agentic Architecture (sky)'
+        agency: 'Agency, Business & Marketing (orange)'
+        success: 'Success Stories & Innovation (green)'
+        sovereignty: 'Digital Sovereignty & Open Web (slate)'
+        community: 'Community Health (rose)'
+        ux: 'User Experience, Accessibility & Design (gold)'
+      examples:
+        - drupal-cms
+    label:
+      type: string
+      title: 'Break label'
+      description: 'For a break, e.g. Lunch. The length is worked out from start and end.'
+      examples:
+        - 'Coffee break'
+    block_end:
+      type: boolean
+      title: 'Last in its time block'
+      description: 'Adds space below, before the next time block starts.'
+      default: false
+      examples:
+        - false
+slots:
+  content:
+    title: Content
+    description: 'A Session overview card. Leave empty for a break.'

@@ -1,0 +1,21 @@
+uuid: a77a873a-7471-4f58-805a-918971e4493d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupal_india_connect
+active_version: 6383020f65dbe769
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        items:
+          title: 'Timeline rows'
+          description: 'Program timeline item components, in time order.'
+label: 'Program timeline'
+id: sdc.drupal_india_connect.program-timeline
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:program-timeline'
