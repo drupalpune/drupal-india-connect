@@ -193,11 +193,20 @@ $session_inputs = function (NodeInterface $node, string $sheet_title, string $ro
   foreach ($node->get('field_speakers')->referencedEntities() as $account) {
     $name = trim((string) ($account->get('field_display_name')->value ?: $account->getDisplayName()));
     $username = trim((string) $account->get('field_drupal_org_username')->value);
-    $url = match (TRUE) {
-      $username === '' => NULL,
-      str_starts_with($username, 'http') => $username,
-      default => 'https://www.drupal.org/u/' . strtolower(str_replace(' ', '-', $username)),
-    };
+    // Speakers fill this field in themselves, so only ever link to
+    // drupal.org: a pasted profile URL is accepted when its host is
+    // drupal.org, anything else is treated as a username.
+    $url = NULL;
+    if (preg_match('#^https?://#i', $username)) {
+      $parts = parse_url($username);
+      $host = strtolower($parts['host'] ?? '');
+      if (in_array($host, ['drupal.org', 'www.drupal.org'], TRUE) && preg_match('~^/u/[^/?#]+/?$~', $parts['path'] ?? '')) {
+        $url = 'https://www.drupal.org' . rtrim($parts['path'], '/');
+      }
+    }
+    elseif ($username !== '') {
+      $url = 'https://www.drupal.org/u/' . rawurlencode(strtolower(str_replace(' ', '-', $username)));
+    }
     $speakers[] = [$name_fix[$name] ?? $name, $url];
   }
   if (!$speakers) {
