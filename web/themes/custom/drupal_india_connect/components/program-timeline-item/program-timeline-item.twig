@@ -1,0 +1,31 @@
+{#
+  One timeline row: time | dot on the line | content. A break draws its own
+  striped strip from the label; sessions and plenaries fill the slot.
+#}
+{% set kind = kind|default('session') %}
+{% set classes = [
+  'program-timeline-item',
+  'program-timeline-item--' ~ kind,
+  block_end ? 'program-timeline-item--block-end',
+  kind == 'session' and track_key is not empty ? 'dac-track--' ~ track_key,
+]|filter(class => class) %}
+
+<li class="{{ classes|join(' ') }}">
+  <p class="program-timeline-item__time">
+    <time class="program-timeline-item__start"{% if date is not empty %} datetime="{{ date }}T{{ start }}"{% endif %}>{{ start }}</time>
+    <span class="program-timeline-item__end">–&nbsp;<time{% if date is not empty %} datetime="{{ date }}T{{ end }}"{% endif %}>{{ end }}</time></span>
+  </p>
+  <span class="program-timeline-item__rail" aria-hidden="true"></span>
+  <div class="program-timeline-item__body">
+    {% if kind == 'break' %}
+      {% set from = start|split(':') %}
+      {% set to = end|split(':') %}
+      {% set minutes = (to[0] * 60 + to[1]) - (from[0] * 60 + from[1]) %}
+      <p class="program-timeline-item__break">
+        {{- label -}}
+        {% if minutes > 0 %}<span>{{ '@count min'|t({ '@count': minutes }) }}</span>{% endif %}
+      </p>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+</li>

@@ -1,0 +1,114 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Program days'
+description: 'The program split into three day tabs. Each tab has a label and date; each day has a heading, an optional line of detail beside it, and a slot for its timeline (or a "to be announced" callout). Without JavaScript the three days show one after another.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  properties:
+    default_day:
+      type: string
+      title: 'Day shown first'
+      description: 'Visitors can still link to a day with #day-1, #day-2 or #day-3.'
+      enum:
+        - '1'
+        - '2'
+        - '3'
+      meta:enum:
+        '1': 'Day 1'
+        '2': 'Day 2'
+        '3': 'Day 3'
+      default: '1'
+      examples:
+        - '2'
+    day_1_label:
+      type: string
+      title: 'Day 1 tab label'
+      examples:
+        - 'Day 1'
+    day_1_date:
+      type: string
+      title: 'Day 1 tab date'
+      examples:
+        - 'Thursday 28 January'
+    day_1_date_short:
+      type: string
+      title: 'Day 1 tab date (short)'
+      description: 'Shown on small screens.'
+      examples:
+        - 'Thu 28 Jan'
+    day_1_heading:
+      type: string
+      title: 'Day 1 heading'
+      examples:
+        - 'Thursday, 28 January'
+    day_1_meta:
+      type: string
+      title: 'Day 1 detail'
+      description: 'Optional line beside the heading.'
+    day_2_label:
+      type: string
+      title: 'Day 2 tab label'
+      examples:
+        - 'Day 2'
+    day_2_date:
+      type: string
+      title: 'Day 2 tab date'
+      examples:
+        - 'Friday 29 January'
+    day_2_date_short:
+      type: string
+      title: 'Day 2 tab date (short)'
+      description: 'Shown on small screens.'
+      examples:
+        - 'Fri 29 Jan'
+    day_2_heading:
+      type: string
+      title: 'Day 2 heading'
+      examples:
+        - 'Friday, 29 January'
+    day_2_meta:
+      type: string
+      title: 'Day 2 detail'
+      description: 'Optional line beside the heading.'
+    day_3_label:
+      type: string
+      title: 'Day 3 tab label'
+      examples:
+        - 'Day 3'
+    day_3_date:
+      type: string
+      title: 'Day 3 tab date'
+      examples:
+        - 'Saturday 30 January'
+    day_3_date_short:
+      type: string
+      title: 'Day 3 tab date (short)'
+      description: 'Shown on small screens.'
+      examples:
+        - 'Sat 30 Jan'
+    day_3_heading:
+      type: string
+      title: 'Day 3 heading'
+      examples:
+        - 'Saturday, 30 January'
+    day_3_meta:
+      type: string
+      title: 'Day 3 detail'
+      description: 'Optional line beside the heading.'
+slots:
+  day_1:
+    title: 'Day 1'
+    description: 'Program timeline for the day, or a callout while it is to be announced.'
+  day_2:
+    title: 'Day 2'
+    description: 'Program timeline for the day, or a callout while it is to be announced.'
+  day_3:
+    title: 'Day 3'
+    description: 'Program timeline for the day, or a callout while it is to be announced.'
+libraryOverrides:
+  js:
+    program-days.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

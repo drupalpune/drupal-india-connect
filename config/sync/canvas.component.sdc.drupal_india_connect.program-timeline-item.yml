@@ -1,0 +1,106 @@
+uuid: 2c3ddd1d-1f55-425a-9357-f1c7f12f9e7d
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - drupal_india_connect
+active_version: 48267cf81564b70f
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        kind:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: session
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        start:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '10:30'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        end:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '11:15'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        date:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '2027-01-29'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        track_key:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: drupal-cms
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Coffee break'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        block_end:
+          required: false
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value:
+            -
+              value: false
+          expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        content:
+          title: Content
+          description: 'A Session overview card. Leave empty for a break.'
+label: 'Program timeline item'
+id: sdc.drupal_india_connect.program-timeline-item
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:program-timeline-item'

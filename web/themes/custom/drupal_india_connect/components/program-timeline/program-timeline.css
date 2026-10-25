@@ -1,0 +1,9 @@
+/**
+ * Program timeline: the list that Program timeline item rows sit in.
+ * The rows draw the line and dots themselves (program-timeline-item.css).
+ */
+.program-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

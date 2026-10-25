@@ -1,0 +1,118 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Session overview card'
+description: 'One session in the program: track pill, length, title, room and time, a short description, up to three speakers (initials, name linked to drupal.org) and a link to the session page. Neutral card; the only colour is the track. The plenary variant is a navy card for keynotes, panels and ceremonies, without speakers or the details link.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - title
+  properties:
+    variant:
+      type: string
+      title: Variant
+      description: 'Plenary: keynote, panel or ceremony for all attendees (navy card, no speakers).'
+      enum:
+        - session
+        - plenary
+      meta:enum:
+        session: Session
+        plenary: Plenary
+      default: session
+      examples:
+        - session
+    track:
+      type: string
+      title: Track
+      description: 'Shown in the pill. For a plenary, e.g. "All attendees".'
+      examples:
+        - 'Drupal CMS'
+    track_key:
+      type: string
+      title: 'Track colour'
+      description: 'Colour of the track pill. Ignored for plenaries.'
+      enum:
+        - drupal-cms
+        - development
+        - agency
+        - success
+        - sovereignty
+        - community
+        - ux
+      meta:enum:
+        drupal-cms: 'Drupal CMS (blue)'
+        development: 'Development, AI and Agentic Architecture (sky)'
+        agency: 'Agency, Business & Marketing (orange)'
+        success: 'Success Stories & Innovation (green)'
+        sovereignty: 'Digital Sovereignty & Open Web (slate)'
+        community: 'Community Health (rose)'
+        ux: 'User Experience, Accessibility & Design (gold)'
+      examples:
+        - drupal-cms
+    title:
+      type: string
+      title: Title
+      examples:
+        - 'Drupal CMS + Canvas, one year in'
+    url:
+      type: string
+      title: 'Session page URL'
+      description: 'Links the title and "Session details". Ignored for plenaries.'
+      format: uri-reference
+      examples:
+        - '/events/india-2027/sessions/drupal-cms-canvas-one-year'
+    room:
+      type: string
+      title: Room
+      examples:
+        - Auditorium
+    date:
+      type: string
+      title: Date
+      description: 'Optional, YYYY-MM-DD. Makes the times machine-readable.'
+      examples:
+        - '2027-01-29'
+    start:
+      type: string
+      title: 'Start time'
+      description: '24-hour, HH:MM.'
+      examples:
+        - '10:30'
+    end:
+      type: string
+      title: 'End time'
+      description: '24-hour, HH:MM. The length is worked out from start and end.'
+      examples:
+        - '11:15'
+    description:
+      type: string
+      title: Description
+      description: 'One or two sentences; cut to three lines.'
+      examples:
+        - 'An honest look at Drupal CMS and Drupal Canvas from the Canvas product lead: what has shipped, what we learned from early adopters, and what is coming next, with live demos.'
+    speaker_1_name:
+      type: string
+      title: 'Speaker 1 name'
+      examples:
+        - 'Lauri Timmanee'
+    speaker_1_url:
+      type: string
+      title: 'Speaker 1 drupal.org profile'
+      description: 'Optional. Links the name; opens in a new tab.'
+      format: uri-reference
+      examples:
+        - 'https://www.drupal.org/u/lauriii'
+    speaker_2_name:
+      type: string
+      title: 'Speaker 2 name'
+    speaker_2_url:
+      type: string
+      title: 'Speaker 2 drupal.org profile'
+      format: uri-reference
+    speaker_3_name:
+      type: string
+      title: 'Speaker 3 name'
+    speaker_3_url:
+      type: string
+      title: 'Speaker 3 drupal.org profile'
+      format: uri-reference

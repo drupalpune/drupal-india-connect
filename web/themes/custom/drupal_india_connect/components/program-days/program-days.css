@@ -1,0 +1,135 @@
+/**
+ * Program days: a sticky bar of day tabs over one day's program.
+ *
+ * The bar sticks under the site header (--dac-mobile-nav-offset, published
+ * by js/section-anchors.js) and bleeds to the viewport edges.
+ */
+.program-days__tabs {
+  position: sticky;
+  z-index: 3;
+  top: max(0px, var(--dac-mobile-nav-offset, 0px));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp0-5);
+  padding-block: var(--sp0-75);
+  border-bottom: solid 1px var(--color--sky-90);
+  background-color: rgb(255 255 255 / 0.92);
+  box-shadow:
+    -50vw 0 0 rgb(255 255 255 / 0.92),
+    50vw 0 0 rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(10px);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.program-days__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  padding: var(--sp0-5);
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color--night-40);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color--sky-97);
+    color: var(--color--night-5);
+  }
+
+  &:focus-visible {
+    outline: solid 2px currentColor;
+    outline-offset: 2px;
+  }
+
+  &[aria-selected="true"] {
+    background-color: var(--color--primary-50);
+    color: var(--color--white);
+  }
+
+  @container style(--md: true) {
+    align-items: flex-start;
+    padding-inline: var(--sp1);
+    text-align: left;
+  }
+}
+
+.program-days__tab-label {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.program-days__tab-date {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Short date on small screens, the full one from --md. */
+.program-days__tab-date--long {
+  display: none;
+
+  @container style(--md: true) {
+    display: inline;
+  }
+}
+
+.program-days__tab-date--short {
+  @container style(--md: true) {
+    display: none;
+  }
+}
+
+/* ---------- One day ---------- */
+
+.program-days__day {
+  padding-block: var(--sp2-5) var(--sp3);
+  /* Clear the site header and the sticky tab bar when linked to (#day-2). */
+  scroll-margin-top: calc(var(--dac-header-height, 6rem) + 5.5rem);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.program-days__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp0-5) var(--sp2);
+  margin-bottom: var(--sp2);
+}
+
+.program-days__heading {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.program-days__meta {
+  margin: 0;
+  color: var(--color--night-40);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .program-days__tab {
+    transition: none;
+  }
+}
