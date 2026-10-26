@@ -45,7 +45,7 @@ https://drupalasia.org/events/india-2027/sessions/first-issue-gsoc-practical-gui
 https://drupalasia.org/events/india-2027/sessions/fixing-modern-search-seo-geo-aeo-inp-and-ai-readiness-hosted-and
 https://drupalasia.org/events/india-2027/sessions/headless-drupal-canvas-real-world-what-we-tried-what-we-dropped-and-what
 https://drupalasia.org/events/india-2027/sessions/hours-stay-human-estimating-drupal-work-when-ai-writes-code
-https://drupalasia.org/events/india-2027/sessions/htmx-without-breaking-screen-readers-accessibility-patterns-drupal-113
+https://drupalasia.org/events/india-2027/sessions/htmx-without-breaking-screen-readers-accessibility-patterns-drupal-11
 https://drupalasia.org/events/india-2027/sessions/i-seem-be-known-ai-skeptic-so-why-did-i-sign-cambridge-university-press
 https://drupalasia.org/events/india-2027/sessions/legacy-launch-drupal-migration-meets-ai
 https://drupalasia.org/events/india-2027/sessions/let-browser-do-it-less-javascript-better-drupal-ui
@@ -93,5 +93,6 @@ https://drupalasia.org/meet-the-volunteers
 https://drupalasia.org/privacy-policy
 https://drupalasia.org/program-at-a-glance
 https://drupalasia.org/session-tracks
+https://drupalasia.org/sponsors-and-partners
 https://drupalasia.org/ticket-rates-and-details
 https://drupalasia.org/travel-and-stay

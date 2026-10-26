@@ -8,6 +8,15 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-10-27 (Tuesday)
+
+### New on the site
+- A new session page was added: "HTMX Without Breaking Screen Readers: Accessibility Patterns for Drupal 11". ([page](https://drupalasia.org/events/india-2027/sessions/htmx-without-breaking-screen-readers-accessibility-patterns-drupal-11))
+- A new **Our Sponsors & Partners** page was added. ([page](https://drupalasia.org/sponsors-and-partners))
+
+### Changed on the site
+- A session page with almost the same address as the new HTMX session (ending in "-113") is no longer public.
+
 ## 2026-10-25 (Sunday)
 
 ### Changed on the site
