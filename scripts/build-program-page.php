@@ -62,8 +62,8 @@ $link = fn(string $uri) => ['uri' => $uri, 'options' => []];
 
 // ---------------------------------------------------------------------------
 // Day 2 (Friday 29 January), from the sheet's merged cells. Rooms 1-3 and
-// the auditorium run 45-minute talks; Room 4 runs two 20-minute talks in
-// the same block. Each session: [room, start, end, title as on the node].
+// the auditorium run 45-minute talks; Room 4 (and Room 3 in the last block)
+// runs two 20-minute talks in the same block. Each session: [room, start, end, title as on the node].
 // The sheet's Room 5/6, BoF and Open Stage columns are placeholders and are
 // left out.
 // ---------------------------------------------------------------------------
@@ -85,7 +85,7 @@ $day2 = [
     ['Room 1', '11:30', '12:15', 'Accelerating Client Delivery with Drupal Canvas: A Practical Modernization Demo'],
     ['Room 2', '11:30', '12:15', 'Drupal and DPDPA (Digital Personal Data Protection Act)'],
     ['Room 3', '11:30', '12:15', 'Drupal Has the Answers, Now Put Them Anywhere'],
-    ['Room 4', '11:30', '11:50', 'HTMX Without Breaking Screen Readers: Accessibility Patterns for Drupal 11.3'],
+    ['Room 4', '11:30', '11:50', 'HTMX Without Breaking Screen Readers: Accessibility Patterns for Drupal 11'],
     ['Room 4', '11:55', '12:15', 'What We Learned Using AI to Write Proposals at Volume'],
   ]],
   ['12:15', '13:30', 'break', 'Lunch'],
@@ -103,7 +103,7 @@ $day2 = [
     ['Auditorium', '16:15', '17:00', 'I seem to be known as an AI skeptic. So, why did I sign up Cambridge University Press and Assessment as a Drupal AI Partner?'],
     ['Room 1', '16:15', '17:00', "Beyond the Lighthouse Score: What Accessibility Automation Can't See"],
     ['Room 2', '16:15', '17:00', "Brooks' Law Meets Agentic AI: Can More Agents Actually Slow You Down?"],
-    ['Room 3', '16:15', '17:00', 'Building Next-Generation Drupal Components with SDC, Canvas & AI'],
+    ['Room 3', '16:15', '17:00', 'Which MCP Server for Drupal? A Field Guide to Choices, Trade-offs and Gaps'],
     ['Room 4', '16:15', '16:35', 'Stuck in the Queue: How to Contribute Without Hitting a Wall'],
     ['Room 4', '16:40', '17:00', 'Building an Open Source AI Community: From Code to Collective Impact'],
   ]],
@@ -112,8 +112,10 @@ $day2 = [
     ['Auditorium', '17:15', '18:00', 'AI Observability in Drupal'],
     ['Room 1', '17:15', '18:00', 'Headless Drupal Canvas in the Real World: What We Tried, What We Dropped, and What Worked'],
     ['Room 2', '17:15', '18:00', 'Moving Issue Queues to GitLab for Drupal Projects'],
-    ['Room 3', '17:15', '18:00', 'Which MCP Server for Drupal? A Field Guide to Choices, Trade-offs and Gaps'],
-    ['Room 4', '17:15', '17:35', "Let's stop saying \"If I can do it, so can you\""],
+    ['Room 3', '17:15', '17:35', 'Building Next-Generation Drupal Components with SDC, Canvas & AI'],
+    ['Room 3', '17:40', '18:00', 'Beyond the Search Box: How CPRD.com Answers Questions with Drupal and Foundry IQ'],
+    ['Room 4', '17:15', '17:35', 'Through the Looking Glass: Impostor Syndrome on Both Sides of the AI Mirror'],
+    ['Room 4', '17:40', '18:00', 'Back to Basics: Understanding Cache and the Architecture Behind Scalability'],
   ]],
   ['18:00', '18:30', 'plenary', 'Closing ceremony'],
 ];
@@ -271,16 +273,16 @@ foreach ($day2 as [, , $kind, $items]) {
 
 $days = $add('drupal_india_connect.program-days', 'Program days', [
   'default_day' => '2',
-  'day_1_label' => 'Day 1',
+  'day_1_label' => 'Day 1 - Imagine',
   'day_1_date' => 'Thursday 28 January',
   'day_1_date_short' => 'Thu 28 Jan',
   'day_1_heading' => 'Thursday, 28 January',
-  'day_2_label' => 'Day 2',
+  'day_2_label' => 'Day 2 - Discover',
   'day_2_date' => 'Friday 29 January',
   'day_2_date_short' => 'Fri 29 Jan',
   'day_2_heading' => 'Friday, 29 January',
   'day_2_meta' => "$session_count sessions across five rooms · 08:00–18:30",
-  'day_3_label' => 'Day 3',
+  'day_3_label' => 'Day 3 - Build',
   'day_3_date' => 'Saturday 30 January',
   'day_3_date_short' => 'Sat 30 Jan',
   'day_3_heading' => 'Saturday, 30 January',
