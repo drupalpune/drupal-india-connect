@@ -65,8 +65,7 @@ $link = fn(string $uri) => ['uri' => $uri, 'options' => []];
 // the auditorium run 45-minute talks; Room 4 (and Room 3 in the last block)
 // runs two 20-minute talks in the same block. Each session: [room, start, end, title as on the node].
 // Only sessions marked Accepted in the final review workbook
-// (docs/session-review/final-review) are listed; Room 4's 16:40 slot is open
-// since "Building an Open Source AI Community" was waitlisted.
+// (docs/session-review/final-review) are listed.
 // The sheet's Room 5/6, BoF and Open Stage columns are placeholders and are
 // left out.
 // ---------------------------------------------------------------------------
@@ -108,6 +107,7 @@ $day2 = [
     ['Room 2', '16:15', '17:00', "Brooks' Law Meets Agentic AI: Can More Agents Actually Slow You Down?"],
     ['Room 3', '16:15', '17:00', 'Which MCP Server for Drupal? A Field Guide to Choices, Trade-offs and Gaps'],
     ['Room 4', '16:15', '16:35', 'Stuck in the Queue: How to Contribute Without Hitting a Wall'],
+    ['Room 4', '16:40', '17:00', 'Building an Open Source AI Community: From Code to Collective Impact'],
   ]],
   ['17:00', '17:15', 'break', 'Short break'],
   ['17:15', '18:00', 'sessions', [
