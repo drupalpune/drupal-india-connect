@@ -64,6 +64,9 @@ $link = fn(string $uri) => ['uri' => $uri, 'options' => []];
 // Day 2 (Friday 29 January), from the sheet's merged cells. Rooms 1-3 and
 // the auditorium run 45-minute talks; Room 4 (and Room 3 in the last block)
 // runs two 20-minute talks in the same block. Each session: [room, start, end, title as on the node].
+// Only sessions marked Accepted in the final review workbook
+// (docs/session-review/final-review) are listed; Room 4's 16:40 slot is open
+// since "Building an Open Source AI Community" was waitlisted.
 // The sheet's Room 5/6, BoF and Open Stage columns are placeholders and are
 // left out.
 // ---------------------------------------------------------------------------
@@ -105,7 +108,6 @@ $day2 = [
     ['Room 2', '16:15', '17:00', "Brooks' Law Meets Agentic AI: Can More Agents Actually Slow You Down?"],
     ['Room 3', '16:15', '17:00', 'Which MCP Server for Drupal? A Field Guide to Choices, Trade-offs and Gaps'],
     ['Room 4', '16:15', '16:35', 'Stuck in the Queue: How to Contribute Without Hitting a Wall'],
-    ['Room 4', '16:40', '17:00', 'Building an Open Source AI Community: From Code to Collective Impact'],
   ]],
   ['17:00', '17:15', 'break', 'Short break'],
   ['17:15', '18:00', 'sessions', [
@@ -123,7 +125,7 @@ $day2 = [
 // Speakers the sheet names for sessions whose node has no speaker account.
 $sheet_speakers = [
   'Blueprint Before Code: Spec-Driven Development in Drupal' => ['Vighnesh Sadagopal'],
-  'Build your website by chatting with it: Building Atelier on Drupal and FlowDrop' => ['Shibin'],
+  'Build your website by chatting with it: Building Atelier on Drupal and FlowDrop' => ['Shibin Das'],
   'Drupal Has the Answers, Now Put Them Anywhere' => ['Abhisek Mazumdar'],
   'Letting AI agents write to a live Drupal site: the gates that matter' => ['Souvik Pal'],
 ];
