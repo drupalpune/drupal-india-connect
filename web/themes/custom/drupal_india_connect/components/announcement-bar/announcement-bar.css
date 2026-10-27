@@ -54,6 +54,21 @@
   opacity: 0.6;
 }
 
+/*
+ * On phones the message and detail never fit one line, and the wrap left
+ * the bullet dangling at the end of the first. Drop it and stack the two
+ * lines closer together.
+ */
+@media (max-width: 37.49rem) {
+  .eh-announcement-bar__inner {
+    row-gap: var(--sp0-25);
+  }
+
+  .eh-announcement-bar__separator {
+    display: none;
+  }
+}
+
 .eh-announcement-bar__link {
   font-weight: 700;
   text-decoration: underline;
