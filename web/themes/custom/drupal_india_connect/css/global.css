@@ -290,6 +290,45 @@
 }
 
 /*
+ * Below 700px every grid is one column, and a card keeping 4rem (or 8rem
+ * for padding-xl) on each side left a 213px text column in a 343px card
+ * at 375px — sponsor "Why support us" read as a narrow strip. Give every
+ * padded group the same 2rem the tablet cards get.
+ */
+@media (max-width: 699.98px) {
+  .eh-group.eh-group--padding-lg,
+  .eh-group.eh-group--padding-xl {
+    padding: var(--sp2);
+  }
+}
+
+/*
+ * event_horizon's buttons are `nowrap`, so a long label at the large size
+ * ("Request Sponsorship Brochure", the AI Summit closing CTA) is wider than
+ * a 320px phone and pushes its whole band off the right edge. Let the label
+ * wrap there instead; the icon stays beside it.
+ */
+@media (max-width: 37.49rem) {
+  .eh-button {
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+/*
+ * Editors can justify rich text (core's .text-align-justify, restated by
+ * text-media, people-card and text-countdown). In a phone-width column
+ * that opens rivers of space between words ("Program at a glance",
+ * "Session tracks"), so fall back to the normal alignment there.
+ * `body …[class]` outranks the components' two-class selectors.
+ */
+@media (max-width: 37.49rem) {
+  body .text-align-justify[class] {
+    text-align: start;
+  }
+}
+
+/*
  * Section headings are uppercase in this system — display type is set in
  * caps by CSS, never typed that way (see the design system's content
  * fundamentals). Card titles (h3) stay sentence case.
@@ -344,6 +383,46 @@ h2.eh-heading,
   background-color: rgb(253, 253, 253, 0.92);
   backdrop-filter: blur(10px);
   content: '';
+}
+
+/*
+ * Phones (below event_horizon's 37.5rem nav-button breakpoint): the logo,
+ * "Get tickets" and the menu button do not fit one row at the theme's
+ * 2rem gap, so the CTA squeezed onto two lines. event_horizon's mobile
+ * nav button is also a 6.5rem x 5.5rem full-bleed block (margin-right:
+ * -3vw) meant for its older edge-to-edge header, which here overhung our
+ * padded bar. Tighten the gap, keep the CTA on one line beside the menu
+ * button, and give the button the tablet treatment (transparent, primary
+ * lines) at a 3rem tap target. Open, it sits on the dark drawer, so its
+ * close icon goes white.
+ */
+@media (max-width: 37.49rem) {
+  .site-header {
+    gap: var(--sp0-75);
+  }
+
+  .block-event-platform-header-cta {
+    margin-inline-start: auto;
+  }
+
+  .site-header__register-link {
+    padding: 0.625rem 1rem !important;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-button {
+    --mobile-nav-button--line-color: var(--mobile-nav-button--highlight-color);
+
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0;
+    border-radius: 0.375rem;
+    background: transparent;
+  }
+
+  .mobile-nav-button[aria-expanded='true'] {
+    --mobile-nav-button--line-color: var(--color--white);
+  }
 }
 
 /*
