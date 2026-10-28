@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Speaker cards (views.view.featured_speakers, speaker_cards display),
+ * laid out by the Grid component: 4 columns, as the hand-built speaker
+ * grids on Canvas pages use, stepping down on smaller screens.
+ */
+#}
+{% embed 'drupal_india_connect:grid' with { columns: 4, gap: '24', rows: rows } only %}
+  {% block grid_slot %}
+    {% for row in rows %}
+      {{ row.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

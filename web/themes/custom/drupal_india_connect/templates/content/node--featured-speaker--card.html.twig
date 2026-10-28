@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Featured Speaker in the "card" view mode: a People Card, as listed by
+ * views.view.featured_speakers (speaker_cards display).
+ *
+ * The props come from _drupal_india_connect_featured_speaker_card() as
+ * plain values, so the card is the same component editors place by hand
+ * in Canvas, but driven by the Featured Speaker content. The photo and
+ * name link to the speaker page.
+ */
+#}
+<div{{ attributes.addClass('dac-speaker-card') }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {{ include('drupal_india_connect:people-card', speaker_card, with_context = false) }}
+</div>

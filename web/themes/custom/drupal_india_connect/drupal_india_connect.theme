@@ -499,6 +499,11 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     return;
   }
 
+  if ($node->bundle() === 'featured_speaker' && $variables['view_mode'] === 'card') {
+    _drupal_india_connect_featured_speaker_card($variables);
+    return;
+  }
+
   if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
     return;
   }
@@ -778,24 +783,15 @@ function drupal_india_connect_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Variables for node--featured-speaker--full.html.twig.
+ * A Featured Speaker's profile links (field_cta_link), each with a label
+ * and an icon picked from the link's domain: url, label, icon, host.
  *
- * - speaker_links: the profile links (field_cta_link), each with a label
- *   and an icon picked from the link's domain.
- * - speaker_bio: the linked account's field_bio, only when the node's own
- *   body is empty.
- * - speaker_sessions: the account's sessions as cards
- *   (views.view.sessions_by_speaker, embed_speaker_page). The template
- *   renders it and skips the section when it comes back empty, so the
- *   view's cache tags still bubble when a first session is added.
+ * Shared by the speaker page and the speaker card. `drupal` is the custom
+ * drop (icons/brand/drupal-drop.svg), not a Phosphor icon.
  */
-function _drupal_india_connect_featured_speaker(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
-
+function _drupal_india_connect_speaker_links(\Drupal\node\NodeInterface $node): array {
   // Host => [icon, label]. Mastodon has no single host, so it is matched
-  // separately below. `drupal` is the custom drop in the template, not a
-  // Phosphor icon.
+  // separately below.
   $known = [
     'drupal.org' => ['drupal', 'Drupal.org'],
     'linkedin.com' => ['linkedin-logo', 'LinkedIn'],
@@ -819,9 +815,81 @@ function _drupal_india_connect_featured_speaker(array &$variables): void {
       'url' => $href,
       'label' => $item->title ?: $label,
       'icon' => $icon,
+      'host' => $host,
     ];
   }
-  $variables['speaker_links'] = $links;
+  return $links;
+}
+
+/**
+ * People Card props for node--featured-speaker--card.html.twig.
+ *
+ * Read from the entity, as the session card does: the photo through the
+ * featured_speaker image style (400x400), the body summary as the short
+ * bio (falling back to the start of the body), and the first drupal.org
+ * and linkedin.com profile links. Domain and session stay empty: a speaker
+ * can have several sessions, and the speaker page lists them.
+ */
+function _drupal_india_connect_featured_speaker_card(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $avatar = NULL;
+  $image = $node->get('field_featured_image')->entity?->get('field_media_image')->first();
+  if ($image && ($file = $image->entity)) {
+    $style = \Drupal\image\Entity\ImageStyle::load('featured_speaker');
+    $avatar = [
+      'src' => $style ? $style->buildUrl($file->getFileUri()) : $file->createFileUrl(),
+      'alt' => $image->alt ?: $node->label(),
+      'width' => 400,
+      'height' => 400,
+    ];
+    $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $node->get('field_featured_image')->entity->getCacheTags());
+  }
+
+  $body = $node->get('body')->first();
+  $description = trim((string) $body?->summary);
+  if ($description === '' && $body) {
+    $description = trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags((string) $body->value))));
+    if (mb_strlen($description) > 180) {
+      $description = preg_replace('/\s+\S*$/u', '', mb_substr($description, 0, 180)) . '…';
+    }
+  }
+
+  $links = [];
+  foreach (_drupal_india_connect_speaker_links($node) as $link) {
+    $links[$link['host']] ??= $link['url'];
+  }
+
+  // The component validates its props: leave empty ones out, never NULL.
+  $variables['speaker_card'] = array_filter([
+    'avatar' => $avatar,
+    'name' => $node->label(),
+    'designation' => (string) $node->get('field_designation')->value,
+    'description' => $description,
+    'speaker_url' => $node->toUrl()->toString(),
+    'drupal_url' => $links['drupal.org'] ?? NULL,
+    'linkedin_url' => $links['linkedin.com'] ?? NULL,
+  ], fn($value) => $value !== NULL && $value !== '');
+}
+
+/**
+ * Variables for node--featured-speaker--full.html.twig.
+ *
+ * - speaker_links: the profile links (field_cta_link), each with a label
+ *   and an icon picked from the link's domain.
+ * - speaker_bio: the linked account's field_bio, only when the node's own
+ *   body is empty.
+ * - speaker_sessions: the account's sessions as cards
+ *   (views.view.sessions_by_speaker, embed_speaker_page). The template
+ *   renders it and skips the section when it comes back empty, so the
+ *   view's cache tags still bubble when a first session is added.
+ */
+function _drupal_india_connect_featured_speaker(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $variables['speaker_links'] = _drupal_india_connect_speaker_links($node);
 
   $account = $node->get('field_speaker_account')->entity;
   if (!$account) {
