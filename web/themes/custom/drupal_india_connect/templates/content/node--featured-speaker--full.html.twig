@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Featured Speaker, full view mode: the public speaker profile at
+ * /speakers/<name>.
+ *
+ * Laid out like the session page (node--session--full.html.twig): photo
+ * beside the name (h1), designation and profile links, stacked on phones;
+ * then the bio and the speaker's sessions as cards. speaker_links,
+ * speaker_bio and speaker_sessions come from
+ * _drupal_india_connect_featured_speaker(). The badge ("Featured Speaker",
+ * "Keynote") is shown as the eyebrow above the name.
+ */
+#}
+{{ attach_library('drupal_india_connect/speaker-detail') }}
+{{ attach_library('core/components.drupal_india_connect--eyebrow') }}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    'node--view-mode-full',
+    'speaker-detail',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <header class="speaker-detail__header">
+    {% set photo = content.field_featured_image|render %}
+    {% if photo|striptags('<img>')|trim is not empty %}
+      <div class="speaker-detail__photo">{{ photo }}</div>
+    {% endif %}
+
+    <div class="speaker-detail__intro">
+      {% if node.field_badge.value %}
+        <p class="eh-eyebrow eh-eyebrow--accent">{{ node.field_badge.value }}</p>
+      {% endif %}
+
+      {{ title_prefix }}
+      <h1{{ title_attributes.addClass('speaker-detail__name') }}>{{ label }}</h1>
+      {{ title_suffix }}
+
+      {% if node.field_designation.value %}
+        <p class="speaker-detail__designation">{{ node.field_designation.value }}</p>
+      {% endif %}
+
+      {% if speaker_links %}
+        <ul class="speaker-detail__links">
+          {% for link in speaker_links %}
+            <li>
+              <a href="{{ link.url }}" class="speaker-detail__link" target="_blank" rel="noopener noreferrer">
+                {% if link.icon == 'drupal' %}
+                  <span class="ph-icon ph-icon--extra-small speaker-detail__drop" aria-hidden="true">{{ source('@drupal_india_connect/icons/brand/drupal-drop.svg', true) }}</span>
+                {% else %}
+                  {% include 'drupal_india_connect:icon' ignore missing with { icon: link.icon, icon_size: 'extra-small' } only %}
+                {% endif %}
+                <span>{{ link.label }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </header>
+
+  {% set bio = content.body|render ?: speaker_bio|render %}
+  {% if bio|striptags|trim is not empty %}
+    <div class="speaker-detail__bio">{{ bio }}</div>
+  {% endif %}
+
+  {% set sessions = speaker_sessions|render %}
+  {% if sessions|striptags|trim is not empty %}
+    <section class="speaker-detail__sessions" aria-labelledby="speaker-sessions-heading">
+      <h2 id="speaker-sessions-heading" class="speaker-detail__sessions-heading">{{ 'Sessions'|t }}</h2>
+      {{ sessions }}
+    </section>
+  {% endif %}
+</article>

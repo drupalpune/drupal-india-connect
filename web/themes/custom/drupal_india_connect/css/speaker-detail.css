@@ -1,0 +1,152 @@
+/**
+ * Featured Speaker page (node--featured-speaker--full.html.twig): photo
+ * beside the name, designation and profile links; then the bio on a
+ * reading measure and the speaker's sessions as cards (the card grid is
+ * shared with the blog listing in blog.css). Stacked on phones, side by
+ * side from the same breakpoint as the session page's layout.
+ */
+.speaker-detail {
+  padding-block: var(--sp3) var(--sp5);
+}
+
+.speaker-detail__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp1-5);
+  align-items: center;
+
+  @container style(--md: true) {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--sp2-5);
+  }
+}
+
+/* Same 12px radius and 3px primary top accent as the post and story cards. */
+.speaker-detail__photo {
+  width: 10rem;
+  overflow: hidden;
+  border-top: solid 3px var(--color--primary-50);
+  border-radius: 0.75rem;
+  background-color: var(--color--sky-97);
+
+  @container style(--md: true) {
+    width: 100%;
+  }
+}
+
+.speaker-detail__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.speaker-detail__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp0-5);
+}
+
+.speaker-detail__name {
+  margin: 0;
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.speaker-detail__designation {
+  margin: 0;
+  color: var(--color--night-30);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.speaker-detail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp0-5);
+  margin: var(--sp0-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.speaker-detail__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp0-5);
+  padding: var(--sp0-5) var(--sp1);
+  border: solid 1px var(--color--sky-90);
+  border-radius: 999px;
+  background-color: var(--color--white);
+  color: var(--color--primary-50);
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    border-color: var(--color--primary-50);
+    background-color: var(--color--sky-97);
+  }
+
+  &:focus-visible {
+    outline: solid 2px var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  & .ph-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* The Drupal drop is taller than it is wide; keep its proportions. */
+.speaker-detail__drop svg {
+  width: auto;
+  margin-inline: auto;
+}
+
+.speaker-detail__bio {
+  max-width: 68ch;
+  margin-top: var(--sp2-5);
+  color: var(--color--night-5);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+
+  & p {
+    margin-block: 0 var(--sp1-5);
+  }
+
+  & > :last-child,
+  & p:last-child {
+    margin-bottom: 0;
+  }
+
+  & a {
+    color: var(--color--primary-50);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.speaker-detail__sessions {
+  margin-top: var(--sp3);
+  padding-top: var(--sp2);
+  border-top: solid 1px var(--color--night-90);
+}
+
+.speaker-detail__sessions-heading {
+  margin: 0 0 var(--sp1-5);
+  color: var(--color--night-5);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
