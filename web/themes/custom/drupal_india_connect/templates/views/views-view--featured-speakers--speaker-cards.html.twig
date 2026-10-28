@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Speaker cards display of the Featured Speakers view.
+ *
+ * Replaces event_horizon's views-view--featured-speakers wrapper, whose
+ * hardcoded title and 12-column teaser layout would squeeze the card grid
+ * into a single column. The heading comes from the page section instead.
+ */
+#}
+<div{{ attributes.addClass('view-featured-speakers') }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {{ rows }}
+</div>
