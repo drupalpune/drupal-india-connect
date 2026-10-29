@@ -203,5 +203,22 @@ component_tree:
       mobile_width: true
       icon_first: false
       disabled: false
+  '2:main_slot:1:group_slot:3:group_slot:1:a7c94f78-0c3e-450d-a594-236b7fc25cdd':
+    parent_uuid: 837bb9c1-90a5-4f4a-beba-4718e896a19e
+    slot: group_slot
+    uuid: a7c94f78-0c3e-450d-a594-236b7fc25cdd
+    component_id: sdc.event_horizon.button
+    component_version: 0ca665b3987e81dd
+    inputs:
+      variant: secondary-inverted
+      label: 'Program at a glance'
+      href:
+        uri: 'internal:/program-at-a-glance'
+        options: {  }
+      size: large
+      icon: arrow-right
+      mobile_width: true
+      icon_first: false
+      disabled: false
 exposed_slots: {  }
 page_variant: null
