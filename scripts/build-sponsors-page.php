@@ -15,7 +15,8 @@
  * database after the release carrying the components it uses has shipped:
  * sponsor-logo and sponsor-group. Back up the database first.
  *
- * Sections: hero, in-kind sponsor and media partner, closing call to action.
+ * Sections: hero, then the in-kind sponsor and media partner. The closing
+ * call to action (closing-cta) goes back in once there are more sponsors.
  * The sponsorship tiers (Diamond, then the 2027 brochure's packages in
  * docs/sponsors/) are left out until sponsors sign; editors add each one in
  * Canvas as a Sponsor group of Sponsor logo tiles above the in-kind band,
@@ -199,19 +200,6 @@ foreach ([
     'featured' => FALSE,
   ], $g, 'content');
 }
-
-// ---------------------------------------------------------------------------
-// 3. Closing call to action.
-// ---------------------------------------------------------------------------
-$add('drupal_india_connect.closing-cta', 'Closing CTA - Sponsorship', [
-  'eyebrow' => 'Sponsorship',
-  'heading' => 'Put your name on this page',
-  'text' => 'Email us to hold a package. We send the contract within five business days, and the brochure has every package, booth size and price.',
-  'primary_label' => 'Become a sponsor',
-  'primary_url' => '/become-a-sponsor',
-  'secondary_label' => 'Request the brochure',
-  'secondary_url' => 'mailto:events@drupalasia.org?subject=Request%20for%20Sponsorship%20Brochure%20-%20DrupalAsia%20Connect%20India%202027',
-]);
 
 // ---------------------------------------------------------------------------
 // Save, with the guards from CLAUDE.md.
