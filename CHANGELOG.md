@@ -8,6 +8,11 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-10-30 (Friday)
+
+### New on the site
+- A new blog post was added: "More Than a Conference: Experience DrupalAsia Connect India 2027". ([page](https://drupalasia.org/blog/more-conference-experience-drupalasia-connect-india-2027))
+
 ## 2026-10-29 (Thursday)
 
 ### Changed on the site
