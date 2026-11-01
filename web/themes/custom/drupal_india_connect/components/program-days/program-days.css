@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp0-5);
-  padding-block: var(--sp0-75);
+  padding-block: var(--sp0-5);
   border-bottom: solid 1px var(--color--sky-90);
   background-color: rgb(255 255 255 / 0.92);
   box-shadow:
