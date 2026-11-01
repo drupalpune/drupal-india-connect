@@ -8,6 +8,11 @@ A new entry is written every night at 23:00 IST by the
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
 
+## 2026-11-02 (Monday)
+
+### New on the site
+- A new **Full Program** page was added. ([page](https://www.drupalasia.org/program))
+
 ## 2026-11-01 (Sunday)
 
 ### Changed on the site
