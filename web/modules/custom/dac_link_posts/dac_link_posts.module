@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Link posts: Articles that list another page on /blogs (issue #148).
+ *
+ * /blogs and the homepage "Latest updates" block list Article nodes only, so
+ * a Canvas page (e.g. a panel discussion) gets onto them through an Article
+ * whose "Links to" field (field_cta_link) points at it. The card links there
+ * (node--article--card.html.twig), the post's own URL redirects there
+ * (LinkPostRedirectSubscriber), and the post is left out of the sitemap here.
+ */
+
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+use Drupal\simple_sitemap\Entity\SimpleSitemapInterface;
+
+/**
+ * Returns the page a link post stands in for, or NULL for a normal node.
+ */
+function dac_link_posts_target(NodeInterface $node): ?Url {
+  if ($node->bundle() !== 'article' || !$node->hasField('field_cta_link') || $node->get('field_cta_link')->isEmpty()) {
+    return NULL;
+  }
+  return $node->get('field_cta_link')->first()->getUrl();
+}
+
+/**
+ * Implements hook_simple_sitemap_links_alter().
+ */
+function dac_link_posts_simple_sitemap_links_alter(array &$links, SimpleSitemapInterface $sitemap): void {
+  $ids = [];
+  foreach ($links as $link) {
+    $info = $link['meta']['entity_info'] ?? [];
+    if (($info['entity_type'] ?? NULL) === 'node' && ($info['bundle'] ?? NULL) === 'article') {
+      $ids[] = $info['id'];
+    }
+  }
+  if (!$ids) {
+    return;
+  }
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($ids);
+  foreach ($links as $key => $link) {
+    $info = $link['meta']['entity_info'] ?? [];
+    if (($info['entity_type'] ?? NULL) === 'node' && isset($nodes[$info['id']]) && dac_link_posts_target($nodes[$info['id']])) {
+      unset($links[$key]);
+    }
+  }
+}

@@ -504,6 +504,15 @@ function drupal_india_connect_preprocess_node(array &$variables) {
     return;
   }
 
+  // Link posts (dac_link_posts): the card goes straight to the linked page.
+  if ($node->bundle() === 'article' && $variables['view_mode'] === 'card' && function_exists('dac_link_posts_target')) {
+    if ($target = dac_link_posts_target($node)) {
+      $variables['url'] = $target->toString();
+      $variables['is_link_post'] = TRUE;
+    }
+    return;
+  }
+
   if ($node->bundle() !== 'session' || $variables['view_mode'] !== 'full') {
     return;
   }

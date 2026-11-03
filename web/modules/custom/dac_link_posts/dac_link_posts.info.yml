@@ -1,0 +1,8 @@
+name: 'DrupalAsia Connect link posts'
+type: module
+description: 'Articles with a "Links to" URL stand in for another page on /blogs: they redirect there and stay out of the sitemap.'
+package: 'DrupalAsia Connect'
+core_version_requirement: ^11
+dependencies:
+  - drupal:link
+  - drupal:node

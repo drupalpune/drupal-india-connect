@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - field.field.node.article.body
+    - field.field.node.article.field_cta_link
     - field.field.node.article.field_event
     - field.field.node.article.field_featured_image
     - field.field.node.article.field_tags
@@ -34,5 +35,6 @@ content:
     region: content
 hidden:
   body: true
+  field_cta_link: true
   field_event: true
   field_tags: true
