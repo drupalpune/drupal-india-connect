@@ -7,6 +7,9 @@
  * from the start of the body. Body is hidden in the card display itself,
  * so it is read from the entity here and stripped of markup — pasted
  * Google Docs content carries inline styles that must not leak into cards.
+ *
+ * For a link post (an Article with "Links to" set, see dac_link_posts) the
+ * preprocess swaps url for the linked page and sets is_link_post.
  */
 #}
 {{ attach_library('drupal_india_connect/blog') }}
@@ -47,7 +50,7 @@
     {% endif %}
 
     <span class="dac-post-card__more" aria-hidden="true">
-      {{ 'Read the post'|t }}
+      {{ is_link_post ? 'Read more'|t : 'Read the post'|t }}
       {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
     </span>
   </div>

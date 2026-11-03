@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_cta_link
     - field.field.node.article.field_event
     - field.field.node.article.field_featured_image
     - field.field.node.article.field_tags
@@ -54,4 +55,5 @@ content:
     weight: 4
     region: content
 hidden:
+  field_cta_link: true
   field_event: true

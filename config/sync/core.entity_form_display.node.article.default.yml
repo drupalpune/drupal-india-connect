@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_cta_link
     - field.field.node.article.field_event
     - field.field.node.article.field_featured_image
     - field.field.node.article.field_tags
@@ -11,6 +12,7 @@ dependencies:
   module:
     - content_moderation
     - hide_revision_field
+    - link
     - media_library
     - path
     - scheduler
@@ -39,6 +41,14 @@ content:
     weight: 5
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_cta_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_event:
     type: entity_reference_autocomplete

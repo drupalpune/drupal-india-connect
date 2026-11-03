@@ -1,0 +1,6 @@
+services:
+  dac_link_posts.redirect_subscriber:
+    class: Drupal\dac_link_posts\EventSubscriber\LinkPostRedirectSubscriber
+    arguments: ['@current_route_match']
+    tags:
+      - { name: event_subscriber }
