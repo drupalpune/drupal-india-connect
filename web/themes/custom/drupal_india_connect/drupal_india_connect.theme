@@ -969,6 +969,78 @@ function _drupal_india_connect_featured_speaker(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for user.html.twig.
+ *
+ * Variables for user--full.html.twig, the public account page at /user/N.
+ * event_horizon's own template reads fields this site doesn't have
+ * (field_people_name, field_title, …), so it rendered an empty name and
+ * work line. This reads the site's fields and reuses the Featured Speaker
+ * page's layout:
+ * - profile: name (field_display_name, else the username), photo through
+ *   the featured_speaker image style, and the designation from a Featured
+ *   Speaker node that points at this account, if there is one.
+ * - speaker_links: drupal.org from field_drupal_org_username, in the shape
+ *   _drupal_india_connect_speaker_links() returns.
+ * - speaker_slack: the Drupal Slack username, shown as text (Slack has no
+ *   public profile URL by username).
+ * - speaker_bio / speaker_sessions: as on the Featured Speaker page.
+ */
+function drupal_india_connect_preprocess_user(array &$variables): void {
+  if (($variables['elements']['#view_mode'] ?? '') !== 'full') {
+    return;
+  }
+  /** @var \Drupal\user\UserInterface $account */
+  $account = $variables['user'];
+
+  $photo = NULL;
+  $picture = $account->get('user_picture')->first();
+  if ($picture && ($file = $picture->entity)) {
+    $style = \Drupal\image\Entity\ImageStyle::load('featured_speaker');
+    $photo = [
+      'src' => $style ? $style->buildUrl($file->getFileUri()) : $file->createFileUrl(),
+      'alt' => $picture->alt ?: '',
+    ];
+  }
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', 'featured_speaker')
+    ->condition('status', 1)
+    ->condition('field_speaker_account', $account->id())
+    ->range(0, 1)
+    ->execute();
+  $speaker = $nids ? \Drupal\node\Entity\Node::load(reset($nids)) : NULL;
+  $variables['#cache']['tags'][] = 'node_list:featured_speaker';
+
+  $variables['profile'] = [
+    'name' => trim((string) $account->get('field_display_name')->value) ?: $account->getDisplayName(),
+    'photo' => $photo,
+    'designation' => $speaker ? (string) $speaker->get('field_designation')->value : '',
+    'is_speaker' => $account->hasRole('speaker'),
+  ];
+
+  $variables['speaker_links'] = [];
+  if ($username = trim((string) $account->get('field_drupal_org_username')->value)) {
+    $variables['speaker_links'][] = [
+      'url' => 'https://www.drupal.org/u/' . rawurlencode($username),
+      'label' => 'Drupal.org',
+      'icon' => 'drupal',
+      'host' => 'drupal.org',
+    ];
+  }
+  $variables['speaker_slack'] = trim((string) $account->get('field_drupal_slack_username')->value);
+
+  if (!$account->get('field_bio')->isEmpty()) {
+    $variables['speaker_bio'] = $account->get('field_bio')->view(['label' => 'hidden']);
+  }
+
+  $view = \Drupal\views\Views::getView('sessions_by_speaker');
+  if ($view && $view->access('embed_speaker_page')) {
+    $variables['speaker_sessions'] = $view->buildRenderable('embed_speaker_page', [$account->id()]);
+  }
+}
+
+/**
  * Plain-text values for node--session--card.html.twig.
  *
  * Read from the entity rather than rendered fields: sessions have no card

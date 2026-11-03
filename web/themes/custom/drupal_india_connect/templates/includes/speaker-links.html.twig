@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Profile links on the speaker pages: node--featured-speaker--full and
+ * user--full. Each link is {url, label, icon}; see
+ * _drupal_india_connect_speaker_links().
+ */
+#}
+{% if links %}
+  <ul class="speaker-detail__links">
+    {% for link in links %}
+      <li>
+        <a href="{{ link.url }}" class="speaker-detail__link" target="_blank" rel="noopener noreferrer">
+          {% if link.icon == 'drupal' %}
+            <span class="ph-icon ph-icon--extra-small speaker-detail__drop" aria-hidden="true">{{ source('@drupal_india_connect/icons/brand/drupal-drop.svg', true) }}</span>
+          {% else %}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: link.icon, icon_size: 'extra-small' } only %}
+          {% endif %}
+          <span>{{ link.label }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
