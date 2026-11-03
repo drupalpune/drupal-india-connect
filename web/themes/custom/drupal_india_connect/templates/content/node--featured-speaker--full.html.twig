@@ -43,22 +43,7 @@
         <p class="speaker-detail__designation">{{ node.field_designation.value }}</p>
       {% endif %}
 
-      {% if speaker_links %}
-        <ul class="speaker-detail__links">
-          {% for link in speaker_links %}
-            <li>
-              <a href="{{ link.url }}" class="speaker-detail__link" target="_blank" rel="noopener noreferrer">
-                {% if link.icon == 'drupal' %}
-                  <span class="ph-icon ph-icon--extra-small speaker-detail__drop" aria-hidden="true">{{ source('@drupal_india_connect/icons/brand/drupal-drop.svg', true) }}</span>
-                {% else %}
-                  {% include 'drupal_india_connect:icon' ignore missing with { icon: link.icon, icon_size: 'extra-small' } only %}
-                {% endif %}
-                <span>{{ link.label }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+      {% include '@drupal_india_connect/includes/speaker-links.html.twig' with { links: speaker_links } only %}
     </div>
   </header>
 
