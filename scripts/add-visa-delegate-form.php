@@ -8,9 +8,9 @@
  *
  * The page was built by scripts/build-visa-page.php and may since have been
  * edited in Canvas, so this inserts one section into the existing component
- * tree instead of rebuilding it. The section goes before "What we're
- * preparing" (or before the closing CTA, or at the end, if editors renamed
- * or removed that section). Running it twice does nothing.
+ * tree instead of rebuilding it. The section goes straight after the hero
+ * (or first, if editors renamed the hero), and the hero gets a button to the
+ * form as its first button. Running it twice does nothing.
  *
  * Deploys are code-only, so this has to be run against each environment's
  * database. Back up the database first.
@@ -71,17 +71,30 @@ $group = fn(string $direction, string $gap = 'md', array $extra = []) => $extra 
   'flex_align' => 'start',
 ];
 
+$button = fn(string $label, string $variant) => [
+  'variant' => $variant,
+  'label' => $label,
+  'href' => ['uri' => $form_url, 'options' => []],
+  'size' => 'medium',
+  'icon' => 'arrow-right',
+  'mobile_width' => FALSE,
+  'icon_first' => FALSE,
+  'disabled' => FALSE,
+];
+
 $text = fn(string $value) => [
   'text' => $html($value),
   'text_size' => 'text-lg',
   'text_color' => 'default',
 ];
 
-// Same section settings as "We know visas take time", on a muted band so it
-// stands apart from its plain and accent neighbours.
+// A muted band, so it stands apart from the hero and the plain band below.
+// Full width with a 75-25 grid like the hero, not 'width' => '75%': on a
+// full-width band that percentage is of the viewport, so the text would sit
+// wider than the plain bands' text.
 $s = $add('sdc.event_horizon.section', $section_label, [
-  'width' => '75%',
-  'columns' => '100',
+  'width' => '100%',
+  'columns' => '75-25',
   'mobile_columns' => '1',
   'margin_block_start' => '0',
   'margin_block_end' => '0',
@@ -107,32 +120,43 @@ $add('sdc.event_horizon.text', 'Text - Visa assistance intro', $text('<p>If you 
 
 $g = $add('sdc.event_horizon.group', 'Group - Visa assistance', $group('column', 'md'), $s, 'main_slot');
 $add('sdc.event_horizon.text', 'Text - Visa assistance: Why', $text('<p>We are collecting these details to prepare the international delegates\' list required for submission to the Ministry of External Affairs (MEA), as part of the conference clearance process. Fill in one response per delegate, with your details exactly as shown on your passport.</p>'), $g, 'group_slot');
-$add('sdc.event_horizon.text', 'Text - Visa assistance: Please note', $text('<p><strong>Please note:</strong> filling in this form is not a confirmation of participation, registration, invitation or visa approval. It is only for collecting the information needed for MEA documentation. Questions or corrections: <a href="mailto:events@drupalasia.org">events@drupalasia.org</a>.</p>'), $g, 'group_slot');
-$add('sdc.event_horizon.button', 'Button - Fill in the delegate form', [
-  'variant' => 'primary',
-  'label' => 'Fill in the delegate form',
-  'href' => ['uri' => $form_url, 'options' => []],
-  'size' => 'medium',
-  'icon' => 'arrow-right',
-  'mobile_width' => FALSE,
-  'icon_first' => FALSE,
-  'disabled' => FALSE,
-], $g, 'group_slot');
+$add('sdc.event_horizon.text', 'Text - Visa assistance: Please note', $text('<p><strong>Please note:</strong> filling in this form is not a confirmation of participation, registration, invitation or visa approval. It is only for collecting the information needed for MEA documentation.</p>'), $g, 'group_slot');
+$add('sdc.event_horizon.text', 'Text - Visa assistance: Questions', $text('<p><strong>Questions?</strong> Ask in the #drupalcon_asia channel on <a href="https://www.drupal.org/slack">Drupal Slack</a>, or email <a href="mailto:events@drupalasia.org">events@drupalasia.org</a>.</p>'), $g, 'group_slot');
+$add('sdc.event_horizon.button', 'Button - Fill in the delegate form', $button('Fill in the delegate form', 'primary'), $g, 'group_slot');
 
-// Insert before the first top-level row we can anchor on. Siblings render in
-// array order, so position among the top-level rows is what matters.
-$at = NULL;
-foreach (["Section - What we're preparing", 'CTA - Stay updated'] as $anchor) {
+// Siblings render in array order, so what matters is position among rows with
+// the same parent and slot. The section goes right after the hero's
+// top-level row, or first.
+$find = function (string $label, bool $top_level) use ($existing): ?int {
   foreach ($existing as $i => $row) {
-    if ($row['parent_uuid'] === NULL && $row['label'] === $anchor) {
-      $at = $i;
-      break 2;
+    if ($row['label'] === $label && ($row['parent_uuid'] === NULL) === $top_level) {
+      return $i;
+    }
+  }
+  return NULL;
+};
+$hero = $find('Section - Hero', TRUE);
+$new = $existing;
+array_splice($new, $hero === NULL ? 0 : $hero + 1, 0, $rows);
+echo 'Inserting ', count($rows), ' rows ', $hero === NULL ? 'first' : 'after the hero', ".\n";
+
+// Hero button: before the hero's existing buttons, so it is the first one.
+$hero_buttons = $find('Group - Hero buttons', FALSE);
+if ($hero_buttons === NULL) {
+  echo "No 'Group - Hero buttons' row: skipping the hero button.\n";
+}
+else {
+  $rows = [];
+  $group_uuid = $existing[$hero_buttons]['uuid'];
+  $add('sdc.event_horizon.button', 'Button - Visa assistance form', $button('Visa assistance form', 'primary-inverted'), $group_uuid, 'group_slot');
+  foreach ($new as $i => $row) {
+    if ($row['parent_uuid'] === $group_uuid) {
+      array_splice($new, $i, 0, $rows);
+      echo "Adding the hero button.\n";
+      break;
     }
   }
 }
-$new = $existing;
-array_splice($new, $at ?? count($new), 0, $rows);
-echo 'Inserting ', count($rows), ' rows ', $at === NULL ? 'at the end' : "before '{$existing[$at]['label']}'", ".\n";
 
 // Save, with the guards from CLAUDE.md.
 $page->set('components', $new);
