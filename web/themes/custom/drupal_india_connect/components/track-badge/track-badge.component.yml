@@ -1,0 +1,69 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Track badge'
+description: 'A session track as a pill: an icon in the track colour and the track name. Session overview card uses it when a track icon is set; the colours come from the shared .dac-track--* classes in global.css.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  required:
+    - label
+  properties:
+    label:
+      type: string
+      title: Label
+      examples:
+        - 'Open Source AI'
+    track_key:
+      type: string
+      title: 'Track colour'
+      enum:
+        - drupal-cms
+        - development
+        - agency
+        - success
+        - sovereignty
+        - community
+        - ux
+        - martech
+        - enterprise-ai
+        - ai-infrastructure
+        - ai-education
+        - ai-government
+        - cms-dx
+        - open-source-ai
+      meta:enum:
+        drupal-cms: 'Drupal CMS (blue)'
+        development: 'Development, AI and Agentic Architecture (sky)'
+        agency: 'Agency, Business & Marketing (orange)'
+        success: 'Success Stories & Innovation (green)'
+        sovereignty: 'Digital Sovereignty & Open Web (slate)'
+        community: 'Community Health (rose)'
+        ux: 'User Experience, Accessibility & Design (gold)'
+        martech: 'AI Summit: Martech, Marketing and Customer Experience (rose)'
+        enterprise-ai: 'AI Summit: Enterprise AI and Digital Transformation (blue)'
+        ai-infrastructure: 'AI Summit: AI in Infrastructure and MLOps (sky)'
+        ai-education: 'AI Summit: AI Education and Social Impact (green)'
+        ai-government: 'AI Summit: AI in Government and Public Sector (slate)'
+        cms-dx: 'AI Summit: CMS and Digital Experience (orange)'
+        open-source-ai: 'AI Summit: Open Source AI (gold)'
+      examples:
+        - open-source-ai
+    icon:
+      type: string
+      title: Icon
+      description: 'Phosphor icon name from icons/phosphor/regular/, e.g. "code". Without one, a dot in the track colour.'
+      examples:
+        - code
+    tone:
+      type: string
+      title: Tone
+      description: 'On dark: for navy cards (the plenary session card).'
+      enum:
+        - light
+        - on-dark
+      meta:enum:
+        light: Light
+        on-dark: 'On dark'
+      default: light
+      examples:
+        - light

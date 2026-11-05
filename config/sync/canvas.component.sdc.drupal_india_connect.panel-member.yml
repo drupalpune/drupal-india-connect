@@ -1,0 +1,116 @@
+uuid: 6003b648-ecbc-4406-ac54-b6d0b71db925
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+  theme:
+    - drupal_india_connect
+active_version: 1166a69d71ee017b
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        tba:
+          required: false
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value:
+            -
+              value: false
+          expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
+        name:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Jane Doe'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        role:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Director, Example Org'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.linkedin.com/in/example'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+    fallback_metadata:
+      slot_definitions: {  }
+  60003c5cd12057c8:
+    settings:
+      prop_field_definitions:
+        name:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Jane Doe'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        role:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Director, Example Org'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        url:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.linkedin.com/in/example'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Panel member'
+id: sdc.drupal_india_connect.panel-member
+provider: drupal_india_connect
+source: sdc
+source_local_id: 'drupal_india_connect:panel-member'

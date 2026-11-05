@@ -16,6 +16,7 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.key-date-card
     - canvas.component.sdc.drupal_india_connect.milestone-row
     - canvas.component.sdc.drupal_india_connect.milestone-table
+    - canvas.component.sdc.drupal_india_connect.panel-member
     - canvas.component.sdc.drupal_india_connect.partners-band
     - canvas.component.sdc.drupal_india_connect.people-card
     - canvas.component.sdc.drupal_india_connect.place-card
@@ -33,6 +34,7 @@ dependencies:
     - canvas.component.sdc.drupal_india_connect.tbc-tag
     - canvas.component.sdc.drupal_india_connect.text-countdown
     - canvas.component.sdc.drupal_india_connect.text-media
+    - canvas.component.sdc.drupal_india_connect.track-badge
     - canvas.component.sdc.drupal_india_connect.venue-location
 name: 'Drupal Connect'
 configEntityTypeId: component
@@ -51,6 +53,7 @@ items:
   - sdc.drupal_india_connect.key-date-card
   - sdc.drupal_india_connect.milestone-row
   - sdc.drupal_india_connect.milestone-table
+  - sdc.drupal_india_connect.panel-member
   - sdc.drupal_india_connect.partners-band
   - sdc.drupal_india_connect.people-card
   - sdc.drupal_india_connect.place-card
@@ -68,4 +71,5 @@ items:
   - sdc.drupal_india_connect.tbc-tag
   - sdc.drupal_india_connect.text-countdown
   - sdc.drupal_india_connect.text-media
+  - sdc.drupal_india_connect.track-badge
   - sdc.drupal_india_connect.venue-location

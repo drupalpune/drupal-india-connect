@@ -1572,3 +1572,43 @@ h2.eh-heading,
   --dac-track: hsl(42, 92%, 47%);
   --dac-track-ink: hsl(35, 85%, 27%);
 }
+
+/*
+ * AI Summit (Day 1) tracks. Same seven colours as the Day 2 tracks above,
+ * so the program stays within one palette; each summit track also carries
+ * an icon (track-badge).
+ */
+.dac-track--martech {
+  --dac-track: hsl(345, 72%, 52%);
+  --dac-track-ink: hsl(345, 65%, 36%);
+}
+
+.dac-track--enterprise-ai {
+  --dac-track: var(--color--primary-50);
+  --dac-track-ink: var(--color--primary-40);
+}
+
+.dac-track--ai-infrastructure {
+  --dac-track: var(--color--sky-50);
+  --dac-track-ink: var(--color--ocean-30);
+}
+
+.dac-track--ai-education {
+  --dac-track: hsl(150, 55%, 38%);
+  --dac-track-ink: hsl(150, 60%, 24%);
+}
+
+.dac-track--ai-government {
+  --dac-track: var(--color--night-40);
+  --dac-track-ink: var(--color--night-20);
+}
+
+.dac-track--cms-dx {
+  --dac-track: var(--color--secondary-50);
+  --dac-track-ink: var(--color--secondary-30);
+}
+
+.dac-track--open-source-ai {
+  --dac-track: hsl(42, 92%, 47%);
+  --dac-track-ink: hsl(35, 85%, 27%);
+}

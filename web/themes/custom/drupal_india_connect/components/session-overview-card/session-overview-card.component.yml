@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Session overview card'
-description: 'One session in the program: track pill, length, title, room and time, a short description, up to three speakers (initials, name linked to drupal.org) and a link to the session page. Neutral card; the only colour is the track. The plenary variant is a navy card for keynotes, panels and ceremonies, without speakers or the details link.'
+description: 'One session in the program: track pill (optionally with an icon), length, title, room and time, a short description, an optional full summary that opens in place, up to three speakers (initials, name linked to drupal.org or LinkedIn, optional role) and a link to the session page. Neutral card; the only colour is the track. The plenary variant is a navy card for keynotes, panels and ceremonies, without speakers or the details link; for a panel, put Panel member components in its Moderator and Panelists slots.'
 group: 'Drupal Connect'
 status: stable
 props:
@@ -39,6 +39,13 @@ props:
         - sovereignty
         - community
         - ux
+        - martech
+        - enterprise-ai
+        - ai-infrastructure
+        - ai-education
+        - ai-government
+        - cms-dx
+        - open-source-ai
       meta:enum:
         drupal-cms: 'Drupal CMS (blue)'
         development: 'Development, AI and Agentic Architecture (sky)'
@@ -47,13 +54,37 @@ props:
         sovereignty: 'Digital Sovereignty & Open Web (slate)'
         community: 'Community Health (rose)'
         ux: 'User Experience, Accessibility & Design (gold)'
+        martech: 'AI Summit: Martech, Marketing and Customer Experience (rose)'
+        enterprise-ai: 'AI Summit: Enterprise AI and Digital Transformation (blue)'
+        ai-infrastructure: 'AI Summit: AI in Infrastructure and MLOps (sky)'
+        ai-education: 'AI Summit: AI Education and Social Impact (green)'
+        ai-government: 'AI Summit: AI in Government and Public Sector (slate)'
+        cms-dx: 'AI Summit: CMS and Digital Experience (orange)'
+        open-source-ai: 'AI Summit: Open Source AI (gold)'
       examples:
         - drupal-cms
+    track_icon:
+      type: string
+      title: 'Track icon'
+      description: 'Optional Phosphor icon name (icons/phosphor/regular/), e.g. "code". Shows a Track badge with the icon in place of the dot.'
+      examples:
+        - code
+    note:
+      type: string
+      title: 'Note beside the track'
+      description: 'Optional, e.g. "5 panelists · 1 moderator". Shown in place of the length.'
     title:
       type: string
       title: Title
       examples:
         - 'Drupal CMS + Canvas, one year in'
+    title_tbc:
+      type: boolean
+      title: 'Title not confirmed'
+      description: 'Shows the title muted with a TBC tag, e.g. for "Title to be announced".'
+      default: false
+      examples:
+        - false
     url:
       type: string
       title: 'Session page URL'
@@ -90,6 +121,12 @@ props:
       description: 'One or two sentences; cut to three lines.'
       examples:
         - 'An honest look at Drupal CMS and Drupal Canvas from the Canvas product lead: what has shipped, what we learned from early adopters, and what is coming next, with live demos.'
+    summary:
+      type: string
+      title: 'Full summary'
+      description: 'Optional. The full session summary, behind a "Read full summary" toggle under the description.'
+      contentMediaType: text/html
+      x-formatting-context: block
     speaker_1_name:
       type: string
       title: 'Speaker 1 name'
@@ -97,22 +134,47 @@ props:
         - 'Lauri Timmanee'
     speaker_1_url:
       type: string
-      title: 'Speaker 1 drupal.org profile'
-      description: 'Optional. Links the name; opens in a new tab.'
+      title: 'Speaker 1 profile'
+      description: 'Optional drupal.org or LinkedIn profile. Links the name; opens in a new tab.'
       format: uri-reference
       examples:
         - 'https://www.drupal.org/u/lauriii'
+    speaker_1_role:
+      type: string
+      title: 'Speaker 1 role'
+      description: 'Optional, e.g. "Founder & CEO, Fragmatic".'
     speaker_2_name:
       type: string
       title: 'Speaker 2 name'
     speaker_2_url:
       type: string
-      title: 'Speaker 2 drupal.org profile'
+      title: 'Speaker 2 profile'
+      description: 'Optional drupal.org or LinkedIn profile.'
       format: uri-reference
+    speaker_2_role:
+      type: string
+      title: 'Speaker 2 role'
     speaker_3_name:
       type: string
       title: 'Speaker 3 name'
     speaker_3_url:
       type: string
-      title: 'Speaker 3 drupal.org profile'
+      title: 'Speaker 3 profile'
+      description: 'Optional drupal.org or LinkedIn profile.'
       format: uri-reference
+    speaker_3_role:
+      type: string
+      title: 'Speaker 3 role'
+slots:
+  moderator:
+    title: Moderator
+    description: 'Plenary only: a Panel member for the panel moderator.'
+  panelists:
+    title: Panelists
+    description: 'Plenary only: one Panel member per panelist.'
+libraryOverrides:
+  js:
+    session-overview-card.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

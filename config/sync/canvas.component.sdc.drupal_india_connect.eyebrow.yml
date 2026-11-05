@@ -6,9 +6,38 @@ dependencies:
     - options
   theme:
     - drupal_india_connect
-active_version: bef84890528d49f7
+active_version: fc3f1bcf4d23d8a9
 versioned_properties:
   active:
+    settings:
+      prop_field_definitions:
+        text:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'The event'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        tone:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: accent
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  bef84890528d49f7:
     settings:
       prop_field_definitions:
         text:
