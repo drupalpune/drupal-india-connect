@@ -19,12 +19,14 @@ props:
       title: Tone
       description: >
         accent = the rationed orange (default); primary = blue, used for the
-        card index numerals; on-dark = the lighter orange for navy bands.
+        card index numerals; on-dark = the lighter orange for navy bands;
+        muted = neutral grey, for a quiet label between groups of cards.
       type: string
       enum:
         - accent
         - primary
         - on-dark
+        - muted
       default: accent
       examples:
         - accent

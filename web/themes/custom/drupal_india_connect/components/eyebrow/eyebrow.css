@@ -24,3 +24,8 @@
 .eh-eyebrow--on-dark {
   color: color-mix(in srgb, var(--color--secondary-50) 65%, white);
 }
+
+/* A quiet label between groups of cards, e.g. "Speaker sessions". */
+.eh-eyebrow--muted {
+  color: var(--color--night-40);
+}

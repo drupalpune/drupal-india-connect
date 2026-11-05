@@ -1,0 +1,33 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: 'Panel member'
+description: 'One person on a panel: initials, name, role and an optional profile link. Switch on "Not confirmed yet" (or leave the name empty) for a place still to be filled ("To be announced"). Use in the Moderator or Panelists slot of a plenary Session overview card.'
+group: 'Drupal Connect'
+status: stable
+props:
+  type: object
+  properties:
+    tba:
+      type: boolean
+      title: 'Not confirmed yet'
+      description: 'Shows a dashed placeholder and "To be announced" instead of the name.'
+      default: false
+      examples:
+        - false
+    name:
+      type: string
+      title: Name
+      description: 'Empty shows "To be announced".'
+      examples:
+        - 'Jane Doe'
+    role:
+      type: string
+      title: 'Role and organisation'
+      examples:
+        - 'Director, Example Org'
+    url:
+      type: string
+      title: 'Profile URL'
+      description: 'Optional. LinkedIn or drupal.org; links the name and opens in a new tab.'
+      format: uri-reference
+      examples:
+        - 'https://www.linkedin.com/in/example'

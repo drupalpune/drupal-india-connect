@@ -1,0 +1,17 @@
+{#
+  A track pill: icon (or dot) in the track colour, then the track name.
+#}
+{% set classes = [
+  'dac-track-badge',
+  track_key is not empty ? 'dac-track--' ~ track_key,
+  tone == 'on-dark' ? 'dac-track-badge--on-dark',
+]|filter(class => class) %}
+
+<p class="{{ classes|join(' ') }}">
+  {%- if icon is not empty -%}
+    {% include 'drupal_india_connect:icon' ignore missing with { icon: icon, icon_size: 'extra-small' } only %}
+  {%- else -%}
+    <span class="dac-track-badge__dot" aria-hidden="true"></span>
+  {%- endif -%}
+  <span>{{ label }}</span>
+</p>

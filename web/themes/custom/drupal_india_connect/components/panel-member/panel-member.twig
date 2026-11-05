@@ -1,0 +1,37 @@
+{#
+  One panel member. No name: a dashed placeholder, "To be announced".
+#}
+{% set name = tba ? '' : name|trim %}
+{% if name is not empty %}
+  {% set words = name|replace({'Dr. ': '', 'Prof. ': ''})|split(' ')|filter(word => word is not empty) %}
+  {% set initials = (words|first|first ~ (words|length > 1 ? words|last|first : ''))|upper %}
+  {% set is_linkedin = url is not empty and 'linkedin.com' in url %}
+{% endif %}
+
+<li class="dac-panel-member{{ name is empty ? ' dac-panel-member--tba' }}">
+  <span class="dac-panel-member__avatar" aria-hidden="true">
+    {%- if name is not empty -%}
+      {{ initials }}
+    {%- else -%}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'user', icon_size: 'small' } only %}
+    {%- endif -%}
+  </span>
+  <div class="dac-panel-member__body">
+    <p class="dac-panel-member__name">
+      {%- if name is empty -%}
+        {{ 'To be announced'|t }}
+      {%- elseif url is not empty -%}
+        <a class="dac-panel-member__link" href="{{ url }}" target="_blank" rel="noopener noreferrer">
+          {{- name -}}
+          {% include 'drupal_india_connect:icon' ignore missing with { icon: is_linkedin ? 'linkedin-logo' : 'arrow-square-out', icon_size: 'extra-small' } only %}
+          <span class="visually-hidden"> {{ is_linkedin ? '(LinkedIn profile, opens in a new tab)'|t : '(profile, opens in a new tab)'|t }}</span>
+        </a>
+      {%- else -%}
+        {{ name }}
+      {%- endif -%}
+    </p>
+    {% if name is not empty and role is not empty %}
+      <p class="dac-panel-member__role">{{ role }}</p>
+    {% endif %}
+  </div>
+</li>
