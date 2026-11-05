@@ -10,6 +10,9 @@ global:
   dependencies:
     - core/drupal
     - core/once
+    # The Key dates nav button reuses event_horizon's button classes, whose
+    # CSS otherwise only loads on pages that render the button component.
+    - core/components.event_horizon--button
 
 profile-nudge:
   version: 1.x

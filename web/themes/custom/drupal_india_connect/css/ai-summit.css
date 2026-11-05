@@ -9,24 +9,9 @@
  * header and the footer stay as they are, so the pages still read as
  * DrupalAsia Connect.
  *
- * The ramp is derived exactly as in tokens/colors.css. The steps are
- * re-declared here because they are computed where they are declared
- * (:root); changing only the hue on a descendant would not recompute them.
+ * The teal ramp itself is declared in global.css, because the main nav's AI
+ * Summit item uses it on every page.
  */
-.dac-ai-summit main,
-.dac-ai-summit .eh-announcement-bar {
-  --color--secondary-hue: 188;
-  --color--secondary-saturation: 85%;
-  --color--secondary-lightness: 40;
-  --color--secondary-30: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.36 * var(--color--secondary-lightness)))));
-  --color--secondary-40: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.24 * var(--color--secondary-lightness)))));
-  --color--secondary-50: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * var(--color--secondary-lightness)));
-  --color--secondary-60: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.24 * (100 - var(--color--secondary-lightness))))));
-  --color--secondary-80: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.85 * (100 - var(--color--secondary-lightness))))));
-  --secondary: var(--color--secondary-50);
-  --text-on-neutral-dark-secondary: var(--color--secondary-60);
-}
-
 .dac-ai-summit main .eh-section--bg-accent {
   background-color: var(--color--secondary-80);
 }

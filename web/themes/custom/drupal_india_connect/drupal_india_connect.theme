@@ -333,6 +333,24 @@ function _drupal_india_connect_flatten_footer_menu_items(array $items) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for menu--main.html.twig.
+ */
+function drupal_india_connect_preprocess_menu__main(&$variables) {
+  // "Key dates" is a secondary button beside "Get tickets" in the header.
+  // Its menu link carries only the <li> class `dac-nav-button` (a
+  // menu_link_attributes container class); the link takes event_horizon's
+  // button classes here, not on the menu link itself, because the footer
+  // builds its columns from the same menu and must keep it a plain link.
+  foreach ($variables['items'] as &$item) {
+    if ($item['attributes']->hasClass('dac-nav-button')) {
+      $attributes = $item['url']->getOption('attributes') ?? [];
+      $attributes['class'] = array_merge((array) ($attributes['class'] ?? []), ['eh-button', 'eh-button--secondary']);
+      $item['url']->setOption('attributes', $attributes);
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for menu--footer-social.html.twig.
  *
  * The "Social media links" menu (Structure > Menus > Social media links)
