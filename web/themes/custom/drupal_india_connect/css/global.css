@@ -449,11 +449,15 @@ h2.eh-heading,
 /*
  * Tablets: event_horizon's button is already transparent here ("Menu" plus
  * lines), but keeps its 5.5rem height, which alone made the sticky header
- * 112px. Match the phone's 3rem tap target.
+ * 112px. Match the phone's 3rem tap target. It also keeps a -2rem right
+ * margin meant to reach the edge of event_horizon's full-bleed header; ours
+ * is inset less than that, so the button stuck out past the viewport and
+ * the page scrolled sideways (600-1099px). Drop it, as phones already do.
  */
 @media (min-width: 37.5rem) {
   .mobile-nav-button {
     height: 3rem;
+    margin-right: 0;
   }
 }
 
@@ -492,6 +496,187 @@ h2.eh-heading,
 
   .site-header__register-link {
     white-space: nowrap;
+  }
+
+  /*
+   * With the Key dates button beside Get tickets the row is full here: the
+   * logo shrinks and the two buttons touch. Give both the compact padding
+   * the phone header already uses for Get tickets.
+   */
+  .site-header__register-link,
+  .primary-nav .dac-nav-button > .primary-nav__menu-link--level-1 {
+    padding: 0.625rem 1rem !important;
+  }
+}
+
+/* Below 1200px that is still not enough: tighten the links a little more. */
+@media (min-width: 1100px) and (max-width: 1199.98px) {
+  .primary-nav__menu-link--level-1 {
+    padding-inline: 0.375rem;
+  }
+}
+
+/*
+ * AI Summit teal. Summit pages (ai-summit.css) and the main nav's AI Summit
+ * item swap the orange secondary ramp for a teal from the sky family. The
+ * ramp is derived exactly as in tokens/colors.css. The steps are
+ * re-declared here because they are computed where they are declared
+ * (:root); changing only the hue on a descendant would not recompute them.
+ */
+.dac-ai-summit main,
+.dac-ai-summit .eh-announcement-bar,
+.dac-nav-summit {
+  --color--secondary-hue: 188;
+  --color--secondary-saturation: 85%;
+  --color--secondary-lightness: 40;
+  --color--secondary-30: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.36 * var(--color--secondary-lightness)))));
+  --color--secondary-40: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) - (0.24 * var(--color--secondary-lightness)))));
+  --color--secondary-50: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * var(--color--secondary-lightness)));
+  --color--secondary-60: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.24 * (100 - var(--color--secondary-lightness))))));
+  --color--secondary-80: hsl(var(--color--secondary-hue), var(--color--secondary-saturation), calc(1% * (var(--color--secondary-lightness) + (0.85 * (100 - var(--color--secondary-lightness))))));
+  --secondary: var(--color--secondary-50);
+  --text-on-neutral-dark-secondary: var(--color--secondary-60);
+}
+
+/*
+ * Main nav: AI Summit item (menu link container class `dac-nav-summit`).
+ * On hover or keyboard focus the label's fill sweeps through summit teal
+ * and brand blue, the same background-clip: text fill the hero title
+ * animates, and glints twinkle around it (three teal ✦ and a ✨, which is
+ * an emoji and keeps the platform's own colours), so the summit's own
+ * day stands out from the rest of the menu. Desktop nav only; the drawer
+ * is navy, where blue text would not read. Without motion it turns teal.
+ */
+@container style(--wide-nav: true) {
+  .primary-nav .dac-nav-summit {
+    position: relative;
+  }
+
+  .primary-nav .dac-nav-summit::before,
+  .primary-nav .dac-nav-summit::after,
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::before,
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::after {
+    position: absolute;
+    content: '\2726';
+    color: var(--color--secondary-50);
+    font-size: 0.875rem;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .primary-nav .dac-nav-summit::before {
+    inset-block-start: 0.375rem;
+    inset-inline-start: 0.125rem;
+  }
+
+  .primary-nav .dac-nav-summit::after {
+    inset-block-end: 0.25rem;
+    inset-inline-start: 45%;
+    font-size: 0.625rem;
+  }
+
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::after {
+    inset-block-end: 0.5rem;
+    inset-inline-start: 0.25rem;
+    font-size: 0.5rem;
+  }
+
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::before {
+    content: '\2728';
+    inset-block-start: 0;
+    inset-inline-end: 1.375rem;
+    font-size: 0.875rem;
+  }
+
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1 {
+    background-image: linear-gradient(90deg, var(--color--secondary-50), var(--color--primary-50), var(--color--secondary-60), var(--color--secondary-50));
+    background-size: 300% 100%;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    animation: dac-summit-shimmer 2.4s linear infinite;
+  }
+
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within)::before,
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within)::after,
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1::before,
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1::after {
+    animation: dac-summit-twinkle 1.2s ease infinite;
+  }
+
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1::before {
+    animation-delay: 0.2s;
+  }
+
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within)::after {
+    animation-delay: 0.4s;
+  }
+
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1::after {
+    animation-delay: 0.8s;
+  }
+}
+
+@keyframes dac-summit-shimmer {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+@keyframes dac-summit-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-nav .dac-nav-summit:is(:hover, :focus-within) > .primary-nav__menu-link--level-1 {
+    background-image: none;
+    color: var(--color--secondary-50);
+    animation: none;
+  }
+
+  .primary-nav .dac-nav-summit::before,
+  .primary-nav .dac-nav-summit::after,
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::before,
+  .primary-nav .dac-nav-summit > .primary-nav__menu-link--level-1::after {
+    content: none;
+  }
+}
+
+/*
+ * Main nav: Key dates as a button beside "Get tickets" (menu link container
+ * class `dac-nav-button`; drupal_india_connect_preprocess_menu__main() adds
+ * the link's `eh-button eh-button--secondary`).
+ * event_horizon's secondary button supplies the pale sky fill and its
+ * darker hover, so Key dates reads as a second action without competing
+ * with the primary blue of Get tickets. These rules only undo the nav-link
+ * styles that would otherwise win (underline, blue hover text, weight 500)
+ * and match Get tickets' size.
+ */
+@container style(--wide-nav: true) {
+  .primary-nav .dac-nav-button {
+    align-self: center;
+    margin-inline-start: var(--sp0-5);
+  }
+
+  .primary-nav .dac-nav-button > .primary-nav__menu-link--level-1 {
+    padding: 0.75rem 1.375rem;
+    font-weight: 700;
+  }
+
+  .primary-nav .dac-nav-button > .primary-nav__menu-link--level-1:hover {
+    color: var(--color--night-5);
+    background-color: var(--color--sky-86);
+    text-decoration: none;
   }
 }
 
