@@ -449,11 +449,15 @@ h2.eh-heading,
 /*
  * Tablets: event_horizon's button is already transparent here ("Menu" plus
  * lines), but keeps its 5.5rem height, which alone made the sticky header
- * 112px. Match the phone's 3rem tap target.
+ * 112px. Match the phone's 3rem tap target. It also keeps a -2rem right
+ * margin meant to reach the edge of event_horizon's full-bleed header; ours
+ * is inset less than that, so the button stuck out past the viewport and
+ * the page scrolled sideways (600-1099px). Drop it, as phones already do.
  */
 @media (min-width: 37.5rem) {
   .mobile-nav-button {
     height: 3rem;
+    margin-right: 0;
   }
 }
 
