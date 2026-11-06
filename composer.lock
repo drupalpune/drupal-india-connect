@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02fd70b1c57116980f847ee627f599cd",
+    "content-hash": "ecf5c4738086e33a3591477da4a6e31e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3744,6 +3744,54 @@
             "support": {
                 "source": "https://git.drupal.org/project/friendlycaptcha.git",
                 "issues": "https://www.drupal.org/project/issues/friendlycaptcha"
+            }
+        },
+        {
+            "name": "drupal/ga4_google_analytics",
+            "version": "1.1.15",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ga4_google_analytics.git",
+                "reference": "1.1.15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ga4_google_analytics-1.1.15.zip",
+                "reference": "1.1.15",
+                "shasum": "e72f724efee31ae4595a204ed43951a104a4eab9"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.15",
+                    "datestamp": "1779296962",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "binodlamsal",
+                    "homepage": "https://www.drupal.org/user/2574226"
+                },
+                {
+                    "name": "sujan shrestha",
+                    "homepage": "https://www.drupal.org/user/3475737"
+                }
+            ],
+            "description": "A simple module to integrate Google Analytics GA4 tracking into your Drupal site.",
+            "homepage": "https://www.drupal.org/project/ga4_google_analytics",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ga4_google_analytics"
             }
         },
         {
