@@ -51,6 +51,7 @@
         "drupal/flag": "^5.0",
         "drupal/focal_point": "^2.1",
         "drupal/friendlycaptcha": "^1.1",
+        "drupal/ga4_google_analytics": "^1.1",
         "drupal/gin": "^5.0",
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^3.0",
