@@ -2,7 +2,8 @@
 {% set gap_value = gap is not empty ? gap : '24' %}
 {% set gap_px = gap_value|replace({'px': '', ' ': ''}) %}
 {% set tablet = tablet_columns in ['1', '2'] ? tablet_columns : null %}
+{% set grid_variant = variant in ['panel', 'joined-arrow', 'joined-plus', 'steps', 'list', 'seats'] ? variant : null %}
 
-<div class="component-grid component-grid--columns-{{ col_count }}{{ tablet ? ' component-grid--tablet-' ~ tablet }}{{ center_last_item ? ' component-grid--center-last' }}" style="--grid-gap-px: {{ gap_px }}px;">
+<div class="component-grid component-grid--columns-{{ col_count }}{{ tablet ? ' component-grid--tablet-' ~ tablet }}{{ center_last_item ? ' component-grid--center-last' }}{{ grid_variant ? ' component-grid--' ~ grid_variant ~ (grid_variant starts with 'joined' ? ' component-grid--joined') }}" style="--grid-gap-px: {{ gap_px }}px;">
   {% block grid_slot %}{% endblock %}
 </div>

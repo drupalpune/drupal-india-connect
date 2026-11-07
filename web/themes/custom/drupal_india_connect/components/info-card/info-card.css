@@ -152,3 +152,92 @@
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* Pull quote: the title set large on a tinted panel, pill as a caption. */
+.info-card.info-card--quote {
+  height: auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 0;
+  border-left: solid 4px var(--secondary);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background-color: var(--color--sky-94);
+  box-shadow: none;
+}
+
+.info-card--quote .info-card__title {
+  font-weight: 600;
+  font-size: clamp(1.35rem, 1rem + 1.2vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.info-card--quote .info-card__pill {
+  order: 2;
+  margin-top: var(--sp0-5);
+  padding: 0;
+  color: var(--color--secondary-30);
+  background: none;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Speech bubble, for navy bands: icon and pill say who, title says what. */
+.info-card.info-card--bubble {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp0-75) 0.625rem;
+  height: auto;
+  padding: var(--sp1-5) 1.75rem;
+  border: 0;
+  background-color: rgb(255 255 255 / 0.06);
+  box-shadow: none;
+}
+
+.info-card--bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  left: 2rem;
+  border: solid 0.75rem transparent;
+  border-top-color: rgb(255 255 255 / 0.06);
+  border-bottom: 0;
+}
+
+.info-card--bubble .info-card__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: solid 1.5px var(--color--sky-80);
+  border-radius: 50%;
+  color: var(--color--sky-80);
+  background: none;
+}
+
+.info-card--bubble .info-card__icon .ph-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.info-card--bubble .info-card__pill {
+  justify-self: start;
+  padding: 0;
+  color: var(--color--sky-80);
+  background: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.info-card--bubble .info-card__title,
+.info-card--bubble .info-card__body {
+  grid-column: 1 / -1;
+}
+
+.info-card--bubble .info-card__title {
+  color: var(--color--white);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1rem + 1vw, 1.75rem);
+  line-height: 1.25;
+}
