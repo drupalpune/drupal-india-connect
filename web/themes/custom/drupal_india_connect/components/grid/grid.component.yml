@@ -56,6 +56,29 @@ props:
       title: 'Centre a lone last item'
       description: 'Optional, 2-column grids. When the item count is odd, centre the last item on its row at the same width as the others, instead of leaving it on the left.'
       default: false
+    variant:
+      type: string
+      title: 'Variant'
+      description: 'Optional. Restyles the cards inside the grid. "Panel" joins Fact rows (inline, on-dark) into one translucent list, e.g. a session''s details beside the hero. "Joined" sets Info Cards side by side as one panel, with an arrow (a sequence) or a plus (connected parts) between them; the pill becomes a large role word. "Steps" turns Info Cards into numbered steps on a line (navy bands). "List" turns Info Cards into numbered rows on hairlines, e.g. a list of questions. "Seats" sets a People Card beside Info Cards drawn as dashed placeholder places, e.g. a moderator and panelists still to be announced.'
+      enum:
+        - default
+        - panel
+        - joined-arrow
+        - joined-plus
+        - steps
+        - list
+        - seats
+      meta:enum:
+        default: 'Default'
+        panel: 'Panel (fact list)'
+        joined-arrow: 'Joined, arrows (sequence)'
+        joined-plus: 'Joined, plus (connected parts)'
+        steps: 'Steps on a line'
+        list: 'Numbered list'
+        seats: 'Seats (people and placeholders)'
+      default: default
+      examples:
+        - default
 slots:
   grid_slot:
     title: 'Grid items'

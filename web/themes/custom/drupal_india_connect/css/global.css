@@ -363,6 +363,32 @@ h2.eh-heading,
 }
 
 /*
+ * Panel-discussion session pages (body class dac-panel-page, set by URL
+ * alias in drupal_india_connect_preprocess_html()).
+ *
+ * Section headings are sentence case: they are questions and claims meant
+ * to be read, not labels. Without the caps they read a size smaller, so
+ * they step up to keep the same weight on the page.
+ */
+.dac-panel-page h2.eh-heading {
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+/*
+ * A section without a background colour is not full-width (event_horizon
+ * only adds eh-section--full-width with a colour), so it sits inside the
+ * page container and its inner wrapper pads it a second time: its content
+ * starts 32px further in than the coloured bands around it. Drop the
+ * second inset so every band shares one left edge.
+ */
+.dac-panel-page main .eh-section:not(.eh-section--full-width) > .eh-section__inner {
+  padding-inline: 0;
+}
+
+/*
  * Sticky header with a translucent, blurred background, per the design.
  * Needs `overflow-x: clip` (not `hidden`) on <html> to work — see base.css.
  */
@@ -1397,7 +1423,9 @@ h2.eh-heading,
   color: hsl(var(--color--primary-hue) 40% 83%);
 }
 
-.page-node-type-article .site-main .eh-section--bg-black .eh-button--secondary-inverted {
+.page-node-type-article .site-main .eh-section--bg-black .eh-button--secondary-inverted,
+.dac-panel-page main .eh-section--dark-background .eh-button--secondary-inverted,
+.dac-panel-page main .eh-section--bg-secondary .eh-button--secondary-inverted {
   color: var(--neutral-white);
   border-color: rgb(255 255 255 / 0.4);
 

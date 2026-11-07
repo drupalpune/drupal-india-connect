@@ -39,3 +39,8 @@
 .dac-ai-summit .eh-announcement-bar {
   font-family: var(--font-summit-display);
 }
+
+/* Pull-quote cards take the summit's pale accent, like the accent bands. */
+.dac-ai-summit main .info-card--quote {
+  background-color: var(--color--secondary-80);
+}

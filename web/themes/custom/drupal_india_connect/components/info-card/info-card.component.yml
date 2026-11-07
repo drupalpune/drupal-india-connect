@@ -63,6 +63,21 @@ props:
       default: false
       examples:
         - false
+    style:
+      type: string
+      title: 'Style'
+      description: 'Optional. "Quote" sets the title as a large pull quote on a tinted panel with an accent rule, and moves the pill under it as a caption. "Speech bubble" is for navy bands: the icon and pill introduce who is speaking and the title is what they say.'
+      enum:
+        - card
+        - quote
+        - bubble
+      meta:enum:
+        card: 'Card (default)'
+        quote: 'Pull quote'
+        bubble: 'Speech bubble'
+      default: card
+      examples:
+        - card
     link_label:
       type: string
       title: 'Link label'

@@ -1,6 +1,7 @@
 {% set accent_key = accent|default('primary') %}
+{% set style_key = style in ['quote', 'bubble'] ? style : null %}
 
-<div class="info-card info-card--{{ accent_key }}{{ plain ? ' info-card--plain' }}">
+<div class="info-card info-card--{{ accent_key }}{{ plain ? ' info-card--plain' }}{{ style_key ? ' info-card--' ~ style_key }}">
   {% if marker is not empty %}
     <span class="info-card__marker{{ marker_suffix is not empty ? ' info-card__marker--stat' }}">
       {{- marker -}}

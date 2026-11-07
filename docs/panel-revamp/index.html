@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel page revamp</title>
+<!-- Real brand tokens: no hexes are written in this file. -->
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/layout.css">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body class="summit">
+
+<!-- Prototype-only stand-ins for the real announcement bar and header -->
+<div class="mock-bar">AI Summit · Thursday, 28 January 2027 · Day 1 of DrupalAsia Connect India 2027 · <a href="#">Summit overview</a></div>
+<header class="mock-header"><div class="wrap"><img src="../../design-system/assets/logo.svg" alt="DrupalAsia Connect India 2027"><a class="btn btn--primary" href="#">Get tickets</a></div></header>
+
+<main>
+
+<!-- 1. HERO ----------------------------------------------------------- -->
+<section class="hero on-dark">
+  <div class="wrap">
+    <div class="hero__grid">
+      <div>
+        <span class="eyebrow">AI Summit · Panel discussion</span>
+        <h1>Building intelligent public infrastructure</h1>
+        <p class="hero__intro">Open source, Drupal, and AI. How can they work together to make public services easier to find, understand, and use, without losing trust or accountability?</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#">Get tickets
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          <a class="btn btn--ghost" href="#">Explore the AI Summit</a>
+        </div>
+      </div>
+
+      <aside class="glance" aria-label="Session at a glance">
+        <p class="glance__label">At a glance</p>
+        <dl>
+          <div><dt>Format</dt><dd>Panel discussion</dd></div>
+          <div><dt>When</dt><dd>28 January 2027<small>Session time <span class="tbc">To be announced</span></small></dd></div>
+          <div><dt>Where</dt><dd>IIT Bombay, Mumbai</dd></div>
+          <div><dt>Moderator</dt><dd>Piyuesh Kumar<small>QED42</small></dd></div>
+          <div><dt>Panelists</dt><dd>Four to five voices<small>To be announced</small></dd></div>
+          <div><dt>Part of</dt><dd>DrupalAsia Connect India 2027 · AI Summit</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <nav class="jump" aria-label="On this page">
+      <span>On this page</span>
+      <a href="#conversation">The conversation</a>
+      <a href="#layers">Three layers</a>
+      <a href="#journey">A citizen’s journey</a>
+      <a href="#questions">Questions</a>
+      <a href="#panel">The panel</a>
+    </nav>
+  </div>
+</section>
+
+<!-- 2. THE CONVERSATION ---------------------------------------------- -->
+<section class="band" id="conversation">
+  <div class="wrap convo">
+    <div class="convo__body">
+      <span class="eyebrow">The conversation</span>
+      <h2 class="h2">From digital rails to real access</h2>
+      <p class="lede">Digital Public Infrastructure creates shared foundations for identity, payments, credentials, data exchange and public services. But the infrastructure itself does not guarantee that someone can discover a service, understand whether they qualify, or complete the next step.</p>
+      <p>This panel explores the space between public infrastructure and people: trustworthy information, accessible experiences, multilingual services, and the responsible use of AI.</p>
+    </div>
+    <blockquote class="bigq">
+      <p>What becomes possible when public systems, mature open-source platforms, and AI are designed to work together?</p>
+      <footer>The question at the centre of this panel</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- 3. THREE LAYERS --------------------------------------------------- -->
+<section class="band band--tint" id="layers">
+  <div class="wrap">
+    <div class="layers__head">
+      <div>
+        <span class="eyebrow">A possible architecture</span>
+        <h2 class="h2">Three layers. One public purpose.</h2>
+      </div>
+      <p class="lede">Each technology has a different job. The opportunity is to connect them without confusing their responsibilities.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow__step">
+        <span class="flow__num">01</span>
+        <span class="flow__role">Foundation</span>
+        <h3>Digital public infrastructure</h3>
+        <p>Shared systems and APIs for identity, consent, payments, credentials, and service delivery.</p>
+      </li>
+      <li class="flow__step">
+        <span class="flow__num">02</span>
+        <span class="flow__role">Experience</span>
+        <h3>Open source and Drupal</h3>
+        <p>Structured, governed, multilingual information and interoperable citizen-facing experiences.</p>
+      </li>
+      <li class="flow__step">
+        <span class="flow__num">03</span>
+        <span class="flow__role">Interaction</span>
+        <h3>Artificial intelligence</h3>
+        <p>Intent-based discovery, grounded explanations, language and voice interfaces, and carefully authorized actions.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4. CITIZEN JOURNEY ----------------------------------------------- -->
+<section class="band on-dark" id="journey">
+  <div class="wrap">
+    <div class="journey__head">
+      <div>
+        <span class="eyebrow">Start with a person, not a platform</span>
+        <h2 class="h2">What should public access feel like?</h2>
+        <p class="journey__note">A simple question can involve several departments, eligibility rules, languages, and steps.</p>
+      </div>
+      <div class="ask">
+        <p class="ask__who"><i><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></i>A small business owner asks</p>
+        <blockquote>“I’ve started a small business. Which registrations, programmes, or benefits should I know about?”</blockquote>
+      </div>
+    </div>
+    <ol class="steps" aria-label="What a good answer has to do">
+      <li class="step"><h3>Discover authoritative services</h3></li>
+      <li class="step"><h3>Explain eligibility and requirements</h3></li>
+      <li class="step"><h3>Help in a preferred language</h3></li>
+      <li class="step"><h3>Guide the next authorized action</h3></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5. QUESTIONS ------------------------------------------------------ -->
+<section class="band" id="questions">
+  <div class="wrap qs">
+    <div class="qs__head">
+      <span class="eyebrow">On the table</span>
+      <h2 class="h2">Questions worth asking</h2>
+      <p class="lede">Real questions about public value, architecture, access, and responsibility. Not a platform pitch.</p>
+    </div>
+    <ol class="qlist">
+      <li><div><p>Where can open source contribute more to public digital systems?</p><small>Public value</small></div></li>
+      <li><div><p>Where can Drupal add value without replacing the underlying DPI?</p><small>Architecture</small></div></li>
+      <li><div><p>How can people find services by intent, not department?</p><small>Access</small></div></li>
+      <li><div><p>How do we make multilingual AI explanations accurate and accessible?</p><small>Access</small></div></li>
+      <li><div><p>What consent, evidence, and safeguards should citizen-facing AI agents require?</p><small>Responsibility</small></div></li>
+      <li><div><p>What could a useful, responsibly scoped pilot look like?</p><small>Next steps</small></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. THE PANEL ------------------------------------------------------ -->
+<section class="band band--tint" id="panel">
+  <div class="wrap">
+    <div class="panel__head">
+      <span class="eyebrow">People in the conversation</span>
+      <h2 class="h2">A cross-disciplinary panel</h2>
+      <p class="lede">We are bringing together perspectives from public infrastructure, open source, AI, and governance. Panelist announcements will follow.</p>
+    </div>
+    <div class="seats">
+      <article class="mod">
+        <div class="avatar" aria-hidden="true">P</div>
+        <div>
+          <span class="pill">Moderator</span>
+          <h3>Piyuesh Kumar</h3>
+          <p class="mod__role">QED42</p>
+          <p class="mod__bio">Guiding a practical conversation across technology, public systems, and citizen experience.</p>
+        </div>
+      </article>
+      <div class="seat"><div class="avatar"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></div><strong>Panelist</strong><span>To be announced</span></div>
+      <div class="seat"><div class="avatar"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></div><strong>Panelist</strong><span>To be announced</span></div>
+      <div class="seat"><div class="avatar"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></div><strong>Panelist</strong><span>To be announced</span></div>
+      <div class="seat"><div class="avatar"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></div><strong>Panelist</strong><span>To be announced</span></div>
+    </div>
+    <p class="panel__note">We’re shaping a balanced discussion with practitioners from different disciplines. Names and profiles will be added as participation is confirmed.</p>
+  </div>
+</section>
+
+<!-- 7. CLOSING -------------------------------------------------------- -->
+<section class="close">
+  <div class="wrap">
+    <h2>Better public services, built together.</h2>
+    <p>Leave with a clearer view of where open-source platforms, Drupal, and AI can support public infrastructure, and what it takes to keep the experience trustworthy, inclusive, and accountable.</p>
+    <div class="actions">
+      <a class="btn btn--inverted" href="#">Get tickets</a>
+      <a class="btn btn--outline-light" href="#">Explore the AI Summit</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
