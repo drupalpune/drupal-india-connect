@@ -85,7 +85,9 @@ $text = fn(string $value, string $size = 'normal', bool $dark = FALSE) => [
 /**
  * Builds one page's rows from its content spec.
  */
-$build = function (array $c) use ($component_storage, $uuid_gen, $section, $group, $button, $heading, $text, $html): array {
+$panel_photo = require __DIR__ . '/includes/panel-photo.php';
+
+$build = function (array $c) use ($component_storage, $uuid_gen, $section, $group, $button, $heading, $text, $html, $panel_photo): array {
   $rows = [];
   // Adds a row and returns its uuid.
   $add = function (string $component, string $label, array $inputs, ?string $parent = NULL, ?string $slot = NULL) use (&$rows, $component_storage, $uuid_gen): string {
@@ -276,7 +278,21 @@ $build = function (array $c) use ($component_storage, $uuid_gen, $section, $grou
   $add('sdc.event_horizon.text', 'Text - The panel intro', $text($pn['intro'], 'text-lg'), $h, 'group_slot');
   $grid = $add('drupal_india_connect.grid', 'Grid - Panel seats', ['columns' => 5, 'gap' => '16', 'variant' => 'seats'], $s, 'main_slot');
   $add('drupal_india_connect.people-card', "People card - {$pn['moderator']['name']}", $pn['moderator'], $grid, 'grid_slot');
-  for ($i = 1; $i <= $pn['seats']; $i++) {
+  // Confirmed panelists first, then placeholder seats for any still open.
+  foreach ($pn['panelists'] ?? [] as $p) {
+    $inputs = array_filter([
+      'name' => $p['name'],
+      'designation' => $p['designation'] ?? '',
+      'domain' => $p['domain'] ?? '',
+      'description' => !empty($p['description']) ? $html("<p>{$p['description']}</p>") : NULL,
+      'speaker_url' => $p['speaker_url'] ?? '',
+      'avatar' => !empty($p['photo']) ? $panel_photo($p['photo']) : NULL,
+      'drupal_url' => $p['drupal_url'] ?? '',
+      'linkedin_url' => $p['linkedin_url'] ?? '',
+    ]);
+    $add('drupal_india_connect.people-card', "People card - Panelist {$p['name']}", $inputs, $grid, 'grid_slot');
+  }
+  for ($i = count($pn['panelists'] ?? []) + 1; $i <= $pn['seats']; $i++) {
     $add('drupal_india_connect.info-card', "Info card - Panelist seat $i", [
       'icon' => 'user',
       'title' => 'Panelist',
@@ -418,12 +434,12 @@ $pages = [
       'intro' => 'A forward-looking conversation on Drupal’s direction as a platform, a product, and an open-source ecosystem.',
       'second_cta' => ['See the full program', 'internal:/program'],
       'glance' => [
-        ['Format', 'Panel discussion, 60 minutes'],
+        ['Format', 'Panel discussion, 90 minutes'],
         ['When', 'Friday, 29 January 2027'],
-        ['Session time', 'To be announced'],
-        ['Where', 'IIT Bombay, Mumbai'],
+        ['Session time', '13:30 – 15:00'],
+        ['Where', 'Auditorium, IIT Bombay, Mumbai'],
         ['Moderator', 'Saheel Sikilkar, Syngenta'],
-        ['Panelists', 'Four perspectives, to be announced'],
+        ['Panelists', 'Lauri Timmanee, Jamie Abrahams, Alexander Varwijk, Piyuesh Kumar'],
         ['Part of', 'DrupalAsia Connect India 2027 · Day 2, Discover'],
       ],
       'jump' => [
@@ -482,10 +498,51 @@ $pages = [
       'panel' => [
         'eyebrow' => 'On the stage',
         'heading' => 'Meet the conversation',
-        'intro' => 'We are bringing together perspectives from across the Drupal ecosystem. We are curating the panelist lineup and will announce it once it is confirmed.',
+        'intro' => 'Four panelists, each bringing one perspective on Drupal’s evolution: the platform, the experience, AI, and adoption.',
         'moderator' => $current_moderator($page),
         'seats' => 4,
-        'note' => 'We’re bringing together people from across the Drupal ecosystem to explore where the platform is heading, the challenges ahead, and what this means for developers, organizations, and the wider community. Panelists will be announced soon.',
+        // Public wording only: titles and affiliations are left off until
+        // the program team has confirmed them with each panelist.
+        'panelists' => [
+          [
+            'name' => 'Lauri Timmanee',
+            'drupal_url' => 'https://www.drupal.org/u/lauriii',
+            'linkedin_url' => 'https://www.linkedin.com/in/laurieskola',
+            'designation' => 'Experience building, Drupal Core',
+            'domain' => 'Drupal Canvas & site building',
+            'description' => 'How design, content and development workflows are changing. Can Drupal make sophisticated experience building easier without diluting its strengths?',
+            'speaker_url' => '/user/112',
+            'photo' => 'Lauri-Timmanee.jpg',
+          ],
+          [
+            'name' => 'Jamie Abrahams',
+            'drupal_url' => 'https://www.drupal.org/u/yautja_cetanu',
+            'linkedin_url' => 'https://www.linkedin.com/in/james-abrahams-62ab0418/',
+            'photo' => 'Jamie-Abrahams.png',
+            'designation' => 'Drupal AI',
+            'domain' => 'AI & agent-enabled workflows',
+            'description' => 'Agent-enabled workflows, integration and open-source collaboration. How does Drupal stay compelling when AI changes both building and operating digital experiences?',
+          ],
+          [
+            'name' => 'Alexander Varwijk',
+            'drupal_url' => 'https://www.drupal.org/u/kingdutch',
+            'linkedin_url' => 'https://www.linkedin.com/pub/alexander-varwijk/30/34/437',
+            'photo' => 'Alexander-Varwijk.png',
+            'designation' => 'Product strategy & adoption',
+            'domain' => 'Adoption & sustainability',
+            'description' => 'Connecting the technical roadmap with adoption, user value and business outcomes.',
+          ],
+          [
+            'name' => 'Piyuesh Kumar',
+            'drupal_url' => 'https://www.drupal.org/u/piyuesh23',
+            'linkedin_url' => 'https://www.linkedin.com/in/piyuesh-kumar-85ba4029',
+            'photo' => 'Piyuesh-Kumar.png',
+            'designation' => 'Agency implementation',
+            'domain' => 'Drupal Core & architecture',
+            'description' => 'Core evolution, platform architecture, long-term maintainability, and balancing stability with innovation. What should belong in Core, and what should evolve around it?',
+          ],
+        ],
+        'note' => 'We’re bringing together people from across the Drupal ecosystem to explore where the platform is heading, the challenges ahead, and what this means for developers, organizations, and the wider community.',
       ],
       'closing' => [
         'heading' => 'The next chapter will be shaped together.',

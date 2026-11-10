@@ -2,7 +2,8 @@
   One session in the program. Neutral card; the track colour comes from the
   shared .dac-track--* classes in global.css. The plenary variant (keynote,
   panel, ceremony) is navy and has no speakers or details link; a panel
-  lists its people from the Moderator and Panelists slots.
+  lists its people from the Moderator and Panelists slots, and a url links
+  its title to the panel's own page.
 
   Everything added for the AI Summit day (track icon, note, unconfirmed
   title, full summary, speaker roles, LinkedIn links, panel slots) is
@@ -46,7 +47,7 @@
     </div>
 
     <h3 class="session-overview-card__title{{ title_tbc ? ' session-overview-card__title--tbc' }}">
-      {%- if url is not empty and not is_plenary -%}
+      {%- if url is not empty -%}
         <a href="{{ url }}">{{ title }}</a>
       {%- else -%}
         {{ title }}

@@ -1,5 +1,7 @@
 {#
   One panel member. No name: a dashed placeholder, "To be announced".
+  The photo, when set, replaces the initials; it is decorative (alt="")
+  because the name follows it.
 #}
 {% set name = tba ? '' : name|trim %}
 {% if name is not empty %}
@@ -10,7 +12,9 @@
 
 <li class="dac-panel-member{{ name is empty ? ' dac-panel-member--tba' }}">
   <span class="dac-panel-member__avatar" aria-hidden="true">
-    {%- if name is not empty -%}
+    {%- if name is not empty and photo.src is not empty -%}
+      <img class="dac-panel-member__photo" src="{{ photo.src }}" alt="" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy">
+    {%- elseif name is not empty -%}
       {{ initials }}
     {%- else -%}
       {% include 'drupal_india_connect:icon' ignore missing with { icon: 'user', icon_size: 'small' } only %}
