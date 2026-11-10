@@ -380,6 +380,50 @@
   height: 5rem;
 }
 
+/* With confirmed panelists the cards carry real text: one per row on
+   phones, two from --md, five equal columns from --grid-max. */
+.component-grid.component-grid--seats:has(> .people-card ~ .people-card) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@container style(--md: true) {
+  .component-grid.component-grid--seats:has(> .people-card ~ .people-card) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Confirmed panelists: People Cards after the moderator take one seat
+   each, stacked, with the secondary accent the placeholders used. */
+.component-grid--seats > .people-card ~ .people-card {
+  display: flex;
+  grid-column: auto;
+  border-top-color: var(--color--secondary-50);
+}
+
+.component-grid--seats > .people-card ~ .people-card .people-card__avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.component-grid--seats > .people-card ~ .people-card .people-card__avatar-fallback {
+  font-size: 1.25rem;
+}
+
+/* The line here is what this panelist brings, not a teaser for their
+   speaker page, so a linked card shows it in full too. */
+.component-grid--seats > .people-card ~ .people-card .people-card__description {
+  display: block;
+  overflow: visible;
+  font-size: 0.9375rem;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+}
+
+.component-grid--seats .people-card__domain {
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .component-grid--seats .people-card__avatar-fallback {
   font-size: 1.75rem;
 }
@@ -430,6 +474,21 @@
   .component-grid--seats > .people-card {
     display: flex;
     grid-column: auto;
+  }
+
+  /* Once panelists are confirmed, the moderator is one of five equal
+     columns, laid out like the panelist cards beside it. */
+  .component-grid.component-grid--seats:has(> .people-card ~ .people-card) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .component-grid--seats:has(> .people-card ~ .people-card) .people-card__avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .component-grid--seats:has(> .people-card ~ .people-card) .people-card__avatar-fallback {
+    font-size: 1.25rem;
   }
 }
 
