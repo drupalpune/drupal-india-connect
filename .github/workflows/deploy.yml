@@ -101,12 +101,16 @@ jobs:
               STASHED=0
               git stash pop || echo "WARNING: stash pop failed. Server-only edits (Basic Auth) are still stashed - see 'git stash list'. THE SITE MAY BE PUBLIC."
             }
-            trap restore_stash EXIT
 
-            if ! git diff --quiet; then
-              git stash push -m "pre-deploy-$(date +%s)"
-              STASHED=1
-            fi
+            # web/sites/default is read-only on the server (Drupal's own
+            # hardening), so git cannot replace settings.php in it: 1.4.19
+            # failed at checkout with "unable to unlink old ...settings.php".
+            # It is unlocked only around the local stash/checkout/pop below,
+            # and relocked on every exit path, like the stash pop.
+            lock_sites_default() {
+              chmod a-w web/sites/default web/sites/default/settings.php || echo "WARNING: could not relock web/sites/default - check its permissions."
+            }
+            trap 'restore_stash; lock_sites_default' EXIT
 
             # --force on the tag fetch so a moved tag is picked up rather than
             # rejected; --prune-tags so tags deleted upstream don't linger here
@@ -116,6 +120,13 @@ jobs:
             if ! git rev-parse -q --verify "refs/tags/$DEPLOY_REF^{commit}" >/dev/null; then
               echo "No such tag on origin: $DEPLOY_REF" >&2
               exit 1
+            fi
+
+            chmod u+w web/sites/default
+
+            if ! git diff --quiet; then
+              git stash push -m "pre-deploy-$(date +%s)"
+              STASHED=1
             fi
 
             # Detached HEAD at the tag. This replaces `merge --ff-only`, which
@@ -128,9 +139,10 @@ jobs:
             git checkout --force --detach "refs/tags/$DEPLOY_REF"
 
             # Restore immediately, so the tree is only missing the auth block
-            # for the fetch/checkout that need it — not across the whole
+            # for the checkout that needs it — not across the whole
             # composer/drush run, which is where the slow failures live.
             restore_stash
+            lock_sites_default
 
             # The account's PHP selector ini lists proc_open in
             # disable_functions (since ~21 Oct 2026). Composer's scaffold
