@@ -48,6 +48,19 @@
     'ai across domains': 'domains',
     'voices of the frontier': 'speakers',
     'how the day takes shape': 'programme',
+    // Panel discussion pages. Their "On this page" jump links point at these.
+    // /ai-summit/building-intelligent-public-infrastructure
+    'from digital rails to real access': 'conversation',
+    'three layers. one public purpose.': 'layers',
+    'what should public access feel like?': 'journey',
+    'questions worth asking': 'questions',
+    'a cross-disciplinary panel': 'panel',
+    // /conference/whats-next-for-drupal
+    'where is drupal heading next?': 'conversation',
+    'four perspectives. one ecosystem.': 'perspectives',
+    'picture the next drupal project.': 'project',
+    'not just what’s coming. what’s changing?': 'questions',
+    'meet the conversation': 'panel',
   };
 
   // Views block class => anchor id. Only used as a fallback: landing on the

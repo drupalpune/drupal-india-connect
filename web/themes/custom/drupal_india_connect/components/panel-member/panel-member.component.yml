@@ -31,3 +31,8 @@ props:
       format: uri-reference
       examples:
         - 'https://www.linkedin.com/in/example'
+    photo:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Photo
+      description: 'Optional. Shown in the circle in place of the initials.'
+      type: object

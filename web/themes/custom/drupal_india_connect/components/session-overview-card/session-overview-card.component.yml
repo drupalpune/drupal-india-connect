@@ -88,7 +88,7 @@ props:
     url:
       type: string
       title: 'Session page URL'
-      description: 'Links the title and "Session details". Ignored for plenaries.'
+      description: 'Links the title and "Session details". A plenary links only its title, e.g. to a panel page.'
       format: uri-reference
       examples:
         - '/events/india-2027/sessions/drupal-cms-canvas-one-year'

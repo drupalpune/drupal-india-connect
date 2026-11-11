@@ -1,0 +1,49 @@
+diff -ruN a/components/cta/cta.component.yml b/components/cta/cta.component.yml
+--- a/components/cta/cta.component.yml	2026-11-07 12:05:46.590684664 +0530
++++ b/components/cta/cta.component.yml	2026-11-07 12:05:46.606334211 +0530
+@@ -54,6 +54,17 @@
+         accent: Accent
+         muted: Muted
+         inverted: Inverted
++    text_color:
++      type: string
++      title: Text color
++      description: 'Optional. White sets the heading and text in white, for a CTA on a strong colour (e.g. the secondary background, whose default text is black).'
++      enum:
++        - default
++        - white
++      meta:enum:
++        default: Default
++        white: White
++      default: default
+     overlay_opacity:
+       type: string
+       title: Overlay opacity
+diff -ruN a/components/cta/cta.css b/components/cta/cta.css
+--- a/components/cta/cta.css	2026-11-07 12:05:46.590761720 +0530
++++ b/components/cta/cta.css	2026-11-07 12:05:46.606389386 +0530
+@@ -60,6 +60,13 @@
+   object-fit: cover;
+ }
+ 
++/*  Text color variant: white heading and text on a strong background */
++.eh-cta--text-white,
++.eh-cta--text-white .eh-cta__heading,
++.eh-cta--text-white .eh-cta__text {
++  color: var(--color--white);
++}
++
+ /*  When a background image is present, force white text for legibility */
+ .eh-cta:has(.eh-cta__bg) .eh-cta__inner {
+   color: white;
+diff -ruN a/components/cta/cta.twig b/components/cta/cta.twig
+--- a/components/cta/cta.twig	2026-11-07 12:05:46.590803689 +0530
++++ b/components/cta/cta.twig	2026-11-07 12:05:46.606420444 +0530
+@@ -7,6 +7,7 @@
+   'eh-cta',
+   'eh-cta--align-' ~ align,
+   bg_color ? 'eh-cta--bg-' ~ bg_color : false,
++  text_color == 'white' ? 'eh-cta--text-white' : false,
+ ]|filter(v => v) %}
+ 
+ <section class="{{ cta_classes|join(' ') }}">
