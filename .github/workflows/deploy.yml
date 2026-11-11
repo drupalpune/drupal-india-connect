@@ -125,12 +125,19 @@ jobs:
             # NOTE: code rolls back, the database does not. `updb` may have run
             # schema updates that an older tag's code does not expect, so a
             # rollback can need the matching dump from ~/backups restoring too.
+            #
+            # web/sites/default is read-only on the server (Drupal's own
+            # hardening), so git cannot replace settings.php in it: 1.4.19
+            # failed here with "unable to unlink old ...settings.php". Unlock
+            # it only for the checkout and the stash pop, then lock it again.
+            chmod u+w web/sites/default
             git checkout --force --detach "refs/tags/$DEPLOY_REF"
 
             # Restore immediately, so the tree is only missing the auth block
             # for the fetch/checkout that need it — not across the whole
             # composer/drush run, which is where the slow failures live.
             restore_stash
+            chmod a-w web/sites/default web/sites/default/settings.php
 
             # The account's PHP selector ini lists proc_open in
             # disable_functions (since ~21 Oct 2026). Composer's scaffold
