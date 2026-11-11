@@ -1,0 +1,13 @@
+measurement_id: ''
+scripts_custom_attributes: 'type="text/plain" data-type="text/javascript" data-name="ga"'
+ga4_access_roles:
+  anonymous: anonymous
+ga4_access_pages:
+  id: request_path
+  negate: true
+  pages: |-
+    /admin
+    /admin/*
+    /user/*
+    /canvas
+    /canvas/*
