@@ -81,11 +81,13 @@ def main(num, decision_path):
     with open(decision_path) as f:
         d = json.load(f)
 
-    org = gql('''query($o: String!) { organization(login: $o) {
+    # Read through the repository: the workflow token cannot read the org's own
+    # issue types and fields.
+    org = gql('''query($o: String!, $n: String!) { repository(owner: $o, name: $n) {
       issueTypes(first: 20) { nodes { id name } }
       issueFields(first: 20) { nodes {
         ... on IssueFieldSingleSelect { id name options { id name } }
-        ... on IssueFieldDate { id name } } } } }''', o=OWNER)['organization']
+        ... on IssueFieldDate { id name } } } } }''', o=OWNER, n=NAME)['repository']
     types = {t['name']: t['id'] for t in org['issueTypes']['nodes']}
     fields = {f['name']: f for f in org['issueFields']['nodes'] if f}
 
