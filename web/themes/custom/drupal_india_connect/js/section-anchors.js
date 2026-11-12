@@ -30,8 +30,8 @@
     // Tickets & Registration page: the hero's "Compare tickets" button and
     // the experience cards point at #tickets.
     'choose your ticket': 'tickets',
-    // Its DrupalEasy training band (scripts/update-ticket-rates-drupaleasy.php),
-    // linked as /ticket-rates-and-details#drupaleasy-discounts.
+    // Its DrupalEasy training band, linked as
+    // /ticket-rates-and-details#drupaleasy-discounts.
     'save on drupaleasy training': 'drupaleasy-discounts',
     'iit bombay, mumbai': 'venue',
     'founding sponsors': 'sponsors',
