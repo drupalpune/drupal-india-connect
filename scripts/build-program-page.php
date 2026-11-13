@@ -120,6 +120,12 @@ $day2 = [
     ['Room 4', '17:40', '18:00', 'Back to Basics: Understanding Cache and the Architecture Behind Scalability'],
   ]],
   ['18:00', '18:30', 'plenary', 'Closing ceremony'],
+  ['18:30', '21:00', 'social', 'After party (Drupal birthday celebrations)'],
+];
+
+// Plenary card descriptions, where not the generic "to be announced" line.
+$plenary_descriptions = [
+  'After party (Drupal birthday celebrations)' => 'Wind down the day with fellow attendees, speakers and sponsors. Venue and details to be announced.',
 ];
 
 // Speakers the sheet names for sessions whose node has no speaker account.
@@ -318,22 +324,23 @@ foreach ($day2 as [$start, $end, $kind, $items]) {
     continue;
   }
 
-  if ($kind === 'plenary') {
+  if ($kind === 'plenary' || $kind === 'social') {
     $item = $add('drupal_india_connect.program-timeline-item', "Timeline - $start $items", [
-      'kind' => 'plenary',
+      'kind' => $kind,
       'start' => $start,
       'end' => $end,
       'date' => $date,
       'block_end' => TRUE,
     ], $timeline, 'items');
     $add('drupal_india_connect.session-overview-card', "Card - $items", [
-      'variant' => 'plenary',
-      'track' => 'All attendees',
+      'variant' => $kind,
+      'track' => $kind === 'social' ? 'Evening social' : 'All attendees',
+    ] + ($kind === 'social' ? ['track_icon' => 'confetti'] : []) + [
       'title' => $items,
       'date' => $date,
       'start' => $start,
       'end' => $end,
-      'description' => 'Speakers and room to be announced.',
+      'description' => $plenary_descriptions[$items] ?? 'Speakers and room to be announced.',
     ], $item, 'content');
     continue;
   }

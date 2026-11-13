@@ -11,13 +11,15 @@ props:
     variant:
       type: string
       title: Variant
-      description: 'Plenary: keynote, panel or ceremony for all attendees (navy card, no speakers).'
+      description: 'Plenary: keynote, panel or ceremony for all attendees (navy card, no speakers). Social: an evening event such as the after party (warm card with a large Track icon, no speakers).'
       enum:
         - session
         - plenary
+        - social
       meta:enum:
         session: Session
         plenary: Plenary
+        social: Social
       default: session
       examples:
         - session
