@@ -9,8 +9,16 @@
   title, full summary, speaker roles, LinkedIn links, panel slots) is
   optional: a card without those props renders exactly as before.
 #}
+{#
+  The social variant (after party) is a warm card: a pale orange surface
+  with an orange accent rule, and its track_icon drawn large beside the
+  text instead of in a badge. Like a plenary it has no speakers or details
+  link.
+#}
+{% set is_social = variant == 'social' %}
 {% set is_plenary = variant == 'plenary' %}
-{% set track_class = not is_plenary and track_key is not empty ? ' dac-track--' ~ track_key : '' %}
+{% set has_foot = not is_plenary and not is_social %}
+{% set track_class = has_foot and track_key is not empty ? ' dac-track--' ~ track_key : '' %}
 
 {% set minutes = 0 %}
 {% if start is not empty and end is not empty %}
@@ -25,11 +33,16 @@
   { name: speaker_3_name, url: speaker_3_url, role: speaker_3_role },
 ]|filter(speaker => speaker.name is not empty) %}
 
-<div class="session-overview-card{{ is_plenary ? ' session-overview-card--plenary' }}{{ track_class }}">
+<div class="session-overview-card{{ is_plenary ? ' session-overview-card--plenary' }}{{ is_social ? ' session-overview-card--social' }}{{ track_class }}">
   <article class="session-overview-card__card">
+    {% if is_social and track_icon is not empty %}
+      <span class="session-overview-card__art">
+        {% include 'drupal_india_connect:icon' ignore missing with { icon: track_icon, icon_size: 'large' } only %}
+      </span>
+    {% endif %}
     <div class="session-overview-card__head">
       {% if track is not empty %}
-        {% if track_icon is not empty %}
+        {% if track_icon is not empty and not is_social %}
           {% include 'drupal_india_connect:track-badge' ignore missing with {
             label: track,
             icon: track_icon,
@@ -115,7 +128,7 @@
       </div>
     {% endif %}
 
-    {% if not is_plenary and (speakers is not empty or url is not empty) %}
+    {% if has_foot and (speakers is not empty or url is not empty) %}
       <div class="session-overview-card__foot">
         {% if speakers is not empty %}
           <ul class="session-overview-card__speakers" aria-label="{{ speakers|length > 1 ? 'Speakers'|t : 'Speaker'|t }}">

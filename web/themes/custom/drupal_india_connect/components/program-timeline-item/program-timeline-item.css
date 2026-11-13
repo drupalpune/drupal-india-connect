@@ -82,6 +82,10 @@
   --dot: var(--neutral-dark);
 }
 
+.program-timeline-item--social {
+  --dot: var(--color--secondary-50);
+}
+
 .program-timeline-item--break .program-timeline-item__rail::after {
   background-color: var(--color--white);
   box-shadow:

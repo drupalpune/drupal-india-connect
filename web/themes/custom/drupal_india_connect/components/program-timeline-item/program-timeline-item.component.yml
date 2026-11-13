@@ -12,14 +12,16 @@ props:
     kind:
       type: string
       title: Kind
-      description: 'Session: dot in the track colour. Plenary: navy dot. Break: hollow dot and a striped strip.'
+      description: 'Session: dot in the track colour. Plenary: navy dot. Social: orange dot, for an evening event such as the after party. Break: hollow dot and a striped strip.'
       enum:
         - session
         - plenary
+        - social
         - break
       meta:enum:
         session: Session
         plenary: Plenary
+        social: Social
         break: Break
       default: session
       examples:
