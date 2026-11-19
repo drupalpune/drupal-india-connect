@@ -22,6 +22,27 @@
 }
 
 /*
+ * White on the logo orange (and the summit teal) is 2.9:1, under WCAG AA
+ * for anything but large text, so Event Horizon's secondary-filled section
+ * and CTA band take the -40 step (4.7:1). The logo orange stays for rules,
+ * dots and other decoration, and as a fill under navy text.
+ */
+.eh-section.eh-section--bg-secondary,
+.eh-cta.eh-cta--bg-secondary {
+  background-color: var(--color--secondary-40);
+}
+
+/* The CTA's body copy otherwise sets black, under 4.5:1 on -40. */
+:is(.eh-section--bg-secondary, .eh-cta--bg-secondary) .eh-cta__text {
+  color: var(--color--white);
+}
+
+/* The link blue is 4.46:1 on the grey muted band; one step darker passes. */
+.eh-section--bg-muted a:not(.eh-button) {
+  color: var(--color--primary-40);
+}
+
+/*
  * Light-tint bands (Why attend, Venue) use the section component's own
  * `background_color: accent` variant, which already resolves to
  * --color--sky-94 — re-hued to the logo blue in base.css, no override
@@ -243,9 +264,9 @@
   top: -0.875rem;
   left: 2rem;
   padding: 0.3125rem 0.75rem;
-  border-color: var(--color--secondary-50);
+  border-color: var(--color--secondary-40);
   border-radius: 0;
-  background-color: var(--color--secondary-50);
+  background-color: var(--color--secondary-40);
   color: var(--color--white);
   font-size: 0.75rem;
   font-weight: 700;
@@ -1019,7 +1040,7 @@ h2.eh-heading,
 
 .speaking-experience .speaking-experience__heading {
   margin: 0;
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.3;
@@ -1109,7 +1130,7 @@ h2.eh-heading,
 
 .session-metadata .session-metadata__heading {
   margin-block: 0 var(--sp1);
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.3;
@@ -1465,7 +1486,7 @@ h2.eh-heading,
 
 .session-evaluation .session-evaluation__heading {
   margin: 0;
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.3;
@@ -1613,7 +1634,7 @@ h2.eh-heading,
 
 .session-others .session-others__heading {
   margin: 0;
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.3;

@@ -38,7 +38,7 @@
   align-items: center;
   gap: var(--sp0-75);
   margin: 0;
-  color: var(--secondary);
+  color: var(--color--secondary-40);
   font-weight: 700;
   font-size: 0.8125rem;
   letter-spacing: 0.08em;
@@ -111,7 +111,7 @@
 }
 
 .hero-banner__meta-label {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.08em;

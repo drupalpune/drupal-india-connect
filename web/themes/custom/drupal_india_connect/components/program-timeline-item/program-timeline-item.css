@@ -155,7 +155,7 @@
 }
 
 .program-timeline-item__break span {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;

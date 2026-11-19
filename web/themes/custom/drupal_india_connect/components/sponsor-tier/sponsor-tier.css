@@ -55,7 +55,7 @@
  * benefit checkmark colour) — see the component's tier_name_color prop.
  */
 .sponsor-tier__name--tone-secondary {
-  color: var(--secondary);
+  color: var(--color--secondary-40);
 }
 
 .sponsor-tier__name--tone-primary-50 {
@@ -67,7 +67,7 @@
 }
 
 .sponsor-tier__name--tone-neutral {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
 }
 
 /*
@@ -125,7 +125,7 @@
 }
 
 .sponsor-tier__benefits a {
-  color: var(--secondary);
+  color: var(--color--secondary-40);
   text-decoration-line: underline;
   text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
 }
