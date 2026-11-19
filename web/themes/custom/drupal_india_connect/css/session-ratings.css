@@ -23,7 +23,7 @@
 
 .dac-ratings__eyebrow {
   margin: 0;
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.16em;
@@ -220,7 +220,7 @@
 }
 
 .dac-ratings__score-max {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-weight: 500;
 }
 

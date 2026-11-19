@@ -84,7 +84,7 @@
 }
 
 .event-overview-card__date {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-weight: 600;
   font-size: 0.875rem;
 }

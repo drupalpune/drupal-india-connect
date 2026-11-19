@@ -30,8 +30,17 @@
   --card-accent: var(--color--primary-20);
 }
 
+/*
+ * -40 rather than the logo orange: the tag is accent text on white and the
+ * CTA badge is white on the accent, and both are under 4.5:1 at -50.
+ */
 .program-detail-row--build {
-  --card-accent: var(--secondary);
+  --card-accent: var(--color--secondary-40);
+}
+
+/* Highlight tiles sit on a tint of the accent, where -40 is not enough. */
+.program-detail-row--build .program-highlight-tile__label {
+  color: var(--color--secondary-30);
 }
 
 .program-detail-row__marker {
@@ -141,7 +150,7 @@
 }
 
 .program-detail-row__date {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-size: 0.875rem;
   white-space: nowrap;
 }

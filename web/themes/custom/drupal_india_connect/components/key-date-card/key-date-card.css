@@ -53,7 +53,7 @@
 }
 
 .key-date-card--closed .key-date-card__status {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   background-color: var(--color--night-90);
 }
 
@@ -70,7 +70,7 @@
 
 .key-date-card__dates {
   margin: 0;
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-size: 0.875rem;
 }
 

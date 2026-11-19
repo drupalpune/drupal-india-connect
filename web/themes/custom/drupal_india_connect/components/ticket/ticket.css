@@ -16,6 +16,11 @@
   --ticket-accent: var(--secondary);
 }
 
+/* The logo orange is 2.9:1 on white; small accent text takes -40. */
+.ticket--accent-secondary .ticket__eyebrow {
+  color: var(--color--secondary-40);
+}
+
 .ticket--accent-primary-50 {
   --ticket-accent: var(--color--primary-50);
 }
@@ -112,7 +117,7 @@
 }
 
 .ticket__includes-item--excluded {
-  color: var(--color--night-50);
+  color: var(--color--night-40);
   font-weight: 400;
 }
 

@@ -290,6 +290,19 @@ changed some of it deliberately, and the live theme wins:
   `site-hero-25`.
 - Type in the hero sizes against its grid column with `cqw` rather than the
   viewport, because it shares a row with the media well.
+- **The accent is darkened wherever it carries text, for WCAG AA contrast.**
+  The logo orange (and the summit teal) is 2.9:1 against white, both as
+  text on white and as a fill under white text. The theme keeps it for
+  rules, dots, fills under navy text and eyebrows on navy bands, and uses
+  darker steps of the same ramp elsewhere:
+  - Accent text on white (eyebrows, kickers, labels, links, list numbers):
+    `--color--secondary-40` (4.7:1).
+  - Accent text on pale bands or tints (`bg-accent`, `bg-muted`, the
+    summit's teal tint): `--color--secondary-30` (5.3:1 or better).
+  - Filled bands with white text (announcement bar, secondary section and
+    CTA bands, badges): `--color--secondary-40` as the fill.
+  - Grey secondary text (roles, dates, durations): `--color--night-40`
+    (5.1:1), not `night-50` (3.7:1).
 - **AI Summit pages have their own accent and display face**, so visitors can
   tell the summit day apart from the rest of the event. It applies to every
   page whose URL is `/ai-summit` or starts with `/ai-summit/`

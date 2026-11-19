@@ -63,8 +63,11 @@
   font-size: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
 }
 
-/* One step darker than the rule, as the design system's stat figures are. */
-.info-card--secondary .info-card__marker--stat {
+/*
+ * One step darker than the rule, as the design system's stat figures are:
+ * the logo orange (and summit teal) is under 3:1 on white even at this size.
+ */
+.info-card--secondary .info-card__marker {
   color: var(--color--secondary-40);
 }
 

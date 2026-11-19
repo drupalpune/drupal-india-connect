@@ -54,7 +54,7 @@
  */
 .text-countdown__heading {
   margin: 0;
-  color: var(--secondary);
+  color: var(--color--secondary-40);
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.05;
@@ -109,7 +109,7 @@
 }
 
 .text-countdown__body a {
-  color: var(--secondary);
+  color: var(--color--secondary-40);
   text-decoration-line: underline;
   text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
 }

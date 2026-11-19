@@ -2,7 +2,9 @@
  * Section eyebrow: 12px, 700, wide tracking, uppercase.
  *
  * The design system calls this "the cheapest way to make something look
- * like this brand", and rations the accent orange to it.
+ * like this brand", and rations the accent orange to it. As text it is set
+ * one or two steps darker than the logo orange (2.9:1 on white), so it
+ * meets WCAG AA contrast.
  */
 .eh-eyebrow {
   margin: 0;
@@ -13,6 +15,19 @@
 }
 
 .eh-eyebrow--accent {
+  color: var(--color--secondary-40);
+}
+
+/*
+ * -40 reads at 4.7:1 on white but not on the pale accent and muted bands
+ * (or the summit's teal tint), so the eyebrow takes the -30 step there.
+ */
+:is(.eh-section--bg-accent, .eh-section--bg-muted) .eh-eyebrow--accent {
+  color: var(--color--secondary-30);
+}
+
+/* On navy the logo orange itself reads (6.8:1); darker steps would not. */
+:is(.eh-section--bg-black, .eh-section--dark-background) .eh-eyebrow--accent {
   color: var(--color--secondary-50);
 }
 

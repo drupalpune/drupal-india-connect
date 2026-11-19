@@ -7,7 +7,7 @@
 /* Matches the Eyebrow component: 12px, 700, wide tracking, accent orange. */
 .story-card__label {
   margin: 0;
-  color: var(--color--secondary-50);
+  color: var(--color--secondary-40);
   font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.16em;
