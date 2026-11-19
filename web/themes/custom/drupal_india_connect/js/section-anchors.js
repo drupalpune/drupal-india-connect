@@ -21,6 +21,10 @@
   // Heading text (lowercased, trimmed) => anchor id.
   const BY_HEADING = {
     'one drupal community, one continent': 'about',
+    // The homepage keynote band (Featured Speakers view, keynote display),
+    // singular or plural with the number of keynotes.
+    'keynote speaker': 'keynote',
+    'keynote speakers': 'keynote',
     'why attend': 'why-attend',
     'the programme is yours to write': 'cfp',
     'ticket tiers': 'tickets',
