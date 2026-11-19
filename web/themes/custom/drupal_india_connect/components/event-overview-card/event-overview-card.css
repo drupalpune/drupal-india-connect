@@ -30,8 +30,9 @@
  * Contribution = neutral charcoal. Keeping one warm, one cool, and one
  * neutral avoids two cards both reading as "blue".
  */
+/* -40: the accent is both text on white and a fill under white text. */
 .event-overview-card--ai {
-  --card-accent: var(--secondary);
+  --card-accent: var(--color--secondary-40);
   --card-accent-text: var(--color--white);
 }
 
