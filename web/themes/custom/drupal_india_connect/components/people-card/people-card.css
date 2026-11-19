@@ -279,3 +279,117 @@
   font-weight: 600;
   line-height: 1.5;
 }
+
+/* Session teaser and the speaker page link: optional, any variant. */
+.people-card__session-description {
+  margin: var(--sp0-25) 0 0;
+  color: var(--color--night-30);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Arrow link styles: .dac-arrow-link in global.css. */
+.people-card__cta {
+  margin-top: var(--sp0-75);
+  font-size: 0.875rem;
+}
+
+/*
+ * Keynote: a larger card. The photo is a big rounded square rather than a
+ * circle, the text is left-aligned, and once the card itself is wide (one
+ * keynote on its own row) the photo sits beside the text. In a row of two or
+ * three the cards are narrow and stay stacked. Layout keys off the card's
+ * own width, as the session overview card does, so it works wherever the
+ * card is placed.
+ */
+.people-card--keynote {
+  container: people-card / inline-size;
+  display: block;
+  padding: var(--sp1-5);
+  text-align: left;
+
+  @container style(--md: true) {
+    padding: var(--sp2);
+  }
+}
+
+.people-card__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp1-5);
+  align-items: center;
+}
+
+.people-card--keynote .people-card__avatar-link {
+  border-radius: 0.75rem;
+}
+
+.people-card--keynote .people-card__avatar {
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 0.75rem;
+}
+
+.people-card--keynote .people-card__avatar-fallback {
+  font-size: 4rem;
+}
+
+.people-card--keynote .people-card__body {
+  align-items: flex-start;
+  gap: var(--sp0-5);
+}
+
+.people-card--keynote .people-card__name {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.people-card--keynote .people-card__designation {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.people-card--keynote .people-card__description {
+  font-size: 1rem;
+}
+
+.people-card--keynote .people-card__session {
+  margin-top: var(--sp0-5);
+  padding-top: var(--sp1);
+}
+
+.people-card--keynote .people-card__session-title {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.people-card--keynote .people-card__session-description {
+  font-size: 1rem;
+  text-wrap: pretty;
+}
+
+.people-card--keynote .people-card__domain {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.people-card--keynote .people-card__cta {
+  font-size: 1rem;
+}
+
+@container people-card (min-width: 40rem) {
+  .people-card__inner {
+    grid-template-columns: minmax(12rem, 2fr) minmax(0, 3fr);
+    gap: var(--sp2-5);
+  }
+
+  .people-card--keynote .people-card__avatar {
+    max-width: none;
+  }
+}

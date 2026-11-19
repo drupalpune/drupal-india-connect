@@ -1,0 +1,19 @@
+uuid: b4834fec-8756-4a84-9c2a-3dc41efd9268
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_talk_title
+    - node.type.featured_speaker
+id: node.featured_speaker.field_talk_title
+field_name: field_talk_title
+entity_type: node
+bundle: featured_speaker
+label: 'Talk title'
+description: "Optional. The speaker's keynote or talk, shown on the speaker page and, for a Keynote badge, on the homepage keynote card. Its day, time and room come from the Program page: link the talk's card there to this speaker page."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

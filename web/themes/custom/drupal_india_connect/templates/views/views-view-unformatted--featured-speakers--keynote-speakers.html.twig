@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Keynote speakers (views.view.featured_speakers, keynote_speakers display),
+ * laid out by the Grid component as large People Cards (keynote style).
+ *
+ * One keynote fills the row, so its card is wide enough to put the photo
+ * beside the text. Two or three sit side by side from 1000px and stack
+ * below that, where each card again gets the full width.
+ */
+#}
+{% set count = rows|length %}
+{% embed 'drupal_india_connect:grid' with {
+  columns: count >= 3 ? 3 : (count == 2 ? 2 : 1),
+  tablet_columns: '1',
+  gap: '32',
+  rows: rows,
+} only %}
+  {% block grid_slot %}
+    {% for row in rows %}
+      {{ row.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

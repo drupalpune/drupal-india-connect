@@ -289,6 +289,138 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  keynote_speakers:
+    id: keynote_speakers
+    display_title: 'Keynote speakers'
+    display_plugin: block
+    position: 4
+    display_options:
+      sorts:
+        field_weight_value:
+          id: field_weight_value
+          table: node__field_weight
+          field: field_weight_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: field_weight_value
+          exposed: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            featured_speaker: featured_speaker
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_badge_value:
+          id: field_badge_value
+          table: node__field_badge
+          field: field_badge_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: contains
+          value: keynote
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
+      defaults:
+        css_class: false
+        row: false
+        sorts: false
+        arguments: false
+        filters: false
+        filter_groups: false
+        header: false
+      css_class: 'dac-speaker-cards dac-speaker-cards--keynote'
+      display_description: 'Published Featured Speakers whose Badge contains "Keynote", as large People Cards (keynote variant): one per row alone, two or three side by side. All events.'
+      header: {  }
+      display_extenders: {  }
+      block_description: 'Featured Speakers: keynote speakers'
+      block_hide_empty: true
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   speaker_cards:
     id: speaker_cards
     display_title: 'Speaker cards'

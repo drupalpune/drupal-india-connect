@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - canvas.component.block.dashboard_placeholder
+    - canvas.component.block.views_block.featured_speakers-keynote_speakers
     - canvas.component.block.views_block.featured_speakers-speaker_cards
 name: Block
 configEntityTypeId: component
 weight: 0
 items:
   - block.dashboard_placeholder
+  - block.views_block.featured_speakers-keynote_speakers
   - block.views_block.featured_speakers-speaker_cards

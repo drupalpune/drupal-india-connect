@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.featured_speaker.field_events
     - field.field.node.featured_speaker.field_featured_image
     - field.field.node.featured_speaker.field_speaker_account
+    - field.field.node.featured_speaker.field_talk_abstract
+    - field.field.node.featured_speaker.field_talk_title
     - field.field.node.featured_speaker.field_weight
     - image.style.featured_speaker
     - node.type.featured_speaker
@@ -71,8 +73,16 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_talk_abstract:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
 hidden:
   field_designation: true
   field_speaker_account: true
+  field_talk_title: true
   field_weight: true
   links: true
