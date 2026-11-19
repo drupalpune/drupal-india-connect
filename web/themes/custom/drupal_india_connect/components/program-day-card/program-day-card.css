@@ -34,8 +34,9 @@
   --card-accent: var(--color--primary-20);
 }
 
+/* -40, not the logo orange: the eyebrow and link are accent text on white. */
 .program-day-card--build {
-  --card-accent: var(--secondary);
+  --card-accent: var(--color--secondary-40);
 }
 
 .program-day-card__eyebrow {

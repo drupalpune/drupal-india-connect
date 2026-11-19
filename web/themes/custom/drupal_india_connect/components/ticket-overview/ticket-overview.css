@@ -14,6 +14,11 @@
   --ticket-overview-accent: var(--secondary);
 }
 
+/* The logo orange is 2.9:1 on white; small accent text takes -40. */
+.ticket-overview--accent-secondary .ticket-overview__eyebrow {
+  color: var(--color--secondary-40);
+}
+
 .ticket-overview--accent-primary-50 {
   --ticket-overview-accent: var(--color--primary-50);
 }
