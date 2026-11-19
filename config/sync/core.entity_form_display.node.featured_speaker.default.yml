@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.featured_speaker.field_events
     - field.field.node.featured_speaker.field_featured_image
     - field.field.node.featured_speaker.field_speaker_account
+    - field.field.node.featured_speaker.field_talk_abstract
+    - field.field.node.featured_speaker.field_talk_title
     - field.field.node.featured_speaker.field_weight
     - node.type.featured_speaker
   module:
@@ -81,6 +83,24 @@ content:
     settings:
       match_operator: CONTAINS
       match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_talk_abstract:
+    type: text_textarea_with_summary
+    weight: 12
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: true
+    third_party_settings: {  }
+  field_talk_title:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }

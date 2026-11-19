@@ -6,8 +6,9 @@
  *
  * Laid out like the session page (node--session--full.html.twig): photo
  * beside the name (h1), designation and profile links, stacked on phones;
- * then the bio and the speaker's sessions as cards. speaker_links,
- * speaker_bio and speaker_sessions come from
+ * then the bio, the talk (title, day/time/room, abstract, link to the
+ * program) and the speaker's sessions as cards. speaker_links, speaker_bio,
+ * speaker_talk and speaker_sessions come from
  * _drupal_india_connect_featured_speaker(). The badge ("Featured Speaker",
  * "Keynote") is shown as the eyebrow above the name.
  */
@@ -50,6 +51,60 @@
   {% set bio = content.body|render ?: speaker_bio|render %}
   {% if bio|striptags|trim is not empty %}
     <div class="speaker-detail__bio">{{ bio }}</div>
+  {% endif %}
+
+  {#
+    The talk (field_talk_title / field_talk_abstract): headed "Keynote" for
+    a keynote badge. Day, time and room come from the Program page card that
+    links to this page; until there is one they show as TBC.
+  #}
+  {% if speaker_talk %}
+    {% set slot = speaker_talk.slot %}
+    <section class="speaker-detail__talk" aria-labelledby="speaker-talk-heading">
+      <h2 id="speaker-talk-heading" class="speaker-detail__sessions-heading">{{ speaker_talk.is_keynote ? 'Keynote'|t : 'Talk'|t }}</h2>
+      <div class="speaker-detail__talk-card">
+        <h3 class="speaker-detail__talk-title">{{ speaker_talk.title }}</h3>
+
+        <ul class="speaker-detail__talk-meta">
+          <li>
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'calendar', icon_size: 'extra-small' } only %}
+            {%- if slot.day -%}
+              <span class="visually-hidden">{{ 'Day:'|t }} </span>{{ slot.day }}
+            {%- else -%}
+              {{ 'Day'|t }} {% include 'drupal_india_connect:tbc-tag' ignore missing only %}
+            {%- endif -%}
+          </li>
+          <li>
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'clock', icon_size: 'extra-small' } only %}
+            {%- if slot.start and slot.end -%}
+              <span class="visually-hidden">{{ 'Time:'|t }} </span><time{% if slot.date %} datetime="{{ slot.date }}T{{ slot.start }}"{% endif %}>{{ slot.start }}</time>&nbsp;–&nbsp;<time{% if slot.date %} datetime="{{ slot.date }}T{{ slot.end }}"{% endif %}>{{ slot.end }}</time>
+            {%- else -%}
+              {{ 'Time'|t }} {% include 'drupal_india_connect:tbc-tag' ignore missing only %}
+            {%- endif -%}
+          </li>
+          <li>
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'map-pin', icon_size: 'extra-small' } only %}
+            {%- if slot.room -%}
+              <span class="visually-hidden">{{ 'Room:'|t }} </span>{{ slot.room }}
+            {%- else -%}
+              {{ 'Room'|t }} {% include 'drupal_india_connect:tbc-tag' ignore missing only %}
+            {%- endif -%}
+          </li>
+        </ul>
+
+        {% set abstract = content.field_talk_abstract|render %}
+        {% if abstract|striptags|trim is not empty %}
+          <div class="speaker-detail__talk-abstract">{{ abstract }}</div>
+        {% endif %}
+
+        {% if speaker_talk.program_url %}
+          <a class="speaker-detail__talk-link dac-arrow-link" href="{{ speaker_talk.program_url }}">
+            {{- 'See the full program'|t -}}
+            {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+          </a>
+        {% endif %}
+      </div>
+    </section>
   {% endif %}
 
   {% set sessions = speaker_sessions|render %}

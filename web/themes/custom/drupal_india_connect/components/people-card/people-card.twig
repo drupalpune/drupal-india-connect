@@ -1,13 +1,21 @@
-{% set initial = name is not empty ? name|first|upper : '' %}
+{% set initial = name is not empty ? name|first|upper : '' %}{% set is_keynote = card_style == 'keynote' %}
 
 {#
   With a speaker page the card is a teaser for it: the photo and name link
   there, and the description is cut to 3 lines (people-card--linked). The
   photo link is out of the tab order and hidden from screen readers, so the
   name is the only link to the profile they meet.
+
+  The keynote card style wraps the photo and text in __inner, which lays them
+  out side by side once the card itself is wide (container query), and
+  stacked in a narrow column. Its optional parts (badge, session teaser,
+  link text) are written inline so that a card without them renders
+  byte-for-byte as before. Not called "variant": core's component element
+  always passes a `variant` prop, empty by default, which an enum rejects.
 #}
-<div class="people-card{{ speaker_url is not empty ? ' people-card--linked' }}">
-  {% if speaker_url is not empty %}<a href="{{ speaker_url }}" class="people-card__avatar-link" tabindex="-1" aria-hidden="true">{% endif %}
+<div class="people-card{{ speaker_url is not empty ? ' people-card--linked' }}{{ is_keynote ? ' people-card--keynote' }}">
+  {% if is_keynote %}<div class="people-card__inner">
+  {% endif %}{% if speaker_url is not empty %}<a href="{{ speaker_url }}" class="people-card__avatar-link" tabindex="-1" aria-hidden="true">{% endif %}
   <div class="people-card__avatar">
     {% if avatar.src is not empty %}
       {% include 'canvas:image' ignore missing with {
@@ -24,7 +32,8 @@
   {% if speaker_url is not empty %}</a>{% endif %}
 
   <div class="people-card__body">
-    {% if name is not empty %}
+    {% if badge is not empty %}{% include 'drupal_india_connect:eyebrow' ignore missing with { text: badge, tone: 'accent' } only %}
+    {% endif %}{% if name is not empty %}
       <h3 class="people-card__name">
         {%- if speaker_url is not empty -%}
           <a href="{{ speaker_url }}" class="people-card__name-link">{{ name }}</a>
@@ -52,7 +61,7 @@
 
     {% if session_title is not empty %}
       <div class="people-card__session">
-        <span class="people-card__session-label">{{ 'Session'|t }}</span>
+        <span class="people-card__session-label">{{ is_keynote ? 'Talk'|t : 'Session'|t }}</span>
         <p class="people-card__session-title">
           {%- if session_url is not empty -%}
             <a href="{{ session_url }}" class="people-card__session-link">{{ session_title }}</a>
@@ -60,7 +69,8 @@
             {{ session_title }}
           {%- endif -%}
         </p>
-      </div>
+      {% if session_description is not empty %}  <p class="people-card__session-description">{{ session_description }}</p>
+      {% endif %}</div>
     {% endif %}
 
     {% if drupal_url is not empty or linkedin_url is not empty %}
@@ -79,5 +89,11 @@
         {% endif %}
       </div>
     {% endif %}
-  </div>
-</div>
+  {% if cta_label is not empty and speaker_url is not empty %}  <a href="{{ speaker_url }}" class="people-card__cta dac-arrow-link">
+      {{- cta_label -}}
+      {% include 'drupal_india_connect:icon' ignore missing with { icon: 'arrow-right', icon_size: 'extra-small' } only %}
+      <span class="visually-hidden">: {{ name }}</span>
+    </a>
+  {% endif %}</div>
+{% if is_keynote %}  </div>
+{% endif %}</div>

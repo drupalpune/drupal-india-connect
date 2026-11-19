@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'People Card'
-description: 'A person''s photo, name, designation, an optional domain, rich-text description and session title, and optional Drupal.org and LinkedIn profile links. With a speaker page URL the photo and name link to it and the description is cut to 3 lines.'
+description: 'A person''s photo, name, designation, an optional domain, rich-text description and session title, and optional Drupal.org and LinkedIn profile links. With a speaker page URL the photo and name link to it and the description is cut to 3 lines. The keynote card style is a larger card: a big square photo beside the text when the card is wide, stacked when it is narrow.'
 group: Drupal Connect
 status: stable
 props:
@@ -8,6 +8,23 @@ props:
   required:
     - name
   properties:
+    card_style:
+      type: string
+      title: 'Card style'
+      description: 'Optional. Keynote: a larger card for a keynote speaker, with a big square photo beside the text once the card is wide enough (one per row), stacked in a row of two or three.'
+      enum:
+        - default
+        - keynote
+      meta:enum:
+        default: Default
+        keynote: Keynote
+      default: default
+      examples:
+        - default
+    badge:
+      type: string
+      title: Badge
+      description: 'Optional small label above the name, e.g. "Keynote".'
     avatar:
       $ref: json-schema-definitions://canvas.module/image
       title: Avatar
@@ -43,6 +60,10 @@ props:
       description: 'Optional confirmed session title.'
       examples:
         - 'The State of Drupal'
+    session_description:
+      type: string
+      title: 'Session teaser'
+      description: 'Optional. One or two sentences under the session title. Only used when a session title is set.'
     session_url:
       type: string
       title: 'Session page URL'
@@ -53,6 +74,10 @@ props:
       title: 'Speaker page URL'
       description: 'Optional. Links the photo and name to the full speaker profile, and shortens the description to 3 lines.'
       format: uri-reference
+    cta_label:
+      type: string
+      title: 'Speaker page link text'
+      description: 'Optional. Adds a text link to the speaker page under the card, e.g. "Read the abstract". Only used with a speaker page URL.'
     drupal_url:
       type: string
       title: 'Drupal.org profile URL'
