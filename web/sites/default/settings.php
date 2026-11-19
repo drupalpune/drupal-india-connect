@@ -886,3 +886,38 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+
+/**
+ * Outgoing mail over SMTP (#169).
+ *
+ * Symfony Mailer Lite's default "native" transport runs sendmail through
+ * proc_open(), which the production host disables for web PHP as well as the
+ * CLI, so it cannot send. config/sync ships a disabled "smtp" transport with
+ * no host or credentials. Define $settings['mail_smtp'] in settings.local.php
+ * and this block enables that transport and makes it the default. Without it
+ * nothing changes. The values are runtime overrides only: they are never
+ * written to the database or exported to config/sync.
+ *
+ * In settings.local.php on the server:
+ * @code
+ * $settings['mail_smtp'] = [
+ *   'host' => 'smtp.gmail.com',
+ *   // 587 = STARTTLS, 465 = implicit TLS. Defaults to 587.
+ *   'port' => 587,
+ *   'user' => 'events@drupalasia.org',
+ *   'pass' => 'the-app-password',
+ * ];
+ * @endcode
+ *
+ * Keep this block after the settings.local.php include above.
+ */
+if (!empty($settings['mail_smtp']['host'])) {
+  $config['symfony_mailer_lite.settings']['default_transport'] = 'smtp';
+  $config['symfony_mailer_lite.symfony_mailer_lite_transport.smtp']['status'] = TRUE;
+  $config['symfony_mailer_lite.symfony_mailer_lite_transport.smtp']['configuration'] = [
+    'host' => $settings['mail_smtp']['host'],
+    'port' => (int) ($settings['mail_smtp']['port'] ?? 587),
+    'user' => $settings['mail_smtp']['user'] ?? '',
+    'pass' => $settings['mail_smtp']['pass'] ?? '',
+  ];
+}
