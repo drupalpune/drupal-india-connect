@@ -143,7 +143,8 @@
                 "Add an 'arrow-down' icon to the Button component, for buttons that jump down the page": "patches/event_horizon-button-arrow-down-icon.patch",
                 "Add an 'arrows-left-right' (compare) icon to the Button component": "patches/event_horizon-button-arrows-left-right-icon.patch",
                 "Apply Section width variants (90/80/75/50%) from tablet up, full width on phones": "patches/event_horizon-section-width-from-tablet.patch",
-                "Add a 'Text color' (white) option to the CTA component, for a CTA on a strong background": "patches/event_horizon-cta-text-color-white.patch"
+                "Add a 'Text color' (white) option to the CTA component, for a CTA on a strong background": "patches/event_horizon-cta-text-color-white.patch",
+                "Accordion container: closing an accordion also takes its hidden links out of the tab order": "patches/event_horizon-accordion-container-tab-order.patch"
             }
         },
         "drupal-scaffold": {

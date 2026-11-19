@@ -1,0 +1,22 @@
+diff -ruN a/components/accordion-container/accordion-container.js b/components/accordion-container/accordion-container.js
+--- a/components/accordion-container/accordion-container.js	2026-11-19 14:23:12
++++ b/components/accordion-container/accordion-container.js	2026-11-19 14:23:18
+@@ -18,11 +18,16 @@
+             .querySelectorAll('.eh-accordion.eh-accordion--open')
+             .forEach((openAccordion) => {
+               if (openAccordion === e.target) return;
+-              openAccordion.classList.remove('eh-accordion--open');
+               const trigger = openAccordion.querySelector(
+                 '.eh-accordion__trigger',
+               );
+-              if (trigger) trigger.setAttribute('aria-expanded', 'false');
++              // Close it through its own trigger, so the accordion also takes
++              // the links in its now hidden content out of the tab order.
++              if (trigger) {
++                trigger.click();
++                return;
++              }
++              openAccordion.classList.remove('eh-accordion--open');
+             });
+         });
+       });

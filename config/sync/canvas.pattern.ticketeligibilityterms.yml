@@ -1,0 +1,127 @@
+uuid: 0fe3a7d9-29ed-4671-ab3e-2c7c74dc38e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.drupal_india_connect.eyebrow
+    - canvas.component.sdc.event_horizon.accordion
+    - canvas.component.sdc.event_horizon.accordion-container
+    - canvas.component.sdc.event_horizon.group
+    - canvas.component.sdc.event_horizon.heading
+    - canvas.component.sdc.event_horizon.section
+    - canvas.component.sdc.event_horizon.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
+id: ticketeligibilityterms
+label: 'Ticket eligibility & registration terms'
+component_tree:
+  '0:88e86151-28a0-4821-8329-a3eafe83310b':
+    uuid: 88e86151-28a0-4821-8329-a3eafe83310b
+    component_id: sdc.event_horizon.section
+    component_version: 26ebbd8a6b31ad9d
+    inputs:
+      width: 75%
+      columns: '100'
+      mobile_columns: '1'
+      margin_block_start: '0'
+      margin_block_end: '0'
+      padding_block_start: '64'
+      padding_block_end: '64'
+      full_width: true
+      dark_background: false
+      section_header: true
+      section_footer: false
+    label: 'Section - Ticket eligibility & registration terms'
+  '0:header_slot:0:9a203659-6cc7-4c41-aeb5-39e640b098ee':
+    parent_uuid: 88e86151-28a0-4821-8329-a3eafe83310b
+    slot: header_slot
+    uuid: 9a203659-6cc7-4c41-aeb5-39e640b098ee
+    component_id: sdc.event_horizon.group
+    component_version: 62f65fb6a854b0dd
+    inputs:
+      flex_direction: column
+      flex_gap: sm
+      items_align: start
+      flex_align: start
+    label: 'Group - Ticket terms header'
+  '0:header_slot:0:group_slot:0:95f697e8-253a-43e5-9278-e7987e5bd291':
+    parent_uuid: 9a203659-6cc7-4c41-aeb5-39e640b098ee
+    slot: group_slot
+    uuid: 95f697e8-253a-43e5-9278-e7987e5bd291
+    component_id: sdc.drupal_india_connect.eyebrow
+    component_version: fc3f1bcf4d23d8a9
+    inputs:
+      text: 'Before you buy'
+      tone: accent
+    label: 'Eyebrow - Before you buy'
+  '0:header_slot:0:group_slot:1:ede19285-875b-49b3-adb3-e15db8ed5a08':
+    parent_uuid: 9a203659-6cc7-4c41-aeb5-39e640b098ee
+    slot: group_slot
+    uuid: ede19285-875b-49b3-adb3-e15db8ed5a08
+    component_id: sdc.event_horizon.heading
+    component_version: 43155e852c0c459f
+    inputs:
+      heading_text: 'Ticket eligibility & registration terms'
+      level: 2
+      text_size: heading-responsive-3xl
+      text_color: default
+      align: left
+    label: 'Heading - Ticket eligibility & registration terms'
+  '0:main_slot:0:43b85a54-c594-4c78-bc46-bcf07ec83f5d':
+    parent_uuid: 88e86151-28a0-4821-8329-a3eafe83310b
+    slot: main_slot
+    uuid: 43b85a54-c594-4c78-bc46-bcf07ec83f5d
+    component_id: sdc.event_horizon.accordion-container
+    component_version: 6d6367123c15a82a
+    inputs: {  }
+    label: 'Accordion container - Ticket terms'
+  '0:main_slot:0:accordion_content:0:359b683a-0d37-4965-9a3d-37e86a617c3c':
+    parent_uuid: 43b85a54-c594-4c78-bc46-bcf07ec83f5d
+    slot: accordion_content
+    uuid: 359b683a-0d37-4965-9a3d-37e86a617c3c
+    component_id: sdc.event_horizon.accordion
+    component_version: 9ef1c4769558babd
+    inputs:
+      title: 'General ticket terms'
+      heading_level: 3
+      open_by_default: true
+    label: 'Accordion - General ticket terms'
+  '0:main_slot:0:accordion_content:0:accordion_content:0:3c0b0c74-7b3a-437d-a0af-fd7ec9eaa4a3':
+    parent_uuid: 359b683a-0d37-4965-9a3d-37e86a617c3c
+    slot: accordion_content
+    uuid: 3c0b0c74-7b3a-437d-a0af-fd7ec9eaa4a3
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<ul><li>Ticket access and inclusions depend on the selected ticket.</li><li>Accurate attendee information must be provided during registration.</li><li>Tickets are personal. Transfers or substitutions require organizer approval.</li><li>Activities requiring separate registration or ticket purchases are not automatically included.</li><li>Applicable taxes, processing fees, and final checkout prices follow KonfHub.</li><li>Cancellation, refunds, and changes are subject to the approved registration policy and applicable law.</li><li>All attendees must follow the <a href="/code-of-conduct">Code of Conduct</a>.</li></ul>'
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - General ticket terms'
+  '0:main_slot:0:accordion_content:1:6d92aea2-c6af-4aa1-895a-2b389e12c7a1':
+    parent_uuid: 43b85a54-c594-4c78-bc46-bcf07ec83f5d
+    slot: accordion_content
+    uuid: 6d92aea2-c6af-4aa1-895a-2b389e12c7a1
+    component_id: sdc.event_horizon.accordion
+    component_version: 9ef1c4769558babd
+    inputs:
+      title: 'Academia pass eligibility & verification'
+      heading_level: 3
+      open_by_default: false
+    label: 'Accordion - Academia pass eligibility & verification'
+  '0:main_slot:0:accordion_content:1:accordion_content:0:70be3286-002f-468f-b1a9-29410c706514':
+    parent_uuid: 6d92aea2-c6af-4aa1-895a-2b389e12c7a1
+    slot: accordion_content
+    uuid: 70be3286-002f-468f-b1a9-29410c706514
+    component_id: sdc.event_horizon.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: "<ul><li><strong>Student Pass:</strong> Valid student ID or current enrollment confirmation is required.</li><li><strong>Educator Pass:</strong> Valid faculty ID or current institutional-affiliation proof is required.</li><li>Supporting documents must be submitted <strong>during registration</strong>.</li><li>The attendee's registered name must match the supporting document.</li><li>Academia passes are non-transferable without organizer approval.</li><li>The organizing team reserves the right to verify eligibility.</li><li>Deliberate misrepresentation, forged documents, or misuse may result in registration cancellation and revocation of event access without refund, subject to applicable law.</li><li>Attendees should have a reasonable opportunity to clarify eligibility discrepancies before a final decision.</li></ul>"
+        format: canvas_html_block
+      text_size: normal
+      text_color: default
+    label: 'Text - Academia pass eligibility & verification'

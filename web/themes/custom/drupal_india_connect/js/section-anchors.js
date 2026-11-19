@@ -33,6 +33,11 @@
     // Its DrupalEasy training band, linked as
     // /ticket-rates-and-details#drupaleasy-discounts.
     'save on drupaleasy training': 'drupaleasy-discounts',
+    // Its Academia passes and the ticket terms band (the "Ticket eligibility
+    // & registration terms" Canvas pattern), linked as
+    // /ticket-rates-and-details#academia and #ticket-terms.
+    academia: 'academia',
+    'ticket eligibility & registration terms': 'ticket-terms',
     'iit bombay, mumbai': 'venue',
     'founding sponsors': 'sponsors',
     questions: 'faq',
