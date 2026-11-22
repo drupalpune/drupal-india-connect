@@ -40,7 +40,7 @@ Where to look first:
 
 | Adding… | Check first |
 | --- | --- |
-| A theme component or markup | `web/themes/custom/drupal_india_connect/components/` and `web/themes/contrib/event_horizon/components/` (Canvas lists them as `canvas.component.sdc.*` in `config/sync`). Then how an existing page uses them: homepage (`canvas_page` 1) and `scripts/build-travel-page.php`. |
+| A theme component or markup | `web/themes/custom/drupal_india_connect/components/` and `web/themes/contrib/event_horizon/components/` (Canvas lists them as `canvas.component.sdc.*` in `config/sync`). Then how an existing page uses them: homepage (`canvas_page` 1) and `scripts/build-travel-page.php` (to see component usage; content no longer ships as scripts). |
 | CSS | Tokens only (`--color--*`, `--sp*`, `--focus-ring-color`); grep `css/` and `components/` for the same declarations (border + top accent, eyebrow type, pill) and share the existing class instead of copying it. Confirm a `var(--x)` is actually defined: `info-card` used `--text-body`, which nothing defines, and broke on dark bands. |
 | A field | A sibling field with the same job on that bundle (`field_is_invited` mirrors `field_is_training`: type, form widget, field permissions). |
 | A View | A display on the existing view before a new view; copy filters from neighbouring handlers. |
@@ -83,24 +83,45 @@ processes are restricted as on the server.
 create Canvas patterns and edit settings like `system.maintenance` on live,
 and the deploy's `cim` deletes or reverts anything not in `config/sync`.
 
-## Claude in GitHub Actions
+## Content changes never ship as scripts
 
-`.github/workflows/issue-triage.yml` is the only workflow that runs Claude
-(`anthropics/claude-code-action`, with the `CLAUDE_CODE_OAUTH_TOKEN` secret).
-The `@claude` comment workflow (`claude.yml`) was removed on 2026-11-22.
+PRs carry **code and config only**: modules, theme, components, CSS/JS,
+`config/sync`, `patches/`, docs. Content (page text, nodes, Canvas trees,
+menus, media, sponsor/speaker entities) is changed **on the live site**,
+by an editor or by the issue agent after a human approves its plan. Do not
+add new `scripts/*.php` that build or edit content; the existing
+`scripts/build-*.php` are history, useful only to see how components are
+used.
 
-The nightly **Daily changelog** (`changelog.yml`) was discontinued on
-2026-11-22: it is disabled in GitHub and `CHANGELOG.md` is no longer
-updated. Re-enable with `gh workflow enable changelog.yml` only if the team
-asks for it back.
+## Issue labels (`agent:*`)
 
-- `claude-code-action` **skips itself on a branch run** when the workflow file
-  differs from `main` ("Workflow validation failed"), and the run still shows
-  green. Changes to a prompt or workflow that uses it can only be tested after
-  merging, with a manual run.
-- The action **revokes its GitHub token when its step ends**. Any later step
-  that pushes must use `github.token`, or it fails with
-  `Invalid username or token`.
+Issues are worked by a Claude Code agent that runs nightly on a
+maintainer's machine (not in this repo). For each new issue it triages,
+checks the request, opens a PR for any code/config and posts a plan, then
+waits for a human.
+
+| Label | Set by | Meaning |
+| --- | --- | --- |
+| `agent:plan-posted` | agent | Plan (and PR) ready for review |
+| `agent:approved` | **human** | Plan and PR reviewed. Merge the PR too; the agent then releases and makes the planned live content changes |
+| `agent:needs-info` | agent | It asked a question. Answer, then remove the label |
+| `agent:pr-open` | agent | A PR is open (branch `agent/issue-N`) |
+| `agent:blocked` | agent | It stopped and explained why. Fix, then remove the label |
+| `agent:done` | agent | Finished and checked on live. A human closes the issue |
+| `agent:ready` | **human** | Opt in an issue opened before the agent existed |
+| `agent:skip` | **human** | Leave this issue alone (`On Hold` works too) |
+
+A merge without `agent:approved` is not approval: the agent waits. Key
+dates it uses for deadlines are in `.github/triage/key-dates.md`.
+
+## GitHub Actions
+
+No workflow runs Claude any more. `issue-triage.yml` (replaced by the
+agent) and the **Daily changelog** (`changelog.yml`, so `CHANGELOG.md` is no
+longer updated) were disabled on 2026-11-22, and `claude.yml` was removed.
+Re-enable one with `gh workflow enable <file>` only if the team asks. If one
+comes back, `claude-code-action` skips itself on branch runs when the
+workflow differs from `main`, and revokes its token when its step ends.
 
 ## Design work
 
