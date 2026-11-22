@@ -1,6 +1,6 @@
 # Key dates for issue triage
 
-The issue triage workflow (`.github/workflows/issue-triage.yml`) reads this
+The issue agent (see "Issue labels" in CLAUDE.md) reads this
 file, together with the dates it finds on the live site, to decide when each
 new issue needs to be done by. Add dates here as the organising team shares
 them: one line each, date first, then what it is and what work it drives.
