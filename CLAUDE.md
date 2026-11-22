@@ -95,8 +95,8 @@ used.
 
 ## Issue labels (`agent:*`)
 
-Issues are worked by a Claude Code agent that runs nightly on a
-maintainer's machine (not in this repo). For each new issue it triages,
+Issues are worked by a Claude Code agent on a maintainer's machine (not in
+this repo). Within minutes of an issue being opened it triages,
 checks every claim, reuses what already exists, opens a PR for any
 code/config, posts one short plan, and hands over.
 
@@ -108,7 +108,7 @@ code/config, posts one short plan, and hands over.
 | `agent:skip` | **human** | Leave this issue alone (`On Hold` works too) |
 
 To ask for changes, comment on the issue and remove `agent:review` (or
-review the PR); it reworks it the next night. A merge without
+review the PR); it reworks it in its nightly run. A merge without
 `agent:approved` is not approval. The agent changes content through the
 Drupal UI only, never with scripts. Key dates it uses for deadlines are in
 `.github/triage/key-dates.md`.
