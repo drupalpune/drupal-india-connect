@@ -83,20 +83,23 @@ processes are restricted as on the server.
 create Canvas patterns and edit settings like `system.maintenance` on live,
 and the deploy's `cim` deletes or reverts anything not in `config/sync`.
 
-## Daily changelog
+## Claude in GitHub Actions
 
-`.github/workflows/changelog.yml` has Claude write `CHANGELOG.md` at 23:00
-IST and **commits straight to `main` as `github-actions[bot]`**, so local
-`main` and open branches fall behind every night. Pull before you push.
+`.github/workflows/issue-triage.yml` is the only workflow that runs Claude
+(`anthropics/claude-code-action`, with the `CLAUDE_CODE_OAUTH_TOKEN` secret).
+The `@claude` comment workflow (`claude.yml`) was removed on 2026-11-22.
 
-- Don't hand-edit `.github/changelog/sitemap-urls.txt`: it is the previous
-  night's sitemap URL list, used to detect new and removed pages.
+The nightly **Daily changelog** (`changelog.yml`) was discontinued on
+2026-11-22: it is disabled in GitHub and `CHANGELOG.md` is no longer
+updated. Re-enable with `gh workflow enable changelog.yml` only if the team
+asks for it back.
+
 - `claude-code-action` **skips itself on a branch run** when the workflow file
   differs from `main` ("Workflow validation failed"), and the run still shows
-  green. Changes to the prompt or that workflow can only be tested after
-  merging, with a manual run for a past date.
+  green. Changes to a prompt or workflow that uses it can only be tested after
+  merging, with a manual run.
 - The action **revokes its GitHub token when its step ends**. Any later step
-  that pushes must use `github.token` (see the commit step), or it fails with
+  that pushes must use `github.token`, or it fails with
   `Invalid username or token`.
 
 ## Design work
