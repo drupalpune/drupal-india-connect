@@ -3,7 +3,12 @@
 What changed on [drupalasia.org](https://drupalasia.org), day by day, in plain
 language. Newest first.
 
-A new entry is written every night at 23:00 IST by the
+> **Discontinued on 2026-11-22.** The nightly
+> [Daily changelog](.github/workflows/changelog.yml) workflow has been switched
+> off, and no new entries will be added. The entries below are kept for
+> reference.
+
+Entries were written every night at 23:00 IST by the
 [Daily changelog](.github/workflows/changelog.yml) workflow from that day's
 commits, releases, merged pull requests and closed issues. Something is only
 live once it ships in a release tag (see "Live on the site").
