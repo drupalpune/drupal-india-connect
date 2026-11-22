@@ -97,22 +97,21 @@ used.
 
 Issues are worked by a Claude Code agent that runs nightly on a
 maintainer's machine (not in this repo). For each new issue it triages,
-checks the request, opens a PR for any code/config and posts a plan, then
-waits for a human.
+checks every claim, reuses what already exists, opens a PR for any
+code/config, posts one short plan, and hands over.
 
 | Label | Set by | Meaning |
 | --- | --- | --- |
-| `agent:plan-posted` | agent | Plan (and PR) ready for review |
-| `agent:approved` | **human** | Plan and PR reviewed. Merge the PR too; the agent then releases and makes the planned live content changes |
-| `agent:needs-info` | agent | It asked a question. Answer, then remove the label |
-| `agent:pr-open` | agent | A PR is open (branch `agent/issue-N`) |
-| `agent:blocked` | agent | It stopped and explained why. Fix, then remove the label |
-| `agent:done` | agent | Finished and checked on live. A human closes the issue |
-| `agent:ready` | **human** | Opt in an issue opened before the agent existed |
+| `agent:review` | agent | Worked on; ready for a human to review the plan (and PR) |
+| `agent:approved` | **human** | Approved. Merge the PR too; the agent then releases and makes the planned live content changes |
+| `agent:done` | agent | Finished and live. A human closes the issue |
 | `agent:skip` | **human** | Leave this issue alone (`On Hold` works too) |
 
-A merge without `agent:approved` is not approval: the agent waits. Key
-dates it uses for deadlines are in `.github/triage/key-dates.md`.
+To ask for changes, comment on the issue and remove `agent:review` (or
+review the PR); it reworks it the next night. A merge without
+`agent:approved` is not approval. The agent changes content through the
+Drupal UI only, never with scripts. Key dates it uses for deadlines are in
+`.github/triage/key-dates.md`.
 
 ## GitHub Actions
 
