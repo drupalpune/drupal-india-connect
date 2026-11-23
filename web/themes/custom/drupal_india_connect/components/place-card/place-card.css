@@ -96,3 +96,28 @@
   outline: solid 2px currentColor;
   outline-offset: 2px;
 }
+
+/*
+ * Optional photo, edge to edge across the top of the card: negative margins
+ * cancel the card padding, and the card's radius is repeated on the top
+ * corners since the card itself does not clip.
+ */
+.place-card__media {
+  margin: calc(-1 * var(--sp1-5)) calc(-1 * var(--sp1-5)) 0;
+}
+
+.place-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.place-card__credit {
+  padding: var(--sp0-25) var(--sp1-5) 0;
+  color: var(--color--night-40);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}

@@ -1,6 +1,22 @@
 {% set variant_key = variant|default('place') %}
+{% set has_media = media.src is not empty %}
 
-<article class="place-card place-card--{{ variant_key }}">
+<article class="place-card place-card--{{ variant_key }}{{ has_media ? ' place-card--has-media' }}">
+  {% if has_media %}
+    <figure class="place-card__media">
+      {% include 'canvas:image' ignore missing with {
+        src: media.src,
+        alt: media.alt,
+        class: 'place-card__image',
+        width: media.width,
+        height: media.height,
+      } only %}
+      {% if media_credit is not empty %}
+        <figcaption class="place-card__credit">{{ media_credit }}</figcaption>
+      {% endif %}
+    </figure>
+  {% endif %}
+
   <div class="place-card__top">
     <h3 class="place-card__name">{{ name }}</h3>
     {% if distance is not empty %}

@@ -1,6 +1,6 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: 'Place Card'
-description: 'A place or listing to visit: a name, an optional distance pill, an address (with a map pin) or a short description, and a link such as "View on Google Maps". One card per hotel, so editors can add, remove and reorder hotels freely. Leave the address and distance blank and fill in the description to use it as a link-out card (e.g. Booking.com or Airbnb). Place several inside a Section''s main slot (set its columns) or a Grid.'
+description: 'A place or listing to visit: a name, an optional distance pill, an address (with a map pin) or a short description, and a link such as "View on Google Maps". One card per hotel, so editors can add, remove and reorder hotels freely. Leave the address and distance blank and fill in the description to use it as a link-out card (e.g. Booking.com or Airbnb). Add an optional image (with a photo credit) to show a photo above the name. Place several inside a Section''s main slot (set its columns) or a Grid.'
 group: Drupal Connect
 status: stable
 props:
@@ -53,3 +53,13 @@ props:
       format: uri-reference
       examples:
         - 'https://maps.app.goo.gl/qM5bA9d1nZN7Dpcq9'
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: 'Image (optional)'
+      type: object
+    media_credit:
+      type: string
+      title: 'Photo credit'
+      description: 'Shown under the image, e.g. "Photo: Jane Doe, CC BY-SA 4.0, Wikimedia Commons". Needed for most free-licence photos.'
+      examples:
+        - 'Photo: A. N. Other, CC BY-SA 4.0, Wikimedia Commons'
