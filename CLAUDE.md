@@ -88,7 +88,7 @@ and the deploy's `cim` deletes or reverts anything not in `config/sync`.
 PRs carry **code and config only**: modules, theme, components, CSS/JS,
 `config/sync`, `patches/`, docs. Content (page text, nodes, Canvas trees,
 menus, media, sponsor/speaker entities) is changed **on the live site**,
-by an editor or by the issue agent after a human approves its plan. Do not
+by an editor or by the issue agent after a human adds `agent:deploy`. Do not
 add new `scripts/*.php` that build or edit content; the existing
 `scripts/build-*.php` are history, useful only to see how components are
 used.
@@ -96,20 +96,19 @@ used.
 ## Issue labels (`agent:*`)
 
 Issues are worked by a Claude Code agent on a maintainer's machine (not in
-this repo). Within minutes of an issue being opened it triages,
-checks every claim, reuses what already exists, opens a PR for any
-code/config, posts one short plan, and hands over.
+this repo). **A label is its notification**: it does nothing until a human
+adds one, and picks it up within about 5 minutes.
 
 | Label | Set by | Meaning |
 | --- | --- | --- |
-| `agent:review` | agent | Worked on; ready for a human to review the plan (and PR) |
-| `agent:approved` | **human** | Approved. Merge the PR too; the agent then releases and makes the planned live content changes |
-| `agent:done` | agent | Finished and live. A human closes the issue |
-| `agent:skip` | **human** | Leave this issue alone (`On Hold` works too) |
+| `agent:start` | **human** | Work on this: check every claim, reuse what exists, open a PR for code/config, post a short plan |
+| `agent:review` | agent | Plan (and PR) ready for a human to review |
+| `agent:deploy` | **human** | PR merged and plan good: the agent releases, deploys and makes the planned live content changes |
+| `agent:done` | agent | Finished and live. A human checks and closes the issue |
 
-To ask for changes, comment on the issue and remove `agent:review` (or
-review the PR); it reworks it in its nightly run. A merge without
-`agent:approved` is not approval. The agent changes content through the
+To ask for changes, comment on the issue or the PR and add `agent:start`
+again. The plan's visible lines are for humans; the collapsed Details hold
+what the agent needs to deploy it. The agent changes content through the
 Drupal UI only, never with scripts. Key dates it uses for deadlines are in
 `.github/triage/key-dates.md`.
 
