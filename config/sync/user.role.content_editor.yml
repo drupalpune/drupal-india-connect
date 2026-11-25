@@ -59,6 +59,7 @@ permissions:
   - 'edit any svg_image media'
   - 'edit any video media'
   - 'edit canvas_page'
+  - 'publish auto-saves'
   - 'revert all revisions'
   - 'schedule publishing of nodes'
   - 'use basic_editorial transition create_new_draft'

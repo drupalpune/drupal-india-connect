@@ -12,6 +12,19 @@
   </IfModule>
 </FilesMatch>
 
+# Block the web installer (core/install.php). The site is installed, and
+# Drupal recommends this on every site (SA-CORE-2026-019). Drush does not
+# use install.php; update.php is a separate script and stays reachable.
+# https://www.drupal.org/docs/administering-a-drupal-site/security-in-drupal/securing-the-installer-installphp
+<Files "install.php">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+  </IfModule>
+</Files>
+
 # Don't show directory listings for URLs which map to a directory.
 Options -Indexes
 
